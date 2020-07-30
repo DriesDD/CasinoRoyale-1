@@ -1,0 +1,6 @@
+/*format the grid cells*/
+
+.grid{border-collapse: collapse;}
+.cell{background-color: darkslateblue;
+      width:20px;
+      height:20px;}
