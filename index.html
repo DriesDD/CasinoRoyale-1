@@ -3,26 +3,223 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" type="text/css" href="src/style.css" />
+    <link rel="stylesheet" type="text/css" href="styles/tailwind.css" />
+    <link rel="stylesheet" type="text/css" href="styles/style.css" />
     <title>Sourcerors Casino</title>
   </head>
-  <body>
-    <header>
-      <div>LOGO</div>
-    </header>
-    <nav>
-      <ul>
-        <li><a href="game-one/game-one.html">RPSLS</a></li>
-        <li><a href="game-two/game-two.html">Twenty-One</a></li>
-        <li><a href="game-three/game-three.html">Memory</a></li>
-        <li><a href="game-four/game-four.html">Moving Blocks</a></li>
-      </ul>
-    </nav>
+  <body class="bg-gray-900">
+   
+    <nav class="bg-orange-300 mb-4">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="flex justify-between h-16">
+      <div class="flex">
+        <div class="-ml-2 mr-2 flex items-center md:hidden">
+          <!-- Mobile menu button -->
+          <button class="inline-flex items-center justify-center p-2 rounded-md text-gray-400 hover:text-white hover:bg-gray-700 focus:outline-none focus:bg-gray-700 focus:text-white transition duration-150 ease-in-out" aria-label="Main menu" aria-expanded="false">
+            <!-- Icon when menu is closed. -->
+            <!-- Menu open: "hidden", Menu closed: "block" -->
+            <svg class="block h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+            </svg>
+            <!-- Icon when menu is open. -->
+            <!-- Menu open: "block", Menu closed: "hidden" -->
+            <svg class="hidden h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+            </svg>
+          </button>
+        </div>
+        <div class="flex-shrink-0 flex items-center">
+          <img class="block lg:hidden h-8 w-auto" src="images/Logo.png" alt="logo">
+          <img class="hidden lg:block h-8 w-auto" src="images/Logo.png" alt="logo">
+        </div>
+        <div class="hidden md:ml-6 md:flex md:items-center">
+          <a href="#" class="px-3 py-2 rounded-md text-sm font-medium leading-5 text-white bg-gray-900 focus:outline-none focus:text-white focus:bg-gray-700 transition duration-150 ease-in-out">Homepage</a>
+          <a href="#" class="ml-4 px-3 py-2 rounded-md text-sm font-medium leading-5 text-gray-900 hover:text-white hover:bg-gray-700 focus:outline-none focus:text-white focus:bg-gray-700 transition duration-150 ease-in-out">RPSLS</a>
+          <a href="#" class="ml-4 px-3 py-2 rounded-md text-sm font-medium leading-5 text-gray-900 hover:text-white hover:bg-gray-700 focus:outline-none focus:text-white focus:bg-gray-700 transition duration-150 ease-in-out">Twenty-One</a>
+          <a href="#" class="ml-4 px-3 py-2 rounded-md text-sm font-medium leading-5 text-gray-900 hover:text-white hover:bg-gray-700 focus:outline-none focus:text-white focus:bg-gray-700 transition duration-150 ease-in-out">Memory</a>
+              <a href="#" class="ml-4 px-3 py-2 rounded-md text-sm font-medium leading-5 text-gray-900 hover:text-white hover:bg-gray-700 focus:outline-none focus:text-white focus:bg-gray-700 transition duration-150 ease-in-out">Block Game</a>
+        </div>
+      </div>
+      <div class="flex items-center">
+        <div class="flex-shrink-0">
+          <span class="rounded-md shadow-sm">
+            <button type="button" class="relative inline-flex items-center px-4 py-2 border border-transparent text-sm leading-5 font-medium rounded-md text-grey-900 bg-orange-500 hover:bg-indigo-400 focus:outline-none focus:shadow-outline-indigo focus:border-indigo-600 active:bg-indigo-600 transition duration-150 ease-in-out">
+              <svg class="-ml-1 mr-2 h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+                <path fill-rule="evenodd" d="M10 3a1 1 0 011 1v5h5a1 1 0 110 2h-5v5a1 1 0 11-2 0v-5H4a1 1 0 110-2h5V4a1 1 0 011-1z" clip-rule="evenodd" />
+              </svg>
+              <span>Buy Coins</span>
+            </button>
+          </span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!--
+    Mobile menu, toggle classes based on menu state.
+
+    Menu open: "block", Menu closed: "hidden"
+  -->
+</nav>
     <main>
-      <div>Card 1</div>
-      <div>Card 2</div>
-      <div>Card 3</div>
-      <div>Card 4</div>
+      <div class="card-container">
+        <ul
+          class="grid grid-cols-1 gap-6 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4"
+        >
+          <li
+            class="col-span-1 flex flex-col text-center bg-white rounded-lg shadow"
+          >
+            <div class="flex-1 flex flex-col p-8">
+              <img
+                class="w-32 h-32 flex-shrink-0 mx-auto bg-black rounded-full"
+                src="images/bet.svg"
+                alt="betting vector"
+              />
+              <h3 class="mt-6 text-gray-900 text-sm leading-5 font-medium">
+                Rock, Paper, Scissors, Lizard, Spock
+              </h3>
+              <dl class="mt-1 flex-grow flex flex-col justify-between">
+                <dt class="sr-only">Title</dt>
+                <dd class="text-gray-500 text-sm leading-5">
+                  Get your game on!
+                </dd>
+                <dt class="sr-only"></dt>
+                <dd class="mt-3">
+                  <span
+                    class="px-2 py-1 text-teal-800 text-xs leading-4 font-medium bg-teal-100 rounded-full"
+                    >Level: Beginner</span
+                  >
+                </dd>
+              </dl>
+            </div>
+            <div class="border-t border-gray-200">
+              <div class="-mt-px flex">
+                <div class="w-0 flex-1 flex border-r border-gray-200">
+                    <span class="ml-3 relative -mr-px w-0 flex-1 inline-flex items-center justify-center py-4 text-sm leading-5 text-gray-700 font-medium border border-transparent rounded-bl-lg hover:text-gray-500 focus:outline-none focus:shadow-outline-blue focus:border-blue-300 focus:z-10 transition ease-in-out duration-150>
+                      <a href="game-one/game-one.html">Start Now!</a>
+                    </span>
+                  </a>
+                </div>
+              </div>
+            </div>
+          </li>
+
+          <li
+            class="col-span-1 flex flex-col text-center bg-white rounded-lg shadow"
+          >
+            <div class="flex-1 flex flex-col p-8">
+              <img
+                class="w-32 h-32 flex-shrink-0 mx-auto bg-black rounded-full"
+                src="images/bet.svg"
+                alt="betting vector"
+              />
+              <h3 class="mt-6 text-gray-900 text-sm leading-5 font-medium">
+                Twenty-One
+              </h3>
+              <dl class="mt-1 flex-grow flex flex-col justify-between">
+                <dt class="sr-only">Title</dt>
+                <dd class="text-gray-500 text-sm leading-5">
+                  Get your game on!
+                </dd>
+                <dt class="sr-only"></dt>
+                <dd class="mt-3">
+                  <span
+                    class="px-2 py-1 text-teal-800 text-xs leading-4 font-medium bg-teal-100 rounded-full"
+                    >Level: Intermediate</span
+                  >
+                </dd>
+              </dl>
+            </div>
+            <div class="border-t border-gray-200">
+              <div class="-mt-px flex">
+                <div class="w-0 flex-1 flex border-r border-gray-200">
+                    <span class="ml-3 relative -mr-px w-0 flex-1 inline-flex items-center justify-center py-4 text-sm leading-5 text-gray-700 font-medium border border-transparent rounded-bl-lg hover:text-gray-500 focus:outline-none focus:shadow-outline-blue focus:border-blue-300 focus:z-10 transition ease-in-out duration-150>
+                      <a href="game-two/game-two.html">Start Now!</a>
+                    </span>
+                  </a>
+                </div>
+              </div>
+            </div>
+          </li>
+
+          <li
+            class="col-span-1 flex flex-col text-center bg-white rounded-lg shadow"
+          >
+            <div class="flex-1 flex flex-col p-8">
+              <img
+                class="w-32 h-32 flex-shrink-0 mx-auto bg-black rounded-full"
+                src="images/bet.svg"
+                alt="betting vector"
+              />
+              <h3 class="mt-6 text-gray-900 text-sm leading-5 font-medium">
+                Memory
+              </h3>
+              <dl class="mt-1 flex-grow flex flex-col justify-between">
+                <dt class="sr-only">Title</dt>
+                <dd class="text-gray-500 text-sm leading-5">
+                  Get your game on!
+                </dd>
+                <dt class="sr-only"></dt>
+                <dd class="mt-3">
+                  <span
+                    class="px-2 py-1 text-teal-800 text-xs leading-4 font-medium bg-teal-100 rounded-full"
+                    >Level: Intermediate</span
+                  >
+                </dd>
+              </dl>
+            </div>
+            <div class="border-t border-gray-200">
+              <div class="-mt-px flex">
+                <div class="w-0 flex-1 flex border-r border-gray-200">
+                    <span class="ml-3 relative -mr-px w-0 flex-1 inline-flex items-center justify-center py-4 text-sm leading-5 text-gray-700 font-medium border border-transparent rounded-bl-lg hover:text-gray-500 focus:outline-none focus:shadow-outline-blue focus:border-blue-300 focus:z-10 transition ease-in-out duration-150>
+                      <a href="game-three/game-three.html">Start Now!</a>
+                    </span>
+                  </a>
+                </div>
+              </div>
+            </div>
+          </li>
+
+          <li
+            class="col-span-1 flex flex-col text-center bg-white rounded-lg shadow"
+          >
+            <div class="flex-1 flex flex-col p-8">
+              <img
+                class="w-32 h-32 flex-shrink-0 mx-auto bg-black rounded-full"
+                src="images/bet.svg"
+                alt="betting vector"
+              />
+              <h3 class="mt-6 text-gray-900 text-sm leading-5 font-medium">
+                Block Game
+              </h3>
+              <dl class="mt-1 flex-grow flex flex-col justify-between">
+                <dt class="sr-only">Title</dt>
+                <dd class="text-gray-500 text-sm leading-5">
+                  Get your game on!
+                </dd>
+                <dt class="sr-only"></dt>
+                <dd class="mt-3">
+                  <span
+                    class="px-2 py-1 text-teal-800 text-xs leading-4 font-medium bg-teal-100 rounded-full"
+                    >Level: Advanced</span
+                  >
+                </dd>
+              </dl>
+            </div>
+            <div class="border-t border-gray-200">
+              <div class="-mt-px flex">
+                <div class="w-0 flex-1 flex border-r border-gray-200">
+                    <span class="ml-3 relative -mr-px w-0 flex-1 inline-flex items-center justify-center py-4 text-sm leading-5 text-gray-700 font-medium border border-transparent rounded-bl-lg hover:text-gray-500 focus:outline-none focus:shadow-outline-blue focus:border-blue-300 focus:z-10 transition ease-in-out duration-150>
+                      <a href="game-four/game-four.html">Start Now!</a>
+                    </span>
+                  </a>
+                </div>
+              </div>
+            </div>
+          </li>
+
+        </ul>
+      </div>
     </main>
     <footer>
       <p>&larr; Go Back</p>
