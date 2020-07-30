@@ -94,7 +94,7 @@ rockarray = [
     "Your rock is vaporized by Spock."
 ]
 paperarray = [
-    "Your paper covers the rock. It gets published in a leading geology Journal.",
+    "Your paper covers the rock. It gets published in a leading geology Jjurnal.",
     "Two papers. That's a brochure. I mean a tie.",
     "Your paper refutes the Spock. Take that!",
     "Your paper is cut to shreds by the scissors.",
@@ -105,7 +105,7 @@ scissorsarray = [
     "Your scissors are hit hard by mr. Spock.",
     "Have you ever made a tie with two scissors? You have now.",
     "Your scissors decapitated the lizard!",
-    "Your scissors are crushed by the rock."
+    "Your scissors are crushed by the Spock."
 ]
 lizardarray = [
     "Ssss. Your lizard is sssquashed by a big rock.",
