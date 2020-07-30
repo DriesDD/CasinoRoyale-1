@@ -33,7 +33,7 @@ Spock vaporizes Rock
 
 //rock: 1 paper: 2 scissors: 3 lizard: 4 spock: 5
 
-let playerpick, rand, computerpick, choices;
+let playerpick, rand, computerpick, choices, score;
 
 function $(x) {
     return document.getElementById(x);
@@ -73,6 +73,8 @@ $('play').onclick = () => {
     }
 }
 $('reset').onclick = () => {
+    score = 0;
+    $("score").innerText = "Score reset to 0";
     reset()
 }
 
@@ -87,41 +89,42 @@ function reset() {
 
 choices = ["rock", "paper", "scissors", "lizard", "spock"]
 rockarray = [
-    "The two rocks hit eachother and nothing happens.",
-    "Your rock is wrapped in paper and suffocates. It's a special rock, with lungs.",
-    "Your rock smashes the scissors.",
-    "Your rock stone-cold squashes the lizard to a pulp.",
-    "Your rock is vaporized by Spock."
+    ["The two rocks hit eachother and nothing happens.",0],
+    ["Your rock is wrapped in paper and suffocates. It's a special rock, with lungs.",-1],
+    ["Your rock smashes the scissors.",+1],
+    ["Your rock stone-cold squashes the lizard to a pulp.",+1],
+    ["Your rock is vaporized by Spock.",-1]
 ]
 paperarray = [
-    "Your paper covers the rock. It gets published in a leading geology Jjurnal.",
-    "Two papers. That's a brochure. I mean a tie.",
-    "Your paper refutes the Spock. Take that!",
-    "Your paper is cut to shreds by the scissors.",
-    "Your paper is eaten by the lizard."
+    ["Your paper covers the rock. It gets published in a leading geology journal.",+1],
+    ["Two papers. That's a brochure. I mean a tie.",0],
+    ["Your paper refutes the Spock. Take that!",+1],
+    ["Your paper is cut to shreds by the scissors.",-1],
+    ["Your paper is eaten by the lizard.",-1]
 ]
 scissorsarray = [
-    "Your scissors cut the paper.",
-    "Your scissors are hit hard by mr. Spock.",
-    "Have you ever made a tie with two scissors? You have now.",
-    "Your scissors decapitated the lizard!",
-    "Your scissors are crushed by the Spock."
+    ["Your scissors cut the paper.",+1],
+    ["Your scissors are hit hard by mr. Spock.",-1],
+    ["Have you ever made a tie with two scissors? You have now.",0],
+    ["Your scissors decapitated the lizard!",+1],
+    ["Your scissors are crushed by the Spock.",-1]
 ]
 lizardarray = [
-    "Ssss. Your lizard is sssquashed by a big rock.",
-    "Yummy. Your lizard ate the paper :).",
-    "Swish! Your lizard is cut in half by the scissors. Can lizards grow back half their body or only their tails?",
-    "Oh nice! Another lizard. Hello fellow lizard. It's a tie.",
-    "Hehe >:) Your lizard poisoned the spock."
+    ["Ssss. Your lizard is sssquashed by a big rock.",-1],
+    ["Yummy. Your lizard ate the paper :).",+1],
+    ["Swish! Your lizard is cut in half by the scissors. Can lizards grow back half their body or only their tails?",-1],
+    ["Oh nice! Another lizard. Hello fellow lizard. It's a tie.",0],
+    ["Hehe >:) Your lizard poisoned the spock.",+1]
 ]
 spockarray = [
-    "Your Spock vaporizes the rock! Don't fock with the Spock, rock.",
-    "Your Spock is disproved by the paper. You wither away in shame.",
-    "Your Spock smashes the scissors! Spocktastic!",
-    "Spock was poisoned by the computer's lizard. Who knew reptiles were its weakness?",
-    "Spocks don't take issue with eachother. It's a tie."
+    ["Your Spock vaporizes the rock! Don't fock with the Spock, rock.",+1],
+    ["Your Spock is disproven by the paper. You wither away in shame.",-1],
+    ["Your Spock smashes the scissors! Spocktastic!",+1],
+    ["Spock was poisoned by the computer's lizard. Who knew reptiles were its weakness?",-1],
+    ["Spocks don't take issue with eachother. It's a tie.",0]
 ]
 
+score = 0;
 function compare() {
     rand = Math.floor(Math.random() * 5);
     computerpick = choices[rand];
@@ -130,19 +133,20 @@ function compare() {
 
     switch (playerpick) {
         case "rock":
-            $("winnermsg").innerText = rockarray[rand];
+            $("winnermsg").innerText = rockarray[rand][0]; score += rockarray[rand][1];
             break;
         case "paper":
-            $("winnermsg").innerText = paperarray[rand];
+            $("winnermsg").innerText = paperarray[rand][0]; score += paperarray[rand][1];
             break;
         case "scissors":
-            $("winnermsg").innerText = scissorsarray[rand];
+            $("winnermsg").innerText = scissorsarray[rand][0]; score += scissorsarray[rand][1];
             break;
         case "lizard":
-            $("winnermsg").innerText = lizardarray[rand];
+            $("winnermsg").innerText = lizardarray[rand][0]; score += lizardarray[rand][1];
             break;
         case "spock":
-            $("winnermsg").innerText = spockarray[rand];
+            $("winnermsg").innerText = spockarray[rand][0]; score += spockarray[rand][1];
             break;
-    }
+        }
+        $("score").innerText = "Score:" + score;
 }
