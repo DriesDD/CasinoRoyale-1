@@ -96,7 +96,7 @@ rockarray = [
 paperarray = [
     "Your paper covers the rock. It gets published in a leading geology Journal.",
     "Two papers. That's a brochure. I mean a tie.",
-    " Your paper refutes the Spock. Take that!",
+    "Your paper refutes the Spock. Take that!",
     "Your paper is cut to shreds by the scissors.",
     "Your paper is eaten by the lizard."
 ]
@@ -110,7 +110,7 @@ scissorsarray = [
 lizardarray = [
     "Ssss. Your lizard is sssquashed by a big rock.",
     "Yummy. Your lizard ate the paper :).",
-    " Swish! Your lizard is cut in half by the scissors. Can lizards grow back half their body or only their tails?",
+    "Swish! Your lizard is cut in half by the scissors. Can lizards grow back half their body or only their tails?",
     "Oh nice! Another lizard. Hello fellow lizard. It's a tie.",
     "Hehe >:) Your lizard poisoned the spock."
 ]
@@ -145,3 +145,4 @@ function compare() {
             $("winnermsg").innerText = spockarray[rand];
             break;
     }
+}
