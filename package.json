@@ -1,0 +1,26 @@
+{
+  "name": "CasinoRoyale",
+  "version": "1.0.0",
+  "description": "BeCode Sourcerors group consolidation challenge!",
+  "main": "index.js",
+  "scripts": {
+    "build": "src/style.css -o src/tailwind.css"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Sourcerors/CasinoRoyale.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Sourcerors/CasinoRoyale/issues"
+  },
+  "homepage": "https://github.com/Sourcerors/CasinoRoyale#readme",
+  "dependencies": {
+    "autoprefixer": "^9.8.5",
+    "postcss-cli": "^7.1.1",
+    "tailwindcss": "^1.6.0"
+  },
+  "devDependencies": {}
+}
