@@ -35,36 +35,49 @@ Spock vaporizes Rock
 
 let playerpick, rand, computerpick, choices
 
-document.getElementById('rock').onclick = () => {playerpick = "rock"; compare()}
-document.getElementById('paper').onclick = () => {playerpick = "paper"; compare()}
-document.getElementById('scissors').onclick = () => {playerpick = "scissors"; compare()}
-document.getElementById('lizard').onclick = () => {playerpick = "lizard"; compare()}
-document.getElementById('spock').onclick = () => {playerpick = "spock"; compare()}
+function $(x) {return document.getElementById(x);}
+
+$('rock').onclick = () => {reset();playerpick = "rock"; $('rock').setAttribute("class", "picked")}
+$('paper').onclick = () => {reset();playerpick = "paper"; $('paper').setAttribute("class", "picked")}
+$('scissors').onclick = () => {reset();playerpick = "scissors"; $('scissors').setAttribute("class", "picked")}
+$('lizard').onclick = () => {reset();playerpick = "lizard"; $('lizard').setAttribute("class", "picked")}
+$('spock').onclick = () => {reset();playerpick = "spock"; $('spock').setAttribute("class", "picked")}
+
+$('play').onclick = () => {if (playerpick != 0) {compare()} else {$("playerpick").innerText = "Please make your pick.";}}
+$('reset').onclick = () => {reset()}
+
+function reset() {
+$('rock').removeAttribute("class");
+$('paper').removeAttribute("class");
+$('scissors').removeAttribute("class");
+$('lizard').removeAttribute("class");
+$('spock').removeAttribute("class");
+playerpick = 0}
 
 choices=["rock","paper","scissors","lizard","spock"]
-rockarray= ["it's a tie","Your rock is wrapped in paper","Your rock smashes the scissors","Your rock squashes the lizard to a pulp.", "Your rock is vaporized by Spock."]
-paperarray=["Your paper covers the rock", "it's a tie"," Your paper refutes the spock", "Your paper is cut by the scissor", "Your paper is eaten by the lizard"]
-scissorsarray=["Your scissors cuts the paper","Your scissor is hit hard by the spock", "it's a tie","Your scissor beheaded the lizard","Your scissor is crushed by the rock"]
+rockarray= ["The two rocks hit eachother and nothing happens.","Your rock is wrapped in paper and suffocates. It's a special rock, with lungs.","Your rock smashes the scissors.","Your rock stone-cold squashes the lizard to a pulp.", "Your rock is vaporized by Spock."]
+paperarray=["Your paper covers the rock. It gets published in a leading geology Journal.", "Two papers. That's a brochure. I mean a tie."," Your paper refutes the Spock. Take that!", "Your paper is cut to shreds by the scissors.", "Your paper is eaten by the lizard."]
+scissorsarray=["Your scissors cut the paper.","Your scissors are hit hard by mr. Spock.", "Have you ever made a tie with two scissors? You have now.","Your scissors decapitated the lizard!","Your scissors are crushed by the rock."]
 lizardarray=["Ssss. Your lizard is sssquashed by a big rock.", "Yummy. Your lizard ate the paper :)."," Swish! Your lizard is cut in half by the scissors. Can lizards grow back half their body or only their tails?", "Oh nice! Another lizard. Hello fellow lizard. It's a tie.", "Hehe >:) Your lizard poisoned the spock."]
 spockarray=["Your Spock vaporizes the rock! Don't fock with the Spock, rock.","Your Spock is disproved by the paper. You wither away in shame.","Your Spock smashes the scissors! Spocktastic!", "Spock was poisoned by the computer's lizard. Who knew reptiles were its weakness?", "Spocks don't take issue with eachother. It's a tie."]
 
 function compare() {
 rand = Math.floor(Math.random()*5);
 computerpick = choices[rand];
-document.getElementById("computerpick").innerText = computerpick;
-document.getElementById("playerpick").innerText = playerpick;
+$("computerpick").innerText = computerpick;
+$("playerpick").innerText = playerpick;
 
 switch (playerpick)
 {
 case "rock": 
-document.getElementById("winnermsg").innerText = rockarray[rand];break;
+$("winnermsg").innerText = rockarray[rand];break;
 case "paper": 
-document.getElementById("winnermsg").innerText = paperarray[rand];break;
+$("winnermsg").innerText = paperarray[rand];break;
 case "scissors": 
-document.getElementById("winnermsg").innerText = scissorsarray[rand];break;
+$("winnermsg").innerText = scissorsarray[rand];break;
 case  "lizard": 
-document.getElementById("winnermsg").innerText =  lizardarray[rand];break;
+$("winnermsg").innerText =  lizardarray[rand];break;
 case  "spock": 
-document.getElementById("winnermsg").innerText = spockarray[rand];break;
+$("winnermsg").innerText = spockarray[rand];break;
 }
 } 
