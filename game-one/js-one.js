@@ -78,7 +78,7 @@ $('spock').onclick = () => {
 
 $('play1').onclick = () => {
     if (Number(localStorage.getItem("balance")) >= 1)
-    {if (playerpick != 0) {
+    {if (playerpick != undefined) {
         stakes = 1;
         compare()
     } else {
@@ -91,7 +91,7 @@ $('play1').onclick = () => {
 
 $('play5').onclick = () => {
     if (Number(localStorage.getItem("balance")) >= 5)
-    {if (playerpick != 0) {
+    {if (playerpick != undefined) {
         stakes = 5;
         compare()
     } else {
@@ -176,7 +176,7 @@ async function compare() {
     $("computerpick").innerText = "Ready...";
     $("playerpick").innerText = "Ready...";    
     await timeout(500);
-    
+
     $("computerpick").innerText = "Set...";
     $("playerpick").innerText = "Set...";    
     await timeout(500);
