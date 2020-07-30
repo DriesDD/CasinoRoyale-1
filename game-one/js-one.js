@@ -143,7 +143,7 @@ paperarray = [
     ["Your paper covers the rock. It gets published in a leading geology journal.",+1],
     ["Two papers. That's a brochure. I mean a tie.",0],
     ["Your paper is cut to shreds by the scissors.",-1],
-    ["Your paper is eaten by the lizard.",-1]
+    ["Your paper is eaten by the lizard.",-1],
     ["Your paper refutes the Spock. Take that!",+1],
 ]
 scissorsarray = [
