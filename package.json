@@ -4,7 +4,7 @@
   "description": "BeCode Sourcerors group consolidation challenge!",
   "main": "index.js",
   "scripts": {
-    "build": "src/style.css -o src/tailwind.css"
+    "build": "postcss styles/style.css -o styles/tailwind.css"
   },
   "repository": {
     "type": "git",
@@ -18,8 +18,10 @@
   },
   "homepage": "https://github.com/Sourcerors/CasinoRoyale#readme",
   "dependencies": {
+    "@fullhuman/postcss-purgecss": "^2.3.0",
     "autoprefixer": "^9.8.5",
     "postcss-cli": "^7.1.1",
+    "postcss-import": "^12.0.1",
     "tailwindcss": "^1.6.0"
   },
   "devDependencies": {}
