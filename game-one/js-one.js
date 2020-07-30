@@ -142,13 +142,13 @@ rockarray = [
 paperarray = [
     ["Your paper covers the rock. It gets published in a leading geology journal.",+1],
     ["Two papers. That's a brochure. I mean a tie.",0],
-    ["Your paper refutes the Spock. Take that!",+1],
     ["Your paper is cut to shreds by the scissors.",-1],
     ["Your paper is eaten by the lizard.",-1]
+    ["Your paper refutes the Spock. Take that!",+1],
 ]
 scissorsarray = [
-    ["Your scissors cut the paper.",+1],
-    ["Your scissors are hit hard by mr. Spock.",-1],
+    ["Your scissors are smashed by the rock.",-1],
+    ["Your scissors cut up the paper.",+1],
     ["Have you ever made a tie with two scissors? You have now.",0],
     ["Your scissors decapitated the lizard!",+1],
     ["Your scissors are crushed by the Spock.",-1]
@@ -168,27 +168,41 @@ spockarray = [
     ["Spocks don't take issue with eachother. It's a tie.",0]
 ]
 
-//wait 1 second, then see who wins and adds to score and balance
+//wait then see who wins and adds to score and balance
 
 timeout = (ms) => {return new Promise(resolve => setTimeout(resolve, ms))}
 
 async function compare() {
     $("computerpick").innerText = "Ready...";
-    $("playerpick").innerText = "Ready...";    
+    $("playerpick").innerText = "Ready...";
     await timeout(500);
 
     $("computerpick").innerText = "Set...";
-    $("playerpick").innerText = "Set...";    
+    $("playerpick").innerText = "Set...";
     await timeout(500);
 
     rand = Math.floor(Math.random() * 5);
+
+    //if the player's balance and the stakes are high, rig the game a little bit
+    if (localStorage.getItem("balance") > (Math.random() * 100 - stakes*10))
+    {switch(playerpick)
+        {case "rock": if (rand == 2 || rand == 3){Math.floor(Math.random() * 5)}; break;
+         case "paper": if (rand == 0 || rand == 4){Math.floor(Math.random() * 5)}; break;
+         case "scissors": if (rand == 1 || rand == 3){Math.floor(Math.random() * 5)}; break;
+         case "lizard": if (rand == 1 || rand == 4){Math.floor(Math.random() * 5)}; break;
+         case "spock": if (rand == 0 || rand == 2){Math.floor(Math.random() * 5)}; break;            
+        }
+
+    }
+
     computerpick = choices[rand];
     $("computerpick").innerText = computerpick;
     $("playerpick").innerText = playerpick;
     await timeout(500);
-
+    
     switch (playerpick) {
         case "rock":
+
             $("winnermsg").innerText = rockarray[rand][0]; score += rockarray[rand][1]*stakes; 
             localStorage.setItem("balance", Number(localStorage.getItem("balance")) + rockarray[rand][1]*stakes);
             break;
@@ -209,6 +223,7 @@ async function compare() {
             localStorage.setItem("balance", Number(localStorage.getItem("balance")) + spockarray[rand][1]*stakes);
             break;
         }
+    
         $("score").innerText = "Score:" + score;
         $("balance").innerText = "Balance:" + Number(localStorage.getItem("balance"));
 }
