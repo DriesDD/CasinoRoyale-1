@@ -168,13 +168,24 @@ spockarray = [
     ["Spocks don't take issue with eachother. It's a tie.",0]
 ]
 
-//see who wins and adds to score and balance
+//wait 1 second, then see who wins and adds to score and balance
 
-function compare() {
+timeout = (ms) => {return new Promise(resolve => setTimeout(resolve, ms))}
+
+async function compare() {
+    $("computerpick").innerText = "Ready...";
+    $("playerpick").innerText = "Ready...";    
+    await timeout(500);
+    
+    $("computerpick").innerText = "Set...";
+    $("playerpick").innerText = "Set...";    
+    await timeout(500);
+
     rand = Math.floor(Math.random() * 5);
     computerpick = choices[rand];
     $("computerpick").innerText = computerpick;
     $("playerpick").innerText = playerpick;
+    await timeout(500);
 
     switch (playerpick) {
         case "rock":
