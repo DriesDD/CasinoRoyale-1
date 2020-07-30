@@ -31,13 +31,24 @@ Paper disproves Spock
 Spock vaporizes Rock
 (and as it always has) Rock crushes Scissors*/
 
-//rock: 1 paper: 2 scissors: 3 lizard: 4 spock: 5
 
-let playerpick, rand, computerpick, choices, score;
+//used variables on this page. also uses localstorage variables 'spent' and 'balance'
 
-function $(x) {
-    return document.getElementById(x);
-}
+let playerpick, rand, computerpick, choices, score, stakes;
+
+score = 0;
+
+$("balance").innerText = "Balance: " + Number(localStorage.getItem("balance"));
+
+
+//this function is used to shorten the whole getElementById method
+function $(x) {return document.getElementById(x);}
+
+//hide the element to buy more coins at first
+
+$("pay10").hidden = 1
+
+//playerpick buttons
 
 $('rock').onclick = () => {
     reset();
@@ -65,13 +76,43 @@ $('spock').onclick = () => {
     $('spock').setAttribute("class", "picked")
 }
 
-$('play').onclick = () => {
-    if (playerpick != 0) {
+$('play1').onclick = () => {
+    if (Number(localStorage.getItem("balance")) >= 1)
+    {if (playerpick != 0) {
+        stakes = 1;
         compare()
     } else {
-        $("playerpick").innerText = "Please make your pick.";
+        $("playerpick").innerText = "Please make your pick."}}
+    else
+    {$("playerpick").innerText = "Not enough balance.";
+    $("pay10").hidden = 0
     }
 }
+
+$('play5').onclick = () => {
+    if (Number(localStorage.getItem("balance")) >= 5)
+    {if (playerpick != 0) {
+        stakes = 5;
+        compare()
+    } else {
+        $("playerpick").innerText = "Please make your pick."}}
+    else
+    {$("playerpick").innerText = "Not enough balance.";
+    $("pay10").hidden = 0
+    }
+}
+
+//visible if balance is low. Adds coins (and also tracks amount spent).
+
+$('pay10').onclick = () => {
+localStorage.setItem("balance", Number(localStorage.getItem("balance")) + 10);
+localStorage.setItem("spent", Number(localStorage.getItem("spent")) + 10);
+$("balance").innerText = "Balance:" + Number(localStorage.getItem("balance"));
+$("playerpick").innerText = "Added 10 coins to balance.";
+$("pay10").hidden = 1}
+
+//resets the score of the game
+
 $('reset').onclick = () => {
     score = 0;
     $("score").innerText = "Score reset to 0";
@@ -86,6 +127,9 @@ function reset() {
     $('spock').removeAttribute("class");
     playerpick = 0
 }
+
+//the possible combinations
+//rock: 0 paper: 1 scissors: 2 lizard: 3 spock: 4
 
 choices = ["rock", "paper", "scissors", "lizard", "spock"]
 rockarray = [
@@ -124,7 +168,8 @@ spockarray = [
     ["Spocks don't take issue with eachother. It's a tie.",0]
 ]
 
-score = 0;
+//see who wins and adds to score and balance
+
 function compare() {
     rand = Math.floor(Math.random() * 5);
     computerpick = choices[rand];
@@ -133,20 +178,26 @@ function compare() {
 
     switch (playerpick) {
         case "rock":
-            $("winnermsg").innerText = rockarray[rand][0]; score += rockarray[rand][1];
+            $("winnermsg").innerText = rockarray[rand][0]; score += rockarray[rand][1]*stakes; 
+            localStorage.setItem("balance", Number(localStorage.getItem("balance")) + rockarray[rand][1]*stakes);
             break;
         case "paper":
-            $("winnermsg").innerText = paperarray[rand][0]; score += paperarray[rand][1];
+            $("winnermsg").innerText = paperarray[rand][0]; score += paperarray[rand][1]*stakes;
+            localStorage.setItem("balance", Number(localStorage.getItem("balance")) + paperarray[rand][1]*stakes);
             break;
         case "scissors":
-            $("winnermsg").innerText = scissorsarray[rand][0]; score += scissorsarray[rand][1];
+            $("winnermsg").innerText = scissorsarray[rand][0]; score += scissorsarray[rand][1]*stakes;
+            localStorage.setItem("balance", Number(localStorage.getItem("balance")) + scissorsarray[rand][1]*stakes);
             break;
         case "lizard":
-            $("winnermsg").innerText = lizardarray[rand][0]; score += lizardarray[rand][1];
+            $("winnermsg").innerText = lizardarray[rand][0]; score += lizardarray[rand][1]*stakes;
+            localStorage.setItem("balance", Number(localStorage.getItem("balance")) + lizardarray[rand][1]*stakes);
             break;
         case "spock":
-            $("winnermsg").innerText = spockarray[rand][0]; score += spockarray[rand][1];
+            $("winnermsg").innerText = spockarray[rand][0]; score += spockarray[rand][1]*stakes;
+            localStorage.setItem("balance", Number(localStorage.getItem("balance")) + spockarray[rand][1]*stakes);
             break;
         }
         $("score").innerText = "Score:" + score;
+        $("balance").innerText = "Balance:" + Number(localStorage.getItem("balance"));
 }
