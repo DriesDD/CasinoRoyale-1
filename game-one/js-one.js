@@ -38,7 +38,7 @@ let playerpick, rand, computerpick, choices, score, stakes;
 
 score = 0;
 
-$("balance").innerText = "Balance: " + Number(localStorage.getItem("balance"));
+$("balance").innerText = "Balance:" + Number(localStorage.getItem("balance"));
 
 
 //this function is used to shorten the whole getElementById method
