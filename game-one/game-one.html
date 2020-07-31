@@ -1,42 +1,47 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" type="text/css" href="../styles/tailwind.css" />
-    <title>Rock, Paper, Scissors, Lizard, Spock</title>
-    <script src="js-one.js" defer></script>
-  </head>
-  <body>
 
-<h1>Rock, paper, scissors, lizard, spock...</h1>
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" type="text/css" href="../styles/tailwind.css" />
+  <title>Rock, Paper, Scissors, Lizard, Spock</title>
+  <script src="js-one.js" defer></script>
+</head>
 
-<div id= "balance"></div>
-</br>  
-<button id="rock">Rock</button>
-<button id="paper">Paper</button>
-<button id="scissors">Scissors</button>
-</br>
-<button id="lizard">Lizard</button>
-<button id="spock">Spock</button>
-<button id="secret">Reach a score of</br> 27 to unlock.</button>
-</br>
-<button id="supersecret" hidden = true>Win five times with the </br> drake to unlock.</button>
-</br>
-<button id="play1">Play for 1 coin.</button>
-<button id="play5">Play for 5 coins.</button>
-<button id="play100" hidden = true>Play for 100 coins.</button>
-</br>
-<button hidden = 1 id="pay10">Buy 10 coins.</button>
-<button hidden = 1 id="pay100">Buy 100 coins.</button>
+<body class="bg-gray-900">
 
-<div>You chose:<div id="playerpick"></div></div>
-</br>
-<div>The computer chose:<div id="computerpick"></div></div>
-</br>
-    <div id="winnermsg"></div>
+  <h1>Rock, paper, scissors, lizard, spock...</h1>
 
-  <div id= "score">Score: 0</div>
-    <button id="reset">Reset</button>
-  </body>
+  <div id="balance"></div>
+  </br>
+  <button id="rock" class="relative inline-flex items-center px-4 py-2 border border-transparent text-lg leading-5 font-medium rounded-md text-grey-900 bg-orange-500 hover:bg-indigo-400 focus:outline-none focus:shadow-outline-indigo focus:border-indigo-600 active:bg-indigo-600 transition duration-150 ease-in-out">Rock</button>
+  <button id="paper" class="relative inline-flex items-center px-4 py-2 border border-transparent text-lg leading-5 font-medium rounded-md text-grey-900 bg-orange-500 hover:bg-indigo-400 focus:outline-none focus:shadow-outline-indigo focus:border-indigo-600 active:bg-indigo-600 transition duration-150 ease-in-out">Paper</button>
+  <button id="scissors">Scissors</button>
+  </br>
+  <button id="lizard">Lizard</button>
+  <button id="spock">Spock</button>
+  <button id="secret">Reach a score of</br> 27 to unlock.</button>
+  </br>
+  <button id="supersecret" hidden=true>Win five times with the </br> drake to unlock.</button>
+  </br>
+  <button id="play1">Play for 1 coin.</button>
+  <button id="play5">Play for 5 coins.</button>
+  <button id="play100" hidden=true>Play for 100 coins.</button>
+  </br>
+  <button hidden=1 id="pay10">Buy 10 coins.</button>
+  <button hidden=1 id="pay100">Buy 100 coins.</button>
+
+  <div>You chose:<div id="playerpick"></div>
+  </div>
+  </br>
+  <div>The computer chose:<div id="computerpick"></div>
+  </div>
+  </br>
+  <div id="winnermsg"></div>
+
+  <div id="score">Score: 0</div>
+  <button id="reset">Reset</button>
+</body>
+
 </html>

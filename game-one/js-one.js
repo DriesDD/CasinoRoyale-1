@@ -300,8 +300,8 @@ async function compare() {
     
         if (score >= 27) {game1unlock(1)};
         if (drakewins >= 5) {game1unlock(2)};
-        $("score").innerText = "Score:" + score;
-        $("balance").innerText = "Balance:" + Number(localStorage.getItem("balance"));
+        $("score").innerText = "Score: " + score;
+        $("balance").innerText = "Balance: " + Number(localStorage.getItem("balance"));
 }
 
 //game1unlock secret creatures
