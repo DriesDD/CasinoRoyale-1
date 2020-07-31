@@ -1,4 +1,4 @@
-const cards = document.querySelectorAll(".memory.card");
+const cards = document.querySelectorAll(".memory-card");
 
 let hasFlippedCard = false;
 let lockBoard = false;
@@ -8,13 +8,15 @@ function flipCard() {
   if (lockBoard) return;
   if (this === firstCard) return;
 
-  cards.className += "flip";
+  //  cards.className += "flip";
+
+  this.classList.add("flip");
 
   if (!hasFlippedCard) {
     // first click
     hasFlippedCard = true;
     firstCard = this;
-
+    // console.log(firstCard);
     return;
   }
 
