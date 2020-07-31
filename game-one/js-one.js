@@ -36,11 +36,11 @@ Spock vaporizes Rock
 //some constants for tailwind classes
 //also uses localstorage variables 'spent' and 'balance', and 'game1unlock' for the unlocks in this game
 
-let playerpick, rand, computerpick, choices, score, stakes, drakewins
+let playerpick, rand, computerpick, choices, score, stakes, gains, drakewins
 
-const buttonclass = "relative inline-flex items-center mb-1 px-4 py-2 border border-transparent text-lg leading-5 font-medium rounded-md text-grey-900 bg-orange-500 hover:bg-indigo-400 focus:outline-none focus:shadow-outline-indigo focus:border-indigo-600 active:bg-indigo-600 transition duration-150 ease-in-out"
-const buttonhighlightclass  = "relative inline-flex items-center mb-1 px-4 py-2 border border-transparent text-lg leading-5 font-bold rounded-md text-grey-900 bg-orange-100 hover:bg-indigo-100 transition duration-150 ease-in-out"
-
+const buttonclass = "relative items-center mb-1 px-4 py-2 border border-transparent text-lg leading-5 font-medium rounded-md text-grey-900 bg-orange-500 hover:bg-indigo-400 focus:outline-none focus:shadow-outline-indigo focus:border-indigo-600 active:bg-indigo-600 transition duration-150 ease-in-out"
+const buttonhighlightclass  = "relative items-center mb-1 px-4 py-2 border border-transparent text-lg leading-5 font-bold rounded-md text-grey-900 bg-indigo-400 hover:bg-indigo-300 transition duration-150 ease-in-out"
+const buttonlocked  = "relative items-center mb-1 px-4 py-2 border border-transparent text-lg leading-5 font-medium rounded-md text-grey-600 bg-grey-400"
 score = 0;
 drakewins = 0;
 
@@ -50,9 +50,9 @@ $("balance").innerText = "Balance:" + Number(localStorage.getItem("balance"));
 function $(x) {return document.getElementById(x);}
 
 //this function is used to change the class of a target element
-function newclass(a, b) 
-{$(a).removeAttribute("class"); 
- $(a).setAttribute("class",b)}
+function newclass(elementid,newclass) 
+{$(elementid).removeAttribute("class"); 
+ $(elementid).setAttribute("class",newclass)}
 
 //hide the element to buy more coins at first
 
@@ -115,7 +115,8 @@ $('play1').onclick = () => {
         stakes = 1;
         compare()
     } else {
-        $("playerpick").innerText = "Please make your pick."}}
+        $("playerpick").innerText = "No one..";
+        $("winnermsg").innerText = "Please make your pick at the top."}}
     else
     {$("playerpick").innerText = "Not enough balance.";
     $("pay10").hidden = 0
@@ -128,7 +129,8 @@ $('play5').onclick = () => {
         stakes = 5;
         compare()
     } else {
-        $("playerpick").innerText = "Please make your pick."}}
+        $("playerpick").innerText = "No one..";
+        $("winnermsg").innerText = "Please make your pick at the top."}}
     else
     {$("playerpick").innerText = "Not enough balance.";
     $("pay10").hidden = 0
@@ -141,7 +143,8 @@ $('play100').onclick = () => {
         stakes = 100;
         compare()
     } else {
-        $("playerpick").innerText = "Please make your pick."}}
+        $("playerpick").innerText = "No one.";
+        $("winnermsg").innerText = "Please make your pick at the top."}}
     else
     {$("playerpick").innerText = "Not enough balance.";
     $("pay100").hidden = 0
@@ -154,32 +157,34 @@ $('pay10').onclick = () => {
 localStorage.setItem("balance", Number(localStorage.getItem("balance")) + 10);
 localStorage.setItem("spent", Number(localStorage.getItem("spent")) + 10);
 $("balance").innerText = "Balance:" + Number(localStorage.getItem("balance"));
-$("playerpick").innerText = "Added 10 coins to balance.";
+$("winnermsg").innerText = "Added 10 coins to balance.";
 $("pay10").hidden = 1}
 
 $('pay100').onclick = () => {
     localStorage.setItem("balance", Number(localStorage.getItem("balance")) + 100);
     localStorage.setItem("spent", Number(localStorage.getItem("spent")) + 100);
     $("balance").innerText = "Balance:" + Number(localStorage.getItem("balance"));
-    $("playerpick").innerText = "Added 100 coins to balance.";
+    $("winnermsg").innerText = "Added 100 coins to balance.";
     $("pay100").hidden = 1}
 
 //resets the score of the game
 
 $('reset').onclick = () => {
     score = 0;
-    $("score").innerText = "Score reset to 0";
+    $("score").innerText = "Score: 0";
     reset()
 }
 
 function reset() {
-    $('rock').setAttribute("class",buttonclass);
-    $('paper').setAttribute("class",buttonclass);
-    $('scissors').setAttribute("class",buttonclass);
-    $('lizard').setAttribute("class",buttonclass);
-    $('spock').setAttribute("class",buttonclass);
-    $('secret').setAttribute("class",buttonclass);
-    $('supersecret').setAttribute("class",buttonclass);
+    $("gainsmsg").innerText ="";
+    newclass('rock',buttonclass);
+    newclass('scissors',buttonclass);
+    newclass('paper',buttonclass);
+    newclass('lizard',buttonclass);
+    newclass('spock',buttonclass);
+    newclass('secret',buttonclass);
+    newclass('supersecret',buttonclass);
+    game1unlock(localStorage.getItem("game1unlock"));
     $("play1").hidden = 0;
     $("play5").hidden = 0;
     $("play100").hidden = 1
@@ -245,18 +250,21 @@ wizardarray = [
 timeout = (ms) => {return new Promise(resolve => setTimeout(resolve, ms))}
 
 async function compare() {
+    $("gainsmsg").innerText ="";
     $("computerpick").innerText = "Ready...";
     $("playerpick").innerText = "Ready...";
+    $("winnermsg").innerText = "Ready...";
     await timeout(500);
 
     $("computerpick").innerText = "Set...";
     $("playerpick").innerText = "Set...";
+    $("winnermsg").innerText = "Set...";
     await timeout(500);
 
     rand = Math.floor(Math.random() * 5);
 
     //if the player's balance and the stakes are high, give the casino a little help
-    if (localStorage.getItem("balance") > (Math.random() * 200 - stakes*10))
+    if (localStorage.getItem("balance") > (Math.random() * 300 - stakes*10))
     {switch(playerpick)
         {case "rock": if (rand == 2 || rand == 3){rand = Math.floor(Math.random() * 5)}; break;
          case "paper": if (rand == 0 || rand == 4){rand = Math.floor(Math.random() * 5)}; break;
@@ -277,41 +285,55 @@ async function compare() {
     $("playerpick").innerText = playerpick;
     await timeout(500);
     
+    
+
     switch (playerpick) {
         case "rock":
-            $("winnermsg").innerText = rockarray[rand][0]; score += rockarray[rand][1]*stakes; 
-            localStorage.setItem("balance", Number(localStorage.getItem("balance")) + rockarray[rand][1]*stakes);
+            $("winnermsg").innerText = rockarray[rand][0];
+            gains = rockarray[rand][1]*stakes;
             break;
         case "paper":
-            $("winnermsg").innerText = paperarray[rand][0]; score += paperarray[rand][1]*stakes;
-            localStorage.setItem("balance", Number(localStorage.getItem("balance")) + paperarray[rand][1]*stakes);
+            $("winnermsg").innerText = paperarray[rand][0]; 
+            gains = paperarray[rand][1]*stakes;
             break;
         case "scissors":
-            $("winnermsg").innerText = scissorsarray[rand][0]; score += scissorsarray[rand][1]*stakes;
-            localStorage.setItem("balance", Number(localStorage.getItem("balance")) + scissorsarray[rand][1]*stakes);
+            $("winnermsg").innerText = scissorsarray[rand][0];
+            gains = scissorsarray[rand][1]*stakes;
             break;
         case "lizard":
-            $("winnermsg").innerText = lizardarray[rand][0]; score += lizardarray[rand][1]*stakes;
-            localStorage.setItem("balance", Number(localStorage.getItem("balance")) + lizardarray[rand][1]*stakes);
+            $("winnermsg").innerText = lizardarray[rand][0];
+            gains = lizardarray[rand][1]*stakes;
             break;
         case "spock":
-            $("winnermsg").innerText = spockarray[rand][0]; score += spockarray[rand][1]*stakes;
-            localStorage.setItem("balance", Number(localStorage.getItem("balance")) + spockarray[rand][1]*stakes);
+            $("winnermsg").innerText = spockarray[rand][0];
+            gains = spockarray[rand][1]*stakes;
             break;
         case "drake":
-            $("winnermsg").innerText = drakearray[rand][0]; score += drakearray[rand][1]*stakes;
-            localStorage.setItem("balance", Number(localStorage.getItem("balance")) + drakearray[rand][1]*stakes);
+            $("winnermsg").innerText = drakearray[rand][0];
+            gains = drakearray[rand][1]*stakes;
             break;
         case "wizard":
-            $("winnermsg").innerText = wizardarray[rand][0]; score += wizardarray[rand][1]*stakes;
-            localStorage.setItem("balance", Number(localStorage.getItem("balance")) + wizardarray[rand][1]*stakes);
+            $("winnermsg").innerText = wizardarray[rand][0];
+            gains = wizardarray[rand][1]*stakes;
             break;
         }
-    
+
+        localStorage.setItem("balance", Number(localStorage.getItem("balance")) + gains);
+        score += gains;
+
         if (score >= 27) {game1unlock(1)};
         if (drakewins >= 5) {game1unlock(2)};
         $("score").innerText = "Score: " + score;
         $("balance").innerText = "Balance: " + Number(localStorage.getItem("balance"));
+
+        await timeout(500);
+        
+        newclass("gainsmsg","text-grey-900 font-bold");
+        if (gains > 0) {newclass("gainsmsg","text-green-800 text-lg font-bold");
+                       $("gainsmsg").innerText = "+" + gains + " coins!"}
+        else if (gains < 0) {newclass("gainsmsg","text-red-800 text-lg font-bold");
+                      $("gainsmsg").innerText = gains + " coins!"};                  
+
 }
 
 //game1unlock secret creatures
@@ -324,8 +346,13 @@ function game1unlock(level) {
      {localStorage.setItem("game1unlock", level)}
      level = localStorage.getItem("game1unlock")
 
+     newclass("secret",buttonlocked)
+     newclass("supersecret",buttonlocked)
+
      if (level > 0)
-        {$("secret").innerHTML = "High stake </br> fire breathing drake"; $("supersecret").hidden = false}
+        {$("secret").innerHTML = "High stake </br> fire breathing drake"; $("supersecret").hidden = false;
+         newclass("secret",buttonclass)}
      if (level > 1)
-        {$("supersecret").innerHTML = "Weeping </br> wizard"}
+        {$("supersecret").innerHTML = "Weeping </br> wizard";
+        newclass("supersecret",buttonclass)}
     }
