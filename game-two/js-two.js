@@ -24,6 +24,8 @@
     - Make a gamble mechanic: every user starts with X chips, and before each round we ask what he/she wants to gamble.
       If both the computer and the player bust the wins go to "the house".
 */
+
+// Cards suits, rank and weight
 const values = [
   "2",
   "3",
@@ -56,6 +58,8 @@ const weight = [
   { type: "A", value: 11 },
 ];
 const suits = ["Hearts", "Spades", "Diamonds", "Clubs"];
+
+// DOM elements
 const display = document.getElementById("deck");
 const play = document.getElementById("dealBtn");
 const stand = document.getElementById("standBtn");
@@ -63,18 +67,26 @@ const hit = document.getElementById("hitBtn");
 const computer = document.getElementById("computer");
 const player = document.getElementById("player");
 
+// Variables declaration
 const deck = [];
 let playerCard,
   computerCard,
   rand1,
   rand2,
   sumPlayer = 0,
-  sum = [];
+  sum;
 
+// Play button listener
 play.addEventListener("click", () => {
   deckMaker();
   deal(playerCard, "playerCheck");
   deal(computerCard, "computerCheck");
+  play.disabled = true;
+});
+
+// Hit button listener
+hit.addEventListener("click", () => {
+  deal(playerCard, "playerCheck");
 });
 
 // Deal 2 cards for player and computer respectively
@@ -91,16 +103,23 @@ function deal(cards, check) {
       sumPlayer += item.value;
     }
   });
+  weight.forEach((item) => {
+    if (firstChar === item.type) {
+      sum = item.value;
+    }
+  });
   switch (check) {
     case "playerCheck":
       player.innerHTML = `<em>${firstCard} -- ${secondCard}</em> <strong>Score: ${sumPlayer}</strong>`;
       break;
     case "computerCheck":
-      computer.innerHTML = `<em>${firstCard} -- ${secondCard}</em> <strong>Score: ${sumPlayer}</strong>`;
+      console.log(firstCard);
+      computer.innerHTML = `<em>Hidden -- ${secondCard}</em> <strong>Score: ${
+        sumPlayer - sum
+      }</strong>`;
       break;
   }
-  sumPlayer = 0;
-  play.disabled = true;
+  (sum = 0), (sumPlayer = 0);
 }
 
 // Generate deck
