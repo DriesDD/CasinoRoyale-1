@@ -8,7 +8,7 @@ function flipCard() {
   if (lockBoard) return;
   if (this === firstCard) return;
 
-  //  cards.className += "flip";
+  // cards.className += "flip";
 
   this.classList.add("flip");
 
