@@ -312,7 +312,8 @@ if (localStorage.getItem("game1unlock") > 0)
 function game1unlock(level) {
     if (localStorage.getItem("game1unlock") == null || localStorage.getItem("game1unlock") == 1 || localStorage.getItem("game1unlock") == 0)
      {localStorage.setItem("game1unlock", level)}
-    
+     level = localStorage.getItem("game1unlock")
+
      if (level > 0)
         {$("secret").innerHTML = "High stake </br> fire breathing drake"; $("supersecret").hidden = false}
      if (level > 1)
