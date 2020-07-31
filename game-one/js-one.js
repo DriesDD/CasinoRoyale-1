@@ -326,8 +326,7 @@ async function compare() {
         $("score").innerText = "Score: " + score;
         $("balance").innerText = "Balance: " + Number(localStorage.getItem("balance"));
 
-        await timeout(500);
-        
+        await timeout(500);        
         newclass("gainsmsg","text-grey-900 font-bold");
         if (gains > 0) {newclass("gainsmsg","text-green-800 text-lg font-bold");
                        $("gainsmsg").innerText = "+" + gains + " coins!"}
