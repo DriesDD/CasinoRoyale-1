@@ -32,9 +32,14 @@ Spock vaporizes Rock
 (and as it always has) Rock crushes Scissors*/
 
 
-//used variables on this page. also uses localstorage variables 'spent' and 'balance', and 'game1unlock' for the unlocks in this game
+//used variables on this page. 
+//some constants for tailwind classes
+//also uses localstorage variables 'spent' and 'balance', and 'game1unlock' for the unlocks in this game
 
 let playerpick, rand, computerpick, choices, score, stakes, drakewins
+
+const buttonclass = "relative inline-flex items-center mb-1 px-4 py-2 border border-transparent text-lg leading-5 font-medium rounded-md text-grey-900 bg-orange-500 hover:bg-indigo-400 focus:outline-none focus:shadow-outline-indigo focus:border-indigo-600 active:bg-indigo-600 transition duration-150 ease-in-out"
+const buttonhighlightclass  = "relative inline-flex items-center mb-1 px-4 py-2 border border-transparent text-lg leading-5 font-bold rounded-md text-grey-900 bg-orange-100 hover:bg-indigo-100 transition duration-150 ease-in-out"
 
 score = 0;
 drakewins = 0;
@@ -43,6 +48,11 @@ $("balance").innerText = "Balance:" + Number(localStorage.getItem("balance"));
 
 //this function is used to shorten the whole getElementById method
 function $(x) {return document.getElementById(x);}
+
+//this function is used to change the class of a target element
+function newclass(a, b) 
+{$(a).removeAttribute("class"); 
+ $(a).setAttribute("class",b)}
 
 //hide the element to buy more coins at first
 
@@ -53,34 +63,34 @@ $("pay10").hidden = 1
 $('rock').onclick = () => {
     reset();
     playerpick = "rock";
-    $('rock').setAttribute("class", "bg-yellow-400");
+    newclass('rock',buttonhighlightclass);
 }
 $('paper').onclick = () => {
     reset();
     playerpick = "paper";
-    $('paper').setAttribute("class", "bg-yellow-400");
+    $('paper').setAttribute("class", buttonhighlightclass);
 }
 $('scissors').onclick = () => {
     reset();
     playerpick = "scissors";
-    $('scissors').setAttribute("class", "bg-yellow-400");
+    $('scissors').setAttribute("class", buttonhighlightclass);
 }
 $('lizard').onclick = () => {
     reset();
     playerpick = "lizard";
-    $('lizard').setAttribute("class", "bg-yellow-400");
+    $('lizard').setAttribute("class", buttonhighlightclass);
 }
 $('spock').onclick = () => {
     reset();
     playerpick = "spock";
-    $('spock').setAttribute("class", "bg-yellow-400");
+    $('spock').setAttribute("class", buttonhighlightclass);
 }
 
 $('secret').onclick = () => {
     if (localStorage.getItem("game1unlock") > 0)
     {reset();
     playerpick = "drake";
-    $('secret').setAttribute("class", "bg-yellow-400");
+    $('secret').setAttribute("class", buttonhighlightclass);
     $("play1").hidden = 1;
     $("play5").hidden = 1;
     $("play100").hidden = 0
@@ -90,8 +100,8 @@ $('secret').onclick = () => {
 $('supersecret').onclick = () => {
     if (localStorage.getItem("game1unlock") > 1)
     {reset();
-    playerpick = "wizard";
-    $('supersecret').setAttribute("class", "bg-yellow-400");
+    playerpick = "wizard";;
+    $('supersecret').setAttribute("class", buttonhighlightclass);
     $("play1").hidden = 1;
     $("play5").hidden = 0;
     $("play100").hidden = 0}
@@ -163,13 +173,13 @@ $('reset').onclick = () => {
 }
 
 function reset() {
-    $('rock').removeAttribute("class");
-    $('paper').removeAttribute("class");
-    $('scissors').removeAttribute("class");
-    $('lizard').removeAttribute("class");
-    $('spock').removeAttribute("class");
-    $('secret').removeAttribute("class");
-    $('supersecret').removeAttribute("class");
+    $('rock').setAttribute("class",buttonclass);
+    $('paper').setAttribute("class",buttonclass);
+    $('scissors').setAttribute("class",buttonclass);
+    $('lizard').setAttribute("class",buttonclass);
+    $('spock').setAttribute("class",buttonclass);
+    $('secret').setAttribute("class",buttonclass);
+    $('supersecret').setAttribute("class",buttonclass);
     $("play1").hidden = 0;
     $("play5").hidden = 0;
     $("play100").hidden = 1
