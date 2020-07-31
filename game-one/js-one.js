@@ -32,7 +32,7 @@ Spock vaporizes Rock
 (and as it always has) Rock crushes Scissors*/
 
 
-//used variables on this page. also uses localstorage variables 'spent' and 'balance'
+//used variables on this page. also uses localstorage variables 'spent' and 'balance', and 'game1unlock' for the unlocks in this game
 
 let playerpick, rand, computerpick, choices, score, stakes, drakewins
 
@@ -40,7 +40,6 @@ score = 0;
 drakewins = 0;
 
 $("balance").innerText = "Balance:" + Number(localStorage.getItem("balance"));
-
 
 //this function is used to shorten the whole getElementById method
 function $(x) {return document.getElementById(x);}
@@ -78,7 +77,7 @@ $('spock').onclick = () => {
 }
 
 $('secret').onclick = () => {
-    if (localStorage.getItem("unlock") > 0)
+    if (localStorage.getItem("game1unlock") > 0)
     {reset();
     playerpick = "drake";
     $('secret').setAttribute("class", "bg-yellow-400");
@@ -89,7 +88,7 @@ $('secret').onclick = () => {
 }
 
 $('supersecret').onclick = () => {
-    if (localStorage.getItem("unlock") > 1)
+    if (localStorage.getItem("game1unlock") > 1)
     {reset();
     playerpick = "wizard";
     $('supersecret').setAttribute("class", "bg-yellow-400");
@@ -200,7 +199,7 @@ scissorsarray = [
     ["Your scissors cut up the paper.",+1],
     ["Have you ever made a tie with two scissors? You have now.",0],
     ["Your scissors decapitated the lizard!",+1],
-    ["Your scissors are crushed by the Spock.",-1]
+    ["Your scissors are crushed by mister Spock.",-1]
 ]
 lizardarray = [
     ["Ssss. Your lizard is sssquashed by a big rock.",-1],
@@ -219,7 +218,7 @@ spockarray = [
 drakearray = [
     ["The high stake fire-breathing drake tries to burn the rock! The rock doesn't care about fire. The drake collapses, exhausted.",-1],
     ["The high stake fire-breathing drake burns the paper! That was easy.",+1],
-    ["The high stake fire-breathing drake had its wings cut off by the scissors",-1],
+    ["The high stake fire-breathing drake had its wings cut off by the scissors.",-1],
     ["The high stake fire-breathing drake impresses the tiny lizard! It surrenders to its mightier reptilian kin.",+1],
     ["The high stake fire-breathing drake and Spock respect eachother as rational beings. They both walk out in peace.",0]
 ]  
@@ -245,7 +244,7 @@ async function compare() {
     await timeout(500);
 
     rand = Math.floor(Math.random() * 5);
-    /*
+
     //if the player's balance and the stakes are high, give the casino a little help
     if (localStorage.getItem("balance") > (Math.random() * 200 - stakes*10))
     {switch(playerpick)
@@ -257,11 +256,10 @@ async function compare() {
          case "drake": if (rand == 1 || rand == 3){rand = Math.floor(Math.random() * 5)}; break;
         }
     }
-    */
 
     //count drakewins
-    if ((playerpick == "drake") && (rand == 1 || rand == 3) && localStorage.getItem("unlock") < 2)
-    {drakewins += 1; $("supersecret").innerHTML = ">Win another " + (5-drakewins) + " times with the </br> drake to unlock."};
+    if ((playerpick == "drake") && (rand == 1 || rand == 3) && localStorage.getItem("game1unlock") < 2)
+    {drakewins += 1; $("supersecret").innerHTML = ">Win another " + (5-drakewins) + " times with the </br> drake to game1unlock."};
 
     //compare computerpick and playerpick and choose the result out of the arrays
     computerpick = choices[rand];
@@ -300,20 +298,20 @@ async function compare() {
             break;
         }
     
-        if (score >= 27) {unlock(1)};
-        if (drakewins >= 5) {unlock(2)};
+        if (score >= 27) {game1unlock(1)};
+        if (drakewins >= 5) {game1unlock(2)};
         $("score").innerText = "Score:" + score;
         $("balance").innerText = "Balance:" + Number(localStorage.getItem("balance"));
 }
 
-//unlock secret creatures
+//game1unlock secret creatures
 
-if (localStorage.getItem("unlock") > 0)
-{unlock(localStorage.getItem("unlock"))}
+if (localStorage.getItem("game1unlock") > 0)
+{game1unlock(localStorage.getItem("game1unlock"))}
 
-function unlock(level) {
-    if (localStorage.getItem("unlock") == null || localStorage.getItem("unlock") == 1 || localStorage.getItem("unlock") == 0)
-     {localStorage.setItem("unlock", level)}
+function game1unlock(level) {
+    if (localStorage.getItem("game1unlock") == null || localStorage.getItem("game1unlock") == 1 || localStorage.getItem("game1unlock") == 0)
+     {localStorage.setItem("game1unlock", level)}
     
      if (level > 0)
         {$("secret").innerHTML = "High stake </br> fire breathing drake"; $("supersecret").hidden = false}
