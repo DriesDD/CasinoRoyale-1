@@ -24,6 +24,8 @@
     - Make a gamble mechanic: every user starts with X chips, and before each round we ask what he/she wants to gamble.
       If both the computer and the player bust the wins go to "the house".
 */
+
+// Cards suits, rank and weight
 const values = [
   "2",
   "3",
@@ -56,51 +58,97 @@ const weight = [
   { type: "A", value: 11 },
 ];
 const suits = ["Hearts", "Spades", "Diamonds", "Clubs"];
+
+// DOM elements
 const display = document.getElementById("deck");
 const play = document.getElementById("dealBtn");
 const stand = document.getElementById("standBtn");
 const hit = document.getElementById("hitBtn");
 const computer = document.getElementById("computer");
 const player = document.getElementById("player");
+const message = document.getElementById("message");
 
+// Variables declaration
 const deck = [];
 let playerCard,
   computerCard,
   rand1,
   rand2,
+  firstSum,
+  hitPlayer,
+  hitSum,
   sumPlayer = 0,
-  sum = [];
+  sum;
 
+// Play button listener
 play.addEventListener("click", () => {
   deckMaker();
-  deal(playerCard, "playerCheck");
-  deal(computerCard, "computerCheck");
+  deal(playerCard, "playerFirstCard");
+  deal(computerCard, "computerFirstCard");
+  play.disabled = true;
+});
+
+// Hit button listener
+hit.addEventListener("click", () => {
+  deal(playerCard, "playerHitCard");
 });
 
 // Deal 2 cards for player and computer respectively
 function deal(cards, check) {
-  cards = randNumber();
-  let firstCard = deck[cards[0]];
-  let firstChar = firstCard.charAt(0);
-  let secondCard = deck[cards[1]];
-  let secondChar = secondCard.charAt(0);
-  weight.forEach((item) => {
-    if (firstChar === secondChar && firstChar === item.type) {
-      sumPlayer = item.value * 2;
-    } else if (firstChar === item.type || secondChar === item.type) {
-      sumPlayer += item.value;
-    }
-  });
+  let firstCard, firstChar, secondCard, secondChar;
   switch (check) {
-    case "playerCheck":
-      player.innerHTML = `<em>${firstCard} -- ${secondCard}</em> <strong>Score: ${sumPlayer}</strong>`;
+    case "playerFirstCard":
+    case "computerFirstCard":
+      cards = randNumber();
+      firstCard = deck[cards[0]];
+      firstChar = firstCard.charAt(0);
+      secondCard = deck[cards[1]];
+      secondChar = secondCard.charAt(0);
+      weight.forEach((item) => {
+        if (firstChar === secondChar && firstChar === item.type) {
+          sumPlayer = item.value * 2;
+        } else if (firstChar === item.type || secondChar === item.type) {
+          sumPlayer += item.value;
+        }
+      });
+      weight.forEach((item) => {
+        if (firstChar === item.type) {
+          sum = item.value;
+        }
+      });
+      switch (check) {
+        case "playerFirstCard":
+          firstSum = sumPlayer;
+          player.innerHTML = `<em>${firstCard} -- ${secondCard}</em> <strong>Score: ${sumPlayer}</strong>`;
+          break;
+        case "computerFirstCard":
+          console.log(firstCard);
+          computer.innerHTML = `<em>Hidden -- ${secondCard}</em> <strong>Score: ${
+            sumPlayer - sum
+          }</strong>`;
+          break;
+      }
+      console.log(`${check} : ${sumPlayer}`);
+
+      (sum = 0), (sumPlayer = 0);
+
       break;
-    case "computerCheck":
-      computer.innerHTML = `<em>${firstCard} -- ${secondCard}</em> <strong>Score: ${sumPlayer}</strong>`;
+    case "playerHitCard":
+      cards = randNumber();
+      firstCard = deck[cards[0]];
+      firstChar = firstCard.charAt(0);
+      weight.forEach((item) => {
+        if (firstChar === item.type) {
+          hitPlayer = item.value;
+        }
+      });
+      console.log(`playerHitCard-previous sum ${firstSum}`);
+      console.log(`playerHitCard-hit value ${hitPlayer}`);
+      //firstSum += hitPlayer;
+      //hitSum = firstSum;
+      player.innerHTML += `</br><em>${firstCard}</em> <strong>Score: ${(firstSum += hitPlayer)}</strong>`;
       break;
   }
-  sumPlayer = 0;
-  play.disabled = true;
 }
 
 // Generate deck
