@@ -3,19 +3,32 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" type="text/css" href="style-one.css" />
-    <script src="js-one.js" defer></script>
+    <link rel="stylesheet" type="text/css" href="../styles/tailwind.css" />
     <title>Rock, Paper, Scissors, Lizard, Spock</title>
+    <script src="js-one.js" defer></script>
   </head>
   <body>
-    
+
+<h1>Rock, paper, scissors, lizard, spock...</h1>
+
+<div id= "balance"></div>
+</br>  
 <button id="rock">Rock</button>
 <button id="paper">Paper</button>
 <button id="scissors">Scissors</button>
+</br>
 <button id="lizard">Lizard</button>
 <button id="spock">Spock</button>
+<button id="secret">Reach a score of</br> 27 to unlock.</button>
 </br>
-<button id="play">Play</button>
+<button id="supersecret" hidden = true>Win five times with the </br> drake to unlock.</button>
+</br>
+<button id="play1">Play for 1 coin.</button>
+<button id="play5">Play for 5 coins.</button>
+<button id="play100" hidden = true>Play for 100 coins.</button>
+</br>
+<button hidden = 1 id="pay10">Buy 10 coins.</button>
+<button hidden = 1 id="pay100">Buy 100 coins.</button>
 
 <div>You chose:<div id="playerpick"></div></div>
 </br>
