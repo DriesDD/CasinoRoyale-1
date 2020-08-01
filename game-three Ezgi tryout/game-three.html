@@ -4,6 +4,11 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" type="text/css" href="../styles/tailwind.css" />
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="../styles/memoryGameEzgi.css"
+    />
     <script src="js-three.js" defer></script>
     <title>Memory</title>
   </head>
@@ -123,161 +128,106 @@
       Memory Game
     </h1>
 
-    <section class="memory-game">
-      <div class="memory-card" data-image="hat">
-        <img
-          src="../images/hat.svg"
-          class="flip-card-back"
-          alt="image of hat"
-        />
-        <img
-          src="../images/logo.png"
-          class="flip-card-front"
-          alt="image of logo"
-        />
+    <!--MEMORY GAME-->
+    <section class="memory-game-Ezgi">
+      <div class="card" data-image="hat">
+        <img src="../images/hat.svg" class="img-front" alt="image of hat" />
+        <img src="../images/logo.png" class="img-back" alt="image of logo" />
       </div>
 
-      <div class="memory-card" data-image="magicBall">
+      <div class="card" data-image="magicBall">
         <img
           src="../images/magic-ball.svg"
-          class="flip-card-back"
+          class="img-front"
           alt="image of magic ball"
         />
-        <img
-          src="../images/logo.png"
-          class="flip-card-front"
-          alt="image of logo"
-        />
+        <img src="../images/logo.png" class="img-back" alt="image of logo" />
       </div>
 
-      <div class="memory-card" data-image="wizardOne">
+      <div class="card" data-image="wizardOne">
         <img
           src="../images/wizard.svg"
-          class="flip-card-back"
+          class="img-front"
           alt="image of wizard"
         />
-        <img
-          src="../images/logo.png"
-          class="flip-card-front"
-          alt="image of logo"
-        />
+        <img src="../images/logo.png" class="img-back" alt="image of logo" />
       </div>
 
-      <div class="memory-card" data-image="wizardTwo">
+      <div class="card" data-image="wizardTwo">
         <img
           src="../images/wizard2.svg"
-          class="flip-card-back"
+          class="img-front"
           alt="image of another wizard"
         />
-        <img
-          src="../images/logo.png"
-          class="flip-card-front"
-          alt="image of logo"
-        />
+        <img src="../images/logo.png" class="img-back" alt="image of logo" />
       </div>
 
-      <div class="memory-card" data-image="witchHat">
+      <div class="card" data-image="witchHat">
         <img
           src="../images/witch-hat.svg"
-          class="flip-card-back"
+          class="img-front"
           alt="image of witch hat"
         />
-        <img
-          src="../images/logo.png"
-          class="flip-card-front"
-          alt="image of logo"
-        />
+        <img src="../images/logo.png" class="img-back" alt="image of logo" />
       </div>
 
-      <div class="memory-card" data-image="magicWand">
+      <div class="card" data-image="magicWand">
         <img
           src="../images/magic-wand.svg"
-          class="flip-card-back"
+          class="img-front"
           alt="image of magic wand"
         />
-        <img
-          src="../images/logo.png"
-          class="flip-card-front"
-          alt="image of logo"
-        />
+        <img src="../images/logo.png" class="img-back" alt="image of logo" />
       </div>
 
-      <div class="memory-card" data-image="hat">
-        <img
-          src="../images/hat.svg"
-          class="flip-card-back"
-          alt="image of hat"
-        />
-        <img
-          src="../images/logo.png"
-          class="flip-card-front"
-          alt="image of logo"
-        />
+      <div class="card" data-image="hat">
+        <img src="../images/hat.svg" class="img-front" alt="image of hat" />
+        <img src="../images/logo.png" class="img-back" alt="image of logo" />
       </div>
 
-      <div class="memory-card" data-image="magicBall">
+      <div class="card" data-image="magicBall">
         <img
           src="../images/magic-ball.svg"
-          class="flip-card-back"
+          class="img-front"
           alt="image of magic ball"
         />
-        <img
-          src="../images/logo.png"
-          class="flip-card-front"
-          alt="image of logo"
-        />
+        <img src="../images/logo.png" class="img-back" alt="image of logo" />
       </div>
 
-      <div class="memory-card" data-image="wizardOne">
+      <div class="card" data-image="wizardOne">
         <img
           src="../images/wizard.svg"
-          class="flip-card-back"
+          class="img-front"
           alt="image of wizard"
         />
-        <img
-          src="../images/logo.png"
-          class="flip-card-front"
-          alt="image of logo"
-        />
+        <img src="../images/logo.png" class="img-back" alt="image of logo" />
       </div>
 
-      <div class="memory-card" data-image="wizardTwo">
+      <div class="card" data-image="wizardTwo">
         <img
           src="../images/wizard2.svg"
-          class="flip-card-back"
+          class="img-front"
           alt="image of another wizard"
         />
-        <img
-          src="../images/logo.png"
-          class="flip-card-front"
-          alt="image of logo"
-        />
+        <img src="../images/logo.png" class="img-back" alt="image of logo" />
       </div>
 
-      <div class="memory-card" data-image="witchHat">
+      <div class="card" data-image="witchHat">
         <img
           src="../images/witch-hat.svg"
-          class="flip-card-back"
+          class="img-front"
           alt="image of witch hat"
         />
-        <img
-          src="../images/logo.png"
-          class="flip-card-front"
-          alt="image of logo"
-        />
+        <img src="../images/logo.png" class="img-back" alt="image of logo" />
       </div>
 
-      <div class="memory-card" data-image="magicWand">
+      <div class="card" data-image="magicWand">
         <img
           src="../images/magic-wand.svg"
-          class="flip-card-back"
+          class="img-front"
           alt="image of magic wand"
         />
-        <img
-          src="../images/logo.png"
-          class="flip-card-front"
-          alt="image of logo"
-        />
+        <img src="../images/logo.png" class="img-back" alt="image of logo" />
       </div>
     </section>
     <footer>
