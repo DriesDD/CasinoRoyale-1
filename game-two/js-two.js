@@ -97,6 +97,24 @@ hit.addEventListener("click", () => {
   }
 });
 
+// Stand button listener
+stand.addEventListener("click", () => {
+  console.log(`Inside Stand sumPlayer ${sumPlayer}`);
+  console.log(`Inside Stand standSum ${standSum}`);
+  console.log(`Inside Stand firstSum ${firstSum}`);
+  do {
+    deal(computerCard, "computerHitCard");
+  } while (standSum <= 15);
+  if (standSum > 21) {
+    message.innerHTML = `Computer <strong>Busted</strong>`;
+  } else if (standSum > firstSum) {
+    message.innerHTML = `Computer <strong>Won</strong>`;
+  } else if (standSum < firstSum) {
+    message.innerHTML = `Player <strong>Won</strong>`;
+  }
+  behaviourBtn(stand, "off");
+});
+
 // Deal 2 cards for player and computer respectively
 function deal(cards, check) {
   let firstCard, firstChar, secondCard, secondChar;
