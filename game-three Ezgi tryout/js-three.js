@@ -7,6 +7,7 @@ for (let i = 0; i < cards.length; i++) {
   card = cards[i];
   card.addEventListener("click", displayCard); //rotates the cards
   card.addEventListener("click", cardOpen); // checks if 2 cards matching or not
+  card.addEventListener("click", congrats); //checks if all cards are matched
 }
 // displayCard is a function I'll define below.
 //It will say all the things happen when I'll click the cards
@@ -44,12 +45,29 @@ function shuffle(array) {
   return array;
 }
 
+let interval;
+let moves = 0; // variables always have to be defined before they are used
+let second = 0,
+  minute = 0;
 const carddeck = document.querySelector(".memory-game-Ezgi");
 function startGame() {
   let shuffleCards = shuffle(cards);
   for (let i = 0; i < shuffleCards.length; i++) {
     carddeck.appendChild(shuffleCards[i]); // pushing back the shuffled cards to HTML by adding them as a child to the parent div
+    cards[i].classList.remove("match", "open"); //reset cards
+    cards[i].getElementsByTagName("img")[0].classList.remove("open");
+    cards[i].getElementsByTagName("img")[1].classList.remove("open");
+    // reset img put logo back to the front
   }
+  //reset moves
+  moves = 0;
+  document.getElementById("counterText").innerHTML = "Move(s): " + moves;
+  //reset timing
+  clearInterval(interval); //stops the clock every second running
+  minute = 0;
+  second = 0;
+  document.getElementById("counterTime").innerHTML =
+    "Time: " + minute + "' " + second + "''";
 }
 //In the code above is the startGame function and it will shuffle cards and display each card in the deck on game board.
 //Since we know the startGame function shuffles the card in order to shuffle the cards on load, we add this to our JS:
@@ -63,7 +81,7 @@ function cardOpen() {
   openedCards.push(this); //it adds the cards which is opened to an array list openedCards
   console.log(openedCards);
   if (openedCards.length == 2) {
-    //moveCounter();
+    moveCounter();
     let source1 = openedCards[0]
       .getElementsByTagName("img")[0]
       .getAttribute("src");
@@ -113,12 +131,71 @@ function disable() {
   }
 }
 //enable all cards again, then disable the matched ones
+let matchedCards = document.getElementsByClassName("match");
 function enable() {
   for (i = 0; i < cards.length; i++) {
     cards[i].classList.remove("disabled");
   }
-  let matchedCards = document.getElementsByClassName("match");
+
   for (i = 0; i < matchedCards.length; i++) {
     matchedCards[i].classList.add("disabled");
   }
+}
+
+function moveCounter() {
+  moves++;
+  document.getElementById("counterText").innerHTML = "Move(s): " + moves;
+  if (moves == 1) {
+    second = 0;
+    minute = 0;
+    startTimer();
+  }
+}
+//document.getElementsByClassName("moves").innerHTML = moves;
+//console.log(document.getElementsByClassName("moves").inner);
+//console.log(document.getElementsByClassName("movescounter").innerHTML);
+//let counterText = document.getElementsByClassName("counterText")[0].innerHTML;
+
+function startTimer() {
+  interval = setInterval(() => {
+    document.getElementById("counterTime").innerHTML =
+      "Time: " + minute + "' " + second + "''";
+    second++;
+    if (second == 60) {
+      minute++;
+      second = 0;
+    }
+  }, 1000);
+}
+
+//create a modal
+
+let modal = document.getElementById("popup1");
+//close icon in modal
+let closeicon = document.querySelector(".close");
+
+//congratulations when all cards match, show modal and moves, time and rating
+let finalTime;
+function congrats() {
+  if (matchedCards.length == 12) {
+    clearInterval(interval);
+    finalTime = counterTime.innerHTML;
+    //show congrats modal
+    modal.classList.add("show");
+    document.getElementById("finalMove").innerHTML = moves;
+    document.getElementById("totalTime").innerHTML = finalTime;
+    //closeicon on modal
+    closeModal();
+  }
+}
+//close icon on modal
+function closeModal() {
+  closeicon.addEventListener("click", function (e) {
+    modal.classList.remove("show");
+  });
+}
+//for player to play Again
+function playAgain() {
+  modal.classList.remove("show");
+  startGame();
 }
