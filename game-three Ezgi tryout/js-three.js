@@ -35,6 +35,11 @@ function shuffle(array) {
     temporaryValue,
     randomIndex;
 
+  //console.log(currentIndex);
+  //console.log(array.length);
+  //console.log(temporaryValue);
+  //console.log(randomIndex);
+
   while (currentIndex !== 0) {
     randomIndex = Math.floor(Math.random() * currentIndex);
     currentIndex -= 1;
@@ -42,6 +47,7 @@ function shuffle(array) {
     array[currentIndex] = array[randomIndex];
     array[randomIndex] = temporaryValue;
   }
+
   return array;
 }
 

@@ -1,3 +1,21 @@
+// Define all cards
+
+// Flip cards
+// Click card 1
+// Click card 2
+
+// Lock cards (store)
+
+// Match cards
+
+// unflip cards when no match
+
+// lock when match
+
+// reset the board
+
+// shuffle the cards
+
 const cards = document.querySelectorAll(".memory-card");
 
 let hasFlippedCard = false;
@@ -63,5 +81,7 @@ function resetBoard() {
     card.style.order = randomPos;
   });
 })();
+
+console.log(cards);
 
 cards.forEach((card) => card.addEventListener("click", flipCard));
