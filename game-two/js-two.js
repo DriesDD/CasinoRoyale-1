@@ -93,7 +93,7 @@ play.addEventListener("click", () => {
 hit.addEventListener("click", () => {
   deal(playerCard, "playerHitCard");
   if (firstSum > 21) {
-    message.innerHTML = `You're <strong>Busted</strong>`;
+    message.innerHTML = `Player <strong>busts</strong>`;
   }
 });
 
@@ -107,11 +107,13 @@ stand.addEventListener("click", () => {
     deal(computerCard, "computerHitCard");
   } while (standSum <= 15);
   if (standSum > 21) {
-    message.innerHTML = `Computer <strong>Busted</strong>`;
+    message.innerHTML = `Computer <strong>busts</strong>`;
   } else if (standSum > firstSum) {
-    message.innerHTML = `Computer <strong>Won</strong>`;
+    message.innerHTML = `Computer <strong>wins</strong>`;
   } else if (standSum < firstSum) {
-    message.innerHTML = `Player <strong>Won</strong>`;
+    message.innerHTML = `Player <strong>wins</strong>`;
+  } else if ((standSum = firstSum)) {
+    message.innerHTML = `It's <strong>tie</strong>`;
   }
   behaviourBtn(stand, "off");
 });
