@@ -9,6 +9,10 @@
       type="text/css"
       href="../styles/memoryGameEzgi.css"
     />
+    <link
+      rel="stylesheet prefetch"
+      href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.1/css/font-awesome.min.css"
+    />
     <script src="js-three.js" defer></script>
     <title>Memory</title>
   </head>
@@ -127,7 +131,25 @@
     <h1 class="text-white justify text-center font-semibold text-5xl">
       Memory Game
     </h1>
-
+    <!--Counter & Time-->
+    <h2
+      class="text-white justify text-center font-semibold text-2xl"
+      id="counterText"
+    >
+      Move(s): 0
+    </h2>
+    <h2
+      class="text-white justify text-center font-semibold text-2xl"
+      id="counterTime"
+    >
+      Time: 0' 0"
+    </h2>
+    <div
+      class="text-white justify text-center font-semibold text-2xl restart"
+      onclick="startGame()"
+    >
+      <i class="fa fa-repeat"></i>
+    </div>
     <!--MEMORY GAME-->
     <section class="memory-game-Ezgi">
       <div class="card" data-image="hat">
@@ -230,6 +252,26 @@
         <img src="../images/logo.png" class="img-back" alt="image of logo" />
       </div>
     </section>
+
+    <!--below is my modal congrats pop-up!-->
+    <div id="popup1" class="overlay">
+      <div class="popup">
+        <h2>Congratulations 🎉</h2>
+        <a class="  href="#">×</a>
+        <div class="content-1">
+          Congratulations you're a winner 🎉🎉
+        </div>
+        <div class="content-2">
+          <p>You made <span id="finalMove"> </span> moves</p>
+          <p>in <span id="totalTime"> </span></p>
+        </div>
+        <button id="play-again" onclick="playAgain()">
+          <a>Play again 😄</a>
+        </button>
+      </div>
+    </div>
+
+    <!--here the footer starts-->
     <footer>
       <div class="bg-white mt-4">
         <div
