@@ -77,6 +77,7 @@ let playerCard,
   firstSum,
   hitPlayer,
   hitSum,
+  standSum,
   sumPlayer = 0,
   sum;
 
@@ -85,12 +86,34 @@ play.addEventListener("click", () => {
   deckMaker();
   deal(playerCard, "playerFirstCard");
   deal(computerCard, "computerFirstCard");
-  play.disabled = true;
+  behaviourBtn(play, "off");
 });
 
 // Hit button listener
 hit.addEventListener("click", () => {
   deal(playerCard, "playerHitCard");
+  if (firstSum > 21) {
+    message.innerHTML = `You're <strong>Busted</strong>`;
+  }
+});
+
+// Stand button listener
+stand.addEventListener("click", () => {
+  behaviourBtn(hit, "off");
+  console.log(`Inside Stand sumPlayer ${sumPlayer}`);
+  console.log(`Inside Stand standSum ${standSum}`);
+  console.log(`Inside Stand firstSum ${firstSum}`);
+  do {
+    deal(computerCard, "computerHitCard");
+  } while (standSum <= 15);
+  if (standSum > 21) {
+    message.innerHTML = `Computer <strong>Busted</strong>`;
+  } else if (standSum > firstSum) {
+    message.innerHTML = `Computer <strong>Won</strong>`;
+  } else if (standSum < firstSum) {
+    message.innerHTML = `Player <strong>Won</strong>`;
+  }
+  behaviourBtn(stand, "off");
 });
 
 // Deal 2 cards for player and computer respectively
@@ -123,6 +146,7 @@ function deal(cards, check) {
           break;
         case "computerFirstCard":
           console.log(firstCard);
+          standSum = sumPlayer;
           computer.innerHTML = `<em>Hidden -- ${secondCard}</em> <strong>Score: ${
             sumPlayer - sum
           }</strong>`;
@@ -145,8 +169,29 @@ function deal(cards, check) {
       console.log(`playerHitCard-previous sum ${firstSum}`);
       console.log(`playerHitCard-hit value ${hitPlayer}`);
       //firstSum += hitPlayer;
-      //hitSum = firstSum;
-      player.innerHTML += `</br><em>${firstCard}</em> <strong>Score: ${(firstSum += hitPlayer)}</strong>`;
+      hitSum = firstSum += hitPlayer;
+      player.innerHTML += `</br><em>${firstCard}</em> <strong>Score: ${hitSum}</strong>`;
+      if (hitSum > 21) {
+        behaviourBtn(hit, "off");
+      }
+      break;
+    case "computerHitCard":
+      cards = randNumber();
+      firstCard = deck[cards[0]];
+      firstChar = firstCard.charAt(0);
+      weight.forEach((item) => {
+        if (firstChar === item.type) {
+          hitPlayer = item.value;
+        }
+      });
+      console.log(`computerHitCard-previous sum ${standSum}`);
+      console.log(`computerHitCard-hit value ${hitPlayer}`);
+      //firstSum += hitPlayer;
+      standSum += hitPlayer;
+      computer.innerHTML += `</br><em>${firstCard}</em> <strong>Score: ${standSum}</strong>`;
+      if (standSum > 21) {
+        behaviourBtn(stand, "off");
+      }
       break;
   }
 }
@@ -167,4 +212,20 @@ function randNumber() {
     rand2 = Math.floor(Math.random() * 51);
   } while (rand1 === rand2);
   return [rand1, rand2];
+}
+
+// Make button disabled
+function behaviourBtn(button, check) {
+  switch (check) {
+    case "off":
+      button.classList.add("bg-orange-300", "cursor-not-allowed");
+      button.classList.remove("bg-orange-500");
+      button.disabled = true;
+      break;
+    case "on":
+      button.classList.add("bg-orange-500");
+      button.classList.remove("bg-orange-300", "cursor-not-allowed");
+      button.disabled = false;
+      break;
+  }
 }
