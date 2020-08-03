@@ -23,7 +23,7 @@ Imagine 1 coin costing 10 cents.
  *  1 coin is a very small commitment, only appliccable to a single action / a basic rock, paper, scissors game.
  *  5-10 coins is a normal amount to play a simple game.
  *  50 - 100 coins is an investment that matters.
- *  more than 100 coins should only be used if the game lasts a while.
+ *  more than 100 coins should only be used if the game lasts more than a minute.
  
 *Important:* The house always wins! Like a real casino, spending a lot of time will cause most people you to lose money, not win it.
 
