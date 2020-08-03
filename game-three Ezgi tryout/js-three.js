@@ -63,6 +63,7 @@ function startGame() {
     cards[i].classList.remove("match", "open"); //reset cards
     cards[i].getElementsByTagName("img")[0].classList.remove("open");
     cards[i].getElementsByTagName("img")[1].classList.remove("open");
+    cards[i].classList.remove("disabled");
     // reset img put logo back to the front
   }
   //reset moves
@@ -197,11 +198,22 @@ function congrats() {
 //close icon on modal
 function closeModal() {
   closeicon.addEventListener("click", function (e) {
+    //The parameter (e) is automatically passed from javascript to you function when you add an event listener.
+    //It represents the element that was affected, an example would be the button element that was clicked.
     modal.classList.remove("show");
   });
 }
 //for player to play Again
+
 function playAgain() {
   modal.classList.remove("show");
   startGame();
 }
+
+//add Balance here
+// $("pay10").onclick = () => {
+//   localStorage.setItem("balance", Number(localStorage.getItem("balance")) + 10);
+//   localStorage.setItem("spent", Number(localStorage.getItem("spent")) + 10);
+
+//   $("balance").innerText = "Balance:" + Number(localStorage.getItem("balance"));
+// };

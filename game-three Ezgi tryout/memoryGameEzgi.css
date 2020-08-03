@@ -59,7 +59,7 @@
 }
 
 .card.unmatch {
-  background-color: red;
+  background-color: #e53e3e;
   animation-duration: 0.75s;
   animation-name: unmatch;
 }
