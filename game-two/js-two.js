@@ -99,6 +99,7 @@ hit.addEventListener("click", () => {
 
 // Stand button listener
 stand.addEventListener("click", () => {
+  behaviourBtn(hit, "off");
   console.log(`Inside Stand sumPlayer ${sumPlayer}`);
   console.log(`Inside Stand standSum ${standSum}`);
   console.log(`Inside Stand firstSum ${firstSum}`);
