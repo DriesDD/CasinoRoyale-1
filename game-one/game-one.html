@@ -9,7 +9,7 @@
   <script src="js-one.js" defer></script>
 </head>
 
-<body class="bg-gray-900">
+<body class="bg-gray-900 flex flex-col h-screen">
   <nav class="bg-orange-300 mb-4">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       <div class="flex justify-between h-16">
@@ -121,30 +121,30 @@
     </div>
   </nav>
 
-  <h1 class="text-white justify text-center font-semibold my-4 text-5xl">Rock, paper, scissors, lizard, spock...</h1>
+  <h1 class="text-white justify text-center font-semibold my-4 text-3xl">Rock, paper, scissors, lizard, spock...</h1>
 
+  <div id="game" class="mx-auto xl:w-2/3 lg:w-2/3 md:w-2/3 sm:w-full rounded-lg shadow-lg bg-white flex-grow p-10 my-3 col-span-1 flex flex-col text-center bg-white rounded-lg shadow">
 
-  <div id="game" class="col-span-1 flex flex-col text-center bg-white rounded-lg shadow">
     <div id="balance"></div>
     <div id="score" class = "text-lg">Score: 0 </div>
 
-    <div id="picker" class="grid grid-cols-5 gap-1 sm:grid-cols-5 md:grid-cols-5 lg:grid-cols-7">
+    <div id="picker" class="grid grid-cols-4 gap-1 sm:grid-cols-4 md:grid-cols-5 lg:grid-cols-5 xl:grid-cols-9">
       <button id="rock"
-        class="relative items-center mb-1 px-4 py-2 border border-transparent text-lg leading-5 font-medium rounded-md text-gray-900 bg-orange-500 hover:bg-indigo-400 focus:outline-none focus:shadow-outline-indigo focus:border-indigo-600 active:bg-indigo-600 transition duration-150 ease-in-out">Rock</button>
+        class="relative col-span-1 items-center mb-1 px-4 py-2 border border-transparent text-lg leading-5 font-medium rounded-md text-gray-900 bg-orange-500 hover:bg-indigo-400 focus:outline-none focus:shadow-outline-indigo focus:border-indigo-600 active:bg-indigo-600 transition duration-150 ease-in-out">Rock</button>
       <button id="paper"
-        class="relative items-center mb-1 px-4 py-2 border border-transparent text-lg leading-5 font-medium rounded-md text-gray-900 bg-orange-500 hover:bg-indigo-400 focus:outline-none focus:shadow-outline-indigo focus:border-indigo-600 active:bg-indigo-600 transition duration-150 ease-in-out">Paper</button>
+        class="relative col-span-1 items-center mb-1 px-4 py-2 border border-transparent text-lg leading-5 font-medium rounded-md text-gray-900 bg-orange-500 hover:bg-indigo-400 focus:outline-none focus:shadow-outline-indigo focus:border-indigo-600 active:bg-indigo-600 transition duration-150 ease-in-out">Paper</button>
       <button id="scissors"
-        class="relative items-center mb-1 px-4 py-2 border border-transparent text-lg leading-5 font-medium rounded-md text-gray-900 bg-orange-500 hover:bg-indigo-400 focus:outline-none focus:shadow-outline-indigo focus:border-indigo-600 active:bg-indigo-600 transition duration-150 ease-in-out">Scissors</button>
+        class="relative col-span-1 items-center mb-1 px-4 py-2 border border-transparent text-lg leading-5 font-medium rounded-md text-gray-900 bg-orange-500 hover:bg-indigo-400 focus:outline-none focus:shadow-outline-indigo focus:border-indigo-600 active:bg-indigo-600 transition duration-150 ease-in-out">Scissors</button>
       <button id="lizard"
-        class="relative items-center mb-1 px-4 py-2 border border-transparent text-lg leading-5 font-medium rounded-md text-gray-900 bg-orange-500 hover:bg-indigo-400 focus:outline-none focus:shadow-outline-indigo focus:border-indigo-600 active:bg-indigo-600 transition duration-150 ease-in-out">Lizard</button>
+        class="relative col-span-1 items-center mb-1 px-4 py-2 border border-transparent text-lg leading-5 font-medium rounded-md text-gray-900 bg-orange-500 hover:bg-indigo-400 focus:outline-none focus:shadow-outline-indigo focus:border-indigo-600 active:bg-indigo-600 transition duration-150 ease-in-out">Lizard</button>
       <button id="spock"
-        class="relative items-center mb-1 px-4 py-2 border border-transparent text-lg leading-5 font-medium rounded-md text-gray-900 bg-orange-500 hover:bg-indigo-400 focus:outline-none focus:shadow-outline-indigo focus:border-indigo-600 active:bg-indigo-600 transition duration-150 ease-in-out">Spock</button>
+        class="relative col-span-1 items-center mb-1 px-4 py-2 border border-transparent text-lg leading-5 font-medium rounded-md text-gray-900 bg-orange-500 hover:bg-indigo-400 focus:outline-none focus:shadow-outline-indigo focus:border-indigo-600 active:bg-indigo-600 transition duration-150 ease-in-out">Spock</button>
 
       <button id="secret"
-        class="relative items-center mb-1 px-4 py-2 border border-transparent text-lg leading-5 font-medium rounded-md text-gray-600 bg-gray-400">Reach
+        class="relative col-span-2 items-center mb-1 px-4 py-2 border border-transparent text-lg leading-5 font-medium rounded-md text-gray-600 bg-gray-400">Reach
         a score of</br> 27 to unlock.</button>
       <button id="supersecret"
-        class="relative items-center mb-1 px-4 py-2 border border-transparent text-lg leading-5 font-medium rounded-md text-gray-600 bg-gray-400"
+        class="relative col-span-2 items-center mb-1 px-4 py-2 border border-transparent text-lg leading-5 font-medium rounded-md text-gray-600 bg-gray-400"
         hidden=true>Win five times with the </br> drake to unlock.</button>
     </div>
 
@@ -159,51 +159,51 @@
         class="relative items-center mb-1 px-4 py-2 border border-transparent text-lg leading-5 font-medium rounded-md text-gray-900 bg-orange-500 hover:bg-indigo-400 focus:outline-none focus:shadow-outline-indigo focus:border-indigo-600 active:bg-indigo-600 transition duration-150 ease-in-out"
         hidden=true>Play for 100 coins.</button>
       </br>
-      <button hidden=1 id="pay10"
+      <button hidden=1 id="pay10ingame"
         class="relative items-center mb-1 px-4 py-2 border border-transparent text-lg leading-5 font-medium rounded-md text-gray-900 bg-orange-500 hover:bg-indigo-400 focus:outline-none focus:shadow-outline-indigo focus:border-indigo-600 active:bg-indigo-600 transition duration-150 ease-in-out">Buy
         10 coins.</button>
-      <button hidden=1 id="pay100"
+      <button hidden=1 id="pay100ingame"
         class="relative items-center mb-1 px-4 py-2 border border-transparent text-lg leading-5 font-medium rounded-md text-gray-900 bg-orange-500 hover:bg-indigo-400 focus:outline-none focus:shadow-outline-indigo focus:border-indigo-600 active:bg-indigo-600 transition duration-150 ease-in-out">Buy
         100 coins.</button>
     </div>
 
     <div id = "pickshower" class = "grid grid-cols-5 gap-1 bg-orange-300 rounded-lg shadow">
-      <div class = "col-span-1">You chose:<div id="playerpick" class = "text-lg"></div>
+      <div class = "col-span-1">You chose:<img id="playerimg"></img> <div id="playerpick" class = "text-lg"></div>
       </div>
-      <div id= "centralmsg" class= "col-span-3">
+      <div id= "centralmsg" class= "col-span-3 my-auto">
         <div id="winnermsg"></div>
         <div id="gainsmsg" class="font-bold text-lg"></div>
       </div>
-      <div class = "col-span-1">The computer chose:<div id="computerpick" class = "text-lg"></div>
+      <div class = "col-span-1">Computer:<img id="computerimg"></img><div id="computerpick" class = "text-lg"></div>
       </div>
     </div>
-   
-    <button id="reset" class="relative items-center mb-1 px-4 py-2 border border-transparent text-lg leading-5 font-medium rounded-md text-gray-900 bg-gray-500 hover:bg-indigo-400 focus:outline-none focus:shadow-outline-indigo focus:border-indigo-600 active:bg-indigo-600 transition duration-150 ease-in-out" >Reset</button>
+  </br>
+    <button id="reset" class="mt-auto relative items-center mb-1 px-4 py-2 border border-transparent text-lg leading-5 font-medium rounded-md text-gray-900 bg-gray-500 hover:bg-indigo-400 focus:outline-none focus:shadow-outline-indigo focus:border-indigo-600 active:bg-indigo-600 transition duration-150 ease-in-out" >Reset</button>
 
   </div>
 
   <footer>
-    <div class="bg-white mt-4">
-<div class="max-w-screen-xl mx-auto py-12 px-4 sm:px-6 md:flex md:items-center md:justify-between lg:px-8">
-  <div class="flex justify-center md:order-2">
+      <div class="bg-white mt-4">
+  <div class="max-w-screen-xl mx-auto py-5 px-4 sm:px-6 md:flex md:items-center md:justify-between lg:px-8">
+    <div class="flex justify-center md:order-2">
 
-    <a href="#" class="ml-6 text-gray-400 hover:text-gray-500">
-      <span class="sr-only">GitHub</span>
-      <svg class="h-6 w-6" fill="currentColor" viewBox="0 0 24 24">
-        <path fill-rule="evenodd" d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z" clip-rule="evenodd" />
-      </svg>
-    </a>
-
+<footer class="bg-white mt-4 flex flex-col h-auto">
+  <div class="flex-grow max-w-screen-xl mx-auto py-12 px-4 sm:px-6 md:flex md:items-center md:justify-between lg:px-8">
+    <div class="flex justify-center md:order-2"> 
+      <a href="https://github.com/Sourcerors/CasinoRoyale" class="ml-6 text-gray-400 hover:text-gray-500">
+        <span class="sr-only">GitHub</span>
+        <svg class="h-6 w-6" fill="currentColor" viewBox="0 0 24 24">
+          <path fill-rule="evenodd" d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z" clip-rule="evenodd" />
+        </svg>
+      </a>  
+    </div>
+    <div class="mt-8 md:mt-0 md:order-1">
+      <p class="text-center text-base leading-6 text-gray-400">
+        <a href="index.html">&larr; Go Back</a>  <span>&copy; 2020 The Sourcerers, Inc. All rights reserved.</span>
+      </p>
+    </div>
   </div>
-  <div class="mt-8 md:mt-0 md:order-1">
-    <p class="text-center text-base leading-6 text-gray-400">
-      &copy; 2020 The Sourcerers, Inc. All rights reserved.
-    </p>
-  </div>
-</div>
-</div>
-  </footer>
-
+</footer>
 
 </body>
 
