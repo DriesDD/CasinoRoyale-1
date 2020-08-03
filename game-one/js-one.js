@@ -38,9 +38,11 @@ Spock vaporizes Rock
 
 let playerpick, rand, computerpick, choices, score, stakes, gains, drakewins
 
-const buttonclass = "relative items-center mb-1 px-4 py-2 border border-transparent text-lg leading-5 font-medium rounded-md text-grey-900 bg-orange-500 hover:bg-indigo-400 focus:outline-none focus:shadow-outline-indigo focus:border-indigo-600 active:bg-indigo-600 transition duration-150 ease-in-out"
-const buttonhighlightclass  = "relative items-center mb-1 px-4 py-2 border border-transparent text-lg leading-5 font-bold rounded-md text-grey-900 bg-indigo-400 hover:bg-indigo-300 transition duration-150 ease-in-out"
-const buttonlocked  = "relative items-center mb-1 px-4 py-2 border border-transparent text-lg leading-5 font-medium rounded-md text-grey-600 bg-grey-400"
+const buttonclass = "relative col-span-1 items-center mb-1 px-4 py-2 border border-transparent text-lg leading-5 font-medium rounded-md text-grey-900 bg-orange-500 hover:bg-indigo-400 focus:outline-none focus:shadow-outline-indigo focus:border-indigo-600 active:bg-indigo-600 transition duration-150 ease-in-out"
+const buttonhighlightclass  = "relative col-span-1 items-center mb-1 px-4 py-2 border border-transparent text-lg leading-5 font-bold rounded-md text-grey-900 bg-indigo-400 hover:bg-indigo-300 transition duration-150 ease-in-out"
+const buttonclasswide = "relative col-span-2 items-center mb-1 px-4 py-2 border border-transparent text-lg leading-5 font-medium rounded-md text-grey-900 bg-orange-500 hover:bg-indigo-400 focus:outline-none focus:shadow-outline-indigo focus:border-indigo-600 active:bg-indigo-600 transition duration-150 ease-in-out"
+const buttonhighlightclasswide  = "relative col-span-2 items-center mb-1 px-4 py-2 border border-transparent text-lg leading-5 font-bold rounded-md text-grey-900 bg-indigo-400 hover:bg-indigo-300 transition duration-150 ease-in-out"
+const buttonlocked  = "relative col-span-2 items-center mb-1 px-4 py-2 border border-transparent text-lg leading-5 font-medium rounded-md text-grey-600 bg-grey-400"
 score = 0;
 drakewins = 0;
 
@@ -63,26 +65,31 @@ $("pay10").hidden = 1
 $('rock').onclick = () => {
     reset();
     playerpick = "rock";
+    $('playerimg').setAttribute("src",playerpick + 1 + ".svg");
     newclass('rock',buttonhighlightclass);
 }
 $('paper').onclick = () => {
     reset();
     playerpick = "paper";
+    $('playerimg').setAttribute("src",playerpick + 1 + ".svg");
     $('paper').setAttribute("class", buttonhighlightclass);
 }
 $('scissors').onclick = () => {
     reset();
     playerpick = "scissors";
+    $('playerimg').setAttribute("src",playerpick + 1 + ".svg");
     $('scissors').setAttribute("class", buttonhighlightclass);
 }
 $('lizard').onclick = () => {
     reset();
     playerpick = "lizard";
+    $('playerimg').setAttribute("src",playerpick + 1 + ".svg");
     $('lizard').setAttribute("class", buttonhighlightclass);
 }
 $('spock').onclick = () => {
     reset();
     playerpick = "spock";
+    $('playerimg').setAttribute("src",playerpick + 1 + ".svg");
     $('spock').setAttribute("class", buttonhighlightclass);
 }
 
@@ -90,7 +97,8 @@ $('secret').onclick = () => {
     if (localStorage.getItem("game1unlock") > 0)
     {reset();
     playerpick = "drake";
-    $('secret').setAttribute("class", buttonhighlightclass);
+    $('playerimg').setAttribute("src",playerpick + 1 + ".svg");
+    $('secret').setAttribute("class", buttonhighlightclasswide);
     $("play1").hidden = 1;
     $("play5").hidden = 1;
     $("play100").hidden = 0
@@ -100,8 +108,9 @@ $('secret').onclick = () => {
 $('supersecret').onclick = () => {
     if (localStorage.getItem("game1unlock") > 1)
     {reset();
-    playerpick = "wizard";;
-    $('supersecret').setAttribute("class", buttonhighlightclass);
+    playerpick = "wizard";
+    $('playerimg').setAttribute("src",playerpick + 1 + ".svg");
+    $('supersecret').setAttribute("class", buttonhighlightclasswide);
     $("play1").hidden = 1;
     $("play5").hidden = 0;
     $("play100").hidden = 0}
@@ -182,9 +191,11 @@ function reset() {
     newclass('paper',buttonclass);
     newclass('lizard',buttonclass);
     newclass('spock',buttonclass);
-    newclass('secret',buttonclass);
-    newclass('supersecret',buttonclass);
+    newclass('secret',buttonclasswide);
+    newclass('supersecret',buttonclasswide);
     game1unlock(localStorage.getItem("game1unlock"));
+    $('playerimg').setAttribute("src","");
+    $('computerimg').setAttribute("src","");
     $("play1").hidden = 0;
     $("play5").hidden = 0;
     $("play100").hidden = 1
@@ -281,8 +292,10 @@ async function compare() {
 
     //compare computerpick and playerpick and choose the result out of the arrays
     computerpick = choices[rand];
-    $("computerpick").innerText = computerpick;
     $("playerpick").innerText = playerpick;
+    $('playerimg').setAttribute("src",playerpick + 1 + ".svg");
+    $("computerpick").innerText = computerpick;
+    $('computerimg').setAttribute("src",computerpick + 2 + ".svg");
     await timeout(500);
     
     
@@ -350,8 +363,8 @@ function game1unlock(level) {
 
      if (level > 0)
         {$("secret").innerHTML = "High stake </br> fire breathing drake"; $("supersecret").hidden = false;
-         newclass("secret",buttonclass)}
+         newclass("secret",buttonclasswide)}
      if (level > 1)
         {$("supersecret").innerHTML = "Weeping </br> wizard";
-        newclass("supersecret",buttonclass)}
+        newclass("supersecret",buttonclasswide)}
     }
