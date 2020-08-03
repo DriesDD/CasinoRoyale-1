@@ -1,37 +1,3 @@
-/*
-Game: Rock, Paper, Scissors, Lizard, Spock
-The Mission
-
-Make a Rock, Paper, Scissors, Lizard, Spock game. It's like Rock, Paper, Scissors, but more fun!
-Must-have features
-
-    Have five buttons that the player can press to change their pick
-    Have another button to let the computer pick one
-    Show the winner
-    Let the player know if they won or not (no alert box)
-    Have a reset button
-
-Nice-to-have features
-
-    Nice graphics
-    Simulate the computer thinking/working by using a timeout
-    Let the player input using a text field
-    Show what the player picked by highlighting the correct button
-    Add more options (but avoid using 100 if statements)
-    Add complex rules
-*/
-/*Scissors cuts Paper
-Paper covers Rock
-Rock crushes Lizard
-Lizard poisons Spock
-Spock smashes Scissors
-Scissors decapitates Lizard
-Lizard eats Paper
-Paper disproves Spock
-Spock vaporizes Rock
-(and as it always has) Rock crushes Scissors*/
-
-
 //used variables on this page. 
 //some constants for tailwind classes
 //also uses localstorage variables 'spent' and 'balance', and 'game1unlock' for the unlocks in this game
