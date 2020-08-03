@@ -8,7 +8,7 @@ const buttonclass = "relative col-span-1 items-center mb-1 px-4 py-2 border bord
 const buttonhighlightclass  = "relative col-span-1 items-center mb-1 px-4 py-2 border border-transparent text-lg leading-5 font-bold rounded-md text-grey-900 bg-indigo-400 hover:bg-indigo-300 transition duration-150 ease-in-out"
 const buttonclasswide = "relative col-span-2 items-center mb-1 px-4 py-2 border border-transparent text-lg leading-5 font-medium rounded-md text-grey-900 bg-orange-500 hover:bg-indigo-400 focus:outline-none focus:shadow-outline-indigo focus:border-indigo-600 active:bg-indigo-600 transition duration-150 ease-in-out"
 const buttonhighlightclasswide  = "relative col-span-2 items-center mb-1 px-4 py-2 border border-transparent text-lg leading-5 font-bold rounded-md text-grey-900 bg-indigo-400 hover:bg-indigo-300 transition duration-150 ease-in-out"
-const buttonlocked  = "relative col-span-2 items-center mb-1 px-4 py-2 border border-transparent text-lg leading-5 font-medium rounded-md text-grey-600 bg-grey-400"
+const buttonlocked  = "relative col-span-2 items-center mb-1 px-4 py-2 border border-transparent text-lg leading-5 font-medium rounded-md text-gray-600 bg-gray-400"
 score = 0;
 drakewins = 0;
 
@@ -166,7 +166,7 @@ function reset() {
     newclass('spock',buttonclass);
     newclass('secret',buttonclasswide);
     newclass('supersecret',buttonclasswide);
-    game1unlock(localStorage.getItem("game1unlock"));
+    unlock(localStorage.getItem("game1unlock"));
     $('playerimg').setAttribute("src","");
     $('computerimg').setAttribute("src","");
     $("play1").hidden = 0;
@@ -261,7 +261,7 @@ async function compare() {
 
     //count drakewins
     if ((playerpick == "drake") && (rand == 1 || rand == 3) && localStorage.getItem("game1unlock") < 2)
-    {drakewins += 1; $("supersecret").innerHTML = ">Win another " + (5-drakewins) + " times with the </br> drake to game1unlock."};
+    {drakewins += 1; $("supersecret").innerHTML = "Win another " + (5-drakewins) + " times with the </br> drake to game1unlock."};
 
     //compare computerpick and playerpick and choose the result out of the arrays
     computerpick = choices[rand];
@@ -307,8 +307,8 @@ async function compare() {
         localStorage.setItem("balance", Number(localStorage.getItem("balance")) + gains);
         score += gains;
 
-        if (score >= 27) {game1unlock(1)};
-        if (drakewins >= 5) {game1unlock(2)};
+        if (drakewins >= 5) {unlock(2)}
+        else if (score >= 27) {unlock(1)};
         $("score").innerText = "Score: " + score;
         $("balance").innerText = "Balance: " + Number(localStorage.getItem("balance"));
 
@@ -323,11 +323,12 @@ async function compare() {
 
 //game1unlock secret creatures
 
-if (localStorage.getItem("game1unlock") > 0)
-{game1unlock(localStorage.getItem("game1unlock"))}
+if (localStorage.getItem("game1unlock") == null) {localStorage.setItem("game1unlock",0)}
 
-function game1unlock(level) {
-    if (localStorage.getItem("game1unlock") == null || localStorage.getItem("game1unlock") == 1 || localStorage.getItem("game1unlock") == 0)
+if (localStorage.getItem("game1unlock") > 0) {unlock(localStorage.getItem("game1unlock"))}
+
+function unlock(level) {
+    if (localStorage.getItem("game1unlock") < 2)
      {localStorage.setItem("game1unlock", level)}
      level = localStorage.getItem("game1unlock")
 
@@ -335,7 +336,7 @@ function game1unlock(level) {
      newclass("supersecret",buttonlocked)
 
      if (level > 0)
-        {$("secret").innerHTML = "High stake </br> fire breathing drake"; $("supersecret").hidden = false;
+        {$("secret").innerHTML = "High stake </br> fire breathing drake"; $("supersecret").hidden = false; newclass("supersecret",buttonlocked);
          newclass("secret",buttonclasswide)}
      if (level > 1)
         {$("supersecret").innerHTML = "Weeping </br> wizard";
