@@ -4,7 +4,7 @@ Every game should use coins to play. It's optional to add a way to add coins. Pl
 
 The local variables used for the coins system are:
 
- * "balance" - The current balance. It can't go below zero. When a player wants to play a game, they should have enough coins to lose.
+ * "balance" - The current balance. It can't go below zero. When a player wants to play a game, they should have enough coins to lose. Otherwise the game should prevent you from playing, preferrably with a helpful message to get more coins.
  * "spent" - tracks the total amount spent. This number only goes up, and should go up every time you buy more coins.
  
  Other local variables can be added freely.
