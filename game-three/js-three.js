@@ -16,21 +16,15 @@ document.getElementById("pay10").addEventListener("click", () => {
 
 //change if: only when card is clicked
 // loop to add event listeners to each card
-if (paid == 0) {
-  for (let i = 0; i < cards.length; i++) {
-    card = cards[i];
-    card.addEventListener("click", checkPaid); // checks if you don't pay not allow to begin
+//document.querySelector(".memory-game").classList.remove("disabled");
+for (let i = 0; i < cards.length; i++) {
+  card = cards[i];
+  card.addEventListener("click", displayCard); //rotates the cards
+  card.addEventListener("click", cardOpen); // checks if 2 cards matching or not
+  if (paid == 0) {
+    card.addEventListener("click", checkPaid);
   }
-} else {
-  console.log("test");
-  document.querySelector(".memory-game").classList.remove("disabled");
-  for (let i = 0; i < cards.length; i++) {
-    card = cards[i];
-    card.addEventListener("click", displayCard); //rotates the cards
-    card.addEventListener("click", cardOpen); // checks if 2 cards matching or not
-    card.addEventListener("click", congrats); //checks if all cards are matched
-    card.addEventListener("click", resetPay); //when first button clicks put variables paid back to 0
-  }
+  card.addEventListener("click", congrats); //checks if all cards are matched
 }
 
 // displayCard is a function I'll define below.
@@ -222,10 +216,19 @@ function congrats() {
     document.getElementById("totalTime").innerHTML = finalTime;
     //closeicon on modal
     closeModal();
-    if (finalMoves & finalTime) {
+    if (moves <= 10 && second <= 30 && minute < 1) {
+      document.getElementById("content-3").innerHTML =
+        "Well done! You earned 100 coins!";
+      localStorage.setItem(
+        "balance",
+        localStorage.getItem("balance") * 1 + 100
+      );
+      showBalance();
     }
+    resetPay();
   }
 }
+//localStorage.setItem("balance", 1000);
 //close icon on modal
 function closeModal() {
   closeicon.addEventListener("click", function () {
@@ -251,6 +254,7 @@ window.onload = showBalance();
 function checkPaid() {
   if (paid == 0) {
     alert("You haven't paid yet!");
-    document.querySelector(".memory-game").classList.add("disabled");
+    openedCards = [];
+    startGame();
   }
 }

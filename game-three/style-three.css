@@ -191,7 +191,8 @@
 }
 
 .popup .content-1,
-.content-2 {
+.content-2,
+.content-3 {
   max-height: 30%;
   overflow: auto;
   text-align: center;
