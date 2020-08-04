@@ -1,14 +1,38 @@
 //cards array holds all cards
 let card = document.getElementsByClassName("card");
 let cards = [...card]; //spliting up the list card in it seperate items
-
-// loop to add event listeners to each card
-for (let i = 0; i < cards.length; i++) {
-  card = cards[i];
-  card.addEventListener("click", displayCard); //rotates the cards
-  card.addEventListener("click", cardOpen); // checks if 2 cards matching or not
-  card.addEventListener("click", congrats); //checks if all cards are matched
+let paid = 0;
+let balance;
+function showBalance() {
+  balance = localStorage.getItem("balance");
+  document.getElementById("balance").innerHTML =
+    "Buy 10 Coins. Current balance: " + balance;
 }
+
+document.getElementById("pay10").addEventListener("click", () => {
+  localStorage.setItem("balance", localStorage.getItem("balance") * 1 + 10);
+  showBalance();
+});
+
+//change if: only when card is clicked
+// loop to add event listeners to each card
+if (paid == 0) {
+  for (let i = 0; i < cards.length; i++) {
+    card = cards[i];
+    card.addEventListener("click", checkPaid); // checks if you don't pay not allow to begin
+  }
+} else {
+  console.log("test");
+  document.querySelector(".memory-game").classList.remove("disabled");
+  for (let i = 0; i < cards.length; i++) {
+    card = cards[i];
+    card.addEventListener("click", displayCard); //rotates the cards
+    card.addEventListener("click", cardOpen); // checks if 2 cards matching or not
+    card.addEventListener("click", congrats); //checks if all cards are matched
+    card.addEventListener("click", resetPay); //when first button clicks put variables paid back to 0
+  }
+}
+
 // displayCard is a function I'll define below.
 //It will say all the things happen when I'll click the cards
 //In the code block above, the cards' array[1] was created and the for loop helps to loop through each card till the full length of cards array is covered.
@@ -35,11 +59,6 @@ function shuffle(array) {
     temporaryValue,
     randomIndex;
 
-  //console.log(currentIndex);
-  //console.log(array.length);
-  //console.log(temporaryValue);
-  //console.log(randomIndex);
-
   while (currentIndex !== 0) {
     randomIndex = Math.floor(Math.random() * currentIndex);
     currentIndex -= 1;
@@ -47,7 +66,6 @@ function shuffle(array) {
     array[currentIndex] = array[randomIndex];
     array[randomIndex] = temporaryValue;
   }
-
   return array;
 }
 
@@ -55,7 +73,7 @@ let interval;
 let moves = 0; // variables always have to be defined before they are used
 let second = 0,
   minute = 0;
-const carddeck = document.querySelector(".memory-game-Ezgi");
+const carddeck = document.querySelector(".memory-game");
 function startGame() {
   let shuffleCards = shuffle(cards);
   for (let i = 0; i < shuffleCards.length; i++) {
@@ -79,8 +97,19 @@ function startGame() {
 //In the code above is the startGame function and it will shuffle cards and display each card in the deck on game board.
 //Since we know the startGame function shuffles the card in order to shuffle the cards on load, we add this to our JS:
 
-window.onload = startGame();
-//Simply saying once this window (page) is loaded, run the startGame function.
+document.getElementById("pay").onclick = () => {
+  if (localStorage.getItem("balance") >= 50 && paid == 0) {
+    paid += 1; // 1 = true
+    localStorage.setItem("balance", localStorage.getItem("balance") - 50);
+    showBalance();
+  } else if (paid != 0) {
+    //if you have paid already
+    alert("You have paid already, let the game begin!");
+  } else if (balance < 50) {
+    alert("You need more balance to join the party!");
+  }
+};
+// localStorage.setItem("balance", 1000);
 
 //add opened cards to openedCards list and check if cards are match or not
 let openedCards = []; // created empty array
@@ -193,11 +222,13 @@ function congrats() {
     document.getElementById("totalTime").innerHTML = finalTime;
     //closeicon on modal
     closeModal();
+    if (finalMoves & finalTime) {
+    }
   }
 }
 //close icon on modal
 function closeModal() {
-  closeicon.addEventListener("click", function (e) {
+  closeicon.addEventListener("click", function () {
     //The parameter (e) is automatically passed from javascript to you function when you add an event listener.
     //It represents the element that was affected, an example would be the button element that was clicked.
     modal.classList.remove("show");
@@ -210,10 +241,16 @@ function playAgain() {
   startGame();
 }
 
-//add Balance here
-// $("pay10").onclick = () => {
-//   localStorage.setItem("balance", Number(localStorage.getItem("balance")) + 10);
-//   localStorage.setItem("spent", Number(localStorage.getItem("spent")) + 10);
+function resetPay() {
+  paid = 0;
+}
+//Simply saying once this window (page) is loaded, run the startGame function.
+window.onload = startGame();
+window.onload = showBalance();
 
-//   $("balance").innerText = "Balance:" + Number(localStorage.getItem("balance"));
-// };
+function checkPaid() {
+  if (paid == 0) {
+    alert("You haven't paid yet!");
+    document.querySelector(".memory-game").classList.add("disabled");
+  }
+}
