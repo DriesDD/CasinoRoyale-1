@@ -67,6 +67,10 @@ const hit = document.getElementById("hitBtn");
 const computer = document.getElementById("computer");
 const player = document.getElementById("player");
 const message = document.getElementById("message");
+const computerCards = document.getElementById("computerCards");
+const playerCards = document.getElementById("playerCards");
+const computerScore = document.getElementById("computerScore");
+const playerScore = document.getElementById("playerScore");
 
 // Variables declaration
 const deck = [];
@@ -79,11 +83,14 @@ let playerCard,
   hitSum,
   standSum,
   sumPlayer = 0,
+  count = 0,
+  valueA,
   sum;
 
 // Play button listener
 play.addEventListener("click", () => {
   deckMaker();
+  deckShuffle();
   deal(playerCard, "playerFirstCard");
   deal(computerCard, "computerFirstCard");
   behaviourBtn(play, "off");
@@ -103,9 +110,9 @@ stand.addEventListener("click", () => {
   console.log(`Inside Stand sumPlayer ${sumPlayer}`);
   console.log(`Inside Stand standSum ${standSum}`);
   console.log(`Inside Stand firstSum ${firstSum}`);
-  do {
+  while (standSum < 17) {
     deal(computerCard, "computerHitCard");
-  } while (standSum <= 15);
+  }
   if (standSum > 21) {
     message.innerHTML = `Computer <strong>busts</strong>`;
   } else if (standSum > firstSum) {
@@ -127,11 +134,18 @@ function deal(cards, check) {
       cards = randNumber();
       firstCard = deck[cards[0]];
       firstChar = firstCard.charAt(0);
+      ifAce(firstChar);
       secondCard = deck[cards[1]];
       secondChar = secondCard.charAt(0);
+      ifAce(secondChar);
       weight.forEach((item) => {
+        if (firstChar === "A" && secondChar === "A") {
+          sumPlayer = 12;
+          //          valueA = ifAce(firstChar);
+        }
         if (firstChar === secondChar && firstChar === item.type) {
           sumPlayer = item.value * 2;
+          //          valueA = ifAce(firstChar);
         } else if (firstChar === item.type || secondChar === item.type) {
           sumPlayer += item.value;
         }
@@ -143,15 +157,27 @@ function deal(cards, check) {
       });
       switch (check) {
         case "playerFirstCard":
+          aInPlayerCard = count;
+          count = 0;
+          console.log(`Number of A's is ${aInPlayerCard}`);
           firstSum = sumPlayer;
-          player.innerHTML = `<em>${firstCard} -- ${secondCard}</em> <strong>Score: ${sumPlayer}</strong>`;
+          playerCards.innerHTML += `<img class="mr-1" src="cards/${firstCard}.svg" />`;
+          playerCards.innerHTML += `<img class="mr-1" src="cards/${secondCard}.svg" />`;
+          playerScore.innerHTML = sumPlayer;
+          //player.innerHTML = `<em>${firstCard} -- ${secondCard}</em> <strong>Score: ${sumPlayer}</strong>`;
           break;
         case "computerFirstCard":
+          aInComputerCard = count;
+          count = 0;
+          console.log(`Number of A's is ${aInComputerCard}`);
           console.log(firstCard);
           standSum = sumPlayer;
-          computer.innerHTML = `<em>Hidden -- ${secondCard}</em> <strong>Score: ${
-            sumPlayer - sum
-          }</strong>`;
+          computerCards.innerHTML += `<img class="mr-1" src="cards/${firstCard}.svg" />`;
+          computerCards.innerHTML += `<img class="mr-1" src="cards/${secondCard}.svg" />`;
+          computerScore.innerHTML = sumPlayer - sum;
+
+          //computer.innerHTML = `<em>Hidden -- ${secondCard}</em> <strong>Score: ${sumPlayer - sum}</strong>`;
+
           break;
       }
       console.log(`${check} : ${sumPlayer}`);
@@ -163,16 +189,30 @@ function deal(cards, check) {
       cards = randNumber();
       firstCard = deck[cards[0]];
       firstChar = firstCard.charAt(0);
-      weight.forEach((item) => {
-        if (firstChar === item.type) {
-          hitPlayer = item.value;
-        }
-      });
+      ifAce(firstChar);
+      aInPlayerCard += count;
+      if (aInPlayerCard > 0 && sumPlayer > 12) {
+        weight.forEach((item) => {
+          if (firstChar === item.type && firstChar === "A") {
+            hitPlayer = 1;
+          } else {
+            hitPlayer = item.value;
+          }
+        });
+      } else {
+        weight.forEach((item) => {
+          if (firstChar === item.type) {
+            hitPlayer = item.value;
+          }
+        });
+      }
+      hitSum = firstSum += hitPlayer;
       console.log(`playerHitCard-previous sum ${firstSum}`);
       console.log(`playerHitCard-hit value ${hitPlayer}`);
       //firstSum += hitPlayer;
-      hitSum = firstSum += hitPlayer;
-      player.innerHTML += `</br><em>${firstCard}</em> <strong>Score: ${hitSum}</strong>`;
+      playerCards.innerHTML += `<img class="mr-1" src="cards/${firstCard}.svg" />`;
+      playerScore.innerHTML = hitSum;
+      //player.innerHTML += `</br><em>${firstCard}</em> <strong>Score: ${hitSum}</strong>`;
       if (hitSum > 21) {
         behaviourBtn(hit, "off");
       }
@@ -181,20 +221,40 @@ function deal(cards, check) {
       cards = randNumber();
       firstCard = deck[cards[0]];
       firstChar = firstCard.charAt(0);
-      weight.forEach((item) => {
-        if (firstChar === item.type) {
-          hitPlayer = item.value;
-        }
-      });
+      ifAce(firstChar);
+      aInComputerCard += count;
+      if (aInComputerCard > 0 && standSum <= 17) {
+        weight.forEach((item) => {
+          if (firstChar === item.type && firstChar === "A") {
+            hitPlayer = 1;
+          } else {
+            hitPlayer = item.value;
+          }
+        });
+      } else {
+        weight.forEach((item) => {
+          if (firstChar === item.type) {
+            hitPlayer = item.value;
+          }
+        });
+      }
       console.log(`computerHitCard-previous sum ${standSum}`);
       console.log(`computerHitCard-hit value ${hitPlayer}`);
       //firstSum += hitPlayer;
       standSum += hitPlayer;
-      computer.innerHTML += `</br><em>${firstCard}</em> <strong>Score: ${standSum}</strong>`;
+      computerCards.innerHTML += `<img class="mr-1" src="cards/${firstCard}.svg" />`;
+      computerScore.innerHTML = standSum;
+      //computer.innerHTML += `</br><em>${firstCard}</em> <strong>Score: ${standSum}</strong>`;
       if (standSum > 21) {
         behaviourBtn(stand, "off");
       }
       break;
+  }
+}
+// Number of Aces
+function ifAce(char) {
+  if (char == "A") {
+    count++;
   }
 }
 
@@ -205,6 +265,15 @@ function deckMaker() {
       deck.push(`${value}-${suit}`);
     });
   });
+}
+// Shuffling deck
+function deckShuffle() {
+  for (let i = deck.length - 1; i >= 0; i--) {
+    let j = Math.floor(Math.random() * i);
+    let temp = deck[i];
+    deck[i] = deck[j];
+    deck[j] = temp;
+  }
 }
 
 // Random array generator with 2 values
