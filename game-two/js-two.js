@@ -100,6 +100,7 @@ close.addEventListener("click", () => {
 // Play again button listener
 playAgain.addEventListener("click", () => {
   modal.classList.add("hidden");
+  body.classList.remove("opacity-25");
   playerScore.innerHTML = "";
   computerScore.innerHTML = "";
   playerCards.innerHTML = "";
@@ -208,6 +209,7 @@ function deal(cards, check) {
           firstSum = sumPlayer;
           playerCards.innerHTML += `<img class="mr-1" src="cards/${firstCard}.svg" />`;
           playerCards.innerHTML += `<img class="mr-1" src="cards/${secondCard}.svg" />`;
+          playerScore.classList.remove("hidden");
           playerScore.innerHTML = sumPlayer;
           break;
         case "computerFirstCard":
@@ -219,6 +221,7 @@ function deal(cards, check) {
           hiddenCard = firstCard;
           computerCards.innerHTML += `<img id="hiddenCard" class="mr-1" src="cards/RED_BACK.svg" />`;
           computerCards.innerHTML += `<img class="mr-1" src="cards/${secondCard}.svg" />`;
+          computerScore.classList.remove("hidden");
           computerScore.innerHTML = sumPlayer - sum;
           break;
       }
