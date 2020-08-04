@@ -91,13 +91,13 @@ let playerCard,
   count = 0,
   sum;
 
-// Play agian button listener
+// Close button listener
 close.addEventListener("click", () => {
   modal.classList.add("hidden");
   body.classList.remove("opacity-25");
 });
 
-// Play agian button listener
+// Play again button listener
 playAgain.addEventListener("click", () => {
   modal.classList.add("hidden");
   playerScore.innerHTML = "";
@@ -134,7 +134,7 @@ stand.addEventListener("click", () => {
   document
     .getElementById("hiddenCard")
     .setAttribute("src", `cards/${hiddenCard}.svg`);
-  computerScore.innerHTML = sumPlayer;
+  computerScore.innerHTML = standSum;
 
   console.log(`Inside Stand sumPlayer ${sumPlayer}`);
   console.log(`Inside Stand standSum ${standSum}`);
