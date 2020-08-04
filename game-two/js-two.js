@@ -67,6 +67,10 @@ const hit = document.getElementById("hitBtn");
 const computer = document.getElementById("computer");
 const player = document.getElementById("player");
 const message = document.getElementById("message");
+const computerCards = document.getElementById("computerCards");
+const playerCards = document.getElementById("playerCards");
+const computerScore = document.getElementById("computerScore");
+const playerScore = document.getElementById("playerScore");
 
 // Variables declaration
 const deck = [];
@@ -103,7 +107,9 @@ hit.addEventListener("click", () => {
 // Stand button listener
 stand.addEventListener("click", () => {
   behaviourBtn(hit, "off");
-
+  console.log(`Inside Stand sumPlayer ${sumPlayer}`);
+  console.log(`Inside Stand standSum ${standSum}`);
+  console.log(`Inside Stand firstSum ${firstSum}`);
   while (standSum < 17) {
     deal(computerCard, "computerHitCard");
   }
@@ -153,18 +159,25 @@ function deal(cards, check) {
         case "playerFirstCard":
           aInPlayerCard = count;
           count = 0;
-
+          console.log(`Number of A's is ${aInPlayerCard}`);
           firstSum = sumPlayer;
-          player.innerHTML = `<em>${firstCard} -- ${secondCard}</em> <strong>Score: ${sumPlayer}</strong>`;
+          playerCards.innerHTML += `<img class="mr-1" src="cards/${firstCard}.svg" />`;
+          playerCards.innerHTML += `<img class="mr-1" src="cards/${secondCard}.svg" />`;
+          playerScore.innerHTML = sumPlayer;
+          //player.innerHTML = `<em>${firstCard} -- ${secondCard}</em> <strong>Score: ${sumPlayer}</strong>`;
           break;
         case "computerFirstCard":
           aInComputerCard = count;
           count = 0;
+          console.log(`Number of A's is ${aInComputerCard}`);
           console.log(firstCard);
           standSum = sumPlayer;
-          computer.innerHTML = `<em>Hidden -- ${secondCard}</em> <strong>Score: ${
-            sumPlayer - sum
-          }</strong>`;
+          computerCards.innerHTML += `<img class="mr-1" src="cards/${firstCard}.svg" />`;
+          computerCards.innerHTML += `<img class="mr-1" src="cards/${secondCard}.svg" />`;
+          computerScore.innerHTML = sumPlayer - sum;
+
+          //computer.innerHTML = `<em>Hidden -- ${secondCard}</em> <strong>Score: ${sumPlayer - sum}</strong>`;
+
           break;
       }
       console.log(`${check} : ${sumPlayer}`);
@@ -194,8 +207,12 @@ function deal(cards, check) {
         });
       }
       hitSum = firstSum += hitPlayer;
-
-      player.innerHTML += `</br><em>${firstCard}</em> <strong>Score: ${hitSum}</strong>`;
+      console.log(`playerHitCard-previous sum ${firstSum}`);
+      console.log(`playerHitCard-hit value ${hitPlayer}`);
+      //firstSum += hitPlayer;
+      playerCards.innerHTML += `<img class="mr-1" src="cards/${firstCard}.svg" />`;
+      playerScore.innerHTML = hitSum;
+      //player.innerHTML += `</br><em>${firstCard}</em> <strong>Score: ${hitSum}</strong>`;
       if (hitSum > 21) {
         behaviourBtn(hit, "off");
       }
@@ -221,9 +238,13 @@ function deal(cards, check) {
           }
         });
       }
-
+      console.log(`computerHitCard-previous sum ${standSum}`);
+      console.log(`computerHitCard-hit value ${hitPlayer}`);
+      //firstSum += hitPlayer;
       standSum += hitPlayer;
-      computer.innerHTML += `</br><em>${firstCard}</em> <strong>Score: ${standSum}</strong>`;
+      computerCards.innerHTML += `<img class="mr-1" src="cards/${firstCard}.svg" />`;
+      computerScore.innerHTML = standSum;
+      //computer.innerHTML += `</br><em>${firstCard}</em> <strong>Score: ${standSum}</strong>`;
       if (standSum > 21) {
         behaviourBtn(stand, "off");
       }
