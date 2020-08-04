@@ -82,6 +82,7 @@ let playerCard,
   hitPlayer,
   hitSum,
   standSum,
+  hiddenCard,
   sumPlayer = 0,
   count = 0,
   valueA,
@@ -107,6 +108,9 @@ hit.addEventListener("click", () => {
 // Stand button listener
 stand.addEventListener("click", () => {
   behaviourBtn(hit, "off");
+  document
+    .getElementById("hiddenCard")
+    .setAttribute("src", `cards/${hiddenCard}.svg`);
   console.log(`Inside Stand sumPlayer ${sumPlayer}`);
   console.log(`Inside Stand standSum ${standSum}`);
   console.log(`Inside Stand firstSum ${firstSum}`);
@@ -172,7 +176,8 @@ function deal(cards, check) {
           console.log(`Number of A's is ${aInComputerCard}`);
           console.log(firstCard);
           standSum = sumPlayer;
-          computerCards.innerHTML += `<img class="mr-1" src="cards/${firstCard}.svg" />`;
+          hiddenCard = firstCard;
+          computerCards.innerHTML += `<img id="hiddenCard" class="mr-1" src="cards/RED_BACK.svg" />`;
           computerCards.innerHTML += `<img class="mr-1" src="cards/${secondCard}.svg" />`;
           computerScore.innerHTML = sumPlayer - sum;
 
