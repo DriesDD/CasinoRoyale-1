@@ -132,21 +132,41 @@
         Twenty-One
       </h1>
       <div class="container mx-auto">
-        <div class="flex flex-col justify-center items-center">
-          <div class="md:w-1/3 sm:w-full rounded-lg shadow-lg bg-white my-3">
-            <div class="flex justify-between px-5 py-4">
-              <div class="grid grid-rows-2">
-                <div>Computer</div>
-                <span id="computer"></span>
-                <div>Player</div>
-                <span id="player"></span>
+        <div class="flex flex-col items-center">
+          <div
+            class="md:w-1/3 sm:w-full rounded-lg shadow-lg bg-white my-3 h-64"
+          >
+            <!-- card -->
+            <div class="grid grid-rows-2">
+              <div class="container mx-2 bg-white w-16 h-32">
+                <span class="font-semibold">Computer</span
+                ><span
+                  id="computerScore"
+                  class="text-white bg-blue-500 px-2 text-sm rounded leading-loose mx-2 font-semibold"
+                ></span>
+                <div id="computerCards" class="flex flex-row"></div>
+              </div>
+              <div class="container mx-2 bg-white w-16 h-32">
+                <span class="font-semibold">Player</span
+                ><span
+                  id="playerScore"
+                  class="text-white bg-blue-500 px-2 text-sm rounded leading-loose mx-2 font-semibold"
+                ></span>
+                <div id="playerCards" class="flex flex-row"></div>
               </div>
             </div>
+
+            <!-- card bottom -->
+
+            <!-- <div>Computer</div>
+            <span id="computer"></span>
+            <div>Player</div>
+            <span id="player"></span> -->
           </div>
         </div>
         <div class="flex flex-col justify-center items-center">
           <div class="md:w-1/3 sm:w-full rounded-lg shadow-lg bg-white my-3">
-            <div class="flex justify-center px-5 py-6">
+            <div class="flex justify-center px-5 py-4">
               <div id="message"></div>
             </div>
           </div>
