@@ -66,7 +66,6 @@ const stand = document.getElementById("standBtn");
 const hit = document.getElementById("hitBtn");
 const computer = document.getElementById("computer");
 const player = document.getElementById("player");
-const message = document.getElementById("message");
 const computerCards = document.getElementById("computerCards");
 const playerCards = document.getElementById("playerCards");
 const computerScore = document.getElementById("computerScore");
@@ -90,7 +89,6 @@ let playerCard,
   hiddenCard,
   sumPlayer = 0,
   count = 0,
-  valueA,
   sum;
 
 // Play agian button listener
@@ -127,7 +125,6 @@ hit.addEventListener("click", () => {
     body.classList.add("opacity-25");
     modal.classList.remove("hidden");
     result.innerHTML = `Player busts`;
-    //message.innerHTML = `Player <strong>busts</strong>`;
   }
 });
 
@@ -137,6 +134,8 @@ stand.addEventListener("click", () => {
   document
     .getElementById("hiddenCard")
     .setAttribute("src", `cards/${hiddenCard}.svg`);
+  computerScore.innerHTML = sumPlayer;
+
   console.log(`Inside Stand sumPlayer ${sumPlayer}`);
   console.log(`Inside Stand standSum ${standSum}`);
   console.log(`Inside Stand firstSum ${firstSum}`);
@@ -149,16 +148,12 @@ stand.addEventListener("click", () => {
       modal.classList.remove("hidden");
       result.innerHTML = `Computer busts`;
     }, 1000);
-
-    //message.innerHTML = `Computer <strong>busts</strong>`;
   } else if (standSum > firstSum) {
     setTimeout(() => {
       body.classList.add("opacity-25");
       modal.classList.remove("hidden");
       result.innerHTML = `Computer wins`;
     }, 1000);
-
-    //message.innerHTML = `Computer <strong>wins</strong>`;
   } else if (standSum < firstSum) {
     setTimeout(() => {
       body.classList.add("opacity-25");
@@ -167,7 +162,6 @@ stand.addEventListener("click", () => {
 
       result.innerHTML = `Player wins`;
     }, 1000);
-    // message.innerHTML = `Player <strong>wins</strong>`;
   } else if ((standSum = firstSum)) {
     setTimeout(() => {
       body.classList.add("opacity-25");
@@ -175,7 +169,6 @@ stand.addEventListener("click", () => {
 
       result.innerHTML = `It's tie`;
     }, 1000);
-    // message.innerHTML = `It's <strong>tie</strong>`;
   }
   behaviourBtn(stand, "off");
 });
@@ -196,10 +189,8 @@ function deal(cards, check) {
       weight.forEach((item) => {
         if (firstChar === "A" && secondChar === "A") {
           sumPlayer = 12;
-          //          valueA = ifAce(firstChar);
         } else if (firstChar === secondChar && firstChar === item.type) {
           sumPlayer = item.value * 2;
-          //          valueA = ifAce(firstChar);
         } else if (firstChar === item.type || secondChar === item.type) {
           sumPlayer += item.value;
         }
@@ -218,7 +209,6 @@ function deal(cards, check) {
           playerCards.innerHTML += `<img class="mr-1" src="cards/${firstCard}.svg" />`;
           playerCards.innerHTML += `<img class="mr-1" src="cards/${secondCard}.svg" />`;
           playerScore.innerHTML = sumPlayer;
-          //player.innerHTML = `<em>${firstCard} -- ${secondCard}</em> <strong>Score: ${sumPlayer}</strong>`;
           break;
         case "computerFirstCard":
           aInComputerCard = count;
@@ -230,9 +220,6 @@ function deal(cards, check) {
           computerCards.innerHTML += `<img id="hiddenCard" class="mr-1" src="cards/RED_BACK.svg" />`;
           computerCards.innerHTML += `<img class="mr-1" src="cards/${secondCard}.svg" />`;
           computerScore.innerHTML = sumPlayer - sum;
-
-          //computer.innerHTML = `<em>Hidden -- ${secondCard}</em> <strong>Score: ${sumPlayer - sum}</strong>`;
-
           break;
       }
       console.log(`${check} : ${sumPlayer}`);
@@ -264,10 +251,8 @@ function deal(cards, check) {
       hitSum = firstSum += hitPlayer;
       console.log(`playerHitCard-previous sum ${firstSum}`);
       console.log(`playerHitCard-hit value ${hitPlayer}`);
-      //firstSum += hitPlayer;
       playerCards.innerHTML += `<img class="mr-1" src="cards/${firstCard}.svg" />`;
       playerScore.innerHTML = hitSum;
-      //player.innerHTML += `</br><em>${firstCard}</em> <strong>Score: ${hitSum}</strong>`;
       if (hitSum > 21) {
         behaviourBtn(hit, "off");
       }
@@ -295,11 +280,9 @@ function deal(cards, check) {
       }
       console.log(`computerHitCard-previous sum ${standSum}`);
       console.log(`computerHitCard-hit value ${hitPlayer}`);
-      //firstSum += hitPlayer;
       standSum += hitPlayer;
       computerCards.innerHTML += `<img class="mr-1" src="cards/${firstCard}.svg" />`;
       computerScore.innerHTML = standSum;
-      //computer.innerHTML += `</br><em>${firstCard}</em> <strong>Score: ${standSum}</strong>`;
       if (standSum > 21) {
         behaviourBtn(stand, "off");
       }
