@@ -50,6 +50,9 @@
   /* when a card is shown it can’t be clicked on again till it is closed*/
   pointer-events: none;
 }
+.memory-game-Ezgi.disabled {
+  pointer-events: none;
+}
 
 .card.match {
   background-color: #76ce44;
