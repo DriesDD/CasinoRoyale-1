@@ -71,6 +71,11 @@ const computerCards = document.getElementById("computerCards");
 const playerCards = document.getElementById("playerCards");
 const computerScore = document.getElementById("computerScore");
 const playerScore = document.getElementById("playerScore");
+const playAgain = document.getElementById("play");
+const modal = document.getElementById("modal");
+const result = document.getElementById("result");
+const body = document.getElementById("body");
+const close = document.getElementById("close");
 
 // Variables declaration
 const deck = [];
@@ -88,6 +93,24 @@ let playerCard,
   valueA,
   sum;
 
+// Play agian button listener
+close.addEventListener("click", () => {
+  modal.classList.add("hidden");
+  body.classList.remove("opacity-25");
+});
+
+// Play agian button listener
+playAgain.addEventListener("click", () => {
+  modal.classList.add("hidden");
+  playerScore.innerHTML = "";
+  computerScore.innerHTML = "";
+  playerCards.innerHTML = "";
+  computerCards.innerHTML = "";
+  behaviourBtn(play, "on");
+  behaviourBtn(stand, "on");
+  behaviourBtn(hit, "on");
+});
+
 // Play button listener
 play.addEventListener("click", () => {
   deckMaker();
@@ -101,7 +124,10 @@ play.addEventListener("click", () => {
 hit.addEventListener("click", () => {
   deal(playerCard, "playerHitCard");
   if (firstSum > 21) {
-    message.innerHTML = `Player <strong>busts</strong>`;
+    body.classList.add("opacity-25");
+    modal.classList.remove("hidden");
+    result.innerHTML = `Player busts`;
+    //message.innerHTML = `Player <strong>busts</strong>`;
   }
 });
 
@@ -118,13 +144,38 @@ stand.addEventListener("click", () => {
     deal(computerCard, "computerHitCard");
   }
   if (standSum > 21) {
-    message.innerHTML = `Computer <strong>busts</strong>`;
+    setTimeout(() => {
+      body.classList.add("opacity-25");
+      modal.classList.remove("hidden");
+      result.innerHTML = `Computer busts`;
+    }, 1000);
+
+    //message.innerHTML = `Computer <strong>busts</strong>`;
   } else if (standSum > firstSum) {
-    message.innerHTML = `Computer <strong>wins</strong>`;
+    setTimeout(() => {
+      body.classList.add("opacity-25");
+      modal.classList.remove("hidden");
+      result.innerHTML = `Computer wins`;
+    }, 1000);
+
+    //message.innerHTML = `Computer <strong>wins</strong>`;
   } else if (standSum < firstSum) {
-    message.innerHTML = `Player <strong>wins</strong>`;
+    setTimeout(() => {
+      body.classList.add("opacity-25");
+      modal.classList.add("opacity-100");
+      modal.classList.remove("hidden");
+
+      result.innerHTML = `Player wins`;
+    }, 1000);
+    // message.innerHTML = `Player <strong>wins</strong>`;
   } else if ((standSum = firstSum)) {
-    message.innerHTML = `It's <strong>tie</strong>`;
+    setTimeout(() => {
+      body.classList.add("opacity-25");
+      modal.classList.remove("hidden");
+
+      result.innerHTML = `It's tie`;
+    }, 1000);
+    // message.innerHTML = `It's <strong>tie</strong>`;
   }
   behaviourBtn(stand, "off");
 });
@@ -146,8 +197,7 @@ function deal(cards, check) {
         if (firstChar === "A" && secondChar === "A") {
           sumPlayer = 12;
           //          valueA = ifAce(firstChar);
-        }
-        if (firstChar === secondChar && firstChar === item.type) {
+        } else if (firstChar === secondChar && firstChar === item.type) {
           sumPlayer = item.value * 2;
           //          valueA = ifAce(firstChar);
         } else if (firstChar === item.type || secondChar === item.type) {
