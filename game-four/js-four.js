@@ -16,7 +16,7 @@
 
     //event list of enemies: msdelay after previous,x,y,direction,speed,movement pattern,style
     eventlist = [
-        [20, sw + 20, Math.round(sh / 2) +1 ,      'left', 400, 'none', "bg-red-400","bg-red-700"],
+        [20, sw + 20, Math.round(sh / 2) +1 , 'left', 400, 'none', "bg-red-400","bg-red-700"],
         [500, sw + 20, Math.round(sh / 2) +2, 'left', 150, 'none', "bg-red-400","bg-red-700"],
         [500, sw + 20, Math.round(sh / 2) +3, 'left', 200, 'none', "bg-red-400","bg-red-700"],
         [500, sw + 20, Math.round(sh / 2) +4, 'left', 80, 'none', "bg-red-400","bg-red-700"]
@@ -30,6 +30,14 @@
         }
     }, false);
 
+    //auxiliary function to wait a certain amount of milliseconds
+    timeout = (ms) => {
+        return new Promise(resolve => setTimeout(resolve, ms))
+    }
+
+    //auxiliary function to select elements by id
+    function $(x) {return document.getElementById(x);}
+
     //create a sh*sw table with id and style to have full width
     let html = "<div class=\"relative\">"
     html += "<table id=\"grid\" class= \"z-40 table-fixed\">"
@@ -42,16 +50,13 @@
     }
     html += "</table>"
     html += "</div>"
-    document.getElementById(targetid).innerHTML = html;
+    $(targetid).innerHTML = html;
 
-    //auxiliary function to wait a certain amount of milliseconds
-    timeout = (ms) => {
-        return new Promise(resolve => setTimeout(resolve, ms))
-    }
 
     //game start function
     function gamestart(difficulty)
-    {   playerx = Math.round(sw / 2);
+    {
+        playerx = Math.round(sw / 2);
         playery = Math.round(sh / 2);
         oldplayerx = playerx;
         oldplayery = playery;
@@ -64,7 +69,12 @@
         gametime = 0;
         interval = 100;
 
+        for (i = 0; i < sh; i++) {
+            for (j = 0; j < sw; j++) {
+                document.getElementsByClassName('cell')[i * sw + j].classList.remove("bg-gray-800", "bg-gray-700", "bg-yellow-400", "bg-red-700","bg-red-400");
+                document.getElementsByClassName('cell')[i * sw + j].classList.add("bg-gray-800");}
 
+        }
 
         updatepos()
     }
@@ -223,19 +233,19 @@
 
         //reset game when lost
         if (life < 1)
-        {
-        }
+        {gamestart()}
 
     }
 
     //----------------------------------------------//
-    //   PART 3: panning the screen                 //
+    //PART 3: panning screen and recording gametime //
     //______________________________________________//
 
     async function cyclestep() {
         await timeout(interval);
         cycle += 1;
-
+        gametime +=interval
+        $("gametime").innerText = Math.trunc(gametime/1000) + " seconds"
         //move all columns to the left every cycle to pan the game field
         if ((cycle % 4) == 0) {
             for (i = 0; i < sh; i++) {
@@ -250,7 +260,6 @@
             }
             playerx -= 1;
             oldplayerx -= 1;
-            globalx -= 1;
         }
 
         //resize the first and last column to give the illusion of panning
