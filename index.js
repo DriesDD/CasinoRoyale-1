@@ -9,7 +9,8 @@ function toggleMenu() {
     "transition ease-out",
     "transition duration-200",
     "opacity-100",
-    "-translate-y-0"
+    "-translate-y-0",
+    "z-50"
   );
 }
 
@@ -19,7 +20,8 @@ function toggleMenuOff() {
     "transition ease-out",
     "transition duration-200",
     "opacity-100",
-    "-translate-y-0"
+    "-translate-y-0",
+    "z-50"
   );
 }
 
