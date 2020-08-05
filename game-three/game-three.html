@@ -238,7 +238,7 @@
     </nav>
 
     <h1
-      class="font-titlefont text-6x ltracking-wider text-white justify text-center font-semibold my-4 text-5xl"
+      class="font-titlefont text-6x ltracking-wider text-white justify text-center mb-4 font-semibold text-5xl"
     >
       Memory
     </h1>
@@ -250,24 +250,25 @@
       Pay 50 to play
     </button>
     <!--Counter & Time-->
-
-    <h2
-      class="text-white justify text-center font-semibold text-2xl"
-      id="counterText"
-    >
-      Move(s): 0
-    </h2>
-    <h2
-      class="text-white justify text-center font-semibold text-2xl"
-      id="counterTime"
-    >
-      Time: 0' 0"
-    </h2>
-    <div
-      class="text-white justify text-center font-semibold text-2xl restart"
-      onclick="startGame()"
-    >
-      <i class="fa fa-repeat"></i>
+    <div class="flex content-start flex-wrap h-10 w-1/4 mx-auto">
+      <h2
+        class="text-white justify text-center font-semibold text-2xl mr-16"
+        id="counterText"
+      >
+        Move(s): 0
+      </h2>
+      <h2
+        class="text-white justify text-center font-semibold text-2xl mr-16"
+        id="counterTime"
+      >
+        Time: 0' 0"
+      </h2>
+      <div
+        class="text-white justify text-center font-semibold text-2xl restart"
+        onclick="startGame()"
+      >
+        <i class="fa fa-repeat"></i>
+      </div>
     </div>
     <!--MEMORY GAME-->
     <section class="memory-game">
