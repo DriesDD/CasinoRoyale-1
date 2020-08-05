@@ -25,18 +25,6 @@
       If both the computer and the player bust the wins go to "the house".
 */
 
-//Display balance
-document.getElementById("pay10").innerText =
-  "Buy 10 Coins. Current balance:" + Number(localStorage.getItem("balance"));
-
-//When clicked, add 10 to balance and spent and display balance
-document.getElementById("pay10").onclick = () => {
-  localStorage.setItem("balance", Number(localStorage.getItem("balance")) + 10);
-  localStorage.setItem("spent", Number(localStorage.getItem("spent")) + 10);
-  $("pay10").innerText =
-    "Buy 10 Coins. Current balance:" + Number(localStorage.getItem("balance"));
-};
-
 //Cards suits, rank and weight arrays. Deck is generated using these arrays.
 const values = [
   "2",
@@ -87,6 +75,12 @@ const modal = document.getElementById("modal");
 const result = document.getElementById("result");
 const body = document.getElementById("body");
 const close = document.getElementById("close");
+const coins = document.getElementById("coins");
+const bank = document.getElementById("bank");
+const chip1 = document.getElementById("chip1");
+const chip5 = document.getElementById("chip5");
+const chip10 = document.getElementById("chip10");
+const chip25 = document.getElementById("chip25");
 
 //Variables declaration
 const deck = [];
@@ -108,6 +102,19 @@ close.addEventListener("click", () => {
   modal.classList.add("hidden");
   body.classList.remove("opacity-25");
 });
+//Display balance
+document.getElementById("pay10").innerText =
+  "Buy 10 Coins. Current balance:" + Number(localStorage.getItem("balance"));
+
+//When clicked, add 10 to balance and spent and display balance
+document.getElementById("pay10").onclick = () => {
+  localStorage.setItem("balance", Number(localStorage.getItem("balance")) + 10);
+  localStorage.setItem("spent", Number(localStorage.getItem("spent")) + 10);
+  $("pay10").innerText =
+    "Current balance: " + Number(localStorage.getItem("balance"));
+  bank.innerText = Number(localStorage.getItem("balance"));
+};
+window.onload = bank.innerText = Number(localStorage.getItem("balance"));
 
 // Play again button listener. Closes the popup modal box and resets the game.
 playAgain.addEventListener("click", () => {
