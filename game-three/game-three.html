@@ -174,7 +174,7 @@
                                   clip-rule="evenodd"
                                 />
                               </svg>
-                              <span>Current balance: 0</span>
+                              <span id="balance">Current balance: 0</span>
                             </button>
                           </span>
                         </div>
@@ -238,20 +238,18 @@
     </nav>
 
     <h1
-      class="font-titlefont text-6xl tracking-wider text-white justify text-center font-semibold my-4 text-5xl"
+      class="font-titlefont text-6x ltracking-wider text-white justify text-center font-semibold my-4 text-5xl"
     >
       Memory
     </h1>
-
+    <!--Pay Button-->
+    <button
+      id="pay"
+      class="mx-auto justify text-center mb-1 px-4 py-2 border border-transparent text-lg leading-5 font-medium rounded-md text-grey-900 bg-orange-500 hover:bg-indigo-400 focus:outline-none focus:shadow-outline-indigo focus:border-indigo-600 active:bg-indigo-600 transition duration-150 ease-in-out"
+    >
+      Pay 50 to play
+    </button>
     <!--Counter & Time-->
-    <div class="w-screen">
-      <button
-        id="pay"
-        class="mx-auto justify text-center mb-1 px-4 py-2 border border-transparent text-lg leading-5 font-medium rounded-md text-grey-900 bg-orange-500 hover:bg-indigo-400 focus:outline-none focus:shadow-outline-indigo focus:border-indigo-600 active:bg-indigo-600 transition duration-150 ease-in-out"
-      >
-        Pay 50 to play
-      </button>
-    </div>
 
     <h2
       class="text-white justify text-center font-semibold text-2xl"
@@ -374,24 +372,27 @@
       </div>
     </section>
 
-    <!--below is my modal congrats pop-up!-->
+    <!--below is the modal congrats pop-up!-->
     <div id="popup1" class="overlay">
       <div class="popup">
-        <h2>Congratulations 🎉</h2>
         <a class="close" href="#">×</a>
-        <div class="content-1">
-          Congratulations you're a winner 🎉🎉
+        <div class="content-1 font-titlefont text-6x ltracking-wider">
+          Congratulations You're a Winner &nbsp;🎩
         </div>
-        <div class="content-2">
-          <p>You made <span id="finalMove"> </span> moves</p>
-          <p>in <span id="totalTime"> </span></p>
+        <div class="content-2 font-titlefont text-6x ltracking-wider">
+          <p>You Made <span id="finalMove"> </span> Moves</p>
+          <p>In <span id="totalTime"> </span></p>
         </div>
-        <div id="content-3" class="content-3">
+        <div id="content-3" class="font-titlefont text-6x ltracking-wider">
           You need to finish in 10 moves and 30" to earn 100 coins! You didn't,
-          next time then.
+          next time then. &nbsp;😉
         </div>
-        <button id="play-again" onclick="playAgain()">
-          <a>Play again 😄</a>
+        <button
+          class="play font-titlefont text-6x ltracking-wider"
+          id="play-again"
+          onclick="playAgain()"
+        >
+          <a> <strong>Play again ✨</strong> </a>
         </button>
       </div>
     </div>

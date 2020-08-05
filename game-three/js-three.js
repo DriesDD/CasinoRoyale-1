@@ -4,10 +4,10 @@ let cards = [...card]; //spliting up the list card in it seperate items
 let paid = 0;
 let balance;
 function showBalance() {
-  balance = localStorage.getItem("balance");
-  document.getElementById("balance").innerHTML =
-    "Buy 10 Coins. Current balance: " + balance;
+  balance = localStorage.getItem("balance") * 1;
+  document.getElementById("balance").innerHTML = "Current balance: " + balance;
 }
+console.log(document.getElementById("balance").innerHTML);
 
 document.getElementById("pay10").addEventListener("click", () => {
   localStorage.setItem("balance", localStorage.getItem("balance") * 1 + 10);

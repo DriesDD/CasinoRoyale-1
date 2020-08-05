@@ -147,7 +147,7 @@
   bottom: 0;
   left: 0;
   right: 0;
-  background: rgba(0, 0, 0, 0.7);
+  /*background: rgba(0, 0, 0, 0.7);*/
   transition: opacity 500ms;
   visibility: hidden;
   opacity: 0;
@@ -163,16 +163,14 @@
   padding: 20px;
   background: #ffffff;
   border-radius: 5px;
-  width: 85%;
+  width: 50%;
   position: relative;
   transition: all 5s ease-in-out;
-  font-family: "Gloria Hallelujah", cursive;
 }
 
 .popup h2 {
   margin-top: 0;
-  color: #333;
-  font-family: Tahoma, Arial, sans-serif;
+  color: #1a202c;
 }
 
 .popup .close {
@@ -183,11 +181,11 @@
   font-size: 30px;
   font-weight: bold;
   text-decoration: none;
-  color: #333;
+  color: #1a202c;
 }
 
 .popup .close:hover {
-  color: #e5f720;
+  color: #a3bffa;
 }
 
 .popup .content-1,
@@ -196,6 +194,7 @@
   max-height: 30%;
   overflow: auto;
   text-align: center;
+  padding: 5px;
 }
 
 .show {
@@ -204,13 +203,14 @@
 }
 
 #play-again {
-  background-color: #141214;
   padding: 0.7rem 1rem;
   font-size: 1.1rem;
   display: block;
   margin: 0 auto;
-  width: 50%;
-  font-family: "Gloria Hallelujah", cursive;
-  color: #ffffff;
+  width: 25%;
+  color: #1a202c;
+  background-color: #a3bffa;
   border-radius: 5px;
+  margin-top: 15px;
+  border-color: #1a202c;
 }
