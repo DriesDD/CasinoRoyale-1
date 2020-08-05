@@ -25,7 +25,19 @@
       If both the computer and the player bust the wins go to "the house".
 */
 
-// Cards suits, rank and weight
+//Display balance
+document.getElementById("pay10").innerText =
+  "Buy 10 Coins. Current balance:" + Number(localStorage.getItem("balance"));
+
+//When clicked, add 10 to balance and spent and display balance
+document.getElementById("pay10").onclick = () => {
+  localStorage.setItem("balance", Number(localStorage.getItem("balance")) + 10);
+  localStorage.setItem("spent", Number(localStorage.getItem("spent")) + 10);
+  $("pay10").innerText =
+    "Buy 10 Coins. Current balance:" + Number(localStorage.getItem("balance"));
+};
+
+//Cards suits, rank and weight arrays. Deck is generated using these arrays.
 const values = [
   "2",
   "3",
@@ -59,7 +71,7 @@ const weight = [
 ];
 const suits = ["Hearts", "Spades", "Diamonds", "Clubs"];
 
-// DOM elements
+//DOM elements involve for this game
 const display = document.getElementById("deck");
 const play = document.getElementById("dealBtn");
 const stand = document.getElementById("standBtn");
@@ -76,7 +88,7 @@ const result = document.getElementById("result");
 const body = document.getElementById("body");
 const close = document.getElementById("close");
 
-// Variables declaration
+//Variables declaration
 const deck = [];
 let playerCard,
   computerCard,
@@ -91,13 +103,13 @@ let playerCard,
   count = 0,
   sum;
 
-// Close button listener
+// Close button listener. Closes the popup modal box.
 close.addEventListener("click", () => {
   modal.classList.add("hidden");
   body.classList.remove("opacity-25");
 });
 
-// Play again button listener
+// Play again button listener. Closes the popup modal box and resets the game.
 playAgain.addEventListener("click", () => {
   modal.classList.add("hidden");
   body.classList.remove("opacity-25");
@@ -110,7 +122,7 @@ playAgain.addEventListener("click", () => {
   behaviourBtn(hit, "on");
 });
 
-// Play button listener
+// Play button listener. Game starts by clicking this button.
 play.addEventListener("click", () => {
   deckMaker();
   deckShuffle();
@@ -119,7 +131,7 @@ play.addEventListener("click", () => {
   behaviourBtn(play, "off");
 });
 
-// Hit button listener
+// Hit button listener. If player wants to draw more card he/she clicks this button.
 hit.addEventListener("click", () => {
   deal(playerCard, "playerHitCard");
   if (firstSum > 21) {
@@ -129,7 +141,7 @@ hit.addEventListener("click", () => {
   }
 });
 
-// Stand button listener
+// Stand button listener. If player wants to stand and computer play its turn he/she clicks this button.
 stand.addEventListener("click", () => {
   behaviourBtn(hit, "off");
   document
@@ -174,7 +186,9 @@ stand.addEventListener("click", () => {
   behaviourBtn(stand, "off");
 });
 
-// Deal 2 cards for player and computer respectively
+// Deal 2 cards for player and computer respectively. When player clicks the play button the first 2 cards are generated in this function.
+// Clicking the hit button alway fire this funtion for each draw card.
+// Computer also call this funtion to draw its cards.
 function deal(cards, check) {
   let firstCard, firstChar, secondCard, secondChar;
   switch (check) {
@@ -292,14 +306,14 @@ function deal(cards, check) {
       break;
   }
 }
-// Number of Aces
+// Checks the number of Aces in payer and computer cards
 function ifAce(char) {
   if (char == "A") {
     count++;
   }
 }
 
-// Generate deck
+// Generates the deck
 function deckMaker() {
   suits.forEach((suit) => {
     values.forEach((value) => {
@@ -307,7 +321,7 @@ function deckMaker() {
     });
   });
 }
-// Shuffling deck
+// Shuffling the deck
 function deckShuffle() {
   for (let i = deck.length - 1; i >= 0; i--) {
     let j = Math.floor(Math.random() * i);
@@ -326,7 +340,7 @@ function randNumber() {
   return [rand1, rand2];
 }
 
-// Make button disabled
+// Makes button disabled true or false
 function behaviourBtn(button, check) {
   switch (check) {
     case "off":
