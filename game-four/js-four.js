@@ -1,23 +1,34 @@
 //wrap everything in a function
 (() => {
     const targetid = 'blockygame'
-    let playerx, playery, playerdir, playerspeed = 150,
-        oldplayerx, oldplayery, cycle = 0
+    let playerx, playery, playerdir = 'right', playerspeed = 150,
+        oldplayerx, oldplayery, 
+        cycle = 0, spawncycle = 0, gametime = 0
+
     //screen width and screen height in number of tiles
     const sw = 40
     const sh = 20
     const interval = 100
 
+    //event list: msdelay after previous,x,y,direction,speed,movement pattern,style
+eventlist = [
+[1000, sw+40 ,  Math.round(sh/2),  'left',  0,    'none',"bg-red-400"],
+[1000, sw+140,  Math.round(sh/2),  'left',  100,  'none',"bg-blue-400"],
+[1000, sw+240,  Math.round(sh/2),  'left',  50,   'none',"bg-green-400"],
+[1000, sw+340,  Math.round(sh/2),  'left',  200,  'none',"bg-yellow-400"]
+]    
     //create a sh*sw table with id and style to have full width
-    let html = "<table id=\"grid\" class= \"table-fixed \">"
+    let html = "<div class=\"relative\">"
+    html += "<table id=\"grid\" class= \"z-40 table-fixed\">"
     for (i = 0; i < sh; i++) {
         html += "<tr class= \"\">"
         for (j = 0; j < sw; j++) {
-            html += " <td class= \"cell px-4 py-4 bg-gray-800 \" ></td>"
+            html += " <td class= \"cell px-4 py-4 overflow-hidden bg-gray-800\" ></td>"
         }
         html += "</tr>"
     }
     html += "</table>"
+    html += "</div>"
     document.getElementById(targetid).innerHTML = html;
 
     //auxiliary function to wait a certain amount of milliseconds
@@ -25,6 +36,17 @@
         return new Promise(resolve => setTimeout(resolve, ms))
     }
 
+    //enemy spawning
+    async function enemyspawning()
+    { enemycycle(eventlist[spawncycle][5],eventlist[spawncycle][4],eventlist[spawncycle][6]);
+        await  timeout(eventlist[spawncycle+1][0]);
+        spawncycle += 1
+        enemyspawning()}
+    enemyspawning()
+
+    //enemy movement
+    async function enemycycle(pattern,speed,style)
+    {}
 
     //player movement
     playerx = Math.round(sw / 2)
@@ -72,14 +94,13 @@
     }
     moveplayer()
 
-    //this function updates the position of everything in the grid and is triggered after every move
+    //this function redraws the position of everything in the grid and is triggered after every move
     function updatepos() {
         if (playerx != oldplayerx || playery != oldplayery) {
-            document.getElementsByClassName('cell')[playery * sw + playerx].classList.add("bg-yellow-400");
             document.getElementsByClassName('cell')[oldplayery * sw + oldplayerx].classList.remove("bg-yellow-400", "bg-gray-800");
             document.getElementsByClassName('cell')[oldplayery * sw + oldplayerx].classList.add("bg-gray-700");
+            document.getElementsByClassName('cell')[playery * sw + playerx].classList.add("bg-yellow-400");
         }
-
         oldplayerx = playerx;
         oldplayery = playery;
     }
