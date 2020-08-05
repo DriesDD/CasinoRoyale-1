@@ -16,6 +16,7 @@
     />
     <title>Twenty-One</title>
     <script src="js-two.js" defer></script>
+    <script src="../index.js" defer></script>
     <script src="../coin-system/balance.js" defer></script>
   </head>
 
@@ -111,9 +112,10 @@
             </div>
 
             <!-- Profile Button-->
-            <div class="relative">
+            <div class="relative mt-5">
               <!-- Item active: "text-gray-900", Item inactive: "text-gray-500" -->
               <button
+                id="menuFlyoutBtn"
                 type="button"
                 class="group text-gray-500 inline-flex items-center space-x-2 text-base leading-6 font-medium hover:text-gray-900 focus:outline-none focus:text-gray-900 transition ease-in-out duration-150"
               >
@@ -132,17 +134,9 @@
                 </svg>
               </button>
 
-              <!--
-          Flyout menu, show/hide based on flyout menu state.
-          Entering: "transition ease-out duration-200"
-            From: "opacity-0 translate-y-1"
-            To: "opacity-100 translate-y-0"
-          Leaving: "transition ease-in duration-150"
-            From: "opacity-100 translate-y-0"
-            To: "opacity-0 translate-y-1"
-        -->
               <div
-                class="left-1/2 transform -translate-x1/2 mt-3 px-2 w-screen max-w-xs sm:px-0"
+                id="flyoutmenu"
+                class="opacity-0 absolute right-1/6 transform -translate-x1/2 transform -translate-y-1 mt-3 px-2 w-screen max-w-xs sm:px-0"
               >
                 <div class="rounded-lg shadow-lg">
                   <div class="rounded-lg shadow-xs overflow-hidden">
@@ -158,9 +152,7 @@
                         >
                           Current Balance
                         </p>
-                        <p class="text-sm leading-5 text-gray-500">
-                          You have <span>this many</span> coins.
-                        </p>
+
                         <!-- Button for balance -->
                         <div class="flex items-center">
                           <div class="flex-shrink-0">
@@ -208,9 +200,6 @@
                           class="text-base leading-6 font-medium text-gray-900"
                         >
                           Button
-                        </p>
-                        <p class="text-sm leading-5 text-gray-500">
-                          To buy coins
                         </p>
                         <!-- Button for coins -->
                         <div class="flex items-center">
@@ -276,6 +265,59 @@
                     class="text-white bg-orange-500 px-2 text-sm rounded leading-loose mx-2 font-semibold hidden"
                   ></span>
                   <div id="playerCards" class="flex flex-row"></div>
+                </div>
+                <!-- Bank coins -->
+                <div
+                  id="coins"
+                  class="container grid grid-cols-2 w-auto mx-2 mb-1 bg-green-800 h-20 border-solid border-4 border-gray-600"
+                >
+                  <div class="flex flex-col">
+                    <div class="mb-1">
+                      <span class="font-semibold text-gray-300 mb-1 text-center"
+                        >Bank</span
+                      >
+                      <span
+                        id="bank"
+                        class="text-white bg-orange-500 px-2 text-sm rounded leading-loose mx-1 font-semibold"
+                      ></span>
+                    </div>
+                    <div class="flex justify-cente">
+                      <img
+                        id="chip1"
+                        class="w-10 mr-2 cursor-pointer"
+                        src="chip1.png"
+                        alt="Chip One"
+                      />
+                      <img
+                        id="chip5"
+                        class="w-10 mr-2 cursor-pointer"
+                        src="chip1.png"
+                        alt="Chip One"
+                      />
+                      <img
+                        id="chip10"
+                        class="w-10 mr-2 cursor-pointer"
+                        src="chip1.png"
+                        alt="Chip One"
+                      />
+                      <img
+                        id="chip25"
+                        class="w-10 mr-2 cursor-pointer"
+                        src="chip1.png"
+                        alt="Chip One"
+                      />
+                    </div>
+                  </div>
+                  <div class="flex flex-col">
+                    <div class="mb-1">
+                      <span class="font-semibold text-gray-300 mb-1 text-center"
+                        >Player bet</span
+                      ><span
+                        id="bet"
+                        class="text-white bg-orange-500 px-2 text-sm rounded leading-loose mx-1 font-semibold"
+                      ></span>
+                    </div>
+                  </div>
                 </div>
               </div>
             </div>
@@ -356,7 +398,10 @@
           </button>
         </div>
         <div class="mb-4">
-          <h2 id="result" class="font-semibold text-xl py-2 px-12"></h2>
+          <h2
+            id="result"
+            class="font-semibold text-xl py-2 px-12 font-titlefont"
+          ></h2>
         </div>
         <div class="flex justify-center">
           <button

@@ -14,6 +14,7 @@
   background-color: #ffffff;
   box-shadow: 1px 1px 1px rgba(0, 0, 0, 0.3);
   border-radius: 5px;
+  cursor: pointer;
 }
 
 .img-front,
@@ -184,7 +185,7 @@
   color: #1a202c;
 }
 
-.popup .close:hover {
+.popup .close :hover {
   color: #a3bffa;
 }
 
@@ -213,4 +214,7 @@
   border-radius: 5px;
   margin-top: 15px;
   border-color: #1a202c;
+}
+.restart {
+  cursor: pointer;
 }

@@ -25,18 +25,6 @@
       If both the computer and the player bust the wins go to "the house".
 */
 
-//Display balance
-document.getElementById("pay10").innerText =
-  "Buy 10 Coins. Current balance:" + Number(localStorage.getItem("balance"));
-
-//When clicked, add 10 to balance and spent and display balance
-document.getElementById("pay10").onclick = () => {
-  localStorage.setItem("balance", Number(localStorage.getItem("balance")) + 10);
-  localStorage.setItem("spent", Number(localStorage.getItem("spent")) + 10);
-  $("pay10").innerText =
-    "Buy 10 Coins. Current balance:" + Number(localStorage.getItem("balance"));
-};
-
 //Cards suits, rank and weight arrays. Deck is generated using these arrays.
 const values = [
   "2",
@@ -87,6 +75,13 @@ const modal = document.getElementById("modal");
 const result = document.getElementById("result");
 const body = document.getElementById("body");
 const close = document.getElementById("close");
+const coins = document.getElementById("coins");
+const bank = document.getElementById("bank");
+const chip1 = document.getElementById("chip1");
+const chip5 = document.getElementById("chip5");
+const chip10 = document.getElementById("chip10");
+const chip25 = document.getElementById("chip25");
+const bet = document.getElementById("bet");
 
 //Variables declaration
 const deck = [];
@@ -100,14 +95,62 @@ let playerCard,
   standSum,
   hiddenCard,
   sumPlayer = 0,
+  betAmount = 0,
   count = 0,
   sum;
+// Coin bank and bet updater function
+function betUpdate(coin, minCoin) {
+  if (
+    Number(localStorage.getItem("balance")) > coin &&
+    Number(localStorage.getItem("balance")) - minCoin >= 0
+  ) {
+    betAmount += minCoin;
+    bet.innerText = betAmount;
+    localStorage.setItem(
+      "balance",
+      Number(localStorage.getItem("balance")) - minCoin
+    );
+    bank.innerText = Number(localStorage.getItem("balance"));
+  }
+}
+// Chip 1 listener
+chip1.addEventListener("click", () => {
+  betUpdate(0, 1);
+});
+
+// Chip 5 listener
+chip5.addEventListener("click", () => {
+  betUpdate(4, 5);
+});
+
+// Chip 10 listener
+chip10.addEventListener("click", () => {
+  betUpdate(9, 10);
+});
+
+// Chip 25 listener
+chip25.addEventListener("click", () => {
+  betUpdate(24, 25);
+});
 
 // Close button listener. Closes the popup modal box.
 close.addEventListener("click", () => {
   modal.classList.add("hidden");
   body.classList.remove("opacity-25");
 });
+//Displays the balance
+document.getElementById("pay10").innerText =
+  "Buy 10 Coins. Current balance:" + Number(localStorage.getItem("balance"));
+
+//When clicked, add 10 to balance and spent and display balance
+document.getElementById("pay10").onclick = () => {
+  localStorage.setItem("balance", Number(localStorage.getItem("balance")) + 10);
+  localStorage.setItem("spent", Number(localStorage.getItem("spent")) + 10);
+  $("pay10").innerText =
+    "Current balance: " + Number(localStorage.getItem("balance"));
+  bank.innerText = Number(localStorage.getItem("balance"));
+};
+window.onload = bank.innerText = Number(localStorage.getItem("balance"));
 
 // Play again button listener. Closes the popup modal box and resets the game.
 playAgain.addEventListener("click", () => {
