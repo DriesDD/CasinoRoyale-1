@@ -1,4 +1,4 @@
-.memory-game-Ezgi {
+.memory-game {
   width: 640px;
   height: 640px;
   display: flex;
@@ -48,6 +48,9 @@
 
 .card.disabled {
   /* when a card is shown it can’t be clicked on again till it is closed*/
+  pointer-events: none;
+}
+.memory-game.disabled {
   pointer-events: none;
 }
 
@@ -188,7 +191,8 @@
 }
 
 .popup .content-1,
-.content-2 {
+.content-2,
+.content-3 {
   max-height: 30%;
   overflow: auto;
   text-align: center;
