@@ -156,12 +156,14 @@ window.onload = () => {
 // Play again button listener. Closes the popup modal box and resets the game.
 playAgain.addEventListener("click", () => {
   modal.classList.add("hidden");
+  bet.classList.add("hidden");
   body.classList.remove("opacity-25");
   playerScore.innerHTML = "";
   computerScore.innerHTML = "";
   playerCards.innerHTML = "";
   computerCards.innerHTML = "";
   coins.innerHTML = "";
+  bet.innerHTML = "";
   behaviourBtn(play, "on");
   behaviourBtn(stand, "on");
   behaviourBtn(hit, "on");
