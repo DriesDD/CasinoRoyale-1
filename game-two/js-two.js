@@ -99,7 +99,7 @@ let playerCard,
   count = 0,
   sum;
 // Coin bank and bet updater function
-function betUpdate(coin, minCoin) {
+function betUpdate(coin, minCoin, coinSVG) {
   if (
     Number(localStorage.getItem("balance")) > coin &&
     Number(localStorage.getItem("balance")) - minCoin >= 0
@@ -111,26 +111,28 @@ function betUpdate(coin, minCoin) {
       Number(localStorage.getItem("balance")) - minCoin
     );
     bank.innerText = Number(localStorage.getItem("balance"));
+    coins.innerHTML += `<img class="w-10 mr-2" src="coins/${coinSVG}.svg"
+    />`;
   }
 }
 // Chip 1 listener
 chip1.addEventListener("click", () => {
-  betUpdate(0, 1);
+  betUpdate(0, 1, "coin-1");
 });
 
 // Chip 5 listener
 chip5.addEventListener("click", () => {
-  betUpdate(4, 5);
+  betUpdate(4, 5, "coin-5");
 });
 
 // Chip 10 listener
 chip10.addEventListener("click", () => {
-  betUpdate(9, 10);
+  betUpdate(9, 10, "coin-10");
 });
 
 // Chip 25 listener
 chip25.addEventListener("click", () => {
-  betUpdate(24, 25);
+  betUpdate(24, 25, "coin-25");
 });
 
 // Close button listener. Closes the popup modal box.
@@ -150,7 +152,11 @@ document.getElementById("pay10").onclick = () => {
     "Current balance: " + Number(localStorage.getItem("balance"));
   bank.innerText = Number(localStorage.getItem("balance"));
 };
-window.onload = bank.innerText = Number(localStorage.getItem("balance"));
+window.onload = () => {
+  bank.innerText = Number(localStorage.getItem("balance"));
+  behaviourBtn(hit, "off");
+  behaviourBtn(stand, "off");
+};
 
 // Play again button listener. Closes the popup modal box and resets the game.
 playAgain.addEventListener("click", () => {
@@ -160,6 +166,7 @@ playAgain.addEventListener("click", () => {
   computerScore.innerHTML = "";
   playerCards.innerHTML = "";
   computerCards.innerHTML = "";
+  coins.innerHTML = "";
   behaviourBtn(play, "on");
   behaviourBtn(stand, "on");
   behaviourBtn(hit, "on");
@@ -172,6 +179,8 @@ play.addEventListener("click", () => {
   deal(playerCard, "playerFirstCard");
   deal(computerCard, "computerFirstCard");
   behaviourBtn(play, "off");
+  behaviourBtn(hit, "on");
+  behaviourBtn(stand, "on");
 });
 
 // Hit button listener. If player wants to draw more card he/she clicks this button.
