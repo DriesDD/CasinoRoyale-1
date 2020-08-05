@@ -6,27 +6,20 @@
 (() => {
     //declare variables
     const targetid = 'blockygame'
-    let playerx, playery, playerdir = 'right',
-        playerspeed = 150,
-        oldplayerx, oldplayery, life = 3,
-        maxlife = 3,
-        globalx = 0,
-        cycle = 0,
-        spawncycle = 0,
-        gametime = 0
-
     //screen width and screen height in number of tiles
     const sw = 40
     const sh = 20
-    //how often the game pans
-    const interval = 100
+    let playerx, playery, playerdir,playerspeed,
+        oldplayerx, oldplayery,
+        maxlife, cycle, spawncycle,
+        gametime, interval
 
     //event list of enemies: msdelay after previous,x,y,direction,speed,movement pattern,style
     eventlist = [
-        [20, sw + 20, Math.round(sh / 2) +1 ,      'left', 400, 'none', "bg-red-400","bg-red-900"],
-        [500, sw + 20, Math.round(sh / 2) +2, 'left', 150, 'none', "bg-red-400","bg-red-900"],
-        [500, sw + 20, Math.round(sh / 2) +3, 'left', 200, 'none', "bg-red-400","bg-red-900"],
-        [500, sw + 20, Math.round(sh / 2) +4, 'left', 80, 'none', "bg-red-400","bg-red-900"]
+        [20, sw + 20, Math.round(sh / 2) +1 ,      'left', 400, 'none', "bg-red-400","bg-red-700"],
+        [500, sw + 20, Math.round(sh / 2) +2, 'left', 150, 'none', "bg-red-400","bg-red-700"],
+        [500, sw + 20, Math.round(sh / 2) +3, 'left', 200, 'none', "bg-red-400","bg-red-700"],
+        [500, sw + 20, Math.round(sh / 2) +4, 'left', 80, 'none', "bg-red-400","bg-red-700"]
     ]
 
     //prevent the page from scrolling using the up and down keys, since those are used in game
@@ -56,6 +49,27 @@
         return new Promise(resolve => setTimeout(resolve, ms))
     }
 
+    //game start function
+    function gamestart(difficulty)
+    {   playerx = Math.round(sw / 2);
+        playery = Math.round(sh / 2);
+        oldplayerx = playerx;
+        oldplayery = playery;
+        playerdir = 'right';
+        playerspeed = 150;
+        life = 3;
+        maxlife = 3;
+        cycle = 0;
+        spawncycle = 0;
+        gametime = 0;
+        interval = 100;
+
+
+
+        updatepos()
+    }
+    gamestart(1)
+
     //----------------------------------------------//
     //   PART 2: enemy behavior                     //
     //______________________________________________//
@@ -72,7 +86,7 @@
     //enemy movement. Every cycle, the x,y position of the enemy is cleared and the new position is determined based on direction, then the enemy is redrawn
     async function enemycycle(pattern, speed, style, trace, x, y, dir) { //clear previous position if it was in the view
         if (x < sw) {
-            document.getElementsByClassName('cell')[y * sw + x].classList.remove("bg-gray-800", "bg-gray-700", "bg-yellow-400", "bg-red-900","bg-red-400")
+            document.getElementsByClassName('cell')[y * sw + x].classList.remove("bg-gray-800", "bg-gray-700", "bg-yellow-400", "bg-red-700","bg-red-400")
             document.getElementsByClassName('cell')[y * sw + x].classList.add(trace)
         };
         //pattern none doesn't change the direction
@@ -117,11 +131,6 @@
     //______________________________________________//
 
     //player movement
-    playerx = Math.round(sw / 2)
-    playery = Math.round(sh / 2)
-    oldplayerx = playerx
-    oldplayery = playery
-    updatepos()
 
     document.onkeydown = () => {
         switch (event.key) {
@@ -173,7 +182,7 @@
             //collision detection with enemies
             if (document.getElementsByClassName('cell')[playery * sw + playerx].classList.contains("bg-red-400")){ loselife()};
             //style the table cells to the player style
-            document.getElementsByClassName('cell')[oldplayery * sw + oldplayerx].classList.remove("bg-gray-800", "bg-gray-700", "bg-yellow-400", "bg-red-900","bg-red-400");
+            document.getElementsByClassName('cell')[oldplayery * sw + oldplayerx].classList.remove("bg-gray-800", "bg-gray-700", "bg-yellow-400", "bg-red-700","bg-red-400");
             document.getElementsByClassName('cell')[oldplayery * sw + oldplayerx].classList.add("bg-gray-700");
             document.getElementsByClassName('cell')[playery * sw + playerx].classList.add("bg-yellow-400");
         }
@@ -195,9 +204,6 @@
             updatepos();
             loselife()
         }
-
-
-
     }
 
 
@@ -214,6 +220,12 @@
         for (i = 0; i < life; i++) {
             document.getElementsByClassName('healthblock')[i].setAttribute("class", "healthblock py-4 px-4 bg-green-500")
         }
+
+        //reset game when lost
+        if (life < 1)
+        {
+        }
+
     }
 
     //----------------------------------------------//
@@ -231,7 +243,7 @@
                     if (j < (sw - 1)) {
                         document.getElementsByClassName('cell')[i * sw + j].setAttribute("class", document.getElementsByClassName('cell')[i * sw + j + 1].getAttribute("class"));
                     } else {
-                        document.getElementsByClassName('cell')[i * sw + j].classList.remove("bg-gray-800", "bg-gray-700", "bg-yellow-400", "bg-red-900","bg-red-400")
+                        document.getElementsByClassName('cell')[i * sw + j].classList.remove("bg-gray-800", "bg-gray-700", "bg-yellow-400", "bg-red-700","bg-red-400")
                         document.getElementsByClassName('cell')[i * sw + j].classList.add("bg-gray-800")
                     }
                 }
