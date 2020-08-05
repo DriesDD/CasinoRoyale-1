@@ -34,6 +34,7 @@ function displayUsername() {
   let username = document.getElementById("usernameInput").value;
   let usernameShow = document.getElementById("username");
   usernameShow.textContent = username;
+  // let usernameStore = localStorage.setItem("myUsername", username);
 }
 
 document
