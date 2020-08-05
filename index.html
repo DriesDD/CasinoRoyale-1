@@ -63,6 +63,11 @@
         <div class="z-20 relative grid gap-6 bg-white px-5 py-6 sm:gap-8 sm:p-8">
           <a href="#" class="-m-3 p-3 block space-y-1 rounded-md hover:bg-gray-50 transition ease-in-out duration-150">
             <p class="text-base leading-6 font-medium text-gray-900">
+              <span id="username">Username</span>
+            </p>
+          </a>
+          <a href="#" class="-m-3 p-3 block space-y-1 rounded-md hover:bg-gray-50 transition ease-in-out duration-150">
+            <p class="text-base leading-6 font-medium text-gray-900">
               Current Balance
             </p>
              <!-- Button for balance -->
@@ -285,15 +290,15 @@
           <div>
             <label for="username" class="sr-only">Username</label>
             <div class="relative rounded-md shadow-sm">
-              <input id="full_name" class="form-input block w-full py-3 px-4 placeholder-gray-500 transition ease-in-out duration-150" placeholder="Your Username">
+              <input id="usernameInput" class="form-input block w-full py-3 px-4 placeholder-gray-500 transition ease-in-out duration-150" placeholder="Your Username">
             </div>
           </div>
 
           <div class="">
             <span class="inline-flex rounded-md shadow-sm">
-              <button type="submit" class="inline-flex justify-center py-3 px-6 border border-transparent text-base leading-6 font-medium rounded-md text-white bg-indigo-500 hover:bg-indigo-300 focus:outline-none focus:border-indigo-700 focus:shadow-outline-indigo active:bg-orange-500 transition duration-150 ease-in-out ml-2">
+              <button id= "usernameBtn" type="button" class="inline-flex justify-center py-3 px-6 border border-transparent text-base leading-6 font-medium rounded-md text-white bg-indigo-500 hover:bg-indigo-300 focus:outline-none focus:border-indigo-700 focus:shadow-outline-indigo active:bg-orange-500 transition duration-150 ease-in-out ml-2">
                 Submit
-              </button>
+              </input>
             </span>
           </div>
 

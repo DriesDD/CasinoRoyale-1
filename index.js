@@ -27,3 +27,15 @@ function toggleMenuOff() {
 
 menu.addEventListener("mouseenter", toggleMenu);
 flyoutmenu.addEventListener("mouseleave", toggleMenuOff);
+
+// Username
+
+function displayUsername() {
+  let username = document.getElementById("usernameInput").value;
+  let usernameShow = document.getElementById("username");
+  usernameShow.textContent = username;
+}
+
+document
+  .getElementById("usernameBtn")
+  .addEventListener("click", displayUsername);
