@@ -100,8 +100,11 @@ let playerCard,
   sum;
 // Coin bank and bet updater function
 function betUpdate(coin, minCoin) {
-  if (Number(localStorage.getItem("balance")) > coin) {
-    betAmount += 1;
+  if (
+    Number(localStorage.getItem("balance")) > coin &&
+    Number(localStorage.getItem("balance")) - minCoin >= 0
+  ) {
+    betAmount += minCoin;
     bet.innerText = betAmount;
     localStorage.setItem(
       "balance",
