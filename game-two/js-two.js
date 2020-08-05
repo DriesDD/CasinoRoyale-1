@@ -81,6 +81,7 @@ const chip1 = document.getElementById("chip1");
 const chip5 = document.getElementById("chip5");
 const chip10 = document.getElementById("chip10");
 const chip25 = document.getElementById("chip25");
+const bet = document.getElementById("bet");
 
 //Variables declaration
 const deck = [];
@@ -94,15 +95,47 @@ let playerCard,
   standSum,
   hiddenCard,
   sumPlayer = 0,
+  betAmount = 0,
   count = 0,
   sum;
+// Coin bank and bet updater function
+function betUpdate(coin, minCoin) {
+  if (Number(localStorage.getItem("balance")) > coin) {
+    betAmount += 1;
+    bet.innerText = betAmount;
+    localStorage.setItem(
+      "balance",
+      Number(localStorage.getItem("balance")) - minCoin
+    );
+    bank.innerText = Number(localStorage.getItem("balance"));
+  }
+}
+// Chip 1 listener
+chip1.addEventListener("click", () => {
+  betUpdate(0, 1);
+});
+
+// Chip 5 listener
+chip5.addEventListener("click", () => {
+  betUpdate(4, 5);
+});
+
+// Chip 10 listener
+chip10.addEventListener("click", () => {
+  betUpdate(9, 10);
+});
+
+// Chip 25 listener
+chip25.addEventListener("click", () => {
+  betUpdate(24, 25);
+});
 
 // Close button listener. Closes the popup modal box.
 close.addEventListener("click", () => {
   modal.classList.add("hidden");
   body.classList.remove("opacity-25");
 });
-//Display balance
+//Displays the balance
 document.getElementById("pay10").innerText =
   "Buy 10 Coins. Current balance:" + Number(localStorage.getItem("balance"));
 
