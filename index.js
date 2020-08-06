@@ -38,9 +38,10 @@ flyoutmenu.addEventListener("mouseleave", toggleMenuOff);
 
 function displayUsername() {
   let username = document.getElementById("usernameInput").value;
+  console.log(username);
   let usernameShow = document.getElementById("username");
-  usernameShow.textContent = username;
-  // let usernameStore = localStorage.setItem("myUsername", username);
+  localStorage.setItem("myUsername", `${username}`);
+  usernameShow.textContent = localStorage.getItem("myUsername");
 }
 
 document
