@@ -84,7 +84,7 @@ const chip10 = document.getElementById("chip10");
 const chip25 = document.getElementById("chip25");
 const bet = document.getElementById("bet");
 const balance = document.getElementById("balance");
-const pay10 = document.getElementById("pay10");
+//const pay10 = document.getElementById("pay10");
 const coinwon = document.getElementById("coinwon");
 const badgeDispaly = document.getElementById("badgeDispaly");
 const badge1 = document.getElementById("badge1");
@@ -253,7 +253,7 @@ function winner(message, decision) {
           Number(localStorage.getItem("balance")) + betAmount * 2
         );
         bank.innerText = Number(localStorage.getItem("balance"));
-        pay10.innerText = Number(localStorage.getItem("balance"));
+        balance.innerText = Number(localStorage.getItem("balance"));
         result.innerHTML = `${message}`;
         coinwon.classList.remove("hidden");
         coinwon.innerHTML = `Player gets +${betAmount * 2} coins`;
