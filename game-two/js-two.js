@@ -147,8 +147,8 @@ close.addEventListener("click", () => {
 
 //On windows load, update bank balance. Disable draw and stand button
 window.onload = () => {
-  pay10.innerText =
-    "Current balance:" + Number(localStorage.getItem("balance"));
+  balance.innerText =
+    "Current balance: " + Number(localStorage.getItem("balance"));
   bank.innerText = Number(localStorage.getItem("balance"));
   behaviourBtn(hit, "off");
   behaviourBtn(stand, "off");

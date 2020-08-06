@@ -258,3 +258,12 @@ function checkPaid() {
     startGame();
   }
 }
+
+document.getElementById("refresh").onclick = () => {
+  alert(
+    "You are starting a new game. 50 coins will be removed from your balance"
+  );
+  localStorage.setItem("balance", localStorage.getItem("balance") - 50);
+  showBalance();
+  startGame();
+};
