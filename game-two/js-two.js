@@ -42,6 +42,8 @@ const values = [
   "A",
 ];
 
+const suits = ["Hearts", "Spades", "Diamonds", "Clubs"];
+
 const weight = [
   { type: "2", value: 2 },
   { type: "3", value: 3 },
@@ -57,7 +59,6 @@ const weight = [
   { type: "K", value: 10 },
   { type: "A", value: 11 },
 ];
-const suits = ["Hearts", "Spades", "Diamonds", "Clubs"];
 
 //DOM elements involve for this game
 const display = document.getElementById("deck");
@@ -82,6 +83,7 @@ const chip5 = document.getElementById("chip5");
 const chip10 = document.getElementById("chip10");
 const chip25 = document.getElementById("chip25");
 const bet = document.getElementById("bet");
+const pay10 = document.getElementById("pay10");
 
 //Variables declaration
 const deck = [];
@@ -100,6 +102,7 @@ let playerCard,
   sum;
 // Coin bank and bet updater function
 function betUpdate(coin, minCoin, coinSVG) {
+  if (betAmount == 0) bet.classList.remove("hidden");
   if (
     Number(localStorage.getItem("balance")) > coin &&
     Number(localStorage.getItem("balance")) - minCoin >= 0
@@ -140,33 +143,30 @@ close.addEventListener("click", () => {
   modal.classList.add("hidden");
   body.classList.remove("opacity-25");
 });
-//Displays the balance
-document.getElementById("pay10").innerText =
-  "Buy 10 Coins. Current balance:" + Number(localStorage.getItem("balance"));
 
-//When clicked, add 10 to balance and spent and display balance
-document.getElementById("pay10").onclick = () => {
-  localStorage.setItem("balance", Number(localStorage.getItem("balance")) + 10);
-  localStorage.setItem("spent", Number(localStorage.getItem("spent")) + 10);
-  $("pay10").innerText =
-    "Current balance: " + Number(localStorage.getItem("balance"));
-  bank.innerText = Number(localStorage.getItem("balance"));
-};
+//On windows load, update bank balance. Disable draw and stand button
 window.onload = () => {
+  pay10.innerText =
+    "Current balance:" + Number(localStorage.getItem("balance"));
   bank.innerText = Number(localStorage.getItem("balance"));
   behaviourBtn(hit, "off");
   behaviourBtn(stand, "off");
+  betAmount = 0;
 };
 
 // Play again button listener. Closes the popup modal box and resets the game.
 playAgain.addEventListener("click", () => {
   modal.classList.add("hidden");
+  bet.classList.add("hidden");
+  playerScore.classList.add("hidden");
+  computerScore.classList.add("hidden");
   body.classList.remove("opacity-25");
   playerScore.innerHTML = "";
   computerScore.innerHTML = "";
   playerCards.innerHTML = "";
   computerCards.innerHTML = "";
   coins.innerHTML = "";
+  bet.innerHTML = "";
   behaviourBtn(play, "on");
   behaviourBtn(stand, "on");
   behaviourBtn(hit, "on");
@@ -174,13 +174,24 @@ playAgain.addEventListener("click", () => {
 
 // Play button listener. Game starts by clicking this button.
 play.addEventListener("click", () => {
-  deckMaker();
-  deckShuffle();
-  deal(playerCard, "playerFirstCard");
-  deal(computerCard, "computerFirstCard");
-  behaviourBtn(play, "off");
-  behaviourBtn(hit, "on");
-  behaviourBtn(stand, "on");
+  if (betAmount > 0) {
+    deckMaker();
+    deckShuffle();
+    deal(playerCard, "playerFirstCard");
+    deal(computerCard, "computerFirstCard");
+    playAgain.classList.remove("hidden");
+    behaviourBtn(play, "off");
+    behaviourBtn(hit, "on");
+    behaviourBtn(stand, "on");
+  } else {
+    setTimeout(() => {
+      body.classList.add("opacity-25");
+      modal.classList.add("opacity-100");
+      modal.classList.remove("hidden");
+      playAgain.classList.add("hidden");
+      result.innerHTML = `First place a bet`;
+    }, 500);
+  }
 });
 
 // Hit button listener. If player wants to draw more card he/she clicks this button.
@@ -237,7 +248,7 @@ stand.addEventListener("click", () => {
   }
   behaviourBtn(stand, "off");
 });
-
+// This function is the Brain of the game, it contains pretty much all the algorithm of the game.
 // Deal 2 cards for player and computer respectively. When player clicks the play button the first 2 cards are generated in this function.
 // Clicking the hit button alway fire this funtion for each draw card.
 // Computer also call this funtion to draw its cards.
@@ -381,6 +392,7 @@ function deckShuffle() {
     deck[i] = deck[j];
     deck[j] = temp;
   }
+  console.log(deck);
 }
 
 // Random array generator with 2 values

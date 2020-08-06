@@ -13,4 +13,5 @@ $("pay10").onclick = () => {
   localStorage.setItem("spent", Number(localStorage.getItem("spent")) + 10);
   $("pay10").innerText =
     " Current balance:" + Number(localStorage.getItem("balance"));
+  $("bank").innerText = Number(localStorage.getItem("balance"));
 };
