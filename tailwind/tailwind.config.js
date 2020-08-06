@@ -17,7 +17,7 @@ module.exports = {
       fontFamily: {
         sans: ["Inter var", ...defaultTheme.fontFamily.sans],
         titlefont: ["professor-minty"],
-       // navfont: ["myriad-std-tilt"],
+       //navfont: ["myriad-std-tilt"],
         navfont: ["Rubik"],
       },
     },
