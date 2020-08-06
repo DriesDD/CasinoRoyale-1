@@ -34,7 +34,7 @@ function toggleMenuOff() {
 menu.addEventListener("mouseenter", toggleMenu);
 flyoutmenu.addEventListener("mouseleave", toggleMenuOff);
 
-//Mobile Menu
+//Mobile Menu SVG
 const mobMenuBtn = document.getElementById("mobMenuBtn");
 
 function toggleMobMenuButton() {
@@ -54,32 +54,21 @@ function toggleMobMenuButton() {
   function toggleMobMenuBtnOpen() {
     mobMenuOpen.classList.add("block");
     mobMenuOpen.classList.remove("hidden");
-
-    mobMenuBtn.addEventListener("click", function () {
-      mobMenu.classList.add("hidden");
-      mobMenu.classList.remove("add");
-      mobMenuOpen.classList.remove("block");
-      mobMenuOpen.classList.add("hidden");
-      mobMenuClosed.classList.remove("hidden");
-      mobMenuClosed.classList.add("block");
-    });
   }
 
   mobMenuBtn.addEventListener("click", toggleMobMenuBtnOpen);
-
-  // Dropdown Mob Menu
-  const mobMenu = document.getElementById("mobMenu");
-  // const mobMenuBtn = document.getElementById("mobMenuBtn");
-
-  function toggleMobMenu() {
-    mobMenu.classList.remove("hidden");
-    mobMenu.classList.add("block", "bg-white", "z-10");
-  }
-
-  mobMenuBtn.addEventListener("click", toggleMobMenu);
 }
 
-mobMenuBtn.addEventListener("click", toggleMobMenuButton);
+// Toggle nav dropdown
+function navToggle() {
+  const btn = document.getElementById("mobMenuBtn");
+  const nav = document.getElementById("mobMenu");
+
+  btn.classList.toggle("open");
+  nav.classList.toggle("hidden");
+}
+
+mobMenuBtn.addEventListener("click", navToggle);
 
 // Username
 
