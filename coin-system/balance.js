@@ -98,11 +98,14 @@ mobMenuBtn.addEventListener("click", navToggle);
 
 function displayUsername() {
   let username = document.getElementById("usernameInput").value;
-  console.log(username);
   let usernameShow = document.getElementById("username");
   localStorage.setItem("myUsername", `${username}`);
   usernameShow.textContent = `Username: ${localStorage.getItem("myUsername")}`;
 }
+
+document.getElementById(
+  "username"
+).textContent = `Username: ${localStorage.getItem("myUsername")}`;
 
 document
   .getElementById("usernameBtn")
