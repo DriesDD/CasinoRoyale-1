@@ -87,6 +87,7 @@ const balance = document.getElementById("balance");
 const pay10 = document.getElementById("pay10");
 const coinwon = document.getElementById("coinwon");
 const badgeDispaly = document.getElementById("badgeDispaly");
+const badge1 = document.getElementById("badge1");
 
 //Variables declaration
 let deck = [],
@@ -259,8 +260,9 @@ function winner(message, decision) {
         playerWin += 1;
         if (playerWin == 5) {
           badgeDispaly.classList.remove("hidden");
-          badgeDispaly.innerHTML += `<img class="w-10 mr-2" src="coins/coin-1.svg"
+          badgeDisplay.innerHTML += `<img class="w-10 mr-2" src="images/badge1gray.svg"
           />`;
+          badge1.innerHTML += `<img src="../images/badge1gray.svg"></img>`;
         }
       }, 1000);
 
