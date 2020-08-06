@@ -60,15 +60,35 @@
             <div class="rounded-lg shadow-lg">
               <div class="rounded-lg shadow-xs overflow-hidden">
                 <div class="z-20 relative grid gap-3 bg-white px-5 py-6 sm:gap-8 sm:p-8">
-                  <a class="-m-2 p-3 block space-y-1 rounded-md hover:bg-gray-50 transition ease-in-out duration-150">
+                  <div class="-m-2 p-3 block space-y-1 rounded-md hover:bg-gray-50 transition ease-in-out duration-150">
                     <p class="text-base leading-6 font-medium text-gray-900">
                       <span id="username">Username:</span>
                     </p>
-                  </a>
+                  </div>
                   <!-- this span with id balance here is the element to update when the number of coins changes -->
-                  <span id="balance" class="text-base leading-6 font-medium text-gray-900 rounded-md shadow-sm">
+                 <div class="-m-2 p-3 block space-y-1 rounded-md hover:bg-gray-50 transition ease-in-out duration-150">
+                    <p class="text-base leading-6 font-medium text-gray-900">
+                     <span id="balance">
                     Current balance:
                   </span>
+                    </p>
+                  </div>
+
+                  <div class="-m-2 p-3 block space-y-1 rounded-md hover:bg-gray-50 transition ease-in-out duration-150">
+                    <p class="text-base leading-6 font-medium text-gray-900">
+                      <span id="username">Username:</span>
+                    </p>
+                  </div>
+                  <!-- this span with id balance here is the element to update when the number of coins changes -->
+                 <div class="-m-2 p-3 block space-y-1 rounded-md hover:bg-gray-50 transition ease-in-out duration-150">
+                    <p class="text-base leading-6 font-medium text-gray-900">
+                     <span id="balance">
+                    Current balance:
+                  </span>
+                    </p>
+                  </div>
+                  
+                  
                   <!-- Buttons for coins -->
                   <container class="grid grid-cols-3 gap-4">
                     <button id="pay10" type="button"
@@ -139,8 +159,12 @@
         <div class="ml-3">
           <div class="text-base font-medium leading-6 text-gray-800"><span id="username">Username:</span></div>
           <div class="text-sm font-medium leading-5 text-gray-500"><span id="balance" class="text-base leading-6 font-medium text-gray-900 rounded-md shadow-sm">
+            <p class="text-base leading-6 font-medium text-gray-900">
+                     <span id="balance">
                     Current balance:
-                  </span></div>
+                  </span>
+                    </p>
+          </div>
         </div>
       </div>
     </div>
@@ -190,7 +214,28 @@
 
     <main class="mx-8 flex-grow">
       <h1 class=" font-titlefont text-6xl tracking-wider text-white justify text-center font-semibold my-4 text-5xl">The Sourcerers Casino</h1>
-      <!-- CARDS -->
+     
+<!-- Username Input -->
+<section class="grid grid-rows-1 max-w-full my-12">
+ <form action="#" method="POST" class="flex justify-center content-center">
+          <div>
+            <label for="username" class="sr-only">Username</label>
+            <div class="relative rounded-md shadow-sm">
+              <input id="usernameInput" class="form-input block w-full py-3 px-4 placeholder-gray-500 transition ease-in-out duration-150" placeholder="Your Username">
+            </div>
+          </div>
+
+          <div class="">
+            <span class="inline-flex rounded-md shadow-sm">
+              <button id= "usernameBtn" type="button" class="inline-flex justify-center py-3 px-6 border border-transparent text-base leading-6 font-medium rounded-md text-white bg-indigo-500 hover:bg-indigo-300 focus:outline-none focus:border-indigo-700 focus:shadow-outline-indigo active:bg-orange-500 transition duration-150 ease-in-out ml-2">
+                Submit
+              </input>
+            </span>
+          </div>
+
+ </section>       
+
+<!-- CARDS -->
       <div class="card-container">
         <ul
           class="grid grid-cols-1 gap-6 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4"
@@ -351,25 +396,6 @@
       </div>
     </main>
 
-<!-- Username Input -->
-<section class="grid grid-rows-1 max-w-full my-12">
- <form action="#" method="POST" class="flex justify-center content-center">
-          <div>
-            <label for="username" class="sr-only">Username</label>
-            <div class="relative rounded-md shadow-sm">
-              <input id="usernameInput" class="form-input block w-full py-3 px-4 placeholder-gray-500 transition ease-in-out duration-150" placeholder="Your Username">
-            </div>
-          </div>
-
-          <div class="">
-            <span class="inline-flex rounded-md shadow-sm">
-              <button id= "usernameBtn" type="button" class="inline-flex justify-center py-3 px-6 border border-transparent text-base leading-6 font-medium rounded-md text-white bg-indigo-500 hover:bg-indigo-300 focus:outline-none focus:border-indigo-700 focus:shadow-outline-indigo active:bg-orange-500 transition duration-150 ease-in-out ml-2">
-                Submit
-              </input>
-            </span>
-          </div>
-
- </section>       
 
 <!-- Footer start -->
     <footer>
