@@ -8,14 +8,14 @@
     //screen width and screen height in number of tiles
     const sw = 40
     const sh = 20
-    
+
     //define which tailwind color classes are in the game (needed to remove these classes when redrawing things)
-    const colors = ["bg-gray-800", "bg-gray-700", "bg-yellow-400", "bg-red-800", "bg-gray-900", "bg-red-600"];
+    const colors = ["bg-gray-800", "bg-yellow-300", "bg-yellow-100", "bg-red-800", "bg-gray-900", "bg-red-600", "bg-green-600", "bg-green-900", "bg-green-800"];
     //define which color classes are enemies (needed to lose a life when hitting them)
     const enemycolors = [];
     //variables
     let playerx, playery, playerdir, playerspeed,
-        oldplayerx, oldplayery,
+        oldplayerx, oldplayery, xshift,
         cycle, spawncycle, wave, bgcolor,
         gametime, interval, invincible, life, maxlife,
         score
@@ -59,7 +59,7 @@
     let restarts = 0
     //game reset function resets the game to default values, and shows the menu
     function gamereset() {
-        playerx = Math.round(sw / 2);
+        playerx = Math.round(sw / 3);
         playery = Math.round(sh / 2);
         oldplayerx = playerx;
         oldplayery = playery;
@@ -69,19 +69,20 @@
         maxlife = 5;
         invincible = 0;
         cycle = 0;
+        xshift = 0
         spawncycle = 0;
         score = gametime / 1000
         gametime = 0;
         interval = 100;
         restarts += 1;
         difficulty = 0;
-        wave = 1;
+        wave = 0;
         bgcolor = 'bg-gray-800'
         eventlist = [];
 
         for (i = 0; i < sh; i++) {
             for (j = 0; j < sw; j++) {
-                document.getElementsByClassName('cell')[i * sw + j].classList.remove("bg-gray-800", "bg-gray-700", "bg-yellow-400", "bg-red-800", "bg-gray-900", "bg-red-600");
+                document.getElementsByClassName('cell')[i * sw + j].classList.remove("bg-gray-800", "bg-green-600", "bg-green-900", "bg-green-800", "bg-yellow-300", "bg-yellow-100", "bg-red-800", "bg-gray-900", "bg-red-600");
                 document.getElementsByClassName('cell')[i * sw + j].classList.add("bg-gray-800");
             }
 
@@ -133,9 +134,9 @@
         }
     }
 
-    function gamestart() {
+    async function gamestart() {
         loselife(0);
-        $('wave').innerText = ""
+        $('wavemsg').innerText = "Wave incoming";
         wavegenerator();
         //update the balance in the page menu
         $("balance").innerText = " Current balance: " + Number(localStorage.getItem("balance"));
@@ -143,9 +144,15 @@
         localStorage.setItem("spent", localStorage.getItem("spent") + 25);
         //these are repeating functions that carry on the number of game restarts with them. They don't do anything if the game is on a different number than them. This is how the function is killed when a new game has started 
         enemyspawning(restarts);
-        moveplayer(restarts);
         cyclestep(restarts);
         $('menu').classList.add("invisible")
+        //player entrance effect
+        for (i = 0; i < playerx; i++) {
+            document.getElementsByClassName('cell')[playery * sw + i].classList.remove("bg-gray-800", "bg-yellow-300", "bg-yellow-100", "bg-green-600", "bg-green-900", "bg-green-800", "bg-gray-900", "bg-red-800", "bg-red-600");
+            document.getElementsByClassName('cell')[playery * sw + i].classList.add("bg-yellow-300")
+
+        }
+        moveplayer(restarts);
     }
 
     //----------------------------------------------//
@@ -158,13 +165,55 @@
     //for message: eventtype, delay after previous, announcement
 
     function wavegenerator() {
-        //new theme for the wave
+        let randy, randspeed, randsize
+
+        //Assassins
         eventlist.push(['wave', 5000, 'bg-gray-800']);
-        eventlist.push(['message', 0, 'You are nearing an asteroid field.']);
-        //add some enemies
-        console.log('newwave')
-        for (i = 0; i < 50; i++) {
-            eventlist.push(['enemy', 200, sw + 5, Math.floor(Math.random() * sh), ['left', 'up', 'down'][Math.floor(3 * Math.random())], 50 + Math.floor(Math.random() * 100), 'none', "bg-gray-900", "bg-gray-800"])
+        eventlist.push(['message', 0, 'They sent assassins to kill you, captain.']);
+        for (i = 0; i < (3 + wave + difficulty); i++) {
+            if (Math.random() > 1 - (difficulty + wave) / 20) {
+                eventlist.push(['enemy', 5000 / (wave + difficulty), sw + 10, Math.round(Math.random()*sh), 'left', 600 / (5 + difficulty + wave), 'snake', "bg-red-600", "bg-gray-800"])
+            } else {
+                eventlist.push(['enemy', 2000 / (wave + difficulty), sw + 10, Math.round(Math.random()*sh), 'up', 600 / (5 + difficulty + wave), 'pursue', "bg-red-600", "bg-gray-800"])
+            }
+        }
+        eventlist.push(['enemy', 1000, -1, 1, 'left', 500, 'none', "bg-gray-800", "bg-gray-800"]);
+
+        //Asteroid swarm
+        eventlist.push(['wave', 5000, 'bg-gray-800']);
+        eventlist.push(['message', 0, 'Captain, we are caught in an asteroid storm.']);
+        for (i = 0; i < 30 * (difficulty + wave); i++) {
+            randy = Math.floor(Math.random() * sh);
+            randspeed = 50 + Math.floor(Math.random() * 200);
+            randsize = Math.ceil(Math.random() * 3)
+            eventlist.push(['enemy', 200 / (difficulty + wave), sw + 5, randy, 'left', randspeed, 'none', "bg-gray-900", "bg-gray-800"])
+            for (j = 0; j < randsize; j++) {
+                for (k = 0; k < randsize; k++) {
+                    eventlist.push(['enemy', 0, sw + 5 + Math.round(randsize + j * 2 + 2 * Math.random()), randy + k * 2 + 2 * Math.random(), 'left', randspeed, 'none', "bg-gray-900", "bg-gray-800"]);
+                }
+            }
+        }
+        //the glitch
+        eventlist.push(['wave', 5000, "bg-gray-800"]);
+        eventlist.push(['message', 0, 'Something seems glitchy in the fabric of spacetime.']);
+        for (i = 0; i < 10 * (difficulty + wave); i++) {
+            randy = Math.floor(Math.random() * sh);
+            randspeed = 150 + Math.floor(Math.random() * 100);
+            randsize = Math.ceil(2 + Math.random() * 4)
+            eventlist.push(['enemy', 400 / (difficulty + wave), sw + 5, randy, 'left', randspeed, 'none', "bg-green-600", "bg-gray-800"])
+            for (j = 0; j < randsize * 2; j++) {
+                for (k = 0; k < randsize; k++) {
+                    eventlist.push(['enemy', 0, sw + 5 - randsize / 2 + j, randy + k, 'left', randspeed, 'none', "bg-green-600", "bg-gray-800"]);
+                }
+            }
+            if (Math.random() > 0.96) {
+                randy = Math.floor(Math.random() * sh);
+                randspeed = Math.round(200 / (difficulty + wave) + (Math.random() * 200))
+                eventlist.push(['enemy', 400, sw + 1, randy, 'down', randspeed, 'none', "bg-green-600", "bg-gray-800"]);
+                for (j = 0; j < Math.ceil(Math.random() * 50); j++) {
+                    eventlist.push(['enemy', 10, sw + 1, randy + j, 'down', randspeed, 'none', "bg-green-600", "bg-gray-800"]);
+                }
+            }
         }
     }
 
@@ -173,15 +222,15 @@
     async function enemyspawning(currentgame) {
         if (currentgame == restarts) {
             let waittime = 100
-            if (spawncycle < (eventlist.length)) {
+            if (spawncycle <= (eventlist.length)) {
                 //spawn enemies
                 if (eventlist[spawncycle][0] == 'enemy') {
-                    enemycycle(eventlist[spawncycle][6], eventlist[spawncycle][5], eventlist[spawncycle][7], eventlist[spawncycle][8], eventlist[spawncycle][2], eventlist[spawncycle][3], eventlist[spawncycle][4], restarts)
+                    enemycycle(eventlist[spawncycle][6], eventlist[spawncycle][5], eventlist[spawncycle][7], eventlist[spawncycle][8], eventlist[spawncycle][2], eventlist[spawncycle][3], eventlist[spawncycle][4], restarts, xshift)
                 }
                 //new wave
                 else if (eventlist[spawncycle][0] == 'wave') {
-                    $('wave').innerText = "Wave: " + wave;
                     wave += 1;
+                    $('wavemsg').innerText = "Wave " + String(wave);
                     bgcolor = eventlist[spawncycle][2]
                 }
                 //message
@@ -192,12 +241,13 @@
                 if (spawncycle < (eventlist.length - 1)) {
                     waittime = eventlist[spawncycle + 1][1]
                 }
+                //if it's the second to last one, create a new wave (not made yet)
+                else {
+                    wavegenerator()
+                    waittime = eventlist[spawncycle + 1][1]
+                }
             }
-            //if it's the last one, create a new wave (not made yet)
-            else {
-                wavegenerator()
-            }
-
+            console.log(waittime);
             await timeout(waittime);
             spawncycle += 1
             enemyspawning(currentgame)
@@ -206,45 +256,95 @@
 
 
     //individual enemy movement. Every cycle, the x,y position of the enemy is cleared and the new position is determined based on direction, then the enemy is redrawn
-    async function enemycycle(pattern, speed, style, trace, x, y, dir, currentcycle) {
-        if (currentcycle == restarts) {
-            //clear previous position if it was in the view
-            if (x < sw) {
-                document.getElementsByClassName('cell')[y * sw + x].classList.remove("bg-gray-800", "bg-gray-700", "bg-yellow-400", "bg-gray-900", "bg-red-800", "bg-red-600")
-                document.getElementsByClassName('cell')[y * sw + x].classList.add(trace)
+    async function enemycycle(pattern, speed, style, trace, x, y, dir, currentgame, prevxshift) {
+        if (currentgame == restarts) {
+            //calculate how much the entire game screen shifted since the previous enemycycle
+            const relshift = (xshift - prevxshift)
+            const dead = 0;
+            //die when hitting player's tail
+            if (document.getElementsByClassName('cell')[y * sw + x].classList.contains("bg-yellow-300") == true) {
+                dead = 1;
+                document.getElementsByClassName('cell')[y * sw + x].classList.remove("bg-gray-800", "bg-yellow-300", "bg-yellow-100", "bg-green-600", "bg-green-900", "bg-green-800", "bg-gray-900", "bg-red-800", "bg-red-600")
+                document.getElementsByClassName('cell')[y * sw + x].classList.add("bg-yellow-300")
             };
-            //pattern none doesn't change the direction
-            if (pattern == 'none') {};
-            //move in the direction
-            switch (dir) {
-                case 'right':
-                    x += 1;
-                    break;
-                case 'left':
-                    x -= 1;
-                    break;
-                case 'up':
-                    y -= 1;
-                    if (y < 0) {
-                        y += sh
+            if (dead == 0) {
+                //clear previous position if it was in the view
+                if (x - relshift < sw) {
+                    document.getElementsByClassName('cell')[y * sw + x - relshift].classList.remove("bg-gray-800", "bg-yellow-300", "bg-yellow-100", "bg-green-600", "bg-green-900", "bg-green-800", "bg-gray-900", "bg-red-800", "bg-red-600")
+                    document.getElementsByClassName('cell')[y * sw + x - relshift].classList.add(trace)
+                };
+                //pattern none doesn't change the direction
+                if (pattern == 'none') {}
+                //pattern pursue goes in the direction of player, when very close, launches itself as an object with pattern 'none'
+                else if (pattern == 'pursue') {
+                    if (Math.abs(playerx - x) + Math.abs(playery - y) > Math.random() * 10) {
+                        if ((Math.abs(playerx - x)) > Math.min((Math.abs(playery - y - sh), (Math.abs(playery - y))))) {
+                            if (x > playerx) {
+                                dir = 'left'
+                            } else(dir = 'right')
+                        } else {
+                            if (((y > playery) && ((y - playery) < sh / 2)) || ((y < playery) && ((playery - y) > sh / 2))) {
+                                dir = 'up'
+                            } else(dir = 'down')
+                        }
+                    } else {
+                        enemycycle('none', speed / 2, style, trace, x, y, dir, currentgame, prevxshift)
+                        dead = 1
                     }
-                    break;
-                case 'down':
-                    y += 1;
-                    if (y >= sh) {
-                        y -= sh
+                }
+                //draws itself, then kills itself after one 'cycle'
+                else if (pattern == 'fade') {
+                    if (x < sw) {
+                        document.getElementsByClassName('cell')[(y * sw) + x].classList.add(style);
                     }
-                    break;
-            }
-            //else, draw enemy if they are in view, redo cycle if their x is higher than 0
-            if (x >= 0) {
-                if (x < sw) {
-                    document.getElementsByClassName('cell')[(y * sw) + x].classList.add(style);
                     await timeout(speed);
-                    enemycycle(pattern, speed, style, trace, x, y, dir, currentcycle)
-                } else {
+                    document.getElementsByClassName('cell')[y * sw + x].classList.remove("bg-gray-800", "bg-yellow-300", "bg-yellow-100", "bg-green-600", "bg-green-900", "bg-green-800", "bg-gray-900", "bg-red-800", "bg-red-600");
+                    document.getElementsByClassName('cell')[y * sw + x].classList.add(trace);
+                    dead = 1
+                }
+                //leaves a deadly snake-like trail
+                else if (pattern == 'snake') {
+                    enemycycle('fade', 600, style, trace, x, y, dir, currentgame, prevxshift);
+                    if ((Math.abs(playerx - x)) > Math.min((Math.abs(playery - y - sh), (Math.abs(playery - y))))) {
+                        if (x > playerx) {
+                            dir = 'left'
+                        } else(dir = 'right')
+                    } else {
+                        if (((y > playery) && ((y - playery) < sh / 2)) || ((y < playery) && ((playery - y) > sh / 2))) {
+                            dir = 'up'
+                        } else(dir = 'down')
+                    }
+                }
+                //move in the direction
+                x -= relshift
+                switch (dir) {
+                    case 'right':
+                        x += 1;
+                        break;
+                    case 'left':
+                        x -= 1;
+                        break;
+                    case 'up':
+                        y -= 1;
+                        if (y < 0) {
+                            y += sh
+                        }
+                        break;
+                    case 'down':
+                        y += 1;
+                        if (y >= sh) {
+                            y -= sh
+                        }
+                        break;
+                }
+                //draw enemy if they are in view, redo cycle if their x is higher than 0
+                if (x >= 0 && (dead == 0)) {
+                    if (x < sw) {
+                        document.getElementsByClassName('cell')[(y * sw) + x].classList.add(style);
+                    }
+                    prevxshift = xshift;
                     await timeout(speed);
-                    enemycycle(pattern, speed, style, trace, x, y, dir, currentcycle)
+                    enemycycle(pattern, speed, style, trace, x, y, dir, currentgame, prevxshift)
                 }
             }
         }
@@ -305,17 +405,18 @@
     //this function redraws the position of the player and is triggered after every move
     function updatepos() {
         if (playerx != oldplayerx || playery != oldplayery) {
-            //collision detection with every enemy color
+            //collision detection with every enemy color and tail
             if (document.getElementsByClassName('cell')[playery * sw + playerx].classList.contains("bg-gray-900") ||
+                document.getElementsByClassName('cell')[playery * sw + playerx].classList.contains("bg-green-600") ||
+                document.getElementsByClassName('cell')[playery * sw + playerx].classList.contains("bg-yellow-300") ||
                 document.getElementsByClassName('cell')[playery * sw + playerx].classList.contains("bg-red-600")) {
-                console.log('aww')
                 loselife(1)
 
             };
             //style the table cells to the player style
-            document.getElementsByClassName('cell')[oldplayery * sw + oldplayerx].classList.remove("bg-gray-800", "bg-gray-700", "bg-gray-900", "bg-yellow-400", "bg-red-800", "bg-red-600");
-            document.getElementsByClassName('cell')[oldplayery * sw + oldplayerx].classList.add("bg-gray-700");
-            document.getElementsByClassName('cell')[playery * sw + playerx].classList.add("bg-yellow-400");
+            document.getElementsByClassName('cell')[oldplayery * sw + oldplayerx].classList.remove("bg-gray-800", "bg-yellow-300", "bg-green-600", "bg-green-900", "bg-green-800", "bg-gray-900", "bg-yellow-100", "bg-red-800", "bg-red-600");
+            document.getElementsByClassName('cell')[oldplayery * sw + oldplayerx].classList.add("bg-yellow-300");
+            document.getElementsByClassName('cell')[playery * sw + playerx].classList.add("bg-yellow-100");
         }
 
         oldplayerx = playerx;
@@ -381,13 +482,14 @@
                         if (j < (sw - 1)) {
                             document.getElementsByClassName('cell')[i * sw + j].setAttribute("class", document.getElementsByClassName('cell')[i * sw + j + 1].getAttribute("class"));
                         } else {
-                            document.getElementsByClassName('cell')[i * sw + j].classList.remove("bg-gray-800", "bg-gray-700", "bg-gray-900", "bg-yellow-400", "bg-red-800", "bg-red-600")
+                            document.getElementsByClassName('cell')[i * sw + j].classList.remove("bg-gray-800", "bg-green-600", "bg-green-900", "bg-green-800", "bg-yellow-300", "bg-gray-900", "bg-yellow-100", "bg-red-800", "bg-red-600")
                             document.getElementsByClassName('cell')[i * sw + j].classList.add(bgcolor)
                         }
                     }
                 }
                 playerx -= 1;
-                oldplayerx -= 1;
+                oldplayerx -= 1
+                xshift += 1
             }
 
             //resize the first and last column to give the illusion of panning
