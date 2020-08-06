@@ -85,6 +85,7 @@ const chip25 = document.getElementById("chip25");
 const bet = document.getElementById("bet");
 const pay10 = document.getElementById("pay10");
 const coinwon = document.getElementById("coinwon");
+const badgeDispaly = document.getElementById("badgeDispaly");
 
 //Variables declaration
 let deck = [],
@@ -100,6 +101,7 @@ let deck = [],
   sumPlayer = 0,
   betAmount = 0,
   count = 0,
+  playerWin = 0,
   sum;
 // Coin bank and bet updater function
 function betUpdate(coin, minCoin, coinSVG) {
@@ -231,9 +233,12 @@ stand.addEventListener("click", () => {
   } else if ((standSum = firstSum)) {
     winner("It's a tie!", "tie");
   }
+
   behaviourBtn(stand, "off");
 });
 // This function announces the winner
+// Uses settimeout to delay function call after 1000ms
+// Displays result in popup modal with gain or lose coins
 function winner(message, decision) {
   switch (decision) {
     case "gain":
@@ -250,7 +255,14 @@ function winner(message, decision) {
         result.innerHTML = `${message}`;
         coinwon.classList.remove("hidden");
         coinwon.innerHTML = `Player gets +${betAmount * 2} coins`;
+        playerWin += 1;
+        if (playerWin == 5) {
+          badgeDispaly.classList.remove("hidden");
+          badgeDispaly.innerHTML += `<img class="w-10 mr-2" src="coins/coin-1.svg"
+          />`;
+        }
       }, 1000);
+
       break;
     case "lose":
       setTimeout(() => {
@@ -259,6 +271,7 @@ function winner(message, decision) {
         result.innerHTML = `${message}`;
         coinwon.classList.remove("hidden");
         coinwon.innerHTML = `Player lose -${betAmount} coins`;
+        playerWin = 0;
       }, 1000);
       break;
     case "tie":
