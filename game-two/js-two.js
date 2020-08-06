@@ -83,9 +83,6 @@ const chip5 = document.getElementById("chip5");
 const chip10 = document.getElementById("chip10");
 const chip25 = document.getElementById("chip25");
 const bet = document.getElementById("bet");
-const pay10 = document.getElementById("pay10");
-const coinwon = document.getElementById("coinwon");
-const badgeDispaly = document.getElementById("badgeDispaly");
 
 //Variables declaration
 let deck = [],
