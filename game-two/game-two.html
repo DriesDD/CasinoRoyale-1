@@ -134,113 +134,69 @@
                 </svg>
               </button>
 
-              <div
-                id="flyoutmenu"
-                class="opacity-0 absolute right-1/6 transform -translate-x1/2 transform -translate-y-1 mt-3 px-2 w-screen max-w-xs sm:px-0"
-              >
-                <div class="rounded-lg shadow-lg">
-                  <div class="rounded-lg shadow-xs overflow-hidden">
-                    <div
-                      class="z-20 relative grid gap-6 bg-white px-5 py-6 sm:gap-8 sm:p-8"
-                    >
-                      <a
-                        href="#"
-                        class="-m-3 p-3 block space-y-1 rounded-md hover:bg-gray-50 transition ease-in-out duration-150"
-                      >
-                        <p
-                          class="text-base leading-6 font-medium text-gray-900"
-                        >
-                          <span id="username">Username</span>
-                        </p>
-                      </a>
-                      <a
-                        href="#"
-                        class="-m-3 p-3 block space-y-1 rounded-md hover:bg-gray-50 transition ease-in-out duration-150"
-                      >
-                        <p
-                          class="text-base leading-6 font-medium text-gray-900"
-                        >
-                          Current Balance
-                        </p>
-
-                        <!-- Button for balance -->
-                        <div class="flex items-center">
-                          <div class="flex-shrink-0">
-                            <span class="rounded-md shadow-sm">
-                              <button
-                                id="pay10"
-                                type="button"
-                                class="relative inline-flex items-center px-4 py-2 border border-transparent text-sm leading-5 font-medium rounded-md text-grey-900 bg-indigo-400 hover:bg-orange-500 focus:outline-none focus:shadow-outline-indigo focus:border-indigo-600 active:bg-indigo-600 transition duration-150 ease-in-out"
-                              >
-                                <svg
-                                  class="-ml-1 mr-2 h-5 w-5"
-                                  viewBox="0 0 20 20"
-                                  fill="currentColor"
-                                >
-                                  <path
-                                    fill-rule="evenodd"
-                                    d="M10 3a1 1 0 011 1v5h5a1 1 0 110 2h-5v5a1 1 0 11-2 0v-5H4a1 1 0 110-2h5V4a1 1 0 011-1z"
-                                    clip-rule="evenodd"
-                                  />
-                                </svg>
-                                <span>Current balance: 0</span>
-                              </button>
-                            </span>
-                          </div>
-                        </div>
-                      </a>
-                      <a
-                        href="#"
-                        class="-m-3 p-3 block space-y-1 rounded-md hover:bg-gray-50 transition ease-in-out duration-150"
-                      >
-                        <p
-                          class="text-base leading-6 font-medium text-gray-900"
-                        >
-                          Badges
-                        </p>
-                        <p class="text-sm leading-5 text-gray-500">
-                          You have aquired the <span>id</span> badge.
-                        </p>
-                      </a>
-                      <a
-                        href="#"
-                        class="-m-3 p-3 block space-y-1 rounded-md hover:bg-gray-50 transition ease-in-out duration-150"
-                      >
-                        <p
-                          class="text-base leading-6 font-medium text-gray-900"
-                        >
-                          Button
-                        </p>
-                        <!-- Button for coins -->
-                        <div class="flex items-center">
-                          <div class="flex-shrink-0">
-                            <span class="rounded-md shadow-sm">
-                              <button
-                                id="pay10"
-                                type="button"
-                                class="relative inline-flex items-center px-4 py-2 border border-transparent text-sm leading-5 font-medium rounded-md text-grey-900 bg-orange-500 focus:outline-none focus:shadow-outline-indigo focus:border-indigo-600 active:bg-indigo-600 transition duration-150 ease-in-out"
-                              >
-                                <svg
-                                  class="-ml-1 mr-2 h-5 w-5"
-                                  viewBox="0 0 20 20"
-                                  fill="currentColor"
-                                >
-                                  <path
-                                    fill-rule="evenodd"
-                                    d="M10 3a1 1 0 011 1v5h5a1 1 0 110 2h-5v5a1 1 0 11-2 0v-5H4a1 1 0 110-2h5V4a1 1 0 011-1z"
-                                    clip-rule="evenodd"
-                                  />
-                                </svg>
-                                <span>Buy 10 Coins</span>
-                              </button>
-                            </span>
-                          </div>
-                        </div>
-                      </a>
-                    </div>
+              <div id="flyoutmenu"
+              class="opacity-0 absolute right-1/6 transform -translate-x1/2 transform -translate-y-1 mt-3 px-2 w-screen max-w-xs sm:px-0">
+              <div class="rounded-lg shadow-lg">
+                <div class="rounded-lg shadow-xs overflow-hidden">
+                  <div class="z-20 relative grid gap-3 bg-white px-5 py-6 sm:gap-8 sm:p-8">
+                    <a class="-m-2 p-3 block space-y-1 rounded-md hover:bg-gray-50 transition ease-in-out duration-150">
+                      <p class="text-base leading-6 font-medium text-gray-900">
+                        <span id="username">Username:</span>
+                      </p>
+                    </a>
+                    <!-- this span with id balance here is the element to update when the number of coins changes -->
+                    <span id="balance" class="text-base leading-6 font-medium text-gray-900 rounded-md shadow-sm">
+                      Current balance:
+                    </span>
+                    <!-- Buttons for coins -->
+                    <container class="grid grid-cols-3 gap-4">
+                      <button id="pay10" type="button"
+                        class="relative col-span-1 inline-flex items-center px-4 py-2 border border-transparent text-sm leading-5 font-medium rounded-md text-grey-900 bg-indigo-300 hover:bg-indigo-100 focus:outline-none focus:shadow-outline-indigo focus:border-indigo-600 active:bg-indigo-600 transition duration-150 ease-in-out">
+                        <svg class="-ml-1 mr-2 h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+                          <path fill-rule="evenodd"
+                            d="M10 3a1 1 0 011 1v5h5a1 1 0 110 2h-5v5a1 1 0 11-2 0v-5H4a1 1 0 110-2h5V4a1 1 0 011-1z"
+                            clip-rule="evenodd" />
+                        </svg>
+                        <span> 10 </span>
+                      </button>
+  
+                      <button id="pay25" type="button"
+                        class="relative col-span-1 inline-flex items-center px-4 py-2 border border-transparent text-sm leading-5 font-medium rounded-md text-grey-900 bg-indigo-500 hover:bg-indigo-300 focus:outline-none focus:shadow-outline-indigo focus:border-indigo-600 active:bg-indigo-600 transition duration-150 ease-in-out">
+                        <svg class="-ml-1 mr-2 h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+                          <path fill-rule="evenodd"
+                            d="M10 3a1 1 0 011 1v5h5a1 1 0 110 2h-5v5a1 1 0 11-2 0v-5H4a1 1 0 110-2h5V4a1 1 0 011-1z"
+                            clip-rule="evenodd" />
+                        </svg>
+                        <span> 25 </span>
+                      </button>
+  
+                      <button id="pay100" type="button"
+                        class="relative col-span-1 inline-flex items-center px-4 py-2 border border-transparent text-sm leading-5 font-medium rounded-md text-grey-900 bg-orange-500 hover:bg-orange-300 focus:outline-none focus:shadow-outline-indigo focus:border-indigo-600 active:bg-indigo-600 transition duration-150 ease-in-out">
+                        <svg class="-ml-1 mr-2 h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+                          <path fill-rule="evenodd"
+                            d="M10 3a1 1 0 011 1v5h5a1 1 0 110 2h-5v5a1 1 0 11-2 0v-5H4a1 1 0 110-2h5V4a1 1 0 011-1z"
+                            clip-rule="evenodd" />
+                        </svg>
+                        <span> 100 </span>
+                      </button>
+                    </container>
+  
+                    <a class="-m-3 p-3 block space-y-1 rounded-md hover:bg-gray-50 transition ease-in-out duration-150">
+                      <p class="text-base leading-6 font-medium text-gray-900">
+                        Badges
+                      </p>
+                      <container class="grid grid-cols-4 gap-2">
+                          <div id= "badge1" class="col-span-1"><img src="../images/badge1gray.svg" ></img></div>
+                          <div id= "badge2" class="col-span-1"><img src="../images/badge2gray.svg" ></img></div>
+                          <div id= "badge3" class="col-span-1"><img src="../images/badge3gray.svg" ></img></div>
+                          <div id= "badge4" class="col-span-1"><img src="../images/badge4gray.svg" ></img></div>
+                      </container>
+                    </a>
                   </div>
                 </div>
               </div>
+            </div>
+          </div>
             </div>
             <!-- / -->
           </div>
@@ -248,17 +204,17 @@
       </nav>
       <main class="mx-8 p-4 flex-grow">
         <h1
-          class="font-titlefont text-6xl tracking-wider text-white justify text-center font-semibold my-4 text-5xl"
+          class="mt-24 font-titlefont text-6xl tracking-wider text-white justify text-center font-semibold my-4 text-5xl"
         >
           Twenty-One
         </h1>
+        <!-- card -->
 
         <div class="container mx-auto">
           <div class="flex flex-col justify-center items-center">
             <div
               class="w-full md:w-1/2 sm:w-full rounded-lg shadow-lg bg-green-800 my-3"
             >
-              <!-- card -->
               <div class="grid grid-rows-2 sm:w-auto">
                 <div class="container mx-2 bg-green-800 w-24 h-48">
                   <span class="font-semibold">Computer</span
@@ -276,7 +232,9 @@
                   ></span>
                   <div id="playerCards" class="flex flex-row"></div>
                 </div>
-                <!-- Bank coins -->
+                <!-- car END -->
+
+                <!-- Bank and Player coin -->
                 <div
                   class="container grid grid-cols-2 w-auto mx-2 mb-1 bg-green-800 h-20"
                 >
@@ -323,7 +281,7 @@
                         >Player bet</span
                       ><span
                         id="bet"
-                        class="text-white bg-orange-500 px-2 text-sm rounded leading-loose mx-1 font-semibold"
+                        class="text-white bg-orange-500 px-2 text-sm rounded leading-loose mx-1 font-semibold hidden"
                       ></span>
                     </div>
                     <div id="coins" class="flex justify-cente"></div>
@@ -332,7 +290,8 @@
               </div>
             </div>
           </div>
-
+          <!-- Bank and Player coin END -->
+          <!-- Button starts -->
           <div class="flex flex-col justify-center items-center">
             <div
               class="w-full md:w-1/2 sm:w-full rounded-lg shadow-lg bg-green-800 my-3"
@@ -361,7 +320,8 @@
           </div>
         </div>
       </main>
-
+      <!-- Button END -->
+      <!-- footer  start -->
       <footer>
         <div class="bg-white mt-4 shadow-inner">
           <div
@@ -392,7 +352,9 @@
         </div>
       </footer>
     </div>
-    <!-- model -->
+    <!-- footer END -->
+
+    <!-- Modal start-->
     <div
       id="modal"
       class="h-screen w-full absolute flex items-center justify-center hidden absolute"
@@ -423,6 +385,6 @@
         </div>
       </div>
     </div>
-    <!-- model end -->
+    <!-- model END -->
   </body>
 </html>

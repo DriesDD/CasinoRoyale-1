@@ -4,13 +4,27 @@ function $(x) {
 }
 
 //display balance
-$("pay10").innerText =
-  "Current balance:" + Number(localStorage.getItem("balance"));
+$("balance").innerText =
+  "Current balance: " + Number(localStorage.getItem("balance"));
 
-//when clicked, add 10 to balance and spent and display balance
+//when clicked, add to balance and spent and display balance
 $("pay10").onclick = () => {
   localStorage.setItem("balance", Number(localStorage.getItem("balance")) + 10);
   localStorage.setItem("spent", Number(localStorage.getItem("spent")) + 10);
-  $("pay10").innerText =
-    " Current balance:" + Number(localStorage.getItem("balance"));
+  $("balance").innerText =
+    " Current balance: " + Number(localStorage.getItem("balance"));
+};
+
+$("pay25").onclick = () => {
+  localStorage.setItem("balance", Number(localStorage.getItem("balance")) + 25);
+  localStorage.setItem("spent", Number(localStorage.getItem("spent")) + 25);
+  $("balance").innerText =
+    " Current balance: " + Number(localStorage.getItem("balance"));
+};
+
+$("pay100").onclick = () => {
+  localStorage.setItem("balance", Number(localStorage.getItem("balance")) + 100);
+  localStorage.setItem("spent", Number(localStorage.getItem("spent")) + 100);
+  $("balance").innerText =
+    " Current balance: " + Number(localStorage.getItem("balance"));
 };
