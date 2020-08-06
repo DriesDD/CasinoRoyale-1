@@ -164,6 +164,7 @@ playAgain.addEventListener("click", () => {
   modal.classList.add("hidden");
   bet.classList.add("hidden");
   playerScore.classList.add("hidden");
+  coinwon.classList.add("hidden");
   computerScore.classList.add("hidden");
   body.classList.remove("opacity-25");
   playerScore.innerHTML = "";
@@ -173,9 +174,10 @@ playAgain.addEventListener("click", () => {
   coins.innerHTML = "";
   bet.innerHTML = "";
   deck = [];
+  betAmount = 0;
   behaviourBtn(play, "on");
-  behaviourBtn(stand, "on");
-  behaviourBtn(hit, "on");
+  behaviourBtn(stand, "off");
+  behaviourBtn(hit, "off");
 });
 
 // Play button listener. Game starts by clicking this button.
@@ -356,7 +358,7 @@ function deal(cards, check) {
         weight.forEach((item) => {
           if (firstChar === item.type && firstChar === "A") {
             hitPlayer = 1;
-          } else {
+          } else if (firstChar === item.type) {
             hitPlayer = item.value;
           }
         });
@@ -386,7 +388,7 @@ function deal(cards, check) {
         weight.forEach((item) => {
           if (firstChar === item.type && firstChar === "A") {
             hitPlayer = 1;
-          } else {
+          } else if (firstChar === item.type) {
             hitPlayer = item.value;
           }
         });
