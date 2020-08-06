@@ -126,7 +126,8 @@
         {$('menutext').innerText = "Not enough coins to play. You need 25 but you only have " + localStorage.getItem("balance") + "."}
     }
     function gamestart() {
-
+        //update the balance in the page menu
+        $("balance").innerText = " Current balance: " + Number(localStorage.getItem("balance"));
         //these are repeating functions that carry on the number of game restarts with them. They don't do anything if the game is on a different number than them. This is how the function is killed when a new game has started 
         enemyspawning(restarts);
         moveplayer(restarts);
