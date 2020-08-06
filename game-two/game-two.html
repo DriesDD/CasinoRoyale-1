@@ -182,12 +182,33 @@
                   <img id="chip25" class="w-10 mr-2 cursor-pointer" src="coins/coin-25.svg" alt="Chip One" />
                 </div>
               </div>
-              <div class="flex flex-col">
-                <div class="mb-1">
-                  <span class="font-semibold text-gray-300 mb-1 text-center">Player bet</span><span id="bet"
-                    class="text-white bg-orange-500 px-2 text-sm rounded leading-loose mx-1 font-semibold hidden"></span>
-                </div>
-                <div id="coins" class="flex justify-cente"></div>
+            </div>
+          </div>
+          <!-- Bank and Player coin END -->
+          <!-- Button starts -->
+          <div class="flex flex-col justify-center items-center">
+            <div
+              class="w-full md:w-1/2 sm:w-full rounded-lg shadow-lg bg-green-800 my-3"
+            >
+              <div class="flex justify-between px-5 py-4">
+                <button
+                  id="hitBtn"
+                  class="relative inline-flex items-center px-4 py-2 border border-transparent text-sm leading-5 font-medium rounded-md text-grey-900 bg-orange-500 hover:bg-orange-300 focus:outline-none focus:shadow-outline-indigo focus:border-indigo-600 active:bg-indigo-600 transition duration-150 ease-in-out"
+                >
+                  Draw a card
+                </button>
+                <button
+                  id="standBtn"
+                  class="relative inline-flex items-center px-4 py-2 border border-transparent text-sm leading-5 font-medium rounded-md text-grey-900 bg-orange-500 hover:bg-orange-300 focus:outline-none focus:shadow-outline-indigo focus:border-indigo-600 active:bg-indigo-600 transition duration-150 ease-in-out"
+                >
+                  Stand
+                </button>
+                <button
+                  id="dealBtn"
+                  class="relative inline-flex items-center px-4 py-2 border border-transparent text-sm leading-5 font-medium rounded-md text-grey-900 bg-orange-500 hover:bg-orange-300 focus:outline-none focus:shadow-outline-indigo focus:border-indigo-600 active:bg-indigo-600 transition duration-150 ease-in-out"
+                >
+                  Play
+                </button>
               </div>
             </div>
           </div>
@@ -230,11 +251,24 @@
             </svg>
           </a>
         </div>
-        <div class="mt-8 md:mt-0 md:order-1">
-          <p class="text-center text-base leading-6 text-gray-400">
-            <a class="mx-10 mr-64" href="../index.html">&larr; Go Back</a>
-            &copy; 2020 The Sourcerers, Inc. All rights reserved.
-          </p>
+        <div class="mb-4">
+          <h2
+            id="result"
+            class="font-semibold text-xl py-2 px-12 font-titlefont"
+          ></h2>
+          <h2
+            id="coinwon"
+            class="font-semibold text-xl py-2 px-12 font-titlefont hidden"
+          ></h2>
+          <span id="badgeDispaly" class="hidden"></span>
+        </div>
+        <div class="flex justify-center">
+          <button
+            id="play"
+            class="flex-no-shrink text-sm py-1 px-2 mb-2 font-semibold rounded bg-orange-500 hover:bg-orange-300"
+          >
+            Play again!
+          </button>
         </div>
       </div>
     </div>

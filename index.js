@@ -34,34 +34,31 @@ function toggleMenuOff() {
 menu.addEventListener("mouseenter", toggleMenu);
 flyoutmenu.addEventListener("mouseleave", toggleMenuOff);
 
-//Mobile Menu
-const mobMenClosed = document.getElementById("mobileMenuClosed");
+//Mobile Menu SVG
+const mobMenuBtn = document.getElementById("mobMenuBtn");
 
-const mobMenu = document.getElementById("mobMenu");
-function toggleMobMenu() {
-  mobMenu.classList.remove("hidden");
+function toggleMobMenuButton() {
+  const mobMenuClosed = document.getElementById("mobileMenuClosed");
+  const mobMenuOpen = document.getElementById("mobileMenuOpen");
+
+  mobMenuClosed.classList.toggle("block");
+  mobMenuClosed.classList.toggle("hidden");
+  mobMenuOpen.classList.toggle("block");
+  mobMenuOpen.classList.toggle("hidden");
 }
 
-mobMenClosed.addEventListener("click", toggleMobMenu);
+mobMenuBtn.addEventListener("click", toggleMobMenuButton);
 
-/** 
- * function toggleMobMenu() {
-  flyoutmenu.classList.remove("fg"");
-  flyoutmenu.classList.add(
-    "transition",
-    "ease-out",
-    "transition",
-    "duration-200",
-    "opacity-100",
-    "translate",
-    "-translate-y-0",
-    "z-50"
-  );
+// Toggle nav dropdown
+function navToggle() {
+  const btn = document.getElementById("mobMenuBtn");
+  const nav = document.getElementById("mobMenu");
+
+  btn.classList.toggle("open");
+  nav.classList.toggle("hidden");
 }
 
-<svg class="hidden h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
-            </svg>  */
+mobMenuBtn.addEventListener("click", navToggle);
 
 // Username
 
