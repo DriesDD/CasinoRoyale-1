@@ -14,7 +14,8 @@
   <body class="bg-gray-900 flex flex-col h-screen font-navfont">
 
   <!-- Nav Bar / HEADER -->
-  <nav class="bg-indigo-300 mb-4">
+  <header id="top" class="w-full flex flex-col relative">
+  <nav id="site-menu" class="bg-indigo-300 mb-4">
   <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
     <div class="flex justify-between h-16">
       <div class="flex">
@@ -128,34 +129,60 @@
 
     Menu open: "block", Menu closed: "hidden"
   -->
-  <div id="mobMenu" class="hidden md:hidden w-screen h-screen">
+  <div id="mobMenu" class="hidden md:hidden w-screen h-screen z-10">
     <div class="pt-2 pb-3 mt-14 my-8 bg-white">
       <a href="index.html" class="block bg-white pl-3 pr-4 py-2 border-l-4 border-indigo-500 text-base font-medium text-indigo-700 bg-indigo-50 focus:outline-none focus:text-indigo-800 focus:bg-indigo-100 focus:border-indigo-700 transition duration-150 ease-in-out sm:pl-5 sm:pr-6">Homepage</a>
       <a href="./game-one/game-one.html" class="mt-1 block bg-white pl-3 pr-4 py-2 border-l-4 border-transparent text-base font-medium text-gray-600 hover:text-gray-800 hover:bg-gray-50 hover:border-gray-300 focus:outline-none focus:text-gray-800 focus:bg-gray-50 focus:border-gray-300 transition duration-150 ease-in-out sm:pl-5 sm:pr-6">RPSLS</a>
       <a href="./game-two/game-two.html" class="mt-1 block bg-white pl-3 pr-4 py-2 border-l-4 border-transparent text-base font-medium text-gray-600 hover:text-gray-800 hover:bg-gray-50 hover:border-gray-300 focus:outline-none focus:text-gray-800 focus:bg-gray-50 focus:border-gray-300 transition duration-150 ease-in-out sm:pl-5 sm:pr-6">Twenty-Two</a>
       <a href="./game-three/game-three.html" class="mt-1 block bg-white pl-3 pr-4 py-2 border-l-4 border-transparent text-base font-medium text-gray-600 hover:text-gray-800 hover:bg-gray-50 hover:border-gray-300 focus:outline-none focus:text-gray-800 focus:bg-gray-50 focus:border-gray-300 transition duration-150 ease-in-out sm:pl-5 sm:pr-6">Memory</a>
       <a href="./game-four/game-four.html" class="mt-1 block bg-white pl-3 pr-4 py-2 border-l-4 border-transparent text-base font-medium text-gray-600 hover:text-gray-800 hover:bg-gray-50 hover:border-gray-300 focus:outline-none focus:text-gray-800 focus:bg-gray-50 focus:border-gray-300 transition duration-150 ease-in-out sm:pl-5 sm:pr-6">Block Game</a>
-    </div>
     <div class="pt-4 pb-3 border-t border-gray-200 bg-white rounded-b-lg">
       <div class="flex items-center px-4 sm:px-6">
         <div class="flex-shrink-0">
           <img class="h-10 w-10 rounded-full" src="images/logo.png" alt="badge">
         </div>
         <div class="ml-3">
-          <div class="text-base font-medium leading-6 text-gray-800">Username</div>
-          <div class="text-sm font-medium leading-5 text-gray-500">Your Balance</div>
+          <div class="text-base font-medium leading-6 text-gray-800"><span id="username">Username:</span></div>
+          <div class="text-sm font-medium leading-5 text-gray-500"><span id="balance" class="text-base leading-6 font-medium text-gray-900 rounded-md shadow-sm">
+                    Current balance:
+                  </span></div>
         </div>
       </div>
+    </div>
 
-      <!-- Button mobile menu -->
-        <div>
-            <button id ="pay10" type="button" class="my-4 mx-6 inline-flex items-center px-4 py-2 border border-transparent text-sm leading-5 font-medium rounded-md text-grey-900 bg-orange-500 focus:outline-none focus:shadow-outline-indigo focus:border-indigo-600 active:bg-indigo-600 transition duration-150 ease-in-out">
-              <svg class="-ml-1 mr-2 h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
-                <path fill-rule="evenodd" d="M10 3a1 1 0 011 1v5h5a1 1 0 110 2h-5v5a1 1 0 11-2 0v-5H4a1 1 0 110-2h5V4a1 1 0 011-1z" clip-rule="evenodd" />
-              </svg>
-              <span>Buy 10 Coins</span>
-            </button>
-       </div>
+
+   <!-- Buttons for coinsn mobile menu -->
+                  <container class="flex flex-col m-4 w-28">
+                    <button id="pay10" type="button"
+                      class="my-2 inline-flex items-center px-4 py-2 border border-transparent text-sm leading-5 font-medium rounded-md text-grey-900 bg-indigo-300 hover:bg-indigo-100 focus:outline-none focus:shadow-outline-indigo focus:border-indigo-600 active:bg-indigo-600 transition duration-150 ease-in-out">
+                      <svg class="-ml-1 mr-2 h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+                        <path fill-rule="evenodd"
+                          d="M10 3a1 1 0 011 1v5h5a1 1 0 110 2h-5v5a1 1 0 11-2 0v-5H4a1 1 0 110-2h5V4a1 1 0 011-1z"
+                          clip-rule="evenodd" />
+                      </svg>
+                      <span> 10 </span>
+                    </button>
+
+                    <button id="pay25" type="button"
+                      class="my-2 inline-flex items-center px-4 py-2 border border-transparent text-sm leading-5 font-medium rounded-md text-grey-900 bg-indigo-500 hover:bg-indigo-300 focus:outline-none focus:shadow-outline-indigo focus:border-indigo-600 active:bg-indigo-600 transition duration-150 ease-in-out">
+                      <svg class="-ml-1 mr-2 h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+                        <path fill-rule="evenodd"
+                          d="M10 3a1 1 0 011 1v5h5a1 1 0 110 2h-5v5a1 1 0 11-2 0v-5H4a1 1 0 110-2h5V4a1 1 0 011-1z"
+                          clip-rule="evenodd" />
+                      </svg>
+                      <span> 25 </span>
+                    </button>
+
+                    <button id="pay100" type="button"
+                      class="my-2 inline-flex items-center px-4 py-2 border border-transparent text-sm leading-5 font-medium rounded-md text-grey-900 bg-orange-500 hover:bg-orange-300 focus:outline-none focus:shadow-outline-indigo focus:border-indigo-600 active:bg-indigo-600 transition duration-150 ease-in-out">
+                      <svg class="-ml-1 mr-2 h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+                        <path fill-rule="evenodd"
+                          d="M10 3a1 1 0 011 1v5h5a1 1 0 110 2h-5v5a1 1 0 11-2 0v-5H4a1 1 0 110-2h5V4a1 1 0 011-1z"
+                          clip-rule="evenodd" />
+                      </svg>
+                      <span> 100 </span>
+                    </button>
+                  </container>
      
 
     </div>
@@ -164,10 +191,11 @@
 
 </div>
 </nav>
+</header>
 <!-- End Navbar -->
 
     <main class="mx-8 flex-grow">
-      <h1 class="font-titlefont text-6xl tracking-wider text-white justify text-center font-semibold my-4 text-5xl">The Sourcerers Casino</h1>
+      <h1 class=" font-titlefont text-6xl tracking-wider text-white justify text-center font-semibold my-4 text-5xl">The Sourcerers Casino</h1>
       <!-- CARDS -->
       <div class="card-container">
         <ul
