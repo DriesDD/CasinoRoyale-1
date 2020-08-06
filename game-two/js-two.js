@@ -83,7 +83,7 @@ const chip5 = document.getElementById("chip5");
 const chip10 = document.getElementById("chip10");
 const chip25 = document.getElementById("chip25");
 const bet = document.getElementById("bet");
-const pay10 = document.getElementById("pay10");
+const balance = document.getElementById("balance");
 
 //Variables declaration
 const deck = [];
@@ -146,8 +146,8 @@ close.addEventListener("click", () => {
 
 //On windows load, update bank balance. Disable draw and stand button
 window.onload = () => {
-  pay10.innerText =
-    "Current balance:" + Number(localStorage.getItem("balance"));
+  balance.innerText =
+    "Current balance: " + Number(localStorage.getItem("balance"));
   bank.innerText = Number(localStorage.getItem("balance"));
   behaviourBtn(hit, "off");
   behaviourBtn(stand, "off");
