@@ -9,71 +9,53 @@
   <title>RPSLS</title>
   <script src="js-one.js" defer></script>
   <script src="../coin-system/balance.js" defer></script>
-  <script src="../index.js" defer></script>
 </head>
 
 <body class="bg-gray-900 flex flex-col h-screen font-navfont">
-  <nav class="bg-indigo-300 mb-4">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      <div class="flex justify-between h-16">
-        <div class="flex">
-          <div class="-ml-2 mr-2 flex items-center md:hidden">
-            <!-- Mobile menu button -->
-            <button
-              class="inline-flex items-center justify-center p-2 rounded-md text-gray-900 hover:text-white hover:bg-gray-700 focus:outline-none focus:bg-gray-700 focus:text-white transition duration-150 ease-in-out"
-              aria-label="Main menu" aria-expanded="false">
-              <!-- Icon when menu is closed. -->
-              <!-- Menu open: "hidden", Menu closed: "block" -->
-              <svg class="block h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
-              </svg>
-              <!-- Icon when menu is open. -->
-              <!-- Menu open: "block", Menu closed: "hidden" -->
-              <svg class="hidden h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
-              </svg>
-            </button>
-          </div>
-          <!-- Logo -->
-          <div class="flex-shrink-0 flex items-center">
-            <img class="block lg:hidden h-12 w-auto" src="../images/logo.png" alt="logo">
-            <img class="hidden lg:block h-12 w-auto" src="../images/logo.png" alt="logo">
-          </div>
-          <!-- Links to games -->
-          <div class="hidden md:ml-6 md:flex md:items-center">
-            <a href="../index.html"
-              class="px-3 py-2 rounded-md text-sm font-medium leading-5 text-gray-900 bg-indigo-400 focus:outline-none focus:text-white focus:bg-indigo-400 transition duration-150 ease-in-out">Homepage</a>
-            <a href="../game-one/game-one.html"
-              class="ml-4 px-3 py-2 rounded-md text-sm font-medium leading-5 text-white bg-gray-900 hover:text-white hover:bg-gray-900 focus:outline-none focus:text-gray-900 focus:bg-orange-500 transition duration-150 ease-in-out">RPSLS</a>
-            <a href="../game-two/game-two.html"
-              class="ml-4 px-3 py-2 rounded-md text-sm font-medium leading-5 text-gray-900 hover:text-white hover:bg-indigo-400 focus:outline-none focus:text-white focus:bg-gray-700 transition duration-150 ease-in-out">Twenty-One</a>
-            <a href="../game-three/game-three.html"
-              class="ml-4 px-3 py-2 rounded-md text-sm font-medium leading-5 text-gray-900 hover:text-white hover:bg-indigo-400 focus:outline-none focus:text-white focus:bg-gray-700 transition duration-150 ease-in-out">Memory</a>
-            <a href="../game-four/game-four.html"
-              class="ml-4 px-3 py-2 rounded-md text-sm font-medium leading-5 text-gray-900 hover:text-white hover:bg-indigo-400 focus:outline-none focus:text-white focus:bg-gray-700 transition duration-150 ease-in-out">Block
-              Game</a>
-          </div>
-        </div>
-
-
-
-        <!-- Profile Button-->
-        <div class="relative mt-5">
-          <!-- Item active: "text-gray-900", Item inactive: "text-gray-500" -->
-          <button id="menuFlyoutBtn" type="button"
-            class="group text-gray-500 inline-flex items-center space-x-2 text-base leading-6 font-medium hover:text-gray-900 focus:outline-none focus:text-gray-900 transition ease-in-out duration-150">
-            <span>Profile</span>
-            <!-- Item active: "text-gray-600", Item inactive: "text-gray-400" -->
-            <svg
-              class="text-gray-400 h-5 w-5 group-hover:text-gray-500 group-focus:text-gray-500 transition ease-in-out duration-150"
-              viewBox="0 0 20 20" fill="currentColor">
-              <path fill-rule="evenodd"
-                d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z"
-                clip-rule="evenodd" />
+    <!-- Nav Bar / HEADER -->
+  <header id="top" class="w-full flex flex-col relative">
+  <nav id="site-menu" class="bg-indigo-300 mb-4 font-navfont">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="flex justify-between h-16">
+      <div class="flex">
+        <div class="-ml-2 mr-2 flex items-center md:hidden">
+          <!-- Mobile menu button -->
+          <button id="mobMenuBtn" class="inline-flex items-center justify-center p-2 rounded-md text-gray-900 hover:text-white hover:bg-gray-700 focus:outline-none focus:bg-gray-700 focus:text-white transition duration-150 ease-in-out" aria-label="Main menu" aria-expanded="false">
+            <!-- Icon when menu is closed. -->
+            <svg id="mobileMenuClosed" class="block h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+            </svg>
+            <!-- Icon when menu is open. -->
+            <svg id="mobileMenuOpen" class="hidden h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
             </svg>
           </button>
+        </div>
+         <!-- Logo -->
+        <div class="flex-shrink-0 flex items-center">
+          <img class="block lg:hidden h-12 w-auto" src="../images/logo.png" alt="logo">
+          <img class="hidden lg:block h-12 w-auto" src="../images/logo.png" alt="logo">
+        </div>
+        <!-- Links to games -->
+        <div class="hidden md:ml-6 md:flex md:items-center">
+          <a href="../index.html" class="px-3 py-2 rounded-md text-sm font-medium leading-5 text-white bg-gray-900 focus:outline-none focus:text-gray-900 focus:bg-orange-500 transition duration-150 ease-in-out">Homepage</a>
+          <a href="../game-one/game-one.html" class="ml-4 px-3 py-2 rounded-md text-sm font-medium leading-5 text-gray-900 hover:text-white hover:bg-indigo-400 focus:outline-none focus:text-white focus:bg-gray-700 transition duration-150 ease-in-out">RPSLS</a>
+          <a href="../game-two/game-two.html" class="ml-4 px-3 py-2 rounded-md text-sm font-medium leading-5 text-gray-900 hover:text-white hover:bg-indigo-400 focus:outline-none focus:text-white focus:bg-gray-700 transition duration-150 ease-in-out">Twenty-One</a>
+          <a href="../game-three/game-three.html" class="ml-4 px-3 py-2 rounded-md text-sm font-medium leading-5 text-gray-900 hover:text-white hover:bg-indigo-400 focus:outline-none focus:text-white focus:bg-gray-700 transition duration-150 ease-in-out">Memory</a>
+          <a href="../game-four/game-four.html" class="ml-4 px-3 py-2 rounded-md text-sm font-medium leading-5 text-gray-900 hover:text-white hover:bg-indigo-400 focus:outline-none focus:text-white focus:bg-gray-700 transition duration-150 ease-in-out">Block Game</a>
+        </div>
+      </div>
 
-          <div id="flyoutmenu"
+      <!-- Profile FlyOut Menu-->
+      <div class="relative mt-5 hidden md:block">
+        <button id="menuFlyoutBtn" type="button" class="group text-gray-500 inline-flex items-center space-x-2 text-base leading-6 font-medium hover:text-gray-900 focus:outline-none focus:text-gray-900 transition ease-in-out duration-150">
+           <span>Profile</span>
+           <svg class="text-gray-400 h-5 w-5 group-hover:text-gray-500 group-focus:text-gray-500 transition ease-in-out duration-150" viewBox="0 0 20 20" fill="currentColor">
+            <path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd" />
+           </svg>
+        </button>
+
+        <div id="flyoutmenu"
             class="opacity-0 absolute right-1/6 transform -translate-x1/2 transform -translate-y-1 mt-3 px-2 w-screen max-w-xs sm:px-0">
             <div class="rounded-lg shadow-lg">
               <div class="rounded-lg shadow-xs overflow-hidden">
@@ -125,10 +107,10 @@
                       Badges
                     </p>
                     <container class="grid grid-cols-4 gap-2">
-                      <div id="badge1" class="col-span-1"><img src="../images/badge1gray.svg"></img></div>
-                      <div id="badge2" class="col-span-1"><img src="../images/badge2gray.svg"></img></div>
-                      <div id="badge3" class="col-span-1"><img src="../images/badge3gray.svg"></img></div>
-                      <div id="badge4" class="col-span-1"><img src="../images/badge4gray.svg"></img></div>
+                        <div id= "badge1" class="col-span-1"><img src="../images/badge1gray.svg" ></img></div>
+                        <div id= "badge2" class="col-span-1"><img src="../images/badge2gray.svg" ></img></div>
+                        <div id= "badge3" class="col-span-1"><img src="../images/badge3gray.svg" ></img></div>
+                        <div id= "badge4" class="col-span-1"><img src="../images/badge4gray.svg" ></img></div>
                     </container>
                   </a>
                 </div>
@@ -136,14 +118,75 @@
             </div>
           </div>
         </div>
+
+<!-- End FlyOut Menu -->
+
+<!--
+    Mobile menu, toggle classes based on menu state.
+  -->
+  <div id="mobMenu" class="w-screen h-screen hidden md:hidden z-10">
+    <div class="pt-2 pb-3 mt-14 my-8 bg-white">
+      <a href="../index.html" class="block bg-white pl-3 pr-4 py-2 border-l-4 border-indigo-500 text-base font-medium text-indigo-700 bg-indigo-50 focus:outline-none focus:text-indigo-800 focus:bg-indigo-100 focus:border-indigo-700 transition duration-150 ease-in-out sm:pl-5 sm:pr-6">Homepage</a>
+      <a href="../game-one/game-one.html" class="mt-1 block bg-white pl-3 pr-4 py-2 border-l-4 border-transparent text-base font-medium text-gray-600 hover:text-gray-800 hover:bg-gray-50 hover:border-gray-300 focus:outline-none focus:text-gray-800 focus:bg-gray-50 focus:border-gray-300 transition duration-150 ease-in-out sm:pl-5 sm:pr-6">RPSLS</a>
+      <a href="../game-two/game-two.html" class="mt-1 block bg-white pl-3 pr-4 py-2 border-l-4 border-transparent text-base font-medium text-gray-600 hover:text-gray-800 hover:bg-gray-50 hover:border-gray-300 focus:outline-none focus:text-gray-800 focus:bg-gray-50 focus:border-gray-300 transition duration-150 ease-in-out sm:pl-5 sm:pr-6">Twenty-Two</a>
+      <a href="../game-three/game-three.html" class="mt-1 block bg-white pl-3 pr-4 py-2 border-l-4 border-transparent text-base font-medium text-gray-600 hover:text-gray-800 hover:bg-gray-50 hover:border-gray-300 focus:outline-none focus:text-gray-800 focus:bg-gray-50 focus:border-gray-300 transition duration-150 ease-in-out sm:pl-5 sm:pr-6">Memory</a>
+      <a href="../game-four/game-four.html" class="mt-1 block bg-white pl-3 pr-4 py-2 border-l-4 border-transparent text-base font-medium text-gray-600 hover:text-gray-800 hover:bg-gray-50 hover:border-gray-300 focus:outline-none focus:text-gray-800 focus:bg-gray-50 focus:border-gray-300 transition duration-150 ease-in-out sm:pl-5 sm:pr-6">Block Game</a>
+    <div class="pt-4 pb-3 border-t border-gray-200 bg-white rounded-b-lg">
+      <div class="flex items-center px-4 sm:px-6">
+        <div class="flex-shrink-0">
+          <img class="h-10 w-10 rounded-full" src="images/logo.png" alt="badge">
+        </div>
+        <div class="ml-3">
+          <div class="text-base font-medium leading-6 text-gray-800"><span id="username">Username:</span></div>
+          <div class="text-sm font-medium leading-5 text-gray-500"><span id="balance" class="text-base leading-6 font-medium text-gray-900 rounded-md shadow-sm">
+                    Current balance:
+                  </span></div>
+        </div>
       </div>
-      <!-- / -->
-
-
-
     </div>
-    </div>
-  </nav>
+
+
+   <!-- Buttons for coins mobile menu -->
+                  <container class="flex flex-wrap m-4 w-28">
+                    <button id="pay10" type="button"
+                      class="my-2 inline-flex w-full items-center px-4 py-2 border border-transparent text-sm leading-5 font-medium rounded-md text-grey-900 bg-indigo-300 hover:bg-indigo-100 focus:outline-none focus:shadow-outline-indigo focus:border-indigo-600 active:bg-indigo-600 transition duration-150 ease-in-out">
+                      <svg class="-ml-1 mr-2 h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+                        <path fill-rule="evenodd"
+                          d="M10 3a1 1 0 011 1v5h5a1 1 0 110 2h-5v5a1 1 0 11-2 0v-5H4a1 1 0 110-2h5V4a1 1 0 011-1z"
+                          clip-rule="evenodd" />
+                      </svg>
+                      <span> 10 </span>
+                    </button>
+
+                    <button id="pay25" type="button"
+                      class="my-2 inline-flex w-full items-center px-4 py-2 border border-transparent text-sm leading-5 font-medium rounded-md text-grey-900 bg-indigo-500 hover:bg-indigo-300 focus:outline-none focus:shadow-outline-indigo focus:border-indigo-600 active:bg-indigo-600 transition duration-150 ease-in-out">
+                      <svg class="-ml-1 mr-2 h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+                        <path fill-rule="evenodd"
+                          d="M10 3a1 1 0 011 1v5h5a1 1 0 110 2h-5v5a1 1 0 11-2 0v-5H4a1 1 0 110-2h5V4a1 1 0 011-1z"
+                          clip-rule="evenodd" />
+                      </svg>
+                      <span> 25 </span>
+                    </button>
+
+                    <button id="pay100" type="button"
+                      class="my-2 inline-flex w-full items-center px-4 py-2 border border-transparent text-sm leading-5 font-medium rounded-md text-grey-900 bg-orange-500 hover:bg-orange-300 focus:outline-none focus:shadow-outline-indigo focus:border-indigo-600 active:bg-indigo-600 transition duration-150 ease-in-out">
+                      <svg class="-ml-1 mr-2 h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+                        <path fill-rule="evenodd"
+                          d="M10 3a1 1 0 011 1v5h5a1 1 0 110 2h-5v5a1 1 0 11-2 0v-5H4a1 1 0 110-2h5V4a1 1 0 011-1z"
+                          clip-rule="evenodd" />
+                      </svg>
+                      <span> 100 </span>
+                    </button>
+                  </container>
+      </div>
+  </div>
+<!-- END mobile menu -->
+
+</div>
+</div>
+</nav>
+</header>
+<!-- End Navbar -->
 
   <h1 class="font-titlefont text-6xl tracking-wider text-white justify text-center font-semibold my-4 text-5xl">Rock,
     paper, scissors, lizard, spock...</h1>
