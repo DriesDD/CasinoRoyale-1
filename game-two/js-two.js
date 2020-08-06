@@ -42,6 +42,8 @@ const values = [
   "A",
 ];
 
+const suits = ["Hearts", "Spades", "Diamonds", "Clubs"];
+
 const weight = [
   { type: "2", value: 2 },
   { type: "3", value: 3 },
@@ -57,7 +59,6 @@ const weight = [
   { type: "K", value: 10 },
   { type: "A", value: 11 },
 ];
-const suits = ["Hearts", "Spades", "Diamonds", "Clubs"];
 
 //DOM elements involve for this game
 const display = document.getElementById("deck");
@@ -157,6 +158,8 @@ window.onload = () => {
 playAgain.addEventListener("click", () => {
   modal.classList.add("hidden");
   bet.classList.add("hidden");
+  playerScore.classList.add("hidden");
+  computerScore.classList.add("hidden");
   body.classList.remove("opacity-25");
   playerScore.innerHTML = "";
   computerScore.innerHTML = "";
@@ -389,6 +392,7 @@ function deckShuffle() {
     deck[i] = deck[j];
     deck[j] = temp;
   }
+  console.log(deck);
 }
 
 // Random array generator with 2 values
