@@ -38,26 +38,16 @@ flyoutmenu.addEventListener("mouseleave", toggleMenuOff);
 const mobMenuBtn = document.getElementById("mobMenuBtn");
 
 function toggleMobMenuButton() {
-  //Closed icon
   const mobMenuClosed = document.getElementById("mobileMenuClosed");
-
-  function toggleMobMenuBtnClosed() {
-    mobMenuClosed.classList.remove("block");
-    mobMenuClosed.classList.add("hidden");
-  }
-
-  mobMenuBtn.addEventListener("click", toggleMobMenuBtnClosed);
-
-  // Opened icon
   const mobMenuOpen = document.getElementById("mobileMenuOpen");
 
-  function toggleMobMenuBtnOpen() {
-    mobMenuOpen.classList.add("block");
-    mobMenuOpen.classList.remove("hidden");
-  }
-
-  mobMenuBtn.addEventListener("click", toggleMobMenuBtnOpen);
+  mobMenuClosed.classList.toggle("block");
+  mobMenuClosed.classList.toggle("hidden");
+  mobMenuOpen.classList.toggle("block");
+  mobMenuOpen.classList.toggle("hidden");
 }
+
+mobMenuBtn.addEventListener("click", toggleMobMenuButton);
 
 // Toggle nav dropdown
 function navToggle() {
