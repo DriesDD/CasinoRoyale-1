@@ -84,10 +84,11 @@ const chip10 = document.getElementById("chip10");
 const chip25 = document.getElementById("chip25");
 const bet = document.getElementById("bet");
 const pay10 = document.getElementById("pay10");
+const coinwon = document.getElementById("coinwon");
 
 //Variables declaration
-const deck = [];
-let playerCard,
+let deck = [],
+  playerCard,
   computerCard,
   rand1,
   rand2,
@@ -167,6 +168,7 @@ playAgain.addEventListener("click", () => {
   computerCards.innerHTML = "";
   coins.innerHTML = "";
   bet.innerHTML = "";
+  deck = [];
   behaviourBtn(play, "on");
   behaviourBtn(stand, "on");
   behaviourBtn(hit, "on");
@@ -198,9 +200,11 @@ play.addEventListener("click", () => {
 hit.addEventListener("click", () => {
   deal(playerCard, "playerHitCard");
   if (firstSum > 21) {
-    body.classList.add("opacity-25");
-    modal.classList.remove("hidden");
-    result.innerHTML = `Player busts`;
+    document
+      .getElementById("hiddenCard")
+      .setAttribute("src", `cards/${hiddenCard}.svg`);
+    computerScore.innerHTML = standSum;
+    winner("Player bust!", "lose");
   }
 });
 
@@ -219,35 +223,54 @@ stand.addEventListener("click", () => {
     deal(computerCard, "computerHitCard");
   }
   if (standSum > 21) {
-    setTimeout(() => {
-      body.classList.add("opacity-25");
-      modal.classList.remove("hidden");
-      result.innerHTML = `Computer busts`;
-    }, 1000);
+    winner("Computer bust!", "gain");
   } else if (standSum > firstSum) {
-    setTimeout(() => {
-      body.classList.add("opacity-25");
-      modal.classList.remove("hidden");
-      result.innerHTML = `Computer wins`;
-    }, 1000);
+    winner("Computer wins!", "lose");
   } else if (standSum < firstSum) {
-    setTimeout(() => {
-      body.classList.add("opacity-25");
-      modal.classList.add("opacity-100");
-      modal.classList.remove("hidden");
-
-      result.innerHTML = `Player wins`;
-    }, 1000);
+    winner("Player wins!", "gain");
   } else if ((standSum = firstSum)) {
-    setTimeout(() => {
-      body.classList.add("opacity-25");
-      modal.classList.remove("hidden");
-
-      result.innerHTML = `It's tie`;
-    }, 1000);
+    winner("It's a tie!", "tie");
   }
   behaviourBtn(stand, "off");
 });
+// This function announces the winner
+function winner(message, decision) {
+  switch (decision) {
+    case "gain":
+      setTimeout(() => {
+        body.classList.add("opacity-25");
+        modal.classList.add("opacity-100");
+        modal.classList.remove("hidden");
+        localStorage.setItem(
+          "balance",
+          Number(localStorage.getItem("balance")) + betAmount * 2
+        );
+        bank.innerText = Number(localStorage.getItem("balance"));
+        pay10.innerText = Number(localStorage.getItem("balance"));
+        result.innerHTML = `${message}`;
+        coinwon.classList.remove("hidden");
+        coinwon.innerHTML = `Player gets +${betAmount * 2} coins`;
+      }, 1000);
+      break;
+    case "lose":
+      setTimeout(() => {
+        body.classList.add("opacity-25");
+        modal.classList.remove("hidden");
+        result.innerHTML = `${message}`;
+        coinwon.classList.remove("hidden");
+        coinwon.innerHTML = `Player lose -${betAmount} coins`;
+      }, 1000);
+      break;
+    case "tie":
+      setTimeout(() => {
+        body.classList.add("opacity-25");
+        modal.classList.remove("hidden");
+        result.innerHTML = `${message}`;
+      }, 1000);
+      break;
+  }
+}
+
 // This function is the Brain of the game, it contains pretty much all the algorithm of the game.
 // Deal 2 cards for player and computer respectively. When player clicks the play button the first 2 cards are generated in this function.
 // Clicking the hit button alway fire this funtion for each draw card.
