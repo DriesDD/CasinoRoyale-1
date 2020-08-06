@@ -1,133 +1,153 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" type="text/css" href="../styles/tailwind.css" />
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tailwindcss/ui@latest/dist/tailwind-ui.min.css">
-    <title>RPSLS</title>
-    <script src="js-one.js" defer></script>
-    <script src="../coin-system/balance.js" defer></script>
-    <script src="../index.js" defer></script>
-  </head>
 
-  <body class="bg-gray-900 flex flex-col h-screen font-navfont">
-    <nav class="bg-indigo-300 mb-4">
-  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-    <div class="flex justify-between h-16">
-      <div class="flex">
-        <div class="-ml-2 mr-2 flex items-center md:hidden">
-          <!-- Mobile menu button -->
-          <button class="inline-flex items-center justify-center p-2 rounded-md text-gray-900 hover:text-white hover:bg-gray-700 focus:outline-none focus:bg-gray-700 focus:text-white transition duration-150 ease-in-out" aria-label="Main menu" aria-expanded="false">
-            <!-- Icon when menu is closed. -->
-            <!-- Menu open: "hidden", Menu closed: "block" -->
-            <svg class="block h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
-            </svg>
-            <!-- Icon when menu is open. -->
-            <!-- Menu open: "block", Menu closed: "hidden" -->
-            <svg class="hidden h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" type="text/css" href="../styles/tailwind.css" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tailwindcss/ui@latest/dist/tailwind-ui.min.css">
+  <title>RPSLS</title>
+  <script src="js-one.js" defer></script>
+  <script src="../coin-system/balance.js" defer></script>
+  <script src="../index.js" defer></script>
+</head>
+
+<body class="bg-gray-900 flex flex-col h-screen font-navfont">
+  <nav class="bg-indigo-300 mb-4">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex justify-between h-16">
+        <div class="flex">
+          <div class="-ml-2 mr-2 flex items-center md:hidden">
+            <!-- Mobile menu button -->
+            <button
+              class="inline-flex items-center justify-center p-2 rounded-md text-gray-900 hover:text-white hover:bg-gray-700 focus:outline-none focus:bg-gray-700 focus:text-white transition duration-150 ease-in-out"
+              aria-label="Main menu" aria-expanded="false">
+              <!-- Icon when menu is closed. -->
+              <!-- Menu open: "hidden", Menu closed: "block" -->
+              <svg class="block h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+              </svg>
+              <!-- Icon when menu is open. -->
+              <!-- Menu open: "block", Menu closed: "hidden" -->
+              <svg class="hidden h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+              </svg>
+            </button>
+          </div>
+          <!-- Logo -->
+          <div class="flex-shrink-0 flex items-center">
+            <img class="block lg:hidden h-12 w-auto" src="../images/logo.png" alt="logo">
+            <img class="hidden lg:block h-12 w-auto" src="../images/logo.png" alt="logo">
+          </div>
+          <!-- Links to games -->
+          <div class="hidden md:ml-6 md:flex md:items-center">
+            <a href="../index.html"
+              class="px-3 py-2 rounded-md text-sm font-medium leading-5 text-gray-900 bg-indigo-400 focus:outline-none focus:text-white focus:bg-indigo-400 transition duration-150 ease-in-out">Homepage</a>
+            <a href="../game-one/game-one.html"
+              class="ml-4 px-3 py-2 rounded-md text-sm font-medium leading-5 text-white bg-gray-900 hover:text-white hover:bg-gray-900 focus:outline-none focus:text-gray-900 focus:bg-orange-500 transition duration-150 ease-in-out">RPSLS</a>
+            <a href="../game-two/game-two.html"
+              class="ml-4 px-3 py-2 rounded-md text-sm font-medium leading-5 text-gray-900 hover:text-white hover:bg-indigo-400 focus:outline-none focus:text-white focus:bg-gray-700 transition duration-150 ease-in-out">Twenty-One</a>
+            <a href="../game-three/game-three.html"
+              class="ml-4 px-3 py-2 rounded-md text-sm font-medium leading-5 text-gray-900 hover:text-white hover:bg-indigo-400 focus:outline-none focus:text-white focus:bg-gray-700 transition duration-150 ease-in-out">Memory</a>
+            <a href="../game-four/game-four.html"
+              class="ml-4 px-3 py-2 rounded-md text-sm font-medium leading-5 text-gray-900 hover:text-white hover:bg-indigo-400 focus:outline-none focus:text-white focus:bg-gray-700 transition duration-150 ease-in-out">Block
+              Game</a>
+          </div>
+        </div>
+
+
+
+        <!-- Profile Button-->
+        <div class="relative mt-5">
+          <!-- Item active: "text-gray-900", Item inactive: "text-gray-500" -->
+          <button id="menuFlyoutBtn" type="button"
+            class="group text-gray-500 inline-flex items-center space-x-2 text-base leading-6 font-medium hover:text-gray-900 focus:outline-none focus:text-gray-900 transition ease-in-out duration-150">
+            <span>Profile</span>
+            <!-- Item active: "text-gray-600", Item inactive: "text-gray-400" -->
+            <svg
+              class="text-gray-400 h-5 w-5 group-hover:text-gray-500 group-focus:text-gray-500 transition ease-in-out duration-150"
+              viewBox="0 0 20 20" fill="currentColor">
+              <path fill-rule="evenodd"
+                d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z"
+                clip-rule="evenodd" />
             </svg>
           </button>
-        </div>
-         <!-- Logo -->
-        <div class="flex-shrink-0 flex items-center">
-          <img class="block lg:hidden h-12 w-auto" src="../images/logo.png" alt="logo">
-          <img class="hidden lg:block h-12 w-auto" src="../images/logo.png" alt="logo">
-        </div>
-        <!-- Links to games -->
-        <div class="hidden md:ml-6 md:flex md:items-center">
-          <a href="../index.html" class="px-3 py-2 rounded-md text-sm font-medium leading-5 text-gray-900 bg-indigo-400 focus:outline-none focus:text-white focus:bg-indigo-400 transition duration-150 ease-in-out">Homepage</a>
-          <a href="../game-one/game-one.html" class="ml-4 px-3 py-2 rounded-md text-sm font-medium leading-5 text-white bg-gray-900 hover:text-white hover:bg-gray-900 focus:outline-none focus:text-gray-900 focus:bg-orange-500 transition duration-150 ease-in-out">RPSLS</a>
-          <a href="../game-two/game-two.html" class="ml-4 px-3 py-2 rounded-md text-sm font-medium leading-5 text-gray-900 hover:text-white hover:bg-indigo-400 focus:outline-none focus:text-white focus:bg-gray-700 transition duration-150 ease-in-out">Twenty-One</a>
-          <a href="../game-three/game-three.html" class="ml-4 px-3 py-2 rounded-md text-sm font-medium leading-5 text-gray-900 hover:text-white hover:bg-indigo-400 focus:outline-none focus:text-white focus:bg-gray-700 transition duration-150 ease-in-out">Memory</a>
-              <a href="../game-four/game-four.html" class="ml-4 px-3 py-2 rounded-md text-sm font-medium leading-5 text-gray-900 hover:text-white hover:bg-indigo-400 focus:outline-none focus:text-white focus:bg-gray-700 transition duration-150 ease-in-out">Block Game</a>
-        </div>
-      </div>
 
-  
+          <div id="flyoutmenu"
+            class="opacity-0 absolute right-1/6 transform -translate-x1/2 transform -translate-y-1 mt-3 px-2 w-screen max-w-xs sm:px-0">
+            <div class="rounded-lg shadow-lg">
+              <div class="rounded-lg shadow-xs overflow-hidden">
+                <div class="z-20 relative grid gap-3 bg-white px-5 py-6 sm:gap-8 sm:p-8">
+                  <a class="-m-2 p-3 block space-y-1 rounded-md hover:bg-gray-50 transition ease-in-out duration-150">
+                    <p class="text-base leading-6 font-medium text-gray-900">
+                      <span id="username">Username:</span>
+                    </p>
+                  </a>
+                  <!-- this span with id balance here is the element to update when the number of coins changes -->
+                  <span id="balance" class="text-base leading-6 font-medium text-gray-900 rounded-md shadow-sm">
+                    Current balance:
+                  </span>
+                  <!-- Buttons for coins -->
+                  <container class="grid grid-cols-3 gap-4">
+                    <button id="pay10" type="button"
+                      class="relative col-span-1 inline-flex items-center px-4 py-2 border border-transparent text-sm leading-5 font-medium rounded-md text-grey-900 bg-indigo-300 hover:bg-indigo-100 focus:outline-none focus:shadow-outline-indigo focus:border-indigo-600 active:bg-indigo-600 transition duration-150 ease-in-out">
+                      <svg class="-ml-1 mr-2 h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+                        <path fill-rule="evenodd"
+                          d="M10 3a1 1 0 011 1v5h5a1 1 0 110 2h-5v5a1 1 0 11-2 0v-5H4a1 1 0 110-2h5V4a1 1 0 011-1z"
+                          clip-rule="evenodd" />
+                      </svg>
+                      <span> 10 </span>
+                    </button>
 
-           <!-- Profile Button-->
-      <div class="relative mt-5">
-  <!-- Item active: "text-gray-900", Item inactive: "text-gray-500" -->
-  <button id="menuFlyoutBtn" type="button" class="group text-gray-500 inline-flex items-center space-x-2 text-base leading-6 font-medium hover:text-gray-900 focus:outline-none focus:text-gray-900 transition ease-in-out duration-150">
-    <span>Profile</span>
-    <!-- Item active: "text-gray-600", Item inactive: "text-gray-400" -->
-    <svg class="text-gray-400 h-5 w-5 group-hover:text-gray-500 group-focus:text-gray-500 transition ease-in-out duration-150" viewBox="0 0 20 20" fill="currentColor">
-      <path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd" />
-    </svg>
-  </button>
+                    <button id="pay25" type="button"
+                      class="relative col-span-1 inline-flex items-center px-4 py-2 border border-transparent text-sm leading-5 font-medium rounded-md text-grey-900 bg-indigo-500 hover:bg-indigo-300 focus:outline-none focus:shadow-outline-indigo focus:border-indigo-600 active:bg-indigo-600 transition duration-150 ease-in-out">
+                      <svg class="-ml-1 mr-2 h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+                        <path fill-rule="evenodd"
+                          d="M10 3a1 1 0 011 1v5h5a1 1 0 110 2h-5v5a1 1 0 11-2 0v-5H4a1 1 0 110-2h5V4a1 1 0 011-1z"
+                          clip-rule="evenodd" />
+                      </svg>
+                      <span> 25 </span>
+                    </button>
 
-  <div id="flyoutmenu"
-    class="opacity-0 absolute right-1/6 transform -translate-x1/2 transform -translate-y-1 mt-3 px-2 w-screen max-w-xs sm:px-0">
-     <div class="rounded-lg shadow-lg">
-      <div class="rounded-lg shadow-xs overflow-hidden">
-        <div class="z-20 relative grid gap-6 bg-white px-5 py-6 sm:gap-8 sm:p-8">
-         <a href="#" class="-m-3 p-3 block space-y-1 rounded-md hover:bg-gray-50 transition ease-in-out duration-150">
-            <p class="text-base leading-6 font-medium text-gray-900">
-              <span id="username">Username</span>
-            </p>
-          </a>
-          <a href="#" class="-m-3 p-3 block space-y-1 rounded-md hover:bg-gray-50 transition ease-in-out duration-150">
-            <p class="text-base leading-6 font-medium text-gray-900">
-              Current Balance
-            </p>
-             <!-- Button for balance -->
-      <div class="flex items-center">
-        <div class="flex-shrink-0">
-          <span class="rounded-md shadow-sm">
-            <button id ="pay10" type="button" class="relative inline-flex items-center px-4 py-2 border border-transparent text-sm leading-5 font-medium rounded-md text-grey-900 bg-indigo-400 hover:bg-orange-500 focus:outline-none focus:shadow-outline-indigo focus:border-indigo-600 active:bg-indigo-600 transition duration-150 ease-in-out">
-              <svg class="-ml-1 mr-2 h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
-                <path fill-rule="evenodd" d="M10 3a1 1 0 011 1v5h5a1 1 0 110 2h-5v5a1 1 0 11-2 0v-5H4a1 1 0 110-2h5V4a1 1 0 011-1z" clip-rule="evenodd" />
-              </svg>
-              <span>Current balance: 0</span>
-            </button>
-          </span>
+                    <button id="pay100" type="button"
+                      class="relative col-span-1 inline-flex items-center px-4 py-2 border border-transparent text-sm leading-5 font-medium rounded-md text-grey-900 bg-orange-500 hover:bg-orange-300 focus:outline-none focus:shadow-outline-indigo focus:border-indigo-600 active:bg-indigo-600 transition duration-150 ease-in-out">
+                      <svg class="-ml-1 mr-2 h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+                        <path fill-rule="evenodd"
+                          d="M10 3a1 1 0 011 1v5h5a1 1 0 110 2h-5v5a1 1 0 11-2 0v-5H4a1 1 0 110-2h5V4a1 1 0 011-1z"
+                          clip-rule="evenodd" />
+                      </svg>
+                      <span> 100 </span>
+                    </button>
+                  </container>
+
+                  <a class="-m-3 p-3 block space-y-1 rounded-md hover:bg-gray-50 transition ease-in-out duration-150">
+                    <p class="text-base leading-6 font-medium text-gray-900">
+                      Badges
+                    </p>
+                    <container class="grid grid-cols-4 gap-2">
+                      <div id="badge1" class="col-span-1"><img src="../images/badge1gray.svg"></img></div>
+                      <div id="badge2" class="col-span-1"><img src="../images/badge2gray.svg"></img></div>
+                      <div id="badge3" class="col-span-1"><img src="../images/badge3gray.svg"></img></div>
+                      <div id="badge4" class="col-span-1"><img src="../images/badge4gray.svg"></img></div>
+                    </container>
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
-          </a>
-          <a href="#" class="-m-3 p-3 block space-y-1 rounded-md hover:bg-gray-50 transition ease-in-out duration-150">
-            <p class="text-base leading-6 font-medium text-gray-900">
-              Badges
-            </p>
-            <p class="text-sm leading-5 text-gray-500">
-              You have aquired the <span>id</span> badge.
-            </p>
-          </a>
-          <a href="#" class="-m-3 p-3 block space-y-1 rounded-md hover:bg-gray-50 transition ease-in-out duration-150">
-            <p class="text-base leading-6 font-medium text-gray-900">
-             Button
-            </p>
-        <!-- Button for coins -->
-      <div class="flex items-center">
-        <div class="flex-shrink-0">
-          <span class="rounded-md shadow-sm">
-            <button id ="pay10" type="button" class="relative inline-flex items-center px-4 py-2 border border-transparent text-sm leading-5 font-medium rounded-md text-grey-900 bg-orange-500 focus:outline-none focus:shadow-outline-indigo focus:border-indigo-600 active:bg-indigo-600 transition duration-150 ease-in-out">
-              <svg class="-ml-1 mr-2 h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
-                <path fill-rule="evenodd" d="M10 3a1 1 0 011 1v5h5a1 1 0 110 2h-5v5a1 1 0 11-2 0v-5H4a1 1 0 110-2h5V4a1 1 0 011-1z" clip-rule="evenodd" />
-              </svg>
-              <span>Buy 10 Coins</span>
-            </button>
-          </span>
-        </div>
-      </div>
-          </a>
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
-<!-- / -->
+      <!-- / -->
 
 
 
     </div>
-  </div>
-</nav>
- 
-  <h1 class="font-titlefont text-6xl tracking-wider text-white justify text-center font-semibold my-4 text-5xl">Rock, paper, scissors, lizard, spock...</h1>
-     
+    </div>
+  </nav>
+
+  <h1 class="font-titlefont text-6xl tracking-wider text-white justify text-center font-semibold my-4 text-5xl">Rock,
+    paper, scissors, lizard, spock...</h1>
+
   <div id="game"
     class="mx-auto xl:w-2/3 lg:w-2/3 md:w-2/3 sm:w-full rounded-lg shadow-lg bg-white flex-grow p-10 my-3 col-span-1 flex flex-col text-center bg-white rounded-lg shadow">
 
@@ -191,36 +211,29 @@
 
   </div>
 
-  
-<footer>
-        <div class="bg-white mt-4 shadow-inner">
-          <div
-            class="max-w-screen-xl mx-auto py-5 px-4 sm:px-6 md:flex md:items-center md:justify-between lg:px-8"
-          >
-            <div class="flex justify-center md:order-2">
-              <a
-                href="https://github.com/Sourcerors/CasinoRoyale"
-                class="ml-6 text-gray-400 hover:text-gray-500"
-              >
-                <span class="sr-only">GitHub</span>
-                <svg class="h-6 w-6" fill="currentColor" viewBox="0 0 24 24">
-                  <path
-                    fill-rule="evenodd"
-                    d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z"
-                    clip-rule="evenodd"
-                  />
-                </svg>
-              </a>
-            </div>
-            <div class="mt-8 md:mt-0 md:order-1">
-              <p class="text-center text-base leading-6 text-gray-400">
-                <a class="mx-10 mr-64" href="../index.html">&larr; Go Back</a>
-                &copy; 2020 The Sourcerers, Inc. All rights reserved.
-              </p>
-            </div>
-          </div>
+
+  <footer>
+    <div class="bg-white mt-4 shadow-inner">
+      <div class="max-w-screen-xl mx-auto py-5 px-4 sm:px-6 md:flex md:items-center md:justify-between lg:px-8">
+        <div class="flex justify-center md:order-2">
+          <a href="https://github.com/Sourcerors/CasinoRoyale" class="ml-6 text-gray-400 hover:text-gray-500">
+            <span class="sr-only">GitHub</span>
+            <svg class="h-6 w-6" fill="currentColor" viewBox="0 0 24 24">
+              <path fill-rule="evenodd"
+                d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z"
+                clip-rule="evenodd" />
+            </svg>
+          </a>
         </div>
-      </footer>
+        <div class="mt-8 md:mt-0 md:order-1">
+          <p class="text-center text-base leading-6 text-gray-400">
+            <a class="mx-10 mr-64" href="../index.html">&larr; Go Back</a>
+            &copy; 2020 The Sourcerers, Inc. All rights reserved.
+          </p>
+        </div>
+      </div>
+    </div>
+  </footer>
 
 </body>
 
