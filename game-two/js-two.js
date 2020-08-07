@@ -1,29 +1,8 @@
-/*
---> Game: Twenty-One
+//-------------------//
 
---> The Mission
-    Make the card game Twenty-One.
-    You do not have to program any of the more difficult features of blackjack, like a dealer, the option to split...
+//--> Game: Twenty-One
 
---> Must-have features
-
-    - The user plays against the computer
-    - Ask the user if he/she wants to draw a card
-    - If yes, add a card to his/her stack
-    - Tell him/her if he/she bust or not
-    - Make the Computer also draw a card and decide to quit or keep drawing.
-    - Try not to make the PC cheat, make some kind of AI to play "intelligently"
-    - Alternatively, use the default casino rule: the dealer keeps drawing until he reaches 15
-    - When both players stop or bust show the result and assign the victory to the user or to the computer
-    - Then ask if the player wants to play another round.
-    - Update the user with what happens all the time with prompts and alerts
-
---> Nice-to-have features
-
-    - Instead of using prompts, use the images of cards. (very hard!)
-    - Make a gamble mechanic: every user starts with X chips, and before each round we ask what he/she wants to gamble.
-      If both the computer and the player bust the wins go to "the house".
-*/
+//-------------------//
 
 //Cards suits, rank and weight arrays. Deck is generated using these arrays.
 const values = [
@@ -86,8 +65,8 @@ const bet = document.getElementById("bet");
 const balance = document.getElementById("balance");
 //const pay10 = document.getElementById("pay10");
 const coinwon = document.getElementById("coinwon");
-const badgeDispaly = document.getElementById("badgeDispaly");
-const badge1 = document.getElementById("badge1");
+const badgeDisplay = document.getElementById("badgeDisplay");
+//const badge1 = document.getElementById("badge1");
 
 //Variables declaration
 let deck = [],
@@ -259,12 +238,14 @@ function winner(message, decision) {
         result.innerHTML = `${message}`;
         coinwon.classList.remove("hidden");
         coinwon.innerHTML = `Player gets +${betAmount * 2} coins`;
-        playerWin += 1;
+        playerWin = 5;
         if (playerWin == 5) {
-          badgeDispaly.classList.remove("hidden");
-          badgeDisplay.innerHTML += `<img class="w-10 mr-2" src="images/badge1gray.svg"
+          badgeDisplay.classList.remove("hidden");
+          badgeDisplay.innerHTML += `<img class="w-10 mr-2" src="../images/badge1.svg"
           />`;
-          badge1.innerHTML += `<img src="../images/badge1gray.svg"></img>`;
+          localStorage.setItem("game1unlock", 1);
+          badgeupdate();
+          //badge1.innerHTML += `<img src="../images/badge1gray.svg"></img>`;
         }
       }, 1000);
 
