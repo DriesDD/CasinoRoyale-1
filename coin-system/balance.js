@@ -174,7 +174,7 @@ $("pay100Mob").onclick = () => {
 badge1;
 
 // Badges
-function badgeupdate() {
+function badgeupdateMob() {
   if (localStorage.getItem("game1unlock") == null) {
     localStorage.setItem("game1unlock", 0);
   } else if (Number(localStorage.getItem("game1unlock")) > 0) {
@@ -196,7 +196,7 @@ function badgeupdate() {
     $("badge4Mob").setAttribute("src", fileprefix + "images/badge4.svg");
   }
 }
-badgeupdate();
+badgeupdateMob();
 
 badge1;
 
