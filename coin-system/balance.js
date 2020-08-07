@@ -1,3 +1,9 @@
+//this is to know which page you're on
+const path = window.location.pathname.split('/');
+const page = path[path.length-1];
+const fileprefix = "../";
+if (page == "index.html") {const fileprefix = ""};
+
 //this function is used to shorten the whole getElementById method
 function $(x) {
   return document.getElementById(x);
@@ -72,11 +78,11 @@ menu.addEventListener("mouseenter", toggleMenu);
 flyoutmenu.addEventListener("mouseleave", toggleMenuOff);
 
 //Mobile Menu SVG
-const mobMenuBtn = document.getElementById("mobMenuBtn");
+const mobMenuBtn = $("mobMenuBtn");
 
 function toggleMobMenuButton() {
-  const mobMenuClosed = document.getElementById("mobileMenuClosed");
-  const mobMenuOpen = document.getElementById("mobileMenuOpen");
+  const mobMenuClosed = $("mobileMenuClosed");
+  const mobMenuOpen = $("mobileMenuOpen");
 
   mobMenuClosed.classList.toggle("block");
   mobMenuClosed.classList.toggle("hidden");
@@ -88,8 +94,8 @@ mobMenuBtn.addEventListener("click", toggleMobMenuButton);
 
 // Toggle nav dropdown
 function navToggle() {
-  const btn = document.getElementById("mobMenuBtn");
-  const nav = document.getElementById("mobMenu");
+  const btn = $("mobMenuBtn");
+  const nav = $("mobMenu");
 
   btn.classList.toggle("open");
   nav.classList.toggle("hidden");
@@ -100,28 +106,32 @@ mobMenuBtn.addEventListener("click", navToggle);
 // Username
 
 function displayUsername() {
-  let username = document.getElementById("usernameInput").value;
-  let usernameShow = document.getElementById("username");
+  let username = $("usernameInput").value;
+  let usernameShow = $("username");
   localStorage.setItem("myUsername", `${username}`);
   usernameShow.textContent = `Username: ${localStorage.getItem("myUsername")}`;
 }
 
-document.getElementById(
+$(
   "username"
 ).textContent = `Username: ${localStorage.getItem("myUsername")}`;
 
-if(typeof(document.getElementById("usernameBtn")) != 'undefined' && (document.getElementById("usernameBtn")) != null)
+if(typeof($("usernameBtn")) != 'undefined' && ($("usernameBtn")) != null)
 {document
   .getElementById("usernameBtn")
   .addEventListener("click", displayUsername)}
 badge1
 
 // Badges
+function badgeupdate()
+{
 if (localStorage.getItem("game1unlock") == null) {localStorage.setItem("game1unlock",0)}
-else if (Number(localStorage.getItem("game1unlock")) > 0) {document.getElementById("badge1").setAttribute("src","../images/badge1.svg") };
+else if (Number(localStorage.getItem("game1unlock")) > 0) {$("badge1").setAttribute("src",fileprefix + "images/badge1.svg") };
 if (localStorage.getItem("game2unlock") == null) {localStorage.setItem("game2unlock",0)}
-else if (Number(localStorage.getItem("game2unlock")) > 0) {document.getElementById("badge2").setAttribute("src","../images/badge2.svg") };
+else if (Number(localStorage.getItem("game2unlock")) > 0) {$("badge2").setAttribute("src",fileprefix + "images/badge2.svg") };
 if (localStorage.getItem("game3unlock") == null) {localStorage.setItem("game3unlock",0)}
-else if (Number(localStorage.getItem("game3unlock")) > 0) {document.getElementById("badge3").setAttribute("src","../images/badge3.svg") };
+else if (Number(localStorage.getItem("game3unlock")) > 0) {$("badge3").setAttribute("src",fileprefix + "images/badge3.svg") };
 if (localStorage.getItem("game4unlock") == null) {localStorage.setItem("game4unlock",0)}
-else if (Number(localStorage.getItem("game4unlock")) > 0) {document.getElementById("badge4").setAttribute("src","../images/badge4.svg") }
+else if (Number(localStorage.getItem("game4unlock")) > 0) {$("badge4").setAttribute("src",fileprefix + "images/badge4.svg") }
+}
+badgeupdate()
