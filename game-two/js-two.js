@@ -119,7 +119,7 @@ function betUpdate(coin, minCoin, coinSVG) {
       Number(localStorage.getItem("balance")) - minCoin
     );
     bank.innerText = Number(localStorage.getItem("balance"));
-    coins.innerHTML += `<img class="w-10 mr-2" src="coins/${coinSVG}.svg"
+    coins.innerHTML += `<img class="w-5 sm:w-10 md:w-10 lg:w-10 xl:w-10 mr-2" src="coins/${coinSVG}.svg"
     />`;
   }
 }
