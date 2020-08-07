@@ -136,20 +136,20 @@
 <!--
     Mobile menu, toggle classes based on menu state.
   -->
-  <div id="mobMenu" class="w-screen h-screen hidden md:hidden z-10">
-    <div class="pt-2 pb-3 mt-14 my-8 bg-white">
-      <a href="../index.html" class="mt-1 block bg-white pl-3 pr-4 py-2 border-l-4 border-transparent text-base font-medium text-gray-600 hover:text-gray-800 hover:bg-gray-50 hover:border-gray-300 focus:outline-none focus:text-gray-800 focus:bg-gray-50 focus:border-gray-300 transition duration-150 ease-in-out sm:pl-5 sm:pr-6">Homepage</a>
-      <a href="../game-one/game-one.html" class="mt-1 block bg-white pl-3 pr-4 py-2 border-l-4 border-transparent text-base font-medium text-gray-600 hover:text-gray-800 hover:bg-gray-50 hover:border-gray-300 focus:outline-none focus:text-gray-800 focus:bg-gray-50 focus:border-gray-300 transition duration-150 ease-in-out sm:pl-5 sm:pr-6">RPSLS</a>
-      <a href="../game-two/game-two.html" class="block bg-white pl-3 pr-4 py-2 border-l-4 border-indigo-500 text-base font-medium text-indigo-700 bg-indigo-50 focus:outline-none focus:text-indigo-800 focus:bg-indigo-100 focus:border-indigo-700 transition duration-150 ease-in-out sm:pl-5 sm:pr-6">Twenty-Two</a>
-      <a href="../game-three/game-three.html" class="mt-1 block bg-white pl-3 pr-4 py-2 border-l-4 border-transparent text-base font-medium text-gray-600 hover:text-gray-800 hover:bg-gray-50 hover:border-gray-300 focus:outline-none focus:text-gray-800 focus:bg-gray-50 focus:border-gray-300 transition duration-150 ease-in-out sm:pl-5 sm:pr-6">Memory</a>
-      <a href="../game-four/game-four.html" class="mt-1 block bg-white pl-3 pr-4 py-2 border-l-4 border-transparent text-base font-medium text-gray-600 hover:text-gray-800 hover:bg-gray-50 hover:border-gray-300 focus:outline-none focus:text-gray-800 focus:bg-gray-50 focus:border-gray-300 transition duration-150 ease-in-out sm:pl-5 sm:pr-6">Block Game</a>
+  <div id="mobMenu" class="relative w-full h-full hidden md:hidden z-10 mt-2">
+    <div class="pt-2 pb-3 mt-14 my-10 bg-white">
+      <a href="../index.html" class="my-2 mt-1 block bg-white pl-3 pr-4 py-4 border-l-4 border-transparent text-base font-medium text-gray-600 hover:text-gray-800 hover:bg-gray-50 hover:border-gray-300 focus:outline-none focus:text-gray-800 focus:bg-gray-50 focus:border-gray-300 transition duration-150 ease-in-out sm:pl-5 sm:pr-6">Homepage</a>
+      <a href="../game-one/game-one.html" class="my-2 mt-1 block bg-white pl-3 pr-4 py-4 border-l-4 border-transparent text-base font-medium text-gray-600 hover:text-gray-800 hover:bg-gray-50 hover:border-gray-300 focus:outline-none focus:text-gray-800 focus:bg-gray-50 focus:border-gray-300 transition duration-150 ease-in-out sm:pl-5 sm:pr-6">RPSLS</a>
+      <a href="../game-two/game-two.html" class="my-2 block bg-white pl-3 pr-4 py-4 border-l-4 border-indigo-500 text-base font-medium text-indigo-700 bg-indigo-50 focus:outline-none focus:text-indigo-800 focus:bg-indigo-100 focus:border-indigo-700 transition duration-150 ease-in-out sm:pl-5 sm:pr-6">Twenty-Two</a>
+      <a href="../game-three/game-three.html" class="my-2 mt-1 block bg-white pl-3 pr-4 py-4 border-l-4 border-transparent text-base font-medium text-gray-600 hover:text-gray-800 hover:bg-gray-50 hover:border-gray-300 focus:outline-none focus:text-gray-800 focus:bg-gray-50 focus:border-gray-300 transition duration-150 ease-in-out sm:pl-5 sm:pr-6">Memory</a>
+      <a href="../game-four/game-four.html" class="my-2 mt-1 block bg-white pl-3 pr-4 py-4 border-l-4 border-transparent text-base font-medium text-gray-600 hover:text-gray-800 hover:bg-gray-50 hover:border-gray-300 focus:outline-none focus:text-gray-800 focus:bg-gray-50 focus:border-gray-300 transition duration-150 ease-in-out sm:pl-5 sm:pr-6">Block Game</a>
     <div class="pt-4 pb-3 border-t border-gray-200 bg-white rounded-b-lg">
       <div class="flex items-center px-4 sm:px-6">
         <div class="flex-shrink-0">
           <img class="h-10 w-10 rounded-full" src="../images/logo.png" alt="badge">
         </div>
         <div class="ml-3">
-          <div class="text-base font-medium leading-6 text-gray-800"><span id="username">Username:</span></div>
+          <div class="text-base font-medium leading-6 text-gray-800"><span id="username"> <strong> Username:</strong></span></div>
           <div class="text-sm font-medium leading-5 text-gray-500"><span id="balance" class="text-base leading-6 font-medium text-gray-900 rounded-md shadow-sm">
                     Current balance:
                   </span></div>
@@ -159,9 +159,9 @@
 
 
    <!-- Buttons for coins mobile menu -->
-                  <container class="flex flex-wrap m-4 w-28">
+                  <container class="flex flex-wrap flex-col m-4 w-full h-full pb-10">
                     <button id="pay10" type="button"
-                      class="my-2 inline-flex w-full items-center px-4 py-2 border border-transparent text-sm leading-5 font-medium rounded-md text-grey-900 bg-indigo-300 hover:bg-indigo-100 focus:outline-none focus:shadow-outline-indigo focus:border-indigo-600 active:bg-indigo-600 transition duration-150 ease-in-out">
+                      class="ml-8 w-32 h-12 my-4 inline-flex px-4 py-2 border border-transparent text-sm leading-5 font-medium rounded-md text-grey-900 bg-indigo-300 hover:bg-indigo-100 focus:outline-none focus:shadow-outline-indigo focus:border-indigo-600 active:bg-indigo-600 transition duration-150 ease-in-out">
                       <svg class="-ml-1 mr-2 h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
                         <path fill-rule="evenodd"
                           d="M10 3a1 1 0 011 1v5h5a1 1 0 110 2h-5v5a1 1 0 11-2 0v-5H4a1 1 0 110-2h5V4a1 1 0 011-1z"
@@ -171,7 +171,7 @@
                     </button>
 
                     <button id="pay25" type="button"
-                      class="my-2 inline-flex w-full items-center px-4 py-2 border border-transparent text-sm leading-5 font-medium rounded-md text-grey-900 bg-indigo-500 hover:bg-indigo-300 focus:outline-none focus:shadow-outline-indigo focus:border-indigo-600 active:bg-indigo-600 transition duration-150 ease-in-out">
+                      class="ml-8 w-32 h-12 my-4 inline-flex items-center px-4 py-2 border border-transparent text-sm leading-5 font-medium rounded-md text-grey-900 bg-indigo-500 hover:bg-indigo-300 focus:outline-none focus:shadow-outline-indigo focus:border-indigo-600 active:bg-indigo-600 transition duration-150 ease-in-out">
                       <svg class="-ml-1 mr-2 h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
                         <path fill-rule="evenodd"
                           d="M10 3a1 1 0 011 1v5h5a1 1 0 110 2h-5v5a1 1 0 11-2 0v-5H4a1 1 0 110-2h5V4a1 1 0 011-1z"
@@ -181,7 +181,7 @@
                     </button>
 
                     <button id="pay100" type="button"
-                      class="my-2 inline-flex w-full items-center px-4 py-2 border border-transparent text-sm leading-5 font-medium rounded-md text-grey-900 bg-orange-500 hover:bg-orange-300 focus:outline-none focus:shadow-outline-indigo focus:border-indigo-600 active:bg-indigo-600 transition duration-150 ease-in-out">
+                      class="ml-8 w-32 h-12 my-4 inline-flex items-center px-4 py-2 border border-transparent text-sm leading-5 font-medium rounded-md text-grey-900 bg-orange-500 hover:bg-orange-300 focus:outline-none focus:shadow-outline-indigo focus:border-indigo-600 active:bg-indigo-600 transition duration-150 ease-in-out">
                       <svg class="-ml-1 mr-2 h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
                         <path fill-rule="evenodd"
                           d="M10 3a1 1 0 011 1v5h5a1 1 0 110 2h-5v5a1 1 0 11-2 0v-5H4a1 1 0 110-2h5V4a1 1 0 011-1z"
@@ -322,7 +322,7 @@
       <!-- Button END -->
       <!-- footer  start -->
       <footer>
-        <div class="bg-white mt-4 shadow-inner">
+        <div class="bg-white mt-4 shadow-inner z-30">
           <div
             class="max-w-screen-xl mx-auto py-5 px-4 sm:px-6 md:flex md:items-center md:justify-between lg:px-40"
           >
