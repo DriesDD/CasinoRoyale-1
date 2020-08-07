@@ -214,7 +214,7 @@
     
       <main class="mx-8 flex-grow">
         <h1
-          class="font-titlefont tracking-wider text-white justify text-center font-semibold my-4 text-5xl"
+          class="font-titlefont tracking-wider text-white justify text-center font-semibold my-4 text-3xl md:text-5xl"
         >
           Twenty-One
         </h1>
@@ -225,28 +225,28 @@
             <div
               class="w-full md:w-1/2 sm:w-full rounded-lg shadow-lg bg-green-800 my-3"
             >
-              <div class="grid grid-rows-2 sm:w-auto">
-                <div class="container mx-2 bg-green-800 w-24 h-48">
+              <div class="grid grid-rows-2 sm:w-auto h-auto">
+                <div class="container mx-2 bg-green-800 sm:w-24 sm:h-48 w-16 h-32">
                   <span class="font-semibold">Computer</span
                   ><span
                     id="computerScore"
                     class="text-white bg-orange-500 px-2 text-sm rounded leading-loose mx-2 font-semibold hidden"
                   ></span>
-                  <div id="computerCards" class="flex flex-row"></div>
+                  <div id="computerCards" class="flex"></div>
                 </div>
-                <div class="container mx-2 bg-green-800 w-24 h-48">
+                <div class="container mx-2 bg-green-800 sm:w-24 sm:h-48 w-16 h-32">
                   <span class="font-semibold">Player</span
                   ><span
                     id="playerScore"
                     class="text-white bg-orange-500 px-2 text-sm rounded leading-loose mx-2 font-semibold hidden"
                   ></span>
-                  <div id="playerCards" class="flex flex-row"></div>
+                  <div id="playerCards" class="flex"></div>
                 </div>
                 <!-- car END -->
 
                 <!-- Bank and Player coin -->
                 <div
-                  class="container grid grid-cols-2 w-auto mx-2 mb-1 bg-green-800 h-20"
+                  class="container grid grid-rows-2 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-2 xl:grid-cols-2 w-auto mx-2 mb-1 bg-green-800 h-30 sm:h-20 md:h-20 lg:h-20 xl:h-20"
                 >
                   <div class="flex flex-col">
                     <div class="mb-1">
@@ -258,28 +258,28 @@
                         class="text-white bg-orange-500 px-2 text-sm rounded leading-loose mx-1 font-semibold"
                       ></span>
                     </div>
-                    <div class="flex justify-cente">
+                    <div class="flex">
                       <img
                         id="chip1"
-                        class="w-10 mr-2 cursor-pointer"
+                        class="w-5 sm:w-10 md:w-10 lg:w-10 xl:w-10 mr-2 cursor-pointer"
                         src="coins/coin-1.svg"
                         alt="Chip One"
                       />
                       <img
                         id="chip5"
-                        class="w-10 mr-2 cursor-pointer"
+                        class="w-5 sm:w-10 md:w-10 lg:w-10 xl:w-10 mr-2 cursor-pointer"
                         src="coins/coin-5.svg"
                         alt="Chip One"
                       />
                       <img
                         id="chip10"
-                        class="w-10 mr-2 cursor-pointer"
+                        class="w-5 sm:w-10 md:w-10 lg:w-10 xl:w-10 mr-2 cursor-pointer"
                         src="coins/coin-10.svg"
                         alt="Chip One"
                       />
                       <img
                         id="chip25"
-                        class="w-10 mr-2 cursor-pointer"
+                        class="w-5 sm:w-10 md:w-10 lg:w-10 xl:w-10 mr-2 cursor-pointer"
                         src="coins/coin-25.svg"
                         alt="Chip One"
                       />
@@ -388,7 +388,7 @@
             id="coinwon"
             class="font-semibold text-xl py-2 px-12 font-titlefont hidden"
           ></h2>
-          <span id="badgeDispaly" class="hidden"></span>
+          <span id="badgeDisplay" class="hidden flex justify-center"></span>
         </div>
         <div class="flex justify-center">
           <button
