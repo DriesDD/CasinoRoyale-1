@@ -82,6 +82,7 @@ let deck = [],
   sumPlayer = 0,
   betAmount = 0,
   count = 0,
+  numOfBadge = 0,
   playerWin = 0,
   sum;
 // Coin bank and bet updater function
@@ -240,12 +241,21 @@ function winner(message, decision) {
         coinwon.innerHTML = `Player gets +${betAmount * 2} coins`;
         playerWin = 5;
         if (playerWin == 5) {
-          badgeDisplay.classList.remove("hidden");
-          badgeDisplay.innerHTML += `<img class="w-10 mr-2" src="../images/badge1.svg"
-          />`;
-          localStorage.setItem("game1unlock", 1);
-          badgeupdate();
-          //badge1.innerHTML += `<img src="../images/badge1gray.svg"></img>`;
+          numOfBadge++;
+          switch (numOfBadge) {
+            case numOfBadge == 1:
+              badgeEarn("badge1", 1);
+              break;
+            case numOfBadge == 2:
+              badgeEarn("badge2", 2);
+              break;
+            case numOfBadge == 3:
+              badgeEarn("badge3", 3);
+              break;
+            case numOfBadge == 4:
+              badgeEarn("badge4", 4);
+              break;
+          }
         }
       }, 1000);
 
@@ -268,6 +278,14 @@ function winner(message, decision) {
       }, 1000);
       break;
   }
+}
+// Display badge
+function badgeEarn(badgeImg, badgeNum) {
+  badgeDisplay.classList.remove("hidden");
+  badgeDisplay.innerHTML = `<img class="w-10 mr-2" src="../images/${badgeImg}.svg"
+    />`;
+  localStorage.setItem(`game${badgeNum}unlock`, 1);
+  badgeupdate();
 }
 
 // This function is the Brain of the game, it contains pretty much all the algorithm of the game.
