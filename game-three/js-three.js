@@ -1,3 +1,21 @@
+/*
+--> Game: Memory
+
+--> The Mission
+We want to recreate the game Memory. It is a game where you have a bunch of cards. Each card contains an image. Of each image there are exactly two cards. The cards are placed in a random order. You get to turn them around two at a time. Once you turned around two cards, they either turn back if they did not match, or they stay visible if they did match.
+
+--> Must-have features
+Clicking cards turns them around (max 2 at a time!)
+Randomly position the cards in a grid
+Reset button
+
+--> Nice-to-have features
+Make it playable by keyboard
+Let a user define custom image urls
+Make it pleasing to look at
+Multiplayer (local)
+*/
+
 //cards array holds all cards
 let card = document.getElementsByClassName("card");
 let cards = [...card]; //spliting up the list card in it seperate items
@@ -8,11 +26,6 @@ function showBalance() {
   document.getElementById("balance").innerHTML = "Current balance: " + balance;
 }
 console.log(document.getElementById("balance").innerHTML);
-
-document.getElementById("pay10").addEventListener("click", () => {
-  localStorage.setItem("balance", localStorage.getItem("balance") * 1 + 10);
-  showBalance();
-});
 
 //change if: only when card is clicked
 // loop to add event listeners to each card
@@ -92,14 +105,14 @@ function startGame() {
 //Since we know the startGame function shuffles the card in order to shuffle the cards on load, we add this to our JS:
 
 document.getElementById("pay").onclick = () => {
-  if (localStorage.getItem("balance") >= 50 && paid == 0) {
+  if (localStorage.getItem("balance") >= 20 && paid == 0) {
     paid += 1; // 1 = true
-    localStorage.setItem("balance", localStorage.getItem("balance") - 50);
+    localStorage.setItem("balance", localStorage.getItem("balance") - 20);
     showBalance();
   } else if (paid != 0) {
     //if you have paid already
     alert("You have paid already, let the game begin!");
-  } else if (balance < 50) {
+  } else if (balance < 20) {
     alert("You need more balance to join the party!");
   }
 };
@@ -218,12 +231,11 @@ function congrats() {
     closeModal();
     if (moves <= 10 && second <= 30 && minute < 1) {
       document.getElementById("content-3").innerHTML =
-        "Well done! You earned 100 coins!";
-      localStorage.setItem(
-        "balance",
-        localStorage.getItem("balance") * 1 + 100
-      );
+        "Well done! You earned 50 coins!";
+      localStorage.setItem("balance", localStorage.getItem("balance") * 1 + 50);
       showBalance();
+      localStorage.setItem("game3unlock", 1);
+      badgeupdate();
     }
     resetPay();
   }
@@ -260,10 +272,14 @@ function checkPaid() {
 }
 
 document.getElementById("refresh").onclick = () => {
-  alert(
-    "You are starting a new game. 50 coins will be removed from your balance"
+  let answer = confirm(
+    "if you click OK then you start a new game.20 coins will be paid. If you click cancel, you will go back to your current game"
   );
-  localStorage.setItem("balance", localStorage.getItem("balance") - 50);
-  showBalance();
-  startGame();
+  if (answer) {
+    localStorage.setItem("balance", localStorage.getItem("balance") - 20);
+    showBalance();
+    openedCards = []; //empty array of opened cards; when refreshed after clicking a card, otherwise still 1 card is open.
+    startGame();
+  }
 };
+// display badges

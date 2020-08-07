@@ -59,6 +59,11 @@
     let restarts = 0
     //game reset function resets the game to default values, and shows the menu
     function gamereset() {
+        //badge check
+        if ((difficulty > 1) && (gametime/1000 > 100)) 
+        {localStorage.setItem("game4unlock",1);
+         badgeupdate()}
+
         playerx = Math.round(sw / 3);
         playery = Math.round(sh / 2);
         oldplayerx = playerx;
@@ -93,6 +98,8 @@
         $("gametime").innerText = "Paused"
         if (restarts > 1) {
             $('menutext').innerText = "You survived for " + score + " seconds."
+            if ((difficulty > 1) && (gametime/1000 > 100))
+            {$('menutext').innerText = "Wow! You survived for " + score + " seconds on hard or extreme. You earned your badge!"}
         }
         $('menu').classList.remove("invisible")
     }
@@ -156,7 +163,7 @@
     }
 
     //----------------------------------------------//
-    //   PART 2: enemy and event behavior           //
+    //   PART 2: the wave generator                 //
     //______________________________________________//
 
     //this is the function where the waves are generated using an array of arrays
@@ -171,10 +178,10 @@
         eventlist.push(['wave', 5000, 'bg-gray-800']);
         eventlist.push(['message', 0, 'They sent assassins to kill you, captain.']);
         for (i = 0; i < (3 + wave + difficulty); i++) {
-            if (Math.random() > 1 - (difficulty + wave) / 20) {
-                eventlist.push(['enemy', 5000 / (wave + difficulty), sw + 10, Math.round(Math.random()*sh), 'left', 600 / (5 + difficulty + wave), 'snake', "bg-red-600", "bg-gray-800"])
+            if (Math.random() > (1 / (difficulty/2 + wave))) {
+                eventlist.push(['enemy', 7000 / (1+ wave + difficulty), sw + 10, Math.round(Math.random()*sh), 'left', 600 / (5 + difficulty + wave), 'snake', "bg-red-600", "bg-gray-800"])
             } else {
-                eventlist.push(['enemy', 2000 / (wave + difficulty), sw + 10, Math.round(Math.random()*sh), 'up', 600 / (5 + difficulty + wave), 'pursue', "bg-red-600", "bg-gray-800"])
+                eventlist.push(['enemy', 4000 / (1+ wave + difficulty), sw + 10, Math.round(Math.random()*sh), 'up', 600 / (5 + difficulty + wave), 'pursue', "bg-red-600", "bg-gray-800"])
             }
         }
         eventlist.push(['enemy', 1000, -1, 1, 'left', 500, 'none', "bg-gray-800", "bg-gray-800"]);
@@ -216,6 +223,11 @@
             }
         }
     }
+
+
+    //----------------------------------------------//
+    //   PART 3: enemy and event behavior           //
+    //______________________________________________//
 
 
     //enemy spawning / event triggering
@@ -351,7 +363,7 @@
     }
 
     //----------------------------------------------//
-    //   PART 3: player behavior                    //
+    //   PART 4: player behavior                    //
     //______________________________________________//
 
     //player movement
@@ -359,16 +371,20 @@
     document.onkeydown = () => {
         switch (event.key) {
             case 'ArrowLeft':
-                playerdir = 'left';
+                if (playerdir != 'right')
+                {playerdir = 'left'}
                 break;
             case 'ArrowUp':
-                playerdir = 'up';
+                if (playerdir != 'down')
+                {   playerdir = 'up'}
                 break;
             case 'ArrowRight':
-                playerdir = 'right';
+                if (playerdir != 'left')
+                {  playerdir = 'right'}
                 break;
             case 'ArrowDown':
-                playerdir = 'down';
+                if (playerdir != 'up')
+                {  playerdir = 'down'}
                 break;
         }
     }
@@ -467,7 +483,7 @@
     }
 
     //----------------------------------------------//
-    //PART 3: panning screen and recording gametime //
+    //PART 5: panning screen and recording gametime //
     //______________________________________________//
 
     async function cyclestep(currentgame) {
