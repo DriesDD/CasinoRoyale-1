@@ -178,22 +178,22 @@ function badgeupdateMob() {
   if (localStorage.getItem("game1unlock") == null) {
     localStorage.setItem("game1unlock", 0);
   } else if (Number(localStorage.getItem("game1unlock")) > 0) {
-    $("badge1Mob").setAttribute("src", fileprefix + "images/badge1.svg");
+    $("badge1Mob").setAttribute("src", fileprefix + "images/bages/badge1.svg");
   }
   if (localStorage.getItem("game2unlock") == null) {
     localStorage.setItem("game2unlock", 0);
   } else if (Number(localStorage.getItem("game2unlock")) > 0) {
-    $("badge2Mob").setAttribute("src", fileprefix + "images/badge2.svg");
+    $("badge2Mob").setAttribute("src", fileprefix + "images/badges/badge2.svg");
   }
   if (localStorage.getItem("game3unlock") == null) {
     localStorage.setItem("game3unlock", 0);
   } else if (Number(localStorage.getItem("game3unlock")) > 0) {
-    $("badge3Mob").setAttribute("src", fileprefix + "images/badge3.svg");
+    $("badge3Mob").setAttribute("src", fileprefix + "images/badges/badge3.svg");
   }
   if (localStorage.getItem("game4unlock") == null) {
     localStorage.setItem("game4unlock", 0);
   } else if (Number(localStorage.getItem("game4unlock")) > 0) {
-    $("badge4Mob").setAttribute("src", fileprefix + "images/badge4.svg");
+    $("badge4Mob").setAttribute("src", fileprefix + "images/badges/badge4.svg");
   }
 }
 badgeupdateMob();
@@ -205,22 +205,22 @@ function badgeupdate() {
   if (localStorage.getItem("game1unlock") == null) {
     localStorage.setItem("game1unlock", 0);
   } else if (Number(localStorage.getItem("game1unlock")) > 1) {
-    $("badge1").setAttribute("src", fileprefix + "images/badge1.svg");
+    $("badge1").setAttribute("src", fileprefix + "images/badges/badge1.svg");
   }
   if (localStorage.getItem("game2unlock") == null) {
     localStorage.setItem("game2unlock", 0);
   } else if (Number(localStorage.getItem("game2unlock")) > 0) {
-    $("badge2").setAttribute("src", fileprefix + "images/badge2.svg");
+    $("badge2").setAttribute("src", fileprefix + "images/badges/badge2.svg");
   }
   if (localStorage.getItem("game3unlock") == null) {
     localStorage.setItem("game3unlock", 0);
   } else if (Number(localStorage.getItem("game3unlock")) > 0) {
-    $("badge3").setAttribute("src", fileprefix + "images/badge3.svg");
+    $("badge3").setAttribute("src", fileprefix + "images/badges/badge3.svg");
   }
   if (localStorage.getItem("game4unlock") == null) {
     localStorage.setItem("game4unlock", 0);
   } else if (Number(localStorage.getItem("game4unlock")) > 0) {
-    $("badge4").setAttribute("src", fileprefix + "images/badge4.svg");
+    $("badge4").setAttribute("src", fileprefix + "images/badges/badge4.svg");
   }
 }
 badgeupdate();
