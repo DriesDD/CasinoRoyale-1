@@ -60,7 +60,7 @@
     //game reset function resets the game to default values, and shows the menu
     function gamereset() {
         //badge check
-        if ((difficulty > 1) && (gametime/1000 > 100)) 
+        if ((difficulty > 1) && (gametime/1000 > 20)) 
         {localStorage.setItem("game4unlock",1);
          badgeupdate()}
 
@@ -80,7 +80,6 @@
         gametime = 0;
         interval = 100;
         restarts += 1;
-        difficulty = 0;
         wave = 0;
         bgcolor = 'bg-gray-800'
         eventlist = [];
@@ -98,9 +97,10 @@
         $("gametime").innerText = "Paused"
         if (restarts > 1) {
             $('menutext').innerText = "You survived for " + score + " seconds."
-            if ((difficulty > 1) && (gametime/1000 > 100))
+            if ((difficulty > 1) && (score > 100))
             {$('menutext').innerText = "Wow! You survived for " + score + " seconds on hard or extreme. You earned your badge!"}
         }
+        difficulty = 0;
         $('menu').classList.remove("invisible")
     }
     gamereset(1)
