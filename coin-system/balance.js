@@ -97,7 +97,7 @@ function navToggle() {
 
 mobMenuBtn.addEventListener("click", navToggle);
 
-// Username
+// Username Profile main Page
 
 function displayUsername() {
   let username = document.getElementById("usernameInput").value;
@@ -110,18 +110,120 @@ document.getElementById(
   "username"
 ).textContent = `Username: ${localStorage.getItem("myUsername")}`;
 
-if(typeof(document.getElementById("usernameBtn")) != 'undefined' && (document.getElementById("usernameBtn")) != null)
-{document
-  .getElementById("usernameBtn")
-  .addEventListener("click", displayUsername)}
-badge1
+if (
+  typeof document.getElementById("usernameBtn") != "undefined" &&
+  document.getElementById("usernameBtn") != null
+) {
+  document
+    .getElementById("usernameBtn")
+    .addEventListener("click", displayUsername);
+}
+
+// Username Profile mobile page
+
+function displayUsernameMob() {
+  let username = document.getElementById("usernameInput").value;
+  let usernameShow = document.getElementById("usernameMob");
+  localStorage.setItem("myUsername", `${username}`);
+  usernameShow.textContent = `Username: ${localStorage.getItem("myUsername")}`;
+}
+
+document.getElementById(
+  "usernameMob"
+).textContent = `Username: ${localStorage.getItem("myUsername")}`;
+
+if (
+  typeof document.getElementById("usernameBtn") != "undefined" &&
+  document.getElementById("usernameBtn") != null
+) {
+  document
+    .getElementById("usernameBtn")
+    .addEventListener("click", displayUsernameMob);
+}
+
+// Balance Mob nav bar
+//display balance
+$("balanceMob").innerText =
+  "Current balance: " + Number(localStorage.getItem("balance"));
+
+//when clicked, add to balance and spent and display balance
+$("pay10Mob").onclick = () => {
+  localStorage.setItem("balance", Number(localStorage.getItem("balance")) + 10);
+  localStorage.setItem("spent", Number(localStorage.getItem("spent")) + 10);
+  $("balanceMob").innerText =
+    " Current balance: " + Number(localStorage.getItem("balance"));
+};
+
+$("pay25Mob").onclick = () => {
+  localStorage.setItem("balance", Number(localStorage.getItem("balance")) + 25);
+  localStorage.setItem("spent", Number(localStorage.getItem("spent")) + 25);
+  $("balanceMob").innerText =
+    " Current balance: " + Number(localStorage.getItem("balance"));
+};
+
+$("pay100Mob").onclick = () => {
+  localStorage.setItem(
+    "balance",
+    Number(localStorage.getItem("balance")) + 100
+  );
+  localStorage.setItem("spent", Number(localStorage.getItem("spent")) + 100);
+  $("balanceMob").innerText =
+    " Current balance: " + Number(localStorage.getItem("balance"));
+};
+
+badge1;
 
 // Badges
-if (localStorage.getItem("game1unlock") == null) {localStorage.setItem("game1unlock",0)}
-else if (Number(localStorage.getItem("game1unlock")) > 0) {document.getElementById("badge1").setAttribute("src","../images/badge1.svg") };
-if (localStorage.getItem("game2unlock") == null) {localStorage.setItem("game2unlock",0)}
-else if (Number(localStorage.getItem("game2unlock")) > 0) {document.getElementById("badge2").setAttribute("src","../images/badge2.svg") };
-if (localStorage.getItem("game3unlock") == null) {localStorage.setItem("game3unlock",0)}
-else if (Number(localStorage.getItem("game3unlock")) > 0) {document.getElementById("badge3").setAttribute("src","../images/badge3.svg") };
-if (localStorage.getItem("game4unlock") == null) {localStorage.setItem("game4unlock",0)}
-else if (Number(localStorage.getItem("game4unlock")) > 0) {document.getElementById("badge4").setAttribute("src","../images/badge4.svg") }
+if (localStorage.getItem("game1unlock") == null) {
+  localStorage.setItem("game1unlock", 0);
+} else if (Number(localStorage.getItem("game1unlock")) > 0) {
+  document.getElementById("badge1").setAttribute("src", "../images/badge1.svg");
+}
+if (localStorage.getItem("game2unlock") == null) {
+  localStorage.setItem("game2unlock", 0);
+} else if (Number(localStorage.getItem("game2unlock")) > 0) {
+  document.getElementById("badge2").setAttribute("src", "../images/badge2.svg");
+}
+if (localStorage.getItem("game3unlock") == null) {
+  localStorage.setItem("game3unlock", 0);
+} else if (Number(localStorage.getItem("game3unlock")) > 0) {
+  document.getElementById("badge3").setAttribute("src", "../images/badge3.svg");
+}
+if (localStorage.getItem("game4unlock") == null) {
+  localStorage.setItem("game4unlock", 0);
+} else if (Number(localStorage.getItem("game4unlock")) > 0) {
+  document.getElementById("badge4").setAttribute("src", "../images/badge4.svg");
+}
+
+// Badges Mobile
+
+badge1;
+
+if (localStorage.getItem("game1unlock") == null) {
+  localStorage.setItem("game1unlock", 0);
+} else if (Number(localStorage.getItem("game1unlock")) > 0) {
+  document
+    .getElementById("badge1Mob")
+    .setAttribute("src", "../images/badge1.svg");
+}
+if (localStorage.getItem("game2unlock") == null) {
+  localStorage.setItem("game2unlock", 0);
+} else if (Number(localStorage.getItem("game2unlock")) > 0) {
+  document
+    .getElementById("badge2Mob")
+    .setAttribute("src", "../images/badge2.svg");
+}
+if (localStorage.getItem("game3unlock") == null) {
+  localStorage.setItem("game3unlock", 0);
+} else if (Number(localStorage.getItem("game3unlock")) > 0) {
+  document
+    .getElementById("badge3Mob")
+    .setAttribute("src", "../images/badge3.svg");
+}
+if (localStorage.getItem("game4unlock") == null) {
+  localStorage.setItem("game4unlock", 0);
+} else if (Number(localStorage.getItem("game4unlock")) > 0) {
+  document
+    .getElementById("badge4Mob")
+    .setAttribute("src", "../images/badge4.svg");
+}
