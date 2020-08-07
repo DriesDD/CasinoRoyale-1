@@ -72,15 +72,19 @@
             <div class="rounded-lg shadow-lg">
               <div class="rounded-lg shadow-xs overflow-hidden">
                 <div class="z-20 relative grid gap-3 bg-white px-5 py-6 sm:gap-8 sm:p-8">
-                  <a class="-m-2 p-3 block space-y-1 rounded-md hover:bg-gray-50 transition ease-in-out duration-150">
+                  <div class="-m-2 p-3 block space-y-1 rounded-md hover:bg-gray-50 transition ease-in-out duration-150">
                     <p class="text-base leading-6 font-medium text-gray-900">
                       <span id="username">Username:</span>
                     </p>
-                  </a>
+                  </div>
                   <!-- this span with id balance here is the element to update when the number of coins changes -->
-                  <span id="balance" class="text-base leading-6 font-medium text-gray-900 rounded-md shadow-sm">
+                 <div class="-m-2 p-3 block space-y-1 rounded-md hover:bg-gray-50 transition ease-in-out duration-150">
+                    <p class="text-base leading-6 font-medium text-gray-900">
+                     <span id="balance">
                     Current balance:
                   </span>
+                    </p>
+                  </div>
                   <!-- Buttons for coins -->
                   <container class="grid grid-cols-3 gap-4">
                     <button id="pay10" type="button"
