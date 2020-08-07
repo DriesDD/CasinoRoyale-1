@@ -1,8 +1,10 @@
 //this is to know which page you're on
-const path = window.location.pathname.split('/');
-const page = path[path.length-1];
+const path = window.location.pathname.split("/");
+const page = path[path.length - 1];
 const fileprefix = "../";
-if (page == "index.html") {const fileprefix = ""};
+if (page == "index.html") {
+  const fileprefix = "";
+}
 
 //this function is used to shorten the whole getElementById method
 function $(x) {
@@ -103,7 +105,7 @@ function navToggle() {
 
 mobMenuBtn.addEventListener("click", navToggle);
 
-// Username
+// Username Profile main Page
 
 function displayUsername() {
   let username = $("usernameInput").value;
@@ -112,26 +114,113 @@ function displayUsername() {
   usernameShow.textContent = `Username: ${localStorage.getItem("myUsername")}`;
 }
 
-$(
-  "username"
-).textContent = `Username: ${localStorage.getItem("myUsername")}`;
+$("username").textContent = `Username: ${localStorage.getItem("myUsername")}`;
 
-if(typeof($("usernameBtn")) != 'undefined' && ($("usernameBtn")) != null)
-{document
-  .getElementById("usernameBtn")
-  .addEventListener("click", displayUsername)}
-badge1
+if (typeof $("usernameBtn") != "undefined" && $("usernameBtn") != null) {
+  document
+    .getElementById("usernameBtn")
+    .addEventListener("click", displayUsername);
+}
+
+// Username Profile Mobile page
+
+function displayUsername() {
+  let username = $("usernameInput").value;
+  let usernameShow = $("usernameMob");
+  localStorage.setItem("myUsername", `${username}`);
+  usernameShow.textContent = `Username: ${localStorage.getItem("myUsername")}`;
+}
+
+$("usernameMob").textContent = `Username: ${localStorage.getItem(
+  "myUsername"
+)}`;
+
+if (typeof $("usernameBtn") != "undefined" && $("usernameBtn") != null) {
+  document
+    .getElementById("usernameBtn")
+    .addEventListener("click", displayUsername);
+}
+
+//display balance Mobile nav
+$("balanceMob").innerText =
+  "Current balance: " + Number(localStorage.getItem("balance"));
+
+//when clicked, add to balance and spent and display balance
+$("pay10Mob").onclick = () => {
+  localStorage.setItem("balance", Number(localStorage.getItem("balance")) + 10);
+  localStorage.setItem("spent", Number(localStorage.getItem("spent")) + 10);
+  $("balanceMob").innerText =
+    " Current balance: " + Number(localStorage.getItem("balance"));
+};
+
+$("pay25Mob").onclick = () => {
+  localStorage.setItem("balance", Number(localStorage.getItem("balance")) + 25);
+  localStorage.setItem("spent", Number(localStorage.getItem("spent")) + 25);
+  $("balanceMob").innerText =
+    " Current balance: " + Number(localStorage.getItem("balance"));
+};
+
+$("pay100Mob").onclick = () => {
+  localStorage.setItem(
+    "balance",
+    Number(localStorage.getItem("balance")) + 100
+  );
+  localStorage.setItem("spent", Number(localStorage.getItem("spent")) + 100);
+  $("balanceMob").innerText =
+    " Current balance: " + Number(localStorage.getItem("balance"));
+};
+
+// Badge mobile nav
+badge1;
 
 // Badges
-function badgeupdate()
-{
-if (localStorage.getItem("game1unlock") == null) {localStorage.setItem("game1unlock",0)}
-else if (Number(localStorage.getItem("game1unlock")) > 0) {$("badge1").setAttribute("src",fileprefix + "images/badge1.svg") };
-if (localStorage.getItem("game2unlock") == null) {localStorage.setItem("game2unlock",0)}
-else if (Number(localStorage.getItem("game2unlock")) > 0) {$("badge2").setAttribute("src",fileprefix + "images/badge2.svg") };
-if (localStorage.getItem("game3unlock") == null) {localStorage.setItem("game3unlock",0)}
-else if (Number(localStorage.getItem("game3unlock")) > 0) {$("badge3").setAttribute("src",fileprefix + "images/badge3.svg") };
-if (localStorage.getItem("game4unlock") == null) {localStorage.setItem("game4unlock",0)}
-else if (Number(localStorage.getItem("game4unlock")) > 0) {$("badge4").setAttribute("src",fileprefix + "images/badge4.svg") }
+function badgeupdate() {
+  if (localStorage.getItem("game1unlock") == null) {
+    localStorage.setItem("game1unlock", 0);
+  } else if (Number(localStorage.getItem("game1unlock")) > 0) {
+    $("badge1Mob").setAttribute("src", fileprefix + "images/badge1.svg");
+  }
+  if (localStorage.getItem("game2unlock") == null) {
+    localStorage.setItem("game2unlock", 0);
+  } else if (Number(localStorage.getItem("game2unlock")) > 0) {
+    $("badge2Mob").setAttribute("src", fileprefix + "images/badge2.svg");
+  }
+  if (localStorage.getItem("game3unlock") == null) {
+    localStorage.setItem("game3unlock", 0);
+  } else if (Number(localStorage.getItem("game3unlock")) > 0) {
+    $("badge3Mob").setAttribute("src", fileprefix + "images/badge3.svg");
+  }
+  if (localStorage.getItem("game4unlock") == null) {
+    localStorage.setItem("game4unlock", 0);
+  } else if (Number(localStorage.getItem("game4unlock")) > 0) {
+    $("badge4Mob").setAttribute("src", fileprefix + "images/badge4.svg");
+  }
 }
-badgeupdate()
+badgeupdate();
+
+badge1;
+
+// Badges
+function badgeupdate() {
+  if (localStorage.getItem("game1unlock") == null) {
+    localStorage.setItem("game1unlock", 0);
+  } else if (Number(localStorage.getItem("game1unlock")) > 0) {
+    $("badge1").setAttribute("src", fileprefix + "images/badge1.svg");
+  }
+  if (localStorage.getItem("game2unlock") == null) {
+    localStorage.setItem("game2unlock", 0);
+  } else if (Number(localStorage.getItem("game2unlock")) > 0) {
+    $("badge2").setAttribute("src", fileprefix + "images/badge2.svg");
+  }
+  if (localStorage.getItem("game3unlock") == null) {
+    localStorage.setItem("game3unlock", 0);
+  } else if (Number(localStorage.getItem("game3unlock")) > 0) {
+    $("badge3").setAttribute("src", fileprefix + "images/badge3.svg");
+  }
+  if (localStorage.getItem("game4unlock") == null) {
+    localStorage.setItem("game4unlock", 0);
+  } else if (Number(localStorage.getItem("game4unlock")) > 0) {
+    $("badge4").setAttribute("src", fileprefix + "images/badge4.svg");
+  }
+}
+badgeupdate();
