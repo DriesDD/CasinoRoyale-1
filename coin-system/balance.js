@@ -12,8 +12,12 @@ function $(x) {
 }
 
 //display balance
+function displaybalance() {
 $("balance").innerText =
   "Current balance: " + Number(localStorage.getItem("balance"));
+
+}
+displaybalance()
 
 //when clicked, add to balance and spent and display balance
 $("pay10").onclick = () => {
