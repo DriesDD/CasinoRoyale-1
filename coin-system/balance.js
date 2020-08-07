@@ -178,7 +178,7 @@ function badgeupdateMob() {
   if (localStorage.getItem("game1unlock") == null) {
     localStorage.setItem("game1unlock", 0);
   } else if (Number(localStorage.getItem("game1unlock")) > 0) {
-    $("badge1Mob").setAttribute("src", fileprefix + "images/bages/badge7.svg");
+    $("badge1Mob").setAttribute("src", fileprefix + "images/bages/badge1.svg");
   }
   if (localStorage.getItem("game2unlock") == null) {
     localStorage.setItem("game2unlock", 0);
@@ -205,7 +205,7 @@ function badgeupdate() {
   if (localStorage.getItem("game1unlock") == null) {
     localStorage.setItem("game1unlock", 0);
   } else if (Number(localStorage.getItem("game1unlock")) > 1) {
-    $("badge1").setAttribute("src", fileprefix + "images/badges/badge7.svg");
+    $("badge1").setAttribute("src", fileprefix + "images/badges/badge1.svg");
   }
   if (localStorage.getItem("game2unlock") == null) {
     localStorage.setItem("game2unlock", 0);
