@@ -340,5 +340,6 @@ function unlock(level) {
          newclass("secret",buttonclasswide)}
      if (level > 1)
         {$("supersecret").innerHTML = "Weeping </br> wizard";
+        badgeupdate();
         newclass("supersecret",buttonclasswide)}
     }
