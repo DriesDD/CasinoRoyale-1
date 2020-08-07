@@ -84,9 +84,10 @@ const chip10 = document.getElementById("chip10");
 const chip25 = document.getElementById("chip25");
 const bet = document.getElementById("bet");
 const balance = document.getElementById("balance");
-const pay10 = document.getElementById("pay10");
+//const pay10 = document.getElementById("pay10");
 const coinwon = document.getElementById("coinwon");
 const badgeDispaly = document.getElementById("badgeDispaly");
+const badge1 = document.getElementById("badge1");
 
 //Variables declaration
 let deck = [],
@@ -163,6 +164,7 @@ playAgain.addEventListener("click", () => {
   modal.classList.add("hidden");
   bet.classList.add("hidden");
   playerScore.classList.add("hidden");
+  coinwon.classList.add("hidden");
   computerScore.classList.add("hidden");
   body.classList.remove("opacity-25");
   playerScore.innerHTML = "";
@@ -172,9 +174,10 @@ playAgain.addEventListener("click", () => {
   coins.innerHTML = "";
   bet.innerHTML = "";
   deck = [];
+  betAmount = 0;
   behaviourBtn(play, "on");
-  behaviourBtn(stand, "on");
-  behaviourBtn(hit, "on");
+  behaviourBtn(stand, "off");
+  behaviourBtn(hit, "off");
 });
 
 // Play button listener. Game starts by clicking this button.
@@ -252,15 +255,16 @@ function winner(message, decision) {
           Number(localStorage.getItem("balance")) + betAmount * 2
         );
         bank.innerText = Number(localStorage.getItem("balance"));
-        pay10.innerText = Number(localStorage.getItem("balance"));
+        balance.innerText = Number(localStorage.getItem("balance"));
         result.innerHTML = `${message}`;
         coinwon.classList.remove("hidden");
         coinwon.innerHTML = `Player gets +${betAmount * 2} coins`;
         playerWin += 1;
         if (playerWin == 5) {
           badgeDispaly.classList.remove("hidden");
-          badgeDispaly.innerHTML += `<img class="w-10 mr-2" src="coins/coin-1.svg"
+          badgeDisplay.innerHTML += `<img class="w-10 mr-2" src="images/badge1gray.svg"
           />`;
+          badge1.innerHTML += `<img src="../images/badge1gray.svg"></img>`;
         }
       }, 1000);
 
@@ -354,7 +358,7 @@ function deal(cards, check) {
         weight.forEach((item) => {
           if (firstChar === item.type && firstChar === "A") {
             hitPlayer = 1;
-          } else {
+          } else if (firstChar === item.type) {
             hitPlayer = item.value;
           }
         });
@@ -384,7 +388,7 @@ function deal(cards, check) {
         weight.forEach((item) => {
           if (firstChar === item.type && firstChar === "A") {
             hitPlayer = 1;
-          } else {
+          } else if (firstChar === item.type) {
             hitPlayer = item.value;
           }
         });

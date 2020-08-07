@@ -13,6 +13,7 @@ $("pay10").onclick = () => {
   localStorage.setItem("spent", Number(localStorage.getItem("spent")) + 10);
   $("balance").innerText =
     " Current balance: " + Number(localStorage.getItem("balance"));
+  $("bank").innerText = Number(localStorage.getItem("balance"));
 };
 
 $("pay25").onclick = () => {
@@ -20,6 +21,7 @@ $("pay25").onclick = () => {
   localStorage.setItem("spent", Number(localStorage.getItem("spent")) + 25);
   $("balance").innerText =
     " Current balance: " + Number(localStorage.getItem("balance"));
+  $("bank").innerText = Number(localStorage.getItem("balance"));
 };
 
 $("pay100").onclick = () => {
@@ -30,6 +32,7 @@ $("pay100").onclick = () => {
   localStorage.setItem("spent", Number(localStorage.getItem("spent")) + 100);
   $("balance").innerText =
     " Current balance: " + Number(localStorage.getItem("balance"));
+  $("bank").innerText = Number(localStorage.getItem("balance"));
 };
 
 // Flyout Menu
@@ -107,6 +110,18 @@ document.getElementById(
   "username"
 ).textContent = `Username: ${localStorage.getItem("myUsername")}`;
 
-document
+if(typeof(document.getElementById("usernameBtn")) != 'undefined' && (document.getElementById("usernameBtn")) != null)
+{document
   .getElementById("usernameBtn")
-  .addEventListener("click", displayUsername);
+  .addEventListener("click", displayUsername)}
+badge1
+
+// Badges
+if (localStorage.getItem("game1unlock") == null) {localStorage.setItem("game1unlock",0)}
+else if (Number(localStorage.getItem("game1unlock")) > 0) {document.getElementById("badge1").setAttribute("src","../images/badge1.svg") };
+if (localStorage.getItem("game2unlock") == null) {localStorage.setItem("game2unlock",0)}
+else if (Number(localStorage.getItem("game2unlock")) > 0) {document.getElementById("badge2").setAttribute("src","../images/badge2.svg") };
+if (localStorage.getItem("game3unlock") == null) {localStorage.setItem("game3unlock",0)}
+else if (Number(localStorage.getItem("game3unlock")) > 0) {document.getElementById("badge3").setAttribute("src","../images/badge3.svg") };
+if (localStorage.getItem("game4unlock") == null) {localStorage.setItem("game4unlock",0)}
+else if (Number(localStorage.getItem("game4unlock")) > 0) {document.getElementById("badge4").setAttribute("src","../images/badge4.svg") }
