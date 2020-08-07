@@ -1,9 +1,9 @@
 //this is to know which page you're on
 const path = window.location.pathname.split("/");
 const page = path[path.length - 1];
-const fileprefix = "../";
+let fileprefix = "../";
 if (page == "index.html") {
-  const fileprefix = "";
+  fileprefix = "";
 }
 
 //this function is used to shorten the whole getElementById method
@@ -204,7 +204,7 @@ badge1;
 function badgeupdate() {
   if (localStorage.getItem("game1unlock") == null) {
     localStorage.setItem("game1unlock", 0);
-  } else if (Number(localStorage.getItem("game1unlock")) > 0) {
+  } else if (Number(localStorage.getItem("game1unlock")) > 1) {
     $("badge1").setAttribute("src", fileprefix + "images/badge1.svg");
   }
   if (localStorage.getItem("game2unlock") == null) {
