@@ -4,11 +4,11 @@
 
 let playerpick, rand, computerpick, choices, score, stakes, gains, drakewins
 
-const buttonclass = "relative col-span-1 items-center mb-1 px-4 py-2 border border-transparent text-lg leading-5 font-medium rounded-md text-grey-900 bg-orange-500 hover:bg-indigo-400 focus:outline-none focus:shadow-outline-indigo focus:border-indigo-600 active:bg-indigo-600 transition duration-150 ease-in-out"
-const buttonhighlightclass  = "relative col-span-1 items-center mb-1 px-4 py-2 border border-transparent text-lg leading-5 font-bold rounded-md text-grey-900 bg-indigo-400 hover:bg-indigo-300 transition duration-150 ease-in-out"
-const buttonclasswide = "relative col-span-2 items-center mb-1 px-4 py-2 border border-transparent text-lg leading-5 font-medium rounded-md text-grey-900 bg-orange-500 hover:bg-indigo-400 focus:outline-none focus:shadow-outline-indigo focus:border-indigo-600 active:bg-indigo-600 transition duration-150 ease-in-out"
-const buttonhighlightclasswide  = "relative col-span-2 items-center mb-1 px-4 py-2 border border-transparent text-lg leading-5 font-bold rounded-md text-grey-900 bg-indigo-400 hover:bg-indigo-300 transition duration-150 ease-in-out"
-const buttonlocked  = "relative col-span-2 items-center mb-1 px-4 py-2 border border-transparent text-lg leading-5 font-medium rounded-md text-gray-600 bg-gray-400"
+const buttonclass = "relative col-span-1 items-center mb-4 px-3 py-2 border border-transparent text-lg leading-5 font-medium rounded-md text-gray-200 bg-gray-900 hover:bg-indigo-400 hover:text-gray-900 focus:outline-none focus:shadow-outline-indigo focus:border-indigo-600 active:bg-indigo-600 transition duration-150 ease-in-out"
+const buttonhighlightclass  = "relative col-span-1 items-center mb-4 px-3 py-2 border border-transparent text-lg leading-5 font-bold rounded-md text-grey-900 bg-indigo-400 hover:bg-indigo-300 transition duration-150 ease-in-out"
+const buttonclasswide = "relative col-span-2 items-center mb-4 px-3 py-2 border border-transparent text-lg leading-5 font-medium rounded-md text-gray-200 bg-gray-900 hover:bg-indigo-400 hover:text-gray-900 focus:outline-none focus:shadow-outline-indigo focus:border-indigo-600 active:bg-indigo-600 transition duration-150 ease-in-out"
+const buttonhighlightclasswide  = "relative col-span-2 items-center mb-4 px-3 py-2 border border-transparent text-lg leading-5 font-bold rounded-md text-grey-900 bg-indigo-400 hover:bg-indigo-300 transition duration-150 ease-in-out"
+const buttonlocked  = "relative col-span-2 items-center mb-4 px-3 py-2 border border-transparent text-lg leading-5 font-medium rounded-md text-gray-600 bg-gray-400"
 score = 0;
 drakewins = 0;
 
