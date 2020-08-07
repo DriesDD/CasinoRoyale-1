@@ -4,11 +4,11 @@
 
 let playerpick, rand, computerpick, choices, score, stakes, gains, drakewins
 
-const buttonclass = "relative col-span-1 items-center mb-1 px-4 py-2 border border-transparent text-lg leading-5 font-medium rounded-md text-grey-900 bg-orange-500 hover:bg-indigo-400 focus:outline-none focus:shadow-outline-indigo focus:border-indigo-600 active:bg-indigo-600 transition duration-150 ease-in-out"
-const buttonhighlightclass  = "relative col-span-1 items-center mb-1 px-4 py-2 border border-transparent text-lg leading-5 font-bold rounded-md text-grey-900 bg-indigo-400 hover:bg-indigo-300 transition duration-150 ease-in-out"
-const buttonclasswide = "relative col-span-2 items-center mb-1 px-4 py-2 border border-transparent text-lg leading-5 font-medium rounded-md text-grey-900 bg-orange-500 hover:bg-indigo-400 focus:outline-none focus:shadow-outline-indigo focus:border-indigo-600 active:bg-indigo-600 transition duration-150 ease-in-out"
-const buttonhighlightclasswide  = "relative col-span-2 items-center mb-1 px-4 py-2 border border-transparent text-lg leading-5 font-bold rounded-md text-grey-900 bg-indigo-400 hover:bg-indigo-300 transition duration-150 ease-in-out"
-const buttonlocked  = "relative col-span-2 items-center mb-1 px-4 py-2 border border-transparent text-lg leading-5 font-medium rounded-md text-gray-600 bg-gray-400"
+const buttonclass = "relative col-span-1 items-center mb-4 px-3 py-2 border border-transparent text-lg leading-5 font-medium rounded-md text-gray-200 bg-gray-900 hover:bg-indigo-400 hover:text-gray-900 focus:outline-none focus:shadow-outline-indigo focus:border-indigo-600 active:bg-indigo-600 transition duration-150 ease-in-out"
+const buttonhighlightclass  = "relative col-span-1 items-center mb-4 px-3 py-2 border border-transparent text-lg leading-5 font-bold rounded-md text-grey-900 bg-indigo-400 hover:bg-indigo-300 transition duration-150 ease-in-out"
+const buttonclasswide = "relative col-span-2 items-center mb-4 px-3 py-2 border border-transparent text-lg leading-5 font-medium rounded-md text-gray-200 bg-gray-900 hover:bg-indigo-400 hover:text-gray-900 focus:outline-none focus:shadow-outline-indigo focus:border-indigo-600 active:bg-indigo-600 transition duration-150 ease-in-out"
+const buttonhighlightclasswide  = "relative col-span-2 items-center mb-4 px-3 py-2 border border-transparent text-lg leading-5 font-bold rounded-md text-grey-900 bg-indigo-400 hover:bg-indigo-300 transition duration-150 ease-in-out"
+const buttonlocked  = "relative col-span-2 items-center mb-4 px-3 py-2 border border-transparent text-lg leading-5 font-medium rounded-md text-gray-400 bg-gray-500"
 score = 0;
 drakewins = 0;
 
@@ -164,8 +164,10 @@ function reset() {
     newclass('paper',buttonclass);
     newclass('lizard',buttonclass);
     newclass('spock',buttonclass);
-    newclass('secret',buttonclasswide);
-    newclass('supersecret',buttonclasswide);
+    if (localStorage.getItem("game1unlock") > 0)
+    {newclass('secret',buttonclasswide)}
+    if (localStorage.getItem("game1unlock") > 1)
+    {newclass('supersecret',buttonclasswide)};
     unlock(localStorage.getItem("game1unlock"));
     $('playerimg').setAttribute("src","");
     $('computerimg').setAttribute("src","");
@@ -308,7 +310,7 @@ async function compare() {
         score += gains;
 
         if (drakewins >= 5) {unlock(2)}
-        else if (score >= 27) {unlock(1)};
+        else if (score >= 21) {unlock(1)};
         $("score").innerText = "Score: " + score;
         $("balance").innerText = "Balance: " + Number(localStorage.getItem("balance"));
 
@@ -332,14 +334,11 @@ function unlock(level) {
      {localStorage.setItem("game1unlock", level)}
      level = localStorage.getItem("game1unlock")
 
-     newclass("secret",buttonlocked)
-     newclass("supersecret",buttonlocked)
-
      if (level > 0)
-        {$("secret").innerHTML = "High stake </br> fire breathing drake"; $("supersecret").hidden = false; newclass("supersecret",buttonlocked);
+        {$("secret").innerHTML = "High stake </br> fire breathing drake"; $("supersecret").hidden = false; 
          newclass("secret",buttonclasswide)}
      if (level > 1)
         {$("supersecret").innerHTML = "Weeping </br> wizard";
-        badgeupdate();
-        newclass("supersecret",buttonclasswide)}
+        newclass('supersecret',buttonclasswide);
+        badgeupdate();}
     }

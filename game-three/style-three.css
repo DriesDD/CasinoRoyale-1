@@ -1,15 +1,9 @@
 .memory-game {
-  width: 640px;
-  height: 640px;
-  display: flex;
-  flex-wrap: wrap;
   margin: auto;
   /* z-index: -10; */
 }
 
 .card {
-  width: calc(25% - 5px - 5px); /* 1/4 of the screen - the margin */
-  height: calc(33.333% - 5px -5px);
   position: relative; /*position relative to where you are on the screen, not the total screen */
   margin: 5px;
   background-color: #ffffff;
