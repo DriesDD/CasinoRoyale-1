@@ -205,7 +205,7 @@ function badgeupdate() {
   if (localStorage.getItem("game1unlock") == null) {
     localStorage.setItem("game1unlock", 0);
   } else if (Number(localStorage.getItem("game1unlock")) > 1) {
-    $("badge1").setAttribute("src", fileprefix + "images/badges/badge1.svg");
+    $("badge1").setAttribute("src", fileprefix + "images/badges/badge7.svg");
   }
   if (localStorage.getItem("game2unlock") == null) {
     localStorage.setItem("game2unlock", 0);
