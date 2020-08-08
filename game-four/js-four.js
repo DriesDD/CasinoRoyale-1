@@ -10,8 +10,8 @@
     const sh = 20
 
     //define which tailwind color classes are in the game (could be used later to remove these classes when redrawing things)
-    const colors = ["bg-space", "bg-yellow-300", "bg-yellow-100", "bg-red-800", "bg-gray-900", "bg-red-600", "bg-green-600", "bg-green-900", "bg-green-800", "bg-blue-500", "bg-blue-700", "bg-orange-600", "bg-green-500", "bg-indigo-700", "bg-yellow-400"];
-    const hints = ["Hint: There's fitting music further down this page.", "Hint: Stay away from red dots in abandoned stations.", "Hint: Use your tail like a shield to defend against asteroids.", "Hint: Survive 100 seconds on hard or extreme to earn a badge.", "Hint: With some enemies it's best to move to the front so you have space to run back to.", "Hint: Surround the blob before it surrounds you.", "Hint: Assassins with a trail are nasty and fast. Hide behind your tail.", "Hint: Greed is the prime cause of death in abandoned space stations.", "Hint: Don't let moving walls close in front of you.", "Hint: Double-tap to jump 4 blocks far.", "Hint: Fast blinking blocks are good. They are powerups."]
+    const colors = ["bg-space", "bg-yellow-300", "bg-yellow-100", "bg-red-800", "bg-orange-900", "bg-red-600", "bg-green-600", "bg-green-900", "bg-green-800", "bg-blue-500", "bg-blue-700", "bg-orange-600", "bg-green-500", "bg-indigo-700", "bg-yellow-400","bg-gray-900"];
+    const hints = ["Hint: There's fitting music further down this page.", "Hint: Stay away from red dots in abandoned stations.", "Hint: Use your tail like a shield to defend against asteroids.", "Hint: Survive 100 seconds on hard or extreme to earn a badge.", "Hint: With some enemies it's best to move to the front so you have space to run back to.", "Hint: Surround the blob before it surrounds you.", "Hint: Assassins with a trail are nasty and fast. Hide behind your tail.", "Hint: Greed is the prime cause of death in abandoned space stations.", "Hint: Don't let moving walls close in front of you.", "Hint: Double-tap to jump 4 blocks far.", "Hint: Fast blinking blocks are good. They are powerups.", "Hint: After you take damage, you have 1 second of invulnerability. Get out of the situation as fast as you can."]
     //define which color classes are enemies (needed to lose a life when hitting them)
     const enemycolors = [];
     //variables
@@ -83,13 +83,13 @@
         gametime = 0;
         interval = 100;
         restarts += 1;
-        wave = 0;
+        wave = 1;
         bgcolor = 'bg-space'
         eventlist = [];
 
         for (i = 0; i < sh; i++) {
             for (j = 0; j < sw; j++) {
-                document.getElementsByClassName('cell')[i * sw + j].classList.remove("bg-space", "bg-green-600", "bg-green-900", "bg-green-800", "bg-yellow-300", "bg-yellow-100", "bg-red-800", "bg-gray-900", "bg-red-600", "bg-blue-500", "bg-blue-700", "bg-orange-600", "bg-green-500", "bg-indigo-700", "bg-yellow-400");
+                document.getElementsByClassName('cell')[i * sw + j].classList.remove("bg-space", "bg-green-600", "bg-green-900", "bg-green-800", "bg-yellow-300", "bg-yellow-100", "bg-red-800", "bg-orange-900", "bg-red-600", "bg-blue-500", "bg-blue-700", "bg-orange-600", "bg-green-500", "bg-indigo-700", "bg-yellow-400","bg-gray-900");
                 document.getElementsByClassName('cell')[i * sw + j].classList.add("bg-space");
             }
 
@@ -147,7 +147,7 @@
 
     async function gamestart() {
         loselife(0);
-        $('wavemsg').innerText = "Wave incoming";
+        $('wavemsg').innerText = "Wave 1";
         wavegenerator();
         //update the balance in the page menu
         $("balance").innerText = " Current balance: " + Number(localStorage.getItem("balance"));
@@ -160,7 +160,7 @@
         $('menu').classList.add("invisible")
         //player entrance effect
         for (i = 0; i < playerx; i++) {
-            document.getElementsByClassName('cell')[playery * sw + i].classList.remove("bg-space", "bg-yellow-300", "bg-yellow-100", "bg-green-600", "bg-green-900", "bg-green-800", "bg-gray-900", "bg-red-800", "bg-red-600", "bg-blue-500", "bg-blue-700", "bg-orange-600", "bg-green-500", "bg-indigo-700", "bg-yellow-400");
+            document.getElementsByClassName('cell')[playery * sw + i].classList.remove("bg-space", "bg-yellow-300", "bg-yellow-100", "bg-green-600", "bg-green-900", "bg-green-800", "bg-orange-900", "bg-red-800", "bg-red-600", "bg-blue-500", "bg-blue-700", "bg-orange-600", "bg-green-500", "bg-indigo-700", "bg-yellow-400","bg-gray-900");
             document.getElementsByClassName('cell')[playery * sw + i].classList.add("bg-yellow-300")
 
         }
@@ -185,7 +185,7 @@
         eventlist.push(['message', 0, 'They sent assassins to kill you, captain.']);
         for (i = 0; i < 0.5 * (6 + wave + difficulty); i++) {
             if (Math.random() > (1 / (difficulty / 2 + wave / 5))) {
-                eventlist.push(['enemy', 15000 / (3 + wave + difficulty), sw + 10, Math.round(Math.random() * sh), 'left', 800 / (5 + difficulty + wave), 'snake', "bg-red-600", "bg-space"])
+                eventlist.push(['enemy', 15000 / (3 + wave + difficulty), sw + 10, Math.round(Math.random() * sh), 'left', 1200 / (5 + difficulty + wave), 'snake', "bg-red-600", "bg-space"])
             } else {
                 if (Math.random() > 0.7) {
                     eventlist.push(['enemy', 7000 / (3 + wave + difficulty), sw + 10, Math.round(Math.random() * sh), 'up', 900 / (5 + difficulty + wave), 'pursue', "bg-red-600", "bg-space"])
@@ -203,10 +203,10 @@
             randy = Math.floor(Math.random() * sh);
             randspeed = 50 + Math.floor(Math.random() * 200);
             randsize = Math.ceil(Math.random() * 3)
-            eventlist.push(['enemy', 200 / (difficulty + wave), sw + 5, randy, 'left', randspeed, 'none', "bg-gray-900", "bg-space"])
+            eventlist.push(['enemy', 200 / (difficulty + wave), sw + 5, randy, 'left', randspeed, 'none', "bg-orange-900", "bg-space"])
             for (j = 0; j < randsize; j++) {
                 for (k = 0; k < randsize; k++) {
-                    eventlist.push(['enemy', 0, sw + 5 + Math.round(randsize + j * 2 + 2 * Math.random()), randy + k * 2 + 2 * Math.random(), 'left', randspeed, 'none', "bg-gray-900", "bg-space"]);
+                    eventlist.push(['enemy', 0, sw + 5 + Math.round(randsize + j * 2 + 2 * Math.random()), randy + k * 2 + 2 * Math.random(), 'left', randspeed, 'none', "bg-orange-900", "bg-space"]);
                 }
             }
         }
@@ -361,14 +361,14 @@
             //also die when hitting player's tail
             if ((x < sw) && (document.getElementsByClassName('cell')[y * sw + x].classList.contains("bg-yellow-300") == true)) {
                 dead = 1;
-                document.getElementsByClassName('cell')[y * sw + x].classList.remove("bg-space", "bg-yellow-300", "bg-yellow-100", "bg-green-600", "bg-green-900", "bg-green-800", "bg-gray-900", "bg-red-800", "bg-red-600", "bg-blue-500", "bg-blue-700", "bg-orange-600", "bg-green-500", "bg-yellow-400")
+                document.getElementsByClassName('cell')[y * sw + x].classList.remove("bg-space", "bg-yellow-300", "bg-yellow-100", "bg-green-600", "bg-green-900", "bg-green-800", "bg-orange-900", "bg-red-800", "bg-red-600", "bg-blue-500", "bg-blue-700", "bg-orange-600", "bg-green-500", "bg-yellow-400","bg-gray-900")
                 document.getElementsByClassName('cell')[y * sw + x].classList.add("bg-yellow-300")
             };
 
             if (dead == 0) {
                 //clear previous position if it was in the view
                 if ((x - relshift < sw) && (x - relshift > 0)) {
-                    document.getElementsByClassName('cell')[y * sw + x - relshift].classList.remove("bg-space", "bg-yellow-300", "bg-yellow-100", "bg-green-600", "bg-green-900", "bg-green-800", "bg-gray-900", "bg-red-800", "bg-red-600", "bg-blue-500", "bg-blue-700", "bg-orange-600", "bg-green-500", "bg-yellow-400")
+                    document.getElementsByClassName('cell')[y * sw + x - relshift].classList.remove("bg-space", "bg-yellow-300", "bg-yellow-100", "bg-green-600", "bg-green-900", "bg-green-800", "bg-orange-900", "bg-red-800", "bg-red-600", "bg-blue-500", "bg-blue-700", "bg-orange-600", "bg-green-500", "bg-yellow-400","bg-gray-900")
                     document.getElementsByClassName('cell')[y * sw + x - relshift].classList.add(trace)
                 };
                 //pattern none doesn't change the direction
@@ -397,7 +397,7 @@
                     }
                     await timeout(speed);
                     if (x < sw) {
-                        document.getElementsByClassName('cell')[y * sw + x].classList.remove("bg-space", "bg-yellow-300", "bg-yellow-100", "bg-green-600", "bg-green-900", "bg-green-800", "bg-gray-900", "bg-red-800", "bg-red-600", "bg-blue-500", "bg-blue-700", "bg-orange-600", "bg-green-500", "bg-indigo-700", "bg-yellow-400");
+                        document.getElementsByClassName('cell')[y * sw + x].classList.remove("bg-space", "bg-yellow-300", "bg-yellow-100", "bg-green-600", "bg-green-900", "bg-green-800", "bg-orange-900", "bg-red-800", "bg-red-600", "bg-blue-500", "bg-blue-700", "bg-orange-600", "bg-green-500", "bg-indigo-700", "bg-yellow-400","bg-gray-900");
                         document.getElementsByClassName('cell')[y * sw + x].classList.add(trace);
                     }
                     dead = 1
@@ -616,7 +616,7 @@
     function updatepos() {
         if (playerx != oldplayerx || playery != oldplayery) {
             //collision detection with every enemy color and tail
-            if (document.getElementsByClassName('cell')[playery * sw + playerx].classList.contains("bg-gray-900") ||
+            if (document.getElementsByClassName('cell')[playery * sw + playerx].classList.contains("bg-orange-900") ||
                 document.getElementsByClassName('cell')[playery * sw + playerx].classList.contains("bg-green-600") ||
                 document.getElementsByClassName('cell')[playery * sw + playerx].classList.contains("bg-yellow-300") ||
                 document.getElementsByClassName('cell')[playery * sw + playerx].classList.contains("bg-blue-500") ||
@@ -627,7 +627,7 @@
 
             };
             //style the table cells to the player style
-            document.getElementsByClassName('cell')[oldplayery * sw + oldplayerx].classList.remove("bg-space", "bg-yellow-300", "bg-green-600", "bg-green-900", "bg-green-800", "bg-gray-900", "bg-yellow-100", "bg-red-800", "bg-red-600", "bg-blue-500", "bg-blue-700", "bg-orange-600", "bg-green-500", "bg-indigo-700", "bg-yellow-400");
+            document.getElementsByClassName('cell')[oldplayery * sw + oldplayerx].classList.remove("bg-space", "bg-yellow-300", "bg-green-600", "bg-green-900", "bg-green-800", "bg-orange-900", "bg-yellow-100", "bg-red-800", "bg-red-600", "bg-blue-500", "bg-blue-700", "bg-orange-600", "bg-green-500", "bg-indigo-700", "bg-yellow-400","bg-gray-900");
             if (invincible == 1) {
                 document.getElementsByClassName('cell')[oldplayery * sw + oldplayerx].classList.add("bg-orange-600")
             } else {
@@ -705,7 +705,7 @@
                         if (j < (sw - 1)) {
                             document.getElementsByClassName('cell')[i * sw + j].setAttribute("class", document.getElementsByClassName('cell')[i * sw + j + 1].getAttribute("class"));
                         } else {
-                            document.getElementsByClassName('cell')[i * sw + j].classList.remove("bg-space", "bg-green-600", "bg-green-900", "bg-green-800", "bg-yellow-300", "bg-gray-900", "bg-yellow-100", "bg-red-800", "bg-red-600", "bg-blue-500", "bg-blue-700", "bg-orange-600", "bg-green-500", "bg-indigo-700", "bg-yellow-400")
+                            document.getElementsByClassName('cell')[i * sw + j].classList.remove("bg-space", "bg-green-600", "bg-green-900", "bg-green-800", "bg-yellow-300", "bg-orange-900", "bg-yellow-100", "bg-red-800", "bg-red-600", "bg-blue-500", "bg-blue-700", "bg-orange-600", "bg-green-500", "bg-indigo-700", "bg-yellow-400","bg-gray-900")
                             document.getElementsByClassName('cell')[i * sw + j].classList.add(bgcolor)
                         }
                     }
