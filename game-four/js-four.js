@@ -10,8 +10,8 @@
     const sh = 20
 
     //define which tailwind color classes are in the game (could be used later to remove these classes when redrawing things)
-    const colors = ["bg-gray-800", "bg-yellow-300", "bg-yellow-100", "bg-red-800", "bg-gray-900", "bg-red-600", "bg-green-600", "bg-green-900", "bg-green-800", "bg-blue-500", "bg-blue-700", "bg-orange-600", "bg-green-500", "bg-indigo-700", "bg-yellow-400"];
-    const hints = ["Hint: There's fitting music further down this page.","Hint: Stay away from red dots in abandoned stations.","Hint: Use your tail like a shield to defend against asteroids.","Hint: Survive 100 seconds on hard or extreme to earn a badge.","Hint: With some enemies it's better to leave space to run back to.","Hint: Surround the blob before it surrounds you.","Hint: Assassins with a trail are nasty. Hide behind your tail.","Hint: Greed is the prime cause of death in abandoned space stations.","Hint: Don't let moving walls close in front of you."]
+    const colors = ["bg-space", "bg-yellow-300", "bg-yellow-100", "bg-red-800", "bg-gray-900", "bg-red-600", "bg-green-600", "bg-green-900", "bg-green-800", "bg-blue-500", "bg-blue-700", "bg-orange-600", "bg-green-500", "bg-indigo-700", "bg-yellow-400"];
+    const hints = ["Hint: There's fitting music further down this page.","Hint: Stay away from red dots in abandoned stations.","Hint: Use your tail like a shield to defend against asteroids.","Hint: Survive 100 seconds on hard or extreme to earn a badge.","Hint: With some enemies it's best to move to the front so you have space to run back to.","Hint: Surround the blob before it surrounds you.","Hint: Assassins with a trail are nasty and fast. Hide behind your tail.","Hint: Greed is the prime cause of death in abandoned space stations.","Hint: Don't let moving walls close in front of you."]
     //define which color classes are enemies (needed to lose a life when hitting them)
     const enemycolors = [];
     //variables
@@ -48,7 +48,7 @@
     for (i = 0; i < sh; i++) {
         html += "<tr class= \"\">"
         for (j = 0; j < sw; j++) {
-            html += " <td class= \"cell px-4 py-4 overflow-hidden bg-gray-800\" ></td>"
+            html += " <td class= \"cell px-4 py-4 overflow-hidden bg-space\" ></td>"
         }
         html += "</tr>"
     }
@@ -83,13 +83,13 @@
         interval = 100;
         restarts += 1;
         wave = 0;
-        bgcolor = 'bg-gray-800'
+        bgcolor = 'bg-space'
         eventlist = [];
 
         for (i = 0; i < sh; i++) {
             for (j = 0; j < sw; j++) {
-                document.getElementsByClassName('cell')[i * sw + j].classList.remove("bg-gray-800", "bg-green-600", "bg-green-900", "bg-green-800", "bg-yellow-300", "bg-yellow-100", "bg-red-800", "bg-gray-900", "bg-red-600", "bg-blue-500", "bg-blue-700", "bg-orange-600", "bg-green-500", "bg-indigo-700", "bg-yellow-400");
-                document.getElementsByClassName('cell')[i * sw + j].classList.add("bg-gray-800");
+                document.getElementsByClassName('cell')[i * sw + j].classList.remove("bg-space", "bg-green-600", "bg-green-900", "bg-green-800", "bg-yellow-300", "bg-yellow-100", "bg-red-800", "bg-gray-900", "bg-red-600", "bg-blue-500", "bg-blue-700", "bg-orange-600", "bg-green-500", "bg-indigo-700", "bg-yellow-400");
+                document.getElementsByClassName('cell')[i * sw + j].classList.add("bg-space");
             }
 
         }
@@ -159,7 +159,7 @@
         $('menu').classList.add("invisible")
         //player entrance effect
         for (i = 0; i < playerx; i++) {
-            document.getElementsByClassName('cell')[playery * sw + i].classList.remove("bg-gray-800", "bg-yellow-300", "bg-yellow-100", "bg-green-600", "bg-green-900", "bg-green-800", "bg-gray-900", "bg-red-800", "bg-red-600", "bg-blue-500", "bg-blue-700", "bg-orange-600", "bg-green-500", "bg-indigo-700", "bg-yellow-400");
+            document.getElementsByClassName('cell')[playery * sw + i].classList.remove("bg-space", "bg-yellow-300", "bg-yellow-100", "bg-green-600", "bg-green-900", "bg-green-800", "bg-gray-900", "bg-red-800", "bg-red-600", "bg-blue-500", "bg-blue-700", "bg-orange-600", "bg-green-500", "bg-indigo-700", "bg-yellow-400");
             document.getElementsByClassName('cell')[playery * sw + i].classList.add("bg-yellow-300")
 
         }
@@ -180,68 +180,68 @@
         let randy, randspeed, randsize
 
         //Assassins   
-        eventlist.push(['wave', 8000, 'bg-gray-800']);
+        eventlist.push(['wave', 8000, 'bg-space']);
         eventlist.push(['message', 0, 'They sent assassins to kill you, captain.']);
-        for (i = 0; i < (4 + wave + difficulty); i++) {
-            if (Math.random() > (1 / (difficulty / 2 + wave / 2))) {
-                eventlist.push(['enemy', 7000 / (1 + wave + difficulty), sw + 10, Math.round(Math.random() * sh), 'left', 800 / (5 + difficulty + wave), 'snake', "bg-red-600", "bg-gray-800"])
+        for (i = 0; i < 0.5*(6 + wave + difficulty); i++) {
+            if (Math.random() > (1 / (difficulty / 2 + wave / 5))) {
+                eventlist.push(['enemy', 15000 / (3 + wave + difficulty), sw + 10, Math.round(Math.random() * sh), 'left', 800 / (5 + difficulty + wave), 'snake', "bg-red-600", "bg-space"])
             } else {
                 if (Math.random() > 0.7) {
-                    eventlist.push(['enemy', 4000 / (1 + wave + difficulty), sw + 10, Math.round(Math.random() * sh), 'up', 900 / (5 + difficulty + wave), 'pursue', "bg-red-600", "bg-gray-800"])
+                    eventlist.push(['enemy', 7000 / (3 + wave + difficulty), sw + 10, Math.round(Math.random() * sh), 'up', 900 / (5 + difficulty + wave), 'pursue', "bg-red-600", "bg-space"])
                 } else {
-                    eventlist.push(['enemy', 4000 / (1 + wave + difficulty), sw + 10, Math.round(Math.random() * sh), 'left', 1000 / (5 + difficulty + wave), 'block', "bg-red-600", "bg-gray-800"])
+                    eventlist.push(['enemy', 10000 / (3 + wave + difficulty), sw + 10, Math.round(Math.random() * sh), 'left', 1000 / (5 + difficulty + wave), 'block', "bg-red-600", "bg-space"])
                 }
             }
         }
-        eventlist.push(['enemy', 1000, -1, 1, 'left', 500, 'none', "bg-gray-800", "bg-gray-800"]);
+        eventlist.push(['enemy', 1000, -1, 1, 'left', 500, 'none', "bg-space", "bg-space"]);
 
         //Asteroid swarm
-        eventlist.push(['wave', 5000, 'bg-gray-800']);
+        eventlist.push(['wave', 5000, 'bg-space']);
         eventlist.push(['message', 0, 'Captain, we are caught in an asteroid storm.']);
         for (i = 0; i < 30 * (difficulty + wave); i++) {
             randy = Math.floor(Math.random() * sh);
             randspeed = 50 + Math.floor(Math.random() * 200);
             randsize = Math.ceil(Math.random() * 3)
-            eventlist.push(['enemy', 200 / (difficulty + wave), sw + 5, randy, 'left', randspeed, 'none', "bg-gray-900", "bg-gray-800"])
+            eventlist.push(['enemy', 200 / (difficulty + wave), sw + 5, randy, 'left', randspeed, 'none', "bg-gray-900", "bg-space"])
             for (j = 0; j < randsize; j++) {
                 for (k = 0; k < randsize; k++) {
-                    eventlist.push(['enemy', 0, sw + 5 + Math.round(randsize + j * 2 + 2 * Math.random()), randy + k * 2 + 2 * Math.random(), 'left', randspeed, 'none', "bg-gray-900", "bg-gray-800"]);
+                    eventlist.push(['enemy', 0, sw + 5 + Math.round(randsize + j * 2 + 2 * Math.random()), randy + k * 2 + 2 * Math.random(), 'left', randspeed, 'none', "bg-gray-900", "bg-space"]);
                 }
             }
         }
         //the glitch
-        eventlist.push(['wave', 5000, "bg-gray-800"]);
+        eventlist.push(['wave', 5000, "bg-space"]);
         eventlist.push(['message', 0, 'Something seems glitchy in the fabric of spacetime.']);
         for (i = 0; i < 10 * (difficulty + wave); i++) {
             randy = Math.floor(Math.random() * sh);
             randspeed = 150 + Math.floor(Math.random() * 100);
             randsize = Math.ceil(2 + Math.random() * 4)
-            eventlist.push(['enemy', 400 / (difficulty + wave), sw + 5, randy, 'left', randspeed, 'none', "bg-green-600", "bg-gray-800"])
+            eventlist.push(['enemy', 400 / (difficulty + wave), sw + 5, randy, 'left', randspeed, 'none', "bg-green-600", "bg-space"])
             for (j = 0; j < randsize * 2; j++) {
                 for (k = 0; k < randsize; k++) {
-                    eventlist.push(['enemy', 0, sw + 5 - randsize / 2 + j, randy + k, 'left', randspeed, 'none', "bg-green-600", "bg-gray-800"]);
+                    eventlist.push(['enemy', 0, sw + 5 - randsize / 2 + j, randy + k, 'left', randspeed, 'none', "bg-green-600", "bg-space"]);
                 }
             }
             if (Math.random() > 0.96) {
                 randy = Math.floor(Math.random() * sh);
                 randspeed = Math.round(200 / (difficulty + wave) + (Math.random() * 200))
-                eventlist.push(['enemy', 400, sw + 1, randy, 'down', randspeed, 'none', "bg-green-600", "bg-gray-800"]);
+                eventlist.push(['enemy', 400, sw + 1, randy, 'down', randspeed, 'none', "bg-green-600", "bg-space"]);
                 for (j = 0; j < Math.ceil(Math.random() * 50); j++) {
-                    eventlist.push(['enemy', 10, sw + 1, randy + j, 'down', randspeed, 'none', "bg-green-600", "bg-gray-800"]);
+                    eventlist.push(['enemy', 10, sw + 1, randy + j, 'down', randspeed, 'none', "bg-green-600", "bg-space"]);
                 }
             }
         }
         //Blue walls
-        eventlist.push(['wave', 0, 'bg-gray-800']);
-        eventlist.push(['message', 0, 'Those walls... They\'re alive!']);
+        eventlist.push(['wave', 5000, 'bg-space']);
+        eventlist.push(['message', 0, 'Those walls... They\'re closing!']);
         for (i = 0; i < 0.5 * (3 + wave + difficulty); i++) {
             randy = Math.floor(Math.random() * sh);
             if (Math.random() * 20 < 4 + (difficulty + wave)) {
-                eventlist.push(['enemy', 30000 / (1 + wave + difficulty), sw + 5, randy, 'left', 1000 / (5 + difficulty + wave), 'snake', "bg-blue-500", "bg-blue-700"])
-                eventlist.push(['enemy', 0, sw + 5, randy + 1, 'left', 1000 / (5 + difficulty + wave), 'snake', "bg-blue-500", "bg-blue-700", "bg-indigo-700"])
+                eventlist.push(['enemy', 10000 / (1 + wave + difficulty), sw + 5, randy+1, 'up', 6000 / (10 + difficulty + wave), 'snake', "bg-blue-500", "bg-blue-700"])
+                eventlist.push(['enemy', 0,                               sw + 4, randy, 'up', 6000 / (10 + difficulty + wave), 'snake', "bg-blue-500", "bg-blue-700", "bg-indigo-700"])
             } else {
-                eventlist.push(['enemy', 20000 / (1 + wave + difficulty), sw, randy, 'left', 8000 / (5 + difficulty + wave), 'none', "bg-blue-700", "bg-blue-700"])
-                eventlist.push(['enemy', 10000 / (1 + wave + difficulty), sw + 5, randy, 'left', 1000 / (5 + difficulty + wave), 'snake', "bg-blue-500", "bg-blue-700"])
+                eventlist.push(['enemy', 20000 / (1 + wave + difficulty), sw + 5, randy-1, 'down', 6000 / (10 + difficulty + wave), 'none', "bg-blue-700", "bg-blue-700"])
+                eventlist.push(['enemy', 0                               ,sw + 4, randy, 'down', 6000 / (10 + difficulty + wave), 'snake', "bg-blue-500", "bg-blue-700"])
             }
             for (j = 0; j < (sh / 5 + Math.sqrt(2 + wave + difficulty)); j++) {
                 eventlist.push(['enemy', 1, sw, (randy + j), 'up', 1200, 'none', "bg-blue-700", "bg-blue-700"])
@@ -252,21 +252,21 @@
         }
 
         //Space station
-        eventlist.push(['wave', 8000, 'bg-gray-800']);
+        eventlist.push(['wave', 8000, 'bg-space']);
         eventlist.push(['message', 0, 'It\'s an abandoned space station. There might be some casino coins but sometimes also bombs.']);
         randy = Math.floor(Math.random() * sh);
         for (j = 0; j < 10; j++) {
             randy = Math.floor(Math.random() * sh);
-            eventlist.push(['enemy', 1500, sw + 2, randy, 'still', 100, 'none', "bg-gray-900", "bg-gray-800"]);
+            eventlist.push(['enemy', 2000, sw + 2, randy, 'still', 100, 'none', "bg-gray-900", "bg-space"]);
             randy = Math.floor(Math.random() * sh);
             randsize = 3 + Math.floor(Math.random() * 8);
             
             for (i = 0; i < randsize; i++) {
-                if (Math.random() > 0.1) {
-                    eventlist.push(['enemy', 0, sw + i, randy, 'still', 100, 'none', "bg-gray-900", "bg-gray-800"]);
-                    eventlist.push(['enemy', 0, sw + i, randy + randsize, 'still', 100, 'none', "bg-gray-900", "bg-gray-800"]);
-                    eventlist.push(['enemy', 0, sw, randy + i, 'still', 100, 'none', "bg-gray-900", "bg-gray-800"]);
-                    eventlist.push(['enemy', 0, sw + randsize, randy + i, 'still', 100, 'none', "bg-gray-900", "bg-gray-800"]);
+                if (Math.random() > 0.2) {
+                    eventlist.push(['enemy', 0, sw + i, randy, 'still', 100, 'none', "bg-gray-900", "bg-space"]);
+                    eventlist.push(['enemy', 0, sw + i, randy + randsize, 'still', 100, 'none', "bg-gray-900", "bg-space"]);
+                    eventlist.push(['enemy', 0, sw, randy + i, 'still', 100, 'none', "bg-gray-900", "bg-space"]);
+                    eventlist.push(['enemy', 0, sw + randsize, randy + i, 'still', 100, 'none', "bg-gray-900", "bg-space"]);
                 }
             } 
             if (randsize > 7) {
@@ -275,13 +275,13 @@
                     eventlist.push(['powerup', 0, 'coin', sw + 2 + Math.round(Math.random() * 3), randy + 2 + Math.round(Math.random() * 3), "bg-yellow-400"]);
                 }
             } else if (Math.random() < (difficulty+wave)/30) {
-                eventlist.push(['enemy', 0, sw + 1 + Math.round(Math.random() * 2), randy + 1 + Math.round(Math.random() * 2),'left', 5000 / (3 + difficulty + wave), 'proximity', "bg-red-600", "bg-gray-800"])
+                eventlist.push(['enemy', 0, sw + 1 + Math.round(Math.random() * 2), randy + 1 + Math.round(Math.random() * 2),'left', 5000 / (3 + difficulty + wave), 'proximity', "bg-red-600", "bg-space"])
             }
 
         }
 
         //Great blob
-        eventlist.push(['wave', 4000, 'bg-gray-800']);
+        eventlist.push(['wave', 4000, 'bg-space']);
         eventlist.push(['message', 0, 'It\'s a blob... That wants to eat us!']);
         for (i = 0; i < 50 + (difficulty + wave) * 10; i++) {
             eventlist.push(['enemy', 150 / (5 + difficulty + wave), sw + 10, Math.round(Math.random() * 3), 'down', (2 + Math.random()) * 2000 / (5 + difficulty + wave), 'pursue', "bg-indigo-700", "bg-indigo-700"])
@@ -321,7 +321,7 @@
                 }
                 //powerup is actually a special kind of 'enemy'
                 else if (eventlist[spawncycle][0] == 'powerup') {
-                    enemycycle(eventlist[spawncycle][2], 100, eventlist[spawncycle][5], "bg-gray-800", eventlist[spawncycle][3], eventlist[spawncycle][4], "still", restarts, xshift)
+                    enemycycle(eventlist[spawncycle][2], 100, eventlist[spawncycle][5], "bg-space", eventlist[spawncycle][3], eventlist[spawncycle][4], "still", restarts, xshift)
                 }
                 //set waittime to the waittime of the next one
                 if (spawncycle < (eventlist.length - 1)) {
@@ -347,8 +347,8 @@
             const relshift = (xshift - prevxshift)
             let dead = 0;
             //wrap around y edges
-            if (y > sw) {
-                y -= sh
+            if (y > (sh-1)) {
+                y -= (sh-1)
             }
             if (y < 0) {
                 y += sh
@@ -360,14 +360,14 @@
             //also die when hitting player's tail
             if ((x < sw)  && (document.getElementsByClassName('cell')[y * sw + x].classList.contains("bg-yellow-300") == true)) {
                 dead = 1;
-                document.getElementsByClassName('cell')[y * sw + x].classList.remove("bg-gray-800", "bg-yellow-300", "bg-yellow-100", "bg-green-600", "bg-green-900", "bg-green-800", "bg-gray-900", "bg-red-800", "bg-red-600", "bg-blue-500", "bg-blue-700", "bg-orange-600", "bg-green-500", "bg-yellow-400")
+                document.getElementsByClassName('cell')[y * sw + x].classList.remove("bg-space", "bg-yellow-300", "bg-yellow-100", "bg-green-600", "bg-green-900", "bg-green-800", "bg-gray-900", "bg-red-800", "bg-red-600", "bg-blue-500", "bg-blue-700", "bg-orange-600", "bg-green-500", "bg-yellow-400")
                 document.getElementsByClassName('cell')[y * sw + x].classList.add("bg-yellow-300")
             };
 
             if (dead == 0) {
                 //clear previous position if it was in the view
                 if ((x - relshift < sw) && (x - relshift > 0)) {
-                    document.getElementsByClassName('cell')[y * sw + x - relshift].classList.remove("bg-gray-800", "bg-yellow-300", "bg-yellow-100", "bg-green-600", "bg-green-900", "bg-green-800", "bg-gray-900", "bg-red-800", "bg-red-600", "bg-blue-500", "bg-blue-700", "bg-orange-600", "bg-green-500", "bg-yellow-400")
+                    document.getElementsByClassName('cell')[y * sw + x - relshift].classList.remove("bg-space", "bg-yellow-300", "bg-yellow-100", "bg-green-600", "bg-green-900", "bg-green-800", "bg-gray-900", "bg-red-800", "bg-red-600", "bg-blue-500", "bg-blue-700", "bg-orange-600", "bg-green-500", "bg-yellow-400")
                     document.getElementsByClassName('cell')[y * sw + x - relshift].classList.add(trace)
                 };
                 //pattern none doesn't change the direction
@@ -396,7 +396,7 @@
                     }
                     await timeout(speed);
                     if (x < sw) {
-                        document.getElementsByClassName('cell')[y * sw + x].classList.remove("bg-gray-800", "bg-yellow-300", "bg-yellow-100", "bg-green-600", "bg-green-900", "bg-green-800", "bg-gray-900", "bg-red-800", "bg-red-600", "bg-blue-500", "bg-blue-700", "bg-orange-600", "bg-green-500", "bg-indigo-700", "bg-yellow-400");
+                        document.getElementsByClassName('cell')[y * sw + x].classList.remove("bg-space", "bg-yellow-300", "bg-yellow-100", "bg-green-600", "bg-green-900", "bg-green-800", "bg-gray-900", "bg-red-800", "bg-red-600", "bg-blue-500", "bg-blue-700", "bg-orange-600", "bg-green-500", "bg-indigo-700", "bg-yellow-400");
                         document.getElementsByClassName('cell')[y * sw + x].classList.add(trace);
                     }
                     dead = 1
@@ -478,8 +478,8 @@
                         break;
                     case 'down':
                         y += 1;
-                        if (y > sh) {
-                            y -= sh
+                        if (y > (sh-1)) {
+                            y -= (sh-1)
                         }
                         break;
                     case 'still':
@@ -503,7 +503,7 @@
                 if ((x >= 0) && (dead == 0)) {
                     if (x < sw) {
                         if (((pattern == 'health') || (pattern == 'coin')) && ((cycle % 2) < 1)) {
-                            document.getElementsByClassName('cell')[(y * sw) + x].classList.add("bg-gray-400")
+                            document.getElementsByClassName('cell')[(y * sw) + x].classList.add("bg-space")
                         } else {
                             document.getElementsByClassName('cell')[(y * sw) + x].classList.add(style)
                         }
@@ -591,7 +591,7 @@
 
             };
             //style the table cells to the player style
-            document.getElementsByClassName('cell')[oldplayery * sw + oldplayerx].classList.remove("bg-gray-800", "bg-yellow-300", "bg-green-600", "bg-green-900", "bg-green-800", "bg-gray-900", "bg-yellow-100", "bg-red-800", "bg-red-600", "bg-blue-500", "bg-blue-700", "bg-orange-600", "bg-green-500", "bg-indigo-700", "bg-yellow-400");
+            document.getElementsByClassName('cell')[oldplayery * sw + oldplayerx].classList.remove("bg-space", "bg-yellow-300", "bg-green-600", "bg-green-900", "bg-green-800", "bg-gray-900", "bg-yellow-100", "bg-red-800", "bg-red-600", "bg-blue-500", "bg-blue-700", "bg-orange-600", "bg-green-500", "bg-indigo-700", "bg-yellow-400");
             if (invincible == 1) {
                 document.getElementsByClassName('cell')[oldplayery * sw + oldplayerx].classList.add("bg-orange-600")
             } else {
@@ -669,7 +669,7 @@
                         if (j < (sw - 1)) {
                             document.getElementsByClassName('cell')[i * sw + j].setAttribute("class", document.getElementsByClassName('cell')[i * sw + j + 1].getAttribute("class"));
                         } else {
-                            document.getElementsByClassName('cell')[i * sw + j].classList.remove("bg-gray-800", "bg-green-600", "bg-green-900", "bg-green-800", "bg-yellow-300", "bg-gray-900", "bg-yellow-100", "bg-red-800", "bg-red-600", "bg-blue-500", "bg-blue-700", "bg-orange-600", "bg-green-500", "bg-indigo-700", "bg-yellow-400")
+                            document.getElementsByClassName('cell')[i * sw + j].classList.remove("bg-space", "bg-green-600", "bg-green-900", "bg-green-800", "bg-yellow-300", "bg-gray-900", "bg-yellow-100", "bg-red-800", "bg-red-600", "bg-blue-500", "bg-blue-700", "bg-orange-600", "bg-green-500", "bg-indigo-700", "bg-yellow-400")
                             document.getElementsByClassName('cell')[i * sw + j].classList.add(bgcolor)
                         }
                     }
@@ -678,6 +678,8 @@
                 oldplayerx -= 1
                 xshift += 1
             }
+            //pan the background image
+            $('background').style = "background-image:url('background.png'); background-position:"+ (-2*cycle) +"px 0px"
 
             //resize the first and last column to give the illusion of panning
             for (i = 0; i < sh; i++) {
