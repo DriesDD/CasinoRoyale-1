@@ -11,12 +11,12 @@
 
     //define which tailwind color classes are in the game (could be used later to remove these classes when redrawing things)
     const colors = ["bg-space", "bg-yellow-300", "bg-yellow-100", "bg-red-800", "bg-gray-900", "bg-red-600", "bg-green-600", "bg-green-900", "bg-green-800", "bg-blue-500", "bg-blue-700", "bg-orange-600", "bg-green-500", "bg-indigo-700", "bg-yellow-400"];
-    const hints = ["Hint: There's fitting music further down this page.","Hint: Stay away from red dots in abandoned stations.","Hint: Use your tail like a shield to defend against asteroids.","Hint: Survive 100 seconds on hard or extreme to earn a badge.","Hint: With some enemies it's best to move to the front so you have space to run back to.","Hint: Surround the blob before it surrounds you.","Hint: Assassins with a trail are nasty and fast. Hide behind your tail.","Hint: Greed is the prime cause of death in abandoned space stations.","Hint: Don't let moving walls close in front of you."]
+    const hints = ["Hint: There's fitting music further down this page.", "Hint: Stay away from red dots in abandoned stations.", "Hint: Use your tail like a shield to defend against asteroids.", "Hint: Survive 100 seconds on hard or extreme to earn a badge.", "Hint: With some enemies it's best to move to the front so you have space to run back to.", "Hint: Surround the blob before it surrounds you.", "Hint: Assassins with a trail are nasty and fast. Hide behind your tail.", "Hint: Greed is the prime cause of death in abandoned space stations.", "Hint: Don't let moving walls close in front of you.", "Double-tap to jump 4 blocks far."]
     //define which color classes are enemies (needed to lose a life when hitting them)
     const enemycolors = [];
     //variables
     let playerx, playery, playerdir, playerspeed,
-        oldplayerx, oldplayery, xshift,
+        oldplayerx, oldplayery, xshift, tapkey,
         cycle, spawncycle, wave, bgcolor,
         gametime, interval, invincible, life, maxlife,
         score
@@ -71,7 +71,8 @@
         oldplayerx = playerx;
         oldplayery = playery;
         playerdir = 'right';
-        playerspeed = 150;
+        tapkey = ''
+        playerspeed = 160;
         life = 5;
         maxlife = 5;
         invincible = 0;
@@ -98,7 +99,7 @@
 
         $("gametime").innerText = "Paused"
         if (restarts > 1) {
-            $('menutext').innerHTML = "You survived for " + score + " seconds." + "</br>" + hints[Math.floor(Math.random()*hints.length)]
+            $('menutext').innerHTML = "You survived for " + score + " seconds." + "</br>" + hints[Math.floor(Math.random() * hints.length)]
             if ((difficulty > 1) && (score > 100)) {
                 $('menutext').innerText = "Wow! You survived for " + score + " seconds on hard or extreme. You earned your badge!"
             }
@@ -182,7 +183,7 @@
         //Assassins   
         eventlist.push(['wave', 8000, 'bg-space']);
         eventlist.push(['message', 0, 'They sent assassins to kill you, captain.']);
-        for (i = 0; i < 0.5*(6 + wave + difficulty); i++) {
+        for (i = 0; i < 0.5 * (6 + wave + difficulty); i++) {
             if (Math.random() > (1 / (difficulty / 2 + wave / 5))) {
                 eventlist.push(['enemy', 15000 / (3 + wave + difficulty), sw + 10, Math.round(Math.random() * sh), 'left', 800 / (5 + difficulty + wave), 'snake', "bg-red-600", "bg-space"])
             } else {
@@ -237,11 +238,11 @@
         for (i = 0; i < 0.5 * (3 + wave + difficulty); i++) {
             randy = Math.floor(Math.random() * sh);
             if (Math.random() * 20 < 4 + (difficulty + wave)) {
-                eventlist.push(['enemy', 10000 / (1 + wave + difficulty), sw + 5, randy+1, 'up', 6000 / (10 + difficulty + wave), 'snake', "bg-blue-500", "bg-blue-700"])
-                eventlist.push(['enemy', 0,                               sw + 4, randy, 'up', 6000 / (10 + difficulty + wave), 'snake', "bg-blue-500", "bg-blue-700", "bg-indigo-700"])
+                eventlist.push(['enemy', 10000 / (1 + wave + difficulty), sw + 5, randy + 1, 'up', 6000 / (10 + difficulty + wave), 'snake', "bg-blue-500", "bg-blue-700"])
+                eventlist.push(['enemy', 0, sw + 4,                                    randy, 'up', 6000 / (10 + difficulty + wave), 'snake', "bg-blue-500", "bg-blue-700"])
             } else {
-                eventlist.push(['enemy', 20000 / (1 + wave + difficulty), sw + 5, randy-1, 'down', 6000 / (10 + difficulty + wave), 'none', "bg-blue-700", "bg-blue-700"])
-                eventlist.push(['enemy', 0                               ,sw + 4, randy, 'down', 6000 / (10 + difficulty + wave), 'snake', "bg-blue-500", "bg-blue-700"])
+                eventlist.push(['enemy', 20000 / (1 + wave + difficulty), sw + 5, randy - 1, 'down', 6000 / (10 + difficulty + wave), 'none', "bg-blue-700", "bg-blue-700"])
+                eventlist.push(['enemy', 0, sw + 4,                                    randy, 'down', 6000 / (10 + difficulty + wave), 'snake', "bg-blue-500", "bg-blue-700"])
             }
             for (j = 0; j < (sh / 5 + Math.sqrt(2 + wave + difficulty)); j++) {
                 eventlist.push(['enemy', 1, sw, (randy + j), 'up', 1200, 'none', "bg-blue-700", "bg-blue-700"])
@@ -259,8 +260,8 @@
             randy = Math.floor(Math.random() * sh);
             eventlist.push(['enemy', 2000, sw + 2, randy, 'still', 100, 'none', "bg-gray-900", "bg-space"]);
             randy = Math.floor(Math.random() * sh);
-            randsize = 3 + Math.floor(Math.random() * 8);
-            
+            randsize = 3 + Math.floor(Math.random() * 6);
+
             for (i = 0; i < randsize; i++) {
                 if (Math.random() > 0.2) {
                     eventlist.push(['enemy', 0, sw + i, randy, 'still', 100, 'none', "bg-gray-900", "bg-space"]);
@@ -268,14 +269,14 @@
                     eventlist.push(['enemy', 0, sw, randy + i, 'still', 100, 'none', "bg-gray-900", "bg-space"]);
                     eventlist.push(['enemy', 0, sw + randsize, randy + i, 'still', 100, 'none', "bg-gray-900", "bg-space"]);
                 }
-            } 
-            if (randsize > 7) {
+            }
+            if (randsize > 6) {
                 for (i = 0; i < difficulty; i++) {
                     eventlist.push(['powerup', 0, 'coin', sw + 2 + Math.round(Math.random() * 3), randy + 2 + Math.round(Math.random() * 3), "bg-yellow-400"]);
                     eventlist.push(['powerup', 0, 'coin', sw + 2 + Math.round(Math.random() * 3), randy + 2 + Math.round(Math.random() * 3), "bg-yellow-400"]);
                 }
-            } else if (Math.random() < (difficulty+wave)/30) {
-                eventlist.push(['enemy', 0, sw + 1 + Math.round(Math.random() * 2), randy + 1 + Math.round(Math.random() * 2),'left', 5000 / (3 + difficulty + wave), 'proximity', "bg-red-600", "bg-space"])
+            } else if (Math.random() < (difficulty + wave) / 30) {
+                eventlist.push(['enemy', 0, sw + 1 + Math.round(Math.random() * 2), randy + 1 + Math.round(Math.random() * 2), 'left', 5000 / (3 + difficulty + wave), 'proximity', "bg-red-600", "bg-space"])
             }
 
         }
@@ -347,8 +348,8 @@
             const relshift = (xshift - prevxshift)
             let dead = 0;
             //wrap around y edges
-            if (y > (sh-1)) {
-                y -= (sh-1)
+            if (y > (sh - 1)) {
+                y -= (sh - 1)
             }
             if (y < 0) {
                 y += sh
@@ -358,7 +359,7 @@
                 dead = 1
             }
             //also die when hitting player's tail
-            if ((x < sw)  && (document.getElementsByClassName('cell')[y * sw + x].classList.contains("bg-yellow-300") == true)) {
+            if ((x < sw) && (document.getElementsByClassName('cell')[y * sw + x].classList.contains("bg-yellow-300") == true)) {
                 dead = 1;
                 document.getElementsByClassName('cell')[y * sw + x].classList.remove("bg-space", "bg-yellow-300", "bg-yellow-100", "bg-green-600", "bg-green-900", "bg-green-800", "bg-gray-900", "bg-red-800", "bg-red-600", "bg-blue-500", "bg-blue-700", "bg-orange-600", "bg-green-500", "bg-yellow-400")
                 document.getElementsByClassName('cell')[y * sw + x].classList.add("bg-yellow-300")
@@ -478,8 +479,8 @@
                         break;
                     case 'down':
                         y += 1;
-                        if (y > (sh-1)) {
-                            y -= (sh-1)
+                        if (y > (sh - 1)) {
+                            y -= (sh - 1)
                         }
                         break;
                     case 'still':
@@ -520,7 +521,7 @@
     //   PART 4: player behavior                    //
     //______________________________________________//
 
-    //player movement
+    //player movement. tapkey is used to check for doubletaps.
 
     document.onkeydown = () => {
         switch (event.key) {
@@ -547,8 +548,40 @@
         }
     }
 
+    document.onkeyup = () => {
+        switch (event.key) {
+            case 'ArrowLeft':
+                if (playerdir != 'right') {
+                    tapkey = tapkey+'ll'
+                }
+                break;
+            case 'ArrowUp':
+                if (playerdir != 'down') {
+                    tapkey = tapkey+'uu'
+                }
+                break;
+            case 'ArrowRight':
+                if (playerdir != 'left') {
+                    tapkey = tapkey+'rr'
+                }
+                break;
+            case 'ArrowDown':
+                if (playerdir != 'up') {
+                    tapkey = tapkey+'dd'
+                }
+                break;
+        }
+    }
+
     async function moveplayer(currentgame) {
         if (currentgame == restarts) {
+            console.log(tapkey);
+            if (tapkey == 'rrr') {playerx+=4}
+            if (tapkey == 'lll') {playerx-=4}
+            if (tapkey == 'uuu') {playery-=4}
+            if (tapkey == 'ddd') {playery+=4}
+            tapkey = tapkey.substr(0,Math.min(4,tapkey.length -1));
+
             switch (playerdir) {
                 case 'right':
                     playerx += 1;
@@ -569,6 +602,9 @@
                     }
                     break;
             }
+          
+
+
             updatepos()
             await timeout(playerspeed);
             moveplayer(currentgame)
@@ -679,7 +715,7 @@
                 xshift += 1
             }
             //pan the background image
-            $('background').style = "background-image:url('background.png'); background-position:"+ (-2*cycle) +"px 0px"
+            $('background').style = "background-image:url('background.png'); background-position:" + (-2 * cycle) + "px 0px"
 
             //resize the first and last column to give the illusion of panning
             for (i = 0; i < sh; i++) {
@@ -696,6 +732,5 @@
             cyclestep(currentgame)
         }
     };
-
 
 })();
