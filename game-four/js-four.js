@@ -212,12 +212,12 @@
                 eventlist.push(['message', 0, 'They sent assassins to kill you, captain.']);
                 for (i = 0; i < 0.5 * (6 + wave + difficulty); i++) {
                     if (Math.random() > (1 / (difficulty / 2 + wave / 5))) {
-                        eventlist.push(['enemy', 15000 / (3 + wave + difficulty), sw + 10, Math.round(Math.random() * sh), 'left', 1200 / (2 + difficulty + wave/2), 'snake', "bg-red-600", "bg-space"])
+                        eventlist.push(['enemy', 15000 / (3 + wave + difficulty), sw + 10, Math.round(Math.random() * sh), 'left', 1200 / (2 + 2*difficulty + wave/2), 'snake', "bg-red-600", "bg-space"])
                     } else {
                         if (Math.random() > 0.7) {
-                            eventlist.push(['enemy', 7000 / (3 + wave + difficulty), sw + 10, Math.round(Math.random() * sh), 'up', 900 / (2 + difficulty + wave/2), 'pursue', "bg-red-600", "bg-space"])
+                            eventlist.push(['enemy', 7000 / (3 + wave + difficulty), sw + 10, Math.round(Math.random() * sh), 'up', 900 / (2 + 2*difficulty + wave/2), 'pursue', "bg-red-600", "bg-space"])
                         } else {
-                            eventlist.push(['enemy', 10000 / (3 + wave + difficulty), sw + 10, Math.round(Math.random() * sh), 'left', 1000 / (2 + difficulty + wave/2), 'block', "bg-red-600", "bg-space"])
+                            eventlist.push(['enemy', 10000 / (3 + wave + difficulty), sw + 10, Math.round(Math.random() * sh), 'left', 1000 / (2 + 2*difficulty + wave/2), 'block', "bg-red-600", "bg-space"])
                         }
                     }
                 }
@@ -230,7 +230,7 @@
             eventlist.push(['message', 0, 'Captain, we are caught in an asteroid storm.']);
             for (i = 0; i < 10 * (3+difficulty + wave); i++) {
                 randy = Math.floor(Math.random() * sh);
-                randspeed = 50 + Math.floor(Math.random() * 200);
+                randspeed = 100-difficulty*20 + Math.floor(Math.random() * 200);
                 randsize = Math.ceil(Math.random() * 3)
                 eventlist.push(['enemy', 400 / (2+difficulty + wave), sw + 5, randy, 'left', randspeed, 'none', "bg-orange-900", "bg-space"])
                 for (j = 0; j < randsize; j++) {
@@ -245,10 +245,10 @@
             //the glitch
             eventlist.push(['wave', 5000, "bg-space"]);
             eventlist.push(['message', 0, 'Something seems glitchy in the fabric of spacetime.']);
-            for (i = 0; i < (15 + 2 * difficulty + wave); i++) {
+            for (i = 0; i < (15 + difficulty + wave); i++) {
                 randy = Math.floor(Math.random() * sh);
                 randspeed = 300 + Math.floor(Math.random() * 100);
-                randsize = Math.ceil(2 + Math.random() * 4)
+                randsize = Math.ceil(1 + Math.random() * 5)
                 eventlist.push(['enemy', 1000 / ((3 + difficulty + wave) / 5), sw + 5, randy, 'left', randspeed, 'none', "bg-green-600", "bg-space"])
                 for (j = 0; j < randsize * 2; j++) {
                     for (k = 0; k < randsize; k++) {
