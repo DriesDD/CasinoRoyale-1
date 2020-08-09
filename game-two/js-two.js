@@ -82,6 +82,8 @@ let deck = [],
   count = 0,
   numOfBadge = 0,
   playerWin = 0,
+  aIsOne = false,
+  aAreTwo = false,
   sum;
 // Coin bank and bet updater function
 function betUpdate(coin, minCoin, coinSVG) {
@@ -324,6 +326,9 @@ function deal(cards, check) {
           aInPlayerCard = count;
           count = 0;
           console.log(`Number of A's is ${aInPlayerCard}`);
+          if (aInPlayerCard == 1) aIsOne = true;
+          if (aInPlayerCard == 2) aAreTwo = true;
+
           firstSum = sumPlayer;
           playerCards.innerHTML += `<img class="mr-1" src="cards/${firstCard}.svg" />`;
           playerCards.innerHTML += `<img class="mr-1" src="cards/${secondCard}.svg" />`;
@@ -354,24 +359,26 @@ function deal(cards, check) {
       firstChar = firstCard.charAt(0);
       ifAce(firstChar);
       aInPlayerCard += count;
-      if (aInPlayerCard > 0 && sumPlayer > 12) {
-        weight.forEach((item) => {
-          if (firstChar === item.type && firstChar === "A") {
-            hitPlayer = 1;
-          } else if (firstChar === item.type) {
-            hitPlayer = item.value;
-          }
-        });
-      } else {
-        weight.forEach((item) => {
-          if (firstChar === item.type) {
-            hitPlayer = item.value;
-          }
-        });
+      count = 0;
+      if (aInPlayerCard == 3) aAreThree = true;
+      if (aInPlayerCard == 4) aAreFour = true;
+
+      weight.forEach((item) => {
+        if (firstChar === item.type) {
+          hitPlayer = item.value;
+        }
+      });
+
+      firstSum += hitPlayer;
+      for (let i = 0; i < aInPlayerCard; i++) {
+        if (aInPlayerCard > 0 && firstSum > 21) {
+          firstSum -= 10;
+          aInPlayerCard -= 1;
+        }
       }
-      hitSum = firstSum += hitPlayer;
-      console.log(`playerHitCard-previous sum ${firstSum}`);
+      hitSum = firstSum;
       console.log(`playerHitCard-hit value ${hitPlayer}`);
+      console.log(`playerHitCard-previous sum ${firstSum}`);
       playerCards.innerHTML += `<img class="mr-1" src="cards/${firstCard}.svg" />`;
       playerScore.innerHTML = hitSum;
       if (hitSum > 21) {
@@ -433,7 +440,6 @@ function deckShuffle() {
     deck[i] = deck[j];
     deck[j] = temp;
   }
-  console.log(deck);
 }
 
 // Random array generator with 2 values
