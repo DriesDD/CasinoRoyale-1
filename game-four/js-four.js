@@ -134,7 +134,7 @@
             life = 5;
             maxlife = 5;
             difficulty = 1;
-            $('difficulty').innerText = 'Difficulty: normal';
+            $('difficulty').innerText = 'Difficulty: hard';
             gamestart()
         } else {
             $('menutext').innerText = "Not enough coins to play. You need 25 but you only have " + localStorage.getItem("balance") + "."
@@ -145,7 +145,7 @@
             life = 3;
             maxlife = 3;
             difficulty = 2;
-            $('difficulty').innerText = 'Difficulty: hard';
+            $('difficulty').innerText = 'Difficulty: harder';
             gamestart()
         } else {
             $('menutext').innerText = "Not enough coins to play. You need 25 but you only have " + localStorage.getItem("balance") + "."
@@ -156,7 +156,7 @@
             life = 1;
             maxlife = 1;
             difficulty = 3;
-            $('difficulty').innerText = 'Difficulty: extreme';
+            $('difficulty').innerText = 'Difficulty: hardest';
             gamestart()
         } else {
             $('menutext').innerText = "Not enough coins to play. You need 25 but you only have " + localStorage.getItem("balance") + "."
@@ -212,12 +212,12 @@
                 eventlist.push(['message', 0, 'They sent assassins to kill you, captain.']);
                 for (i = 0; i < 0.5 * (6 + wave + difficulty); i++) {
                     if (Math.random() > (1 / (difficulty / 2 + wave / 5))) {
-                        eventlist.push(['enemy', 15000 / (3 + wave + difficulty), sw + 10, Math.round(Math.random() * sh), 'left', 1200 / (5 + difficulty + wave), 'snake', "bg-red-600", "bg-space"])
+                        eventlist.push(['enemy', 15000 / (3 + wave + difficulty), sw + 10, Math.round(Math.random() * sh), 'left', 1200 / (2 + difficulty + wave/2), 'snake', "bg-red-600", "bg-space"])
                     } else {
                         if (Math.random() > 0.7) {
-                            eventlist.push(['enemy', 7000 / (3 + wave + difficulty), sw + 10, Math.round(Math.random() * sh), 'up', 900 / (5 + difficulty + wave), 'pursue', "bg-red-600", "bg-space"])
+                            eventlist.push(['enemy', 7000 / (3 + wave + difficulty), sw + 10, Math.round(Math.random() * sh), 'up', 900 / (2 + difficulty + wave/2), 'pursue', "bg-red-600", "bg-space"])
                         } else {
-                            eventlist.push(['enemy', 10000 / (3 + wave + difficulty), sw + 10, Math.round(Math.random() * sh), 'left', 1000 / (5 + difficulty + wave), 'block', "bg-red-600", "bg-space"])
+                            eventlist.push(['enemy', 10000 / (3 + wave + difficulty), sw + 10, Math.round(Math.random() * sh), 'left', 1000 / (2 + difficulty + wave/2), 'block', "bg-red-600", "bg-space"])
                         }
                     }
                 }
@@ -228,11 +228,11 @@
             //Asteroid swarm
             eventlist.push(['wave', 5000, 'bg-space']);
             eventlist.push(['message', 0, 'Captain, we are caught in an asteroid storm.']);
-            for (i = 0; i < 30 * (difficulty + wave); i++) {
+            for (i = 0; i < 10 * (3+difficulty + wave); i++) {
                 randy = Math.floor(Math.random() * sh);
                 randspeed = 50 + Math.floor(Math.random() * 200);
                 randsize = Math.ceil(Math.random() * 3)
-                eventlist.push(['enemy', 200 / (difficulty + wave), sw + 5, randy, 'left', randspeed, 'none', "bg-orange-900", "bg-space"])
+                eventlist.push(['enemy', 400 / (2+difficulty + wave), sw + 5, randy, 'left', randspeed, 'none', "bg-orange-900", "bg-space"])
                 for (j = 0; j < randsize; j++) {
                     for (k = 0; k < randsize; k++) {
                         eventlist.push(['enemy', 0, sw + 5 + Math.round(randsize + j * 2 + 2 * Math.random()), randy + k * 2 + 2 * Math.random(), 'left', randspeed, 'none', "bg-orange-900", "bg-space"]);
@@ -245,11 +245,11 @@
             //the glitch
             eventlist.push(['wave', 5000, "bg-space"]);
             eventlist.push(['message', 0, 'Something seems glitchy in the fabric of spacetime.']);
-            for (i = 0; i < (30 + 2 * difficulty + 2 * wave); i++) {
+            for (i = 0; i < (15 + 2 * difficulty + wave); i++) {
                 randy = Math.floor(Math.random() * sh);
                 randspeed = 300 + Math.floor(Math.random() * 100);
                 randsize = Math.ceil(2 + Math.random() * 4)
-                eventlist.push(['enemy', 400 / ((5 + difficulty + wave) / 5), sw + 5, randy, 'left', randspeed, 'none', "bg-green-600", "bg-space"])
+                eventlist.push(['enemy', 1000 / ((3 + difficulty + wave) / 5), sw + 5, randy, 'left', randspeed, 'none', "bg-green-600", "bg-space"])
                 for (j = 0; j < randsize * 2; j++) {
                     for (k = 0; k < randsize; k++) {
                         eventlist.push(['enemy', 0, sw + 5 - randsize / 2 + j, randy + k, 'left', randspeed, 'none', "bg-green-600", "bg-space"]);
@@ -281,7 +281,7 @@
 
                 randy = Math.floor(Math.random() * sh);
                 if (Math.random() * 20 < 4 + (difficulty + wave)) {
-                    eventlist.push(['enemy', 20000 / (1 + wave + difficulty), sw + 5, randy + 1, 'up', 6000 / (10 + difficulty + wave), 'snake', "bg-blue-500", "bg-blue-700"])
+                    eventlist.push(['enemy', 20000 / (1 + wave + difficulty), sw + 5, randy + 1, 'up', 10000 / (10 + difficulty + wave), 'snake', "bg-blue-500", "bg-blue-700"])
                     eventlist.push(['enemy', 0, sw + 4, randy, 'up', 6000 / (10 + difficulty + wave), 'snake', "bg-blue-500", "bg-blue-700"])
                 } else {
                     eventlist.push(['enemy', 20000 / (1 + wave + difficulty), sw + 5, randy - 1, 'down', 6000 / (10 + difficulty + wave), 'none', "bg-blue-700", "bg-blue-700"])
@@ -369,7 +369,9 @@
             enemies = 0;
 
             //if the evenlist ran out, generate new wave
-            if (eventlist.length < 10) {wavegenerator()}
+            if (eventlist.length < 10) {
+                wavegenerator()
+            }
 
             switch (eventlist[spawncycle][0]) {
                 //spawn enemies
@@ -391,7 +393,7 @@
             break;
             //powerup is actually a special kind of 'enemy'
             case 'powerup': {
-                enemycycle(eventlist[spawncycle][2], 200, eventlist[spawncycle][5], "bg-space", eventlist[spawncycle][3], eventlist[spawncycle][4], "still", restarts, xshift)
+                enemycycle(eventlist[spawncycle][2], 100, eventlist[spawncycle][5], "bg-space", eventlist[spawncycle][3], eventlist[spawncycle][4], "still", restarts, xshift)
             };
             break;
             }
