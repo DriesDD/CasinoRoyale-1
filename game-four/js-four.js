@@ -21,8 +21,10 @@
         gametime, interval, invincible, life, maxlife,
         score
 
-    //event list of enemies, waves, powerups etc. populated by the generatewave function
-    eventlist = []
+    //event list of enemies, waves, powerups etc. populated by the generatewave function.
+    eventlist = [];
+    waveseries = [];
+    waveindex = 0;
 
     //prevent the page from scrolling using the up and down keys, since those are used in game
     window.addEventListener("keydown", function (e) {
@@ -100,6 +102,8 @@
         wave = 1;
         bgcolor = 'bg-space'
         eventlist = [];
+        waveseries = [];
+        waveindex = 0;
 
         for (i = 0; i < sh; i++) {
             for (j = 0; j < sw; j++) {
@@ -185,7 +189,7 @@
     //   PART 2: the wave generator                 //
     //______________________________________________//
 
-    //this is the function where the waves are generated using an array of arrays
+    //this is the function where the waves are generated using an array of arrays (eventlist). First the order of the wave is randomly shuffled.
     //for enemy: eventtype, delay after previous,x,y,direction,speed, movement pattern, style, trail
     //for wave start: eventtype, delay after previous, background color
     //for message: eventtype, delay after previous, announcement
@@ -194,13 +198,15 @@
     function wavegenerator() {
         let randy, randspeed, randsize
         //shuffles the order of the waves with more mysterious ones later on and a powerup at the end
-        let waveseries = []
+        if (waveindex >= waveseries.length)
+        {
+        waveseries = []
         waveseries = waveseries.concat(shuffle(["assassins", "asteroids", "glitch"]));
-        waveseries = waveseries.concat(shuffle(["blob","walls", "station"]));
+        waveseries = waveseries.concat(shuffle(["blob", "walls", "station"]));
         waveseries = waveseries.concat(["health"]);
         console.log(waveseries);
-        for (i = 0; i < waveseries.length; i++) {
-            switch (waveseries[i]) {
+        }        
+            switch (waveseries[waveindex]) {
                 case 'assassins': {
                     //Assassins   
                     eventlist.push(['wave', 8000, 'bg-space']);
@@ -217,7 +223,8 @@
                         }
                     }
                     eventlist.push(['enemy', 1000, -1, 1, 'left', 500, 'none', "bg-space", "bg-space"]);
-                }
+                };
+                break;
             case 'asteroids': {
                 //Asteroid swarm
                 eventlist.push(['wave', 5000, 'bg-space']);
@@ -233,16 +240,17 @@
                         }
                     }
                 }
-            }
+            };
+            break;
             case 'glitch': {
                 //the glitch
                 eventlist.push(['wave', 5000, "bg-space"]);
                 eventlist.push(['message', 0, 'Something seems glitchy in the fabric of spacetime.']);
-                for (i = 0; i < 10 * (difficulty + wave); i++) {
+                for (i = 0; i < (100 + 5*difficulty + 5*wave); i++) {
                     randy = Math.floor(Math.random() * sh);
-                    randspeed = 150 + Math.floor(Math.random() * 100);
+                    randspeed = 300 + Math.floor(Math.random() * 100);
                     randsize = Math.ceil(2 + Math.random() * 4)
-                    eventlist.push(['enemy', 400 / (difficulty + wave), sw + 5, randy, 'left', randspeed, 'none', "bg-green-600", "bg-space"])
+                    eventlist.push(['enemy', 400 / ((5+difficulty + wave)/5), sw + 5, randy, 'left', randspeed, 'none', "bg-green-600", "bg-space"])
                     for (j = 0; j < randsize * 2; j++) {
                         for (k = 0; k < randsize; k++) {
                             eventlist.push(['enemy', 0, sw + 5 - randsize / 2 + j, randy + k, 'left', randspeed, 'none', "bg-green-600", "bg-space"]);
@@ -257,16 +265,17 @@
                         }
                     }
                 }
-            }
+            };
+            break;
             case 'walls': {
                 //Blue walls
                 eventlist.push(['wave', 5000, 'bg-space']);
                 eventlist.push(['message', 0, 'Those walls... They\'re closing!']);
                 for (i = 0; i < (3 + wave + difficulty); i++) {
 
-                    for (j = 0; j < (sh / 5 + Math.sqrt(2 + wave + difficulty)); j++) {
-                        eventlist.push(['enemy', 10, sw+1, (randy + j), 'up', 3000, 'none', "bg-blue-700", "bg-blue-700"])
-                        eventlist.push(['enemy', 10, sw+1, (randy - j), 'down', 3000, 'none', "bg-blue-700", "bg-blue-700"])
+                    for (j = 0; j < (Math.ceil(Math.sqrt(2 + wave + difficulty))); j++) {
+                        eventlist.push(['enemy', 10, sw + 1, (randy + j), 'up', 3000, 'none', "bg-blue-700", "bg-blue-700"])
+                        eventlist.push(['enemy', 10, sw + 1, (randy - j), 'down', 3000, 'none', "bg-blue-700", "bg-blue-700"])
                         eventlist.push(['enemy', 10, sw, (randy + j), 'up', 3000, 'none', "bg-blue-700", "bg-blue-700"])
                         eventlist.push(['enemy', 10, sw, (randy - j), 'down', 3000, 'none', "bg-blue-700", "bg-blue-700"])
                     }
@@ -280,19 +289,20 @@
                         eventlist.push(['enemy', 0, sw + 4, randy, 'down', 6000 / (10 + difficulty + wave), 'none', "bg-blue-500", "bg-blue-700"])
                     }
 
-                    for (j = 0; j < (sh / 5 + Math.sqrt(2 + wave + difficulty)); j++) {
-                        eventlist.push(['enemy', 5, sw+1, (randy + j), 'up', 2400, 'none', "bg-blue-700", "bg-blue-700"])
-                        eventlist.push(['enemy', 5, sw+1, (randy - j), 'down', 2400, 'none', "bg-blue-700", "bg-blue-700"])
+                    for (j = 0; j < (Math.ceil(Math.sqrt(2 + wave + difficulty))); j++) {
+                        eventlist.push(['enemy', 5, sw + 1, (randy + j), 'up', 2400, 'none', "bg-blue-700", "bg-blue-700"])
+                        eventlist.push(['enemy', 5, sw + 1, (randy - j), 'down', 2400, 'none', "bg-blue-700", "bg-blue-700"])
                         eventlist.push(['enemy', 5, sw, (randy + j), 'up', 2400, 'none', "bg-blue-700", "bg-blue-700"])
                         eventlist.push(['enemy', 5, sw, (randy - j), 'down', 2400, 'none', "bg-blue-700", "bg-blue-700"])
                     }
-                    eventlist.push(['enemy', 1000, sw+5, (randy - j), 'still', 200, 'fade', "bg-blue-700", "bg-blue-700"])
+                    eventlist.push(['enemy', 1000, sw + 5, (randy - j), 'still', 200, 'fade', "bg-blue-700", "bg-blue-700"])
 
 
                 }
-            }
+            };
+            break;
 
-                //Great blob
+            //Great blob
             case 'blob': {
 
                 eventlist.push(['wave', 4000, 'bg-space']);
@@ -301,7 +311,8 @@
                     eventlist.push(['enemy', 150 / (5 + difficulty + wave), sw + 10, Math.round(Math.random() * 3), 'down', (2 + Math.random()) * 2000 / (5 + difficulty + wave), 'pursue', "bg-indigo-700", "bg-indigo-700"])
                     eventlist.push(['enemy', 150 / (5 + difficulty + wave), sw + 10, sh + 1 - Math.round(Math.random() * 3), 'up', (2 + Math.random()) * 2000 / (5 + difficulty + wave), 'pursue', "bg-indigo-700", "bg-indigo-700"])
                 }
-            }
+            };
+            break;
             case 'station': {
                 //Space station
                 eventlist.push(['wave', 8000, 'bg-space']);
@@ -330,14 +341,17 @@
                         eventlist.push(['enemy', 0, sw + 1 + Math.round(Math.random() * 2), randy + 1 + Math.round(Math.random() * 2), 'left', 5000 / (3 + difficulty + wave), 'proximity', "bg-red-600", "bg-space"])
                     }
                 }
-            }
+            };
+            break;
             case 'health': {
                 //health bar
                 eventlist.push(['message', 5500, 'After all that, you deserve a cookie.']);
                 eventlist.push(['powerup', 100, 'health', sw, 5 + Math.floor(Math.random() * sh), "bg-green-500"]);
+            };
+            break;
             }
-            }
-        }
+
+            waveindex +=1
     }
 
     //----------------------------------------------//
@@ -352,7 +366,8 @@
 
             //performance checking
             console.log("Eventlist: " + eventlist.length)
-            console.log("Enemy cycles per second: " +enemies*10)
+            console.log("Enemy cycles per second: " + enemies * 10)
+            enemies = 0;
 
             let waittime = 100
             if (spawncycle <= (eventlist.length)) {
@@ -372,7 +387,7 @@
                 }
                 //powerup is actually a special kind of 'enemy'
                 else if (eventlist[spawncycle][0] == 'powerup') {
-                    enemycycle(eventlist[spawncycle][2], 100, eventlist[spawncycle][5], "bg-space", eventlist[spawncycle][3], eventlist[spawncycle][4], "still", restarts, xshift)
+                    enemycycle(eventlist[spawncycle][2], 200, eventlist[spawncycle][5], "bg-space", eventlist[spawncycle][3], eventlist[spawncycle][4], "still", restarts, xshift)
                 }
                 //set waittime to the waittime of the next one
                 if (spawncycle < (eventlist.length - 1)) {
@@ -384,8 +399,9 @@
                     waittime = eventlist[spawncycle + 1][1]
                 }
             }
+            //take the first element out of the eventlist, then repeat
+            eventlist.shift()
             await timeout(waittime);
-            spawncycle += 1
             enemyspawning(currentgame)
         }
     }
@@ -393,7 +409,7 @@
     //individual enemy movement. Every cycle, the x,y position of the enemy is cleared and the new position is determined based on direction, then the enemy is redrawn
     async function enemycycle(pattern, speed, style, trace, x, y, dir, currentgame, prevxshift) {
         if (currentgame == restarts) {
-            enemies +=1
+            enemies += 1
             //check if in the field
             //calculate how much the entire game screen shifted since the previous enemycycle
             const relshift = (xshift - prevxshift)
