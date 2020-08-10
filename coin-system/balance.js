@@ -25,7 +25,6 @@ $("pay10").onclick = () => {
   localStorage.setItem("spent", Number(localStorage.getItem("spent")) + 10);
   $("balance").innerText =
     " Current balance: " + Number(localStorage.getItem("balance"));
-  $("bank").innerText = Number(localStorage.getItem("balance"));
 };
 
 $("pay25").onclick = () => {
@@ -33,7 +32,6 @@ $("pay25").onclick = () => {
   localStorage.setItem("spent", Number(localStorage.getItem("spent")) + 25);
   $("balance").innerText =
     " Current balance: " + Number(localStorage.getItem("balance"));
-  $("bank").innerText = Number(localStorage.getItem("balance"));
 };
 
 $("pay100").onclick = () => {
@@ -44,7 +42,6 @@ $("pay100").onclick = () => {
   localStorage.setItem("spent", Number(localStorage.getItem("spent")) + 100);
   $("balance").innerText =
     " Current balance: " + Number(localStorage.getItem("balance"));
-  $("bank").innerText = Number(localStorage.getItem("balance"));
 };
 
 // Flyout Menu
