@@ -167,6 +167,7 @@ closeInfo.addEventListener("click", () => {
 
 // Info button listener, onclick displays the game rules
 info.addEventListener("click", () => {
+  close.classList.add("hidden");
   closeInfo.classList.remove("hidden");
   modalWidth.classList.remove("max-w-xs");
   body.classList.add("opacity-25");
@@ -243,6 +244,7 @@ play.addEventListener("click", () => {
       body.classList.add("opacity-25");
       modal.classList.remove("hidden");
       playAgain.classList.add("hidden");
+      result.classList.remove("hidden");
       result.innerHTML = `First place a bet`;
     }, 500);
   }
