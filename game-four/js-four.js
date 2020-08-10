@@ -354,6 +354,7 @@
             //health bar
             eventlist.push(['message', 5500, 'After all that, you deserve a health bar.']);
             eventlist.push(['powerup', 100, 'health', sw, 5 + Math.floor(Math.random() * sh), "bg-green-500"]);
+            eventlist.push(['enemy', 3000, sw, 0, 'still', 100, 'fade', "bg-space", "bg-space"]);
         };
         break;
         }
