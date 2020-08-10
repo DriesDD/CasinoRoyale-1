@@ -54,7 +54,7 @@ const playAgain = document.getElementById("play");
 const modal = document.getElementById("modal");
 const result = document.getElementById("result");
 const body = document.getElementById("body");
-const close = document.getElementById("close");
+const close = document.getElementById("closeOther");
 const coins = document.getElementById("coins");
 const bank = document.getElementById("bank");
 const chip1 = document.getElementById("chip1");
@@ -68,6 +68,7 @@ const badgeDisplay = document.getElementById("badgeDisplay");
 const gamerules = document.getElementById("gamerules");
 const modalWidth = document.getElementById("modalwidth");
 const rulesheader = document.getElementById("rulesheader");
+const info = document.getElementById("info");
 const closeInfo = document.getElementById("closeInfo");
 
 //Variables declaration
@@ -105,7 +106,7 @@ function betUpdate(coin, minCoin, coinSVG) {
     bank.innerText = Number(localStorage.getItem("balance"));
     balance.innerText =
       "Current balance: " + Number(localStorage.getItem("balance"));
-    coins.innerHTML += `<img class="w-10 mr-2" src="coins/${coinSVG}.svg"
+    coins.innerHTML += `<img class="w-8 sm:w-10 md:w-10 mr-2" src="coins/${coinSVG}.svg"
     />`;
   }
 }
@@ -131,20 +132,50 @@ chip25.addEventListener("click", () => {
 
 // Close button listener. Closes the popup modal box.
 close.addEventListener("click", () => {
+  modal.classList.add("hidden");
+  bet.classList.add("hidden");
+  playerScore.classList.add("hidden");
+  coinwon.classList.add("hidden");
+  computerScore.classList.add("hidden");
+  body.classList.remove("opacity-25");
+  close.classList.add("hidden");
+  playerScore.innerHTML = "";
+  computerScore.innerHTML = "";
+  playerCards.innerHTML = "";
+  computerCards.innerHTML = "";
+  coins.innerHTML = "";
+  bet.innerHTML = "";
+  deck = [];
+  betAmount = 0;
+  behaviourBtn(play, "on");
+  behaviourBtn(stand, "off");
+  behaviourBtn(hit, "off");
+  behaviourChip(chip1, "on");
+  behaviourChip(chip5, "on");
+  behaviourChip(chip10, "on");
+  behaviourChip(chip25, "on");
+});
+// Close info button listener, onclick closes the game rules popup
+closeInfo.addEventListener("click", () => {
   rulesheader.classList.add("hidden");
   modalWidth.classList.add("max-w-xs");
   gamerules.classList.add("hidden");
   modal.classList.add("hidden");
+  closeInfo.classList.add("hidden");
   body.classList.remove("opacity-25");
 });
-// Close info button listener, onclick displays the game rules
-closeInfo.addEventListener("click", () => {
+
+// Info button listener, onclick displays the game rules
+info.addEventListener("click", () => {
+  closeInfo.classList.remove("hidden");
   modalWidth.classList.remove("max-w-xs");
   body.classList.add("opacity-25");
   modal.classList.remove("hidden");
   rulesheader.classList.remove("hidden");
   gamerules.classList.remove("hidden");
   playAgain.classList.add("hidden");
+  result.classList.add("hidden");
+  coinwon.classList.add("hidden");
   gamerules.innerHTML = `<ul class="list-disc">
   <li>The goal of Twenty-One games is to beat the computer's hand without going over 21.</li>
   <li>Cards from 2 to 10 are worth their face value. Face cards are worth 10. Aces are worth 1 or 11, whichever makes a better hand.</li>
@@ -185,6 +216,10 @@ playAgain.addEventListener("click", () => {
   behaviourBtn(play, "on");
   behaviourBtn(stand, "off");
   behaviourBtn(hit, "off");
+  behaviourChip(chip1, "on");
+  behaviourChip(chip5, "on");
+  behaviourChip(chip10, "on");
+  behaviourChip(chip25, "on");
 });
 
 // Play button listener. Game starts by clicking this button.
@@ -198,10 +233,14 @@ play.addEventListener("click", () => {
     behaviourBtn(play, "off");
     behaviourBtn(hit, "on");
     behaviourBtn(stand, "on");
+    behaviourChip(chip1, "off");
+    behaviourChip(chip5, "off");
+    behaviourChip(chip10, "off");
+    behaviourChip(chip25, "off");
   } else {
     setTimeout(() => {
+      close.classList.remove("hidden");
       body.classList.add("opacity-25");
-      modal.classList.add("opacity-100");
       modal.classList.remove("hidden");
       playAgain.classList.add("hidden");
       result.innerHTML = `First place a bet`;
@@ -223,6 +262,7 @@ hit.addEventListener("click", () => {
 
 // Stand button listener. If player wants to stand and computer play its turn he/she clicks this button.
 stand.addEventListener("click", () => {
+  close.classList.remove("hidden");
   behaviourBtn(hit, "off");
   document
     .getElementById("hiddenCard")
@@ -269,19 +309,27 @@ function winner(message, decision) {
         coinwon.innerHTML = `Player gets +${betAmount * 2} coins`;
         playerWin++;
         if (playerWin == 5) {
-          numOfBadge++;
+          numOfBadge = 2;
           switch (numOfBadge) {
             case numOfBadge == 1:
-              badgeEarn("badge1", 1);
-              break;
-            case numOfBadge == 2:
               badgeEarn("badge2", 2);
               break;
+            case numOfBadge == 2:
+              badgeDisplay.classList.remove("hidden");
+              badgeDisplay.innerHTML = `<h2 class="font-semibold text-xl py-2 px-12 font-titlefont"
+            >You did great but you already earned the badge</h2>`;
+              break;
             case numOfBadge == 3:
-              badgeEarn("badge3", 3);
+              badgeDisplay.classList.remove("hidden");
+              badgeDisplay.innerHTML = `<h2 class="font-semibold text-xl py-2 px-12 font-titlefont"
+            >You did great but you already earned the badge</h2>`;
+              break;
               break;
             case numOfBadge == 4:
-              badgeEarn("badge4", 4);
+              badgeDisplay.classList.remove("hidden");
+              badgeDisplay.innerHTML = `<h2 class="font-semibold text-xl py-2 px-12 font-titlefont"
+            >You did great but you already earned the badge</h2>`;
+              break;
               break;
           }
         }
@@ -485,6 +533,19 @@ function behaviourBtn(button, check) {
     case "on":
       button.classList.add("bg-orange-500");
       button.classList.remove("bg-orange-300", "cursor-not-allowed");
+      button.disabled = false;
+      break;
+  }
+}
+// Makes button disabled true or false
+function behaviourChip(button, check) {
+  switch (check) {
+    case "off":
+      button.classList.add("cursor-not-allowed");
+      button.disabled = true;
+      break;
+    case "on":
+      button.classList.remove("cursor-not-allowed");
       button.disabled = false;
       break;
   }
