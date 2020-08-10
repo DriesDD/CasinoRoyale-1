@@ -11,7 +11,7 @@
 
     //define which tailwind color classes are in the game (could be used later to remove these classes when redrawing things)
     const colors = ["bg-space", "bg-yellow-300", "bg-yellow-100", "bg-red-800", "bg-orange-900", "bg-red-600", "bg-green-600", "bg-green-900", "bg-green-800", "bg-blue-500", "bg-blue-700", "bg-orange-600", "bg-green-500", "bg-indigo-700", "bg-yellow-400", "bg-gray-900"];
-    const hints = ["Hint: There's fitting music further down this page.", "Hint: Stay away from red dots in abandoned stations.", "Hint: Use your tail like a shield to defend against asteroids.", "Hint: Survive 100 seconds on hard or extreme to earn a badge.", "Hint: With some enemies it's best to move to the front so you have space to run back to.", "Hint: Surround the blob before it surrounds you.", "Hint: Assassins with a trail are nasty and fast. Hide behind your tail.", "Hint: Greed is the prime cause of death in abandoned space stations.", "Hint: Don't let moving walls close in front of you.", "Hint: Double-tap to jump 4 blocks far.", "Hint: Fast blinking blocks are good. They are powerups.", "Hint: After you take damage, you have 1 second of invulnerability. Get out of the situation as fast as you can."]
+    const hints = ["Hint: There's fitting music further down this page.", "Hint: Stay away from red dots in abandoned stations.", "Hint: Use your tail like a shield to defend against asteroids.", "Hint: Survive 100 seconds on super hard or extreme to earn a badge.", "Hint: With some enemies it's best to move to the front so you have space to run back to.", "Hint: Surround the blob before it surrounds you.", "Hint: Assassins with a trail are nasty and fast. Hide behind your tail.", "Hint: Greed is the prime cause of death in abandoned space stations.", "Hint: Don't let moving walls close in front of you.", "Hint: Double-tap to jump 4 blocks far.", "Hint: Fast blinking blocks are good. They are powerups.", "Hint: After you take damage, you have 1 second of invulnerability. Get out of the situation as fast as you can."]
     //define which color classes are enemies (needed to lose a life when hitting them)
     const enemycolors = [];
     //variables
@@ -145,7 +145,7 @@
             life = 3;
             maxlife = 3;
             difficulty = 2;
-            $('difficulty').innerText = 'Difficulty: harder';
+            $('difficulty').innerText = 'Difficulty: super hard';
             gamestart()
         } else {
             $('menutext').innerText = "Not enough coins to play. You need 25 but you only have " + localStorage.getItem("balance") + "."
@@ -156,7 +156,7 @@
             life = 1;
             maxlife = 1;
             difficulty = 3;
-            $('difficulty').innerText = 'Difficulty: hardest';
+            $('difficulty').innerText = 'Difficulty: extreme';
             gamestart()
         } else {
             $('menutext').innerText = "Not enough coins to play. You need 25 but you only have " + localStorage.getItem("balance") + "."
@@ -200,9 +200,12 @@
         //shuffles the order of the waves with more mysterious ones later on and a powerup at the end
         if (waveindex >= waveseries.length) {
             waveseries = []
+            for (i = 0; i < 10; i++)
+            {
             waveseries = waveseries.concat(shuffle(["assassins", "asteroids", "glitch"]));
             waveseries = waveseries.concat(shuffle(["blob", "walls", "station"]));
             waveseries = waveseries.concat(["health"]);
+            }
             console.log(waveseries);
         }
         switch (waveseries[waveindex]) {
@@ -268,15 +271,15 @@
         break;
         case 'walls': {
             //Blue walls
-            eventlist.push(['wave', 5000, 'bg-space']);
+            eventlist.push(['wave', 3000, 'bg-space']);
             eventlist.push(['message', 0, 'Those walls... They\'re closing!']);
-            for (i = 0; i < (3 + wave + difficulty); i++) {
+            for (i = 0; i < (1+ wave/3 + difficulty); i++) {
 
                 for (j = 0; j < (Math.ceil(Math.sqrt(2 + wave + difficulty))); j++) {
-                    eventlist.push(['enemy', 10, sw + 1, (randy + j), 'up', 3000, 'none', "bg-blue-700", "bg-blue-700"])
-                    eventlist.push(['enemy', 10, sw + 1, (randy - j), 'down', 3000, 'none', "bg-blue-700", "bg-blue-700"])
-                    eventlist.push(['enemy', 10, sw, (randy + j), 'up', 3000, 'none', "bg-blue-700", "bg-blue-700"])
-                    eventlist.push(['enemy', 10, sw, (randy - j), 'down', 3000, 'none', "bg-blue-700", "bg-blue-700"])
+                    eventlist.push(['enemy', 10, sw + 10, (randy + j), 'up', 3000, 'none', "bg-blue-700", "bg-blue-700"])
+                    eventlist.push(['enemy', 10, sw + 10, (randy - j), 'down', 3000, 'none', "bg-blue-700", "bg-blue-700"])
+                    eventlist.push(['enemy', 10, sw +9, (randy + j), 'up', 3000, 'none', "bg-blue-700", "bg-blue-700"])
+                    eventlist.push(['enemy', 10, sw +9, (randy - j), 'down', 3000, 'none', "bg-blue-700", "bg-blue-700"])
                 }
 
                 randy = Math.floor(Math.random() * sh);
@@ -289,12 +292,12 @@
                 }
 
                 for (j = 0; j < (Math.ceil(Math.sqrt(2 + wave + difficulty))); j++) {
-                    eventlist.push(['enemy', 5, sw + 1, (randy + j), 'up', 2400, 'none', "bg-blue-700", "bg-blue-700"])
-                    eventlist.push(['enemy', 5, sw + 1, (randy - j), 'down', 2400, 'none', "bg-blue-700", "bg-blue-700"])
-                    eventlist.push(['enemy', 5, sw, (randy + j), 'up', 2400, 'none', "bg-blue-700", "bg-blue-700"])
-                    eventlist.push(['enemy', 5, sw, (randy - j), 'down', 2400, 'none', "bg-blue-700", "bg-blue-700"])
+                    eventlist.push(['enemy', 5, sw + 15, (randy + j), 'up', 2400, 'none', "bg-blue-700", "bg-blue-700"])
+                    eventlist.push(['enemy', 5, sw + 15, (randy - j), 'down', 2400, 'none', "bg-blue-700", "bg-blue-700"])
+                    eventlist.push(['enemy', 5, sw + 14, (randy + j), 'up', 2400, 'none', "bg-blue-700", "bg-blue-700"])
+                    eventlist.push(['enemy', 5, sw + 14, (randy - j), 'down', 2400, 'none', "bg-blue-700", "bg-blue-700"])
                 }
-                eventlist.push(['enemy', 1000, sw + 5, (randy - j), 'still', 200, 'fade', "bg-blue-700", "bg-blue-700"])
+                eventlist.push(['enemy', 3000, sw + 5, (randy - j), 'still', 200, 'fade', "bg-blue-700", "bg-blue-700"])
 
 
             }
@@ -307,14 +310,16 @@
             eventlist.push(['wave', 4000, 'bg-space']);
             eventlist.push(['message', 0, 'It\'s a blob... That wants to eat us!']);
             for (i = 0; i < 50 + (difficulty + wave) * 10; i++) {
-                eventlist.push(['enemy', 150 / (5 + difficulty + wave), sw + 10, Math.round(Math.random() * 3), 'down', (2 + Math.random()) * 2000 / (5 + difficulty + wave), 'pursue', "bg-indigo-700", "bg-indigo-700"])
-                eventlist.push(['enemy', 150 / (5 + difficulty + wave), sw + 10, sh + 1 - Math.round(Math.random() * 3), 'up', (2 + Math.random()) * 2000 / (5 + difficulty + wave), 'pursue', "bg-indigo-700", "bg-indigo-700"])
+                eventlist.push(['enemy', 150 / (5 + difficulty + wave), sw + 5, Math.round(Math.random() * 3), 'down', (2 + Math.random()) * 2000 / (5 + difficulty + wave), 'pursue', "bg-indigo-700", "bg-indigo-700"])
+                eventlist.push(['enemy', 150 / (5 + difficulty + wave), sw + 5, sh + 1 - Math.round(Math.random() * 3), 'up', (2 + Math.random()) * 2000 / (5 + difficulty + wave), 'pursue', "bg-indigo-700", "bg-indigo-700"])
             }
+            eventlist.push(['enemy', 5000, sw + 10, sh + 1 - Math.round(Math.random() * 3), 'left', (2 + Math.random()) * 2000 / (5 + difficulty + wave), 'none', "bg-indigo-700", "bg-space"])
         };
         break;
         case 'station': {
+
             //Space station
-            eventlist.push(['wave', 8000, 'bg-space']);
+            eventlist.push(['wave', 6000, 'bg-space']);
             eventlist.push(['message', 0, 'It\'s an abandoned space station. There might be some casino coins but sometimes also bombs.']);
             randy = Math.floor(Math.random() * sh);
             for (j = 0; j < 10; j++) {
@@ -371,6 +376,7 @@
             //if the evenlist ran out, generate new wave
             if (eventlist.length < 10) {
                 wavegenerator()
+                console.log('wavegenerator should be triggered now')
             }
 
             switch (eventlist[spawncycle][0]) {
