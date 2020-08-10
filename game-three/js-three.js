@@ -1,20 +1,16 @@
-/*
---> Game: Memory
+// --> Game: Memory
 
---> The Mission
-We want to recreate the game Memory. It is a game where you have a bunch of cards. Each card contains an image. Of each image there are exactly two cards. The cards are placed in a random order. You get to turn them around two at a time. Once you turned around two cards, they either turn back if they did not match, or they stay visible if they did match.
+// --> The Mission
+//  It is a game where you have a bunch of cards.
+//  Each card contains an image.
+//  The cards are placed in a random order.
+//  You get to turn them around two at a time.
+//  Once you turned around two cards, they either turn back if they did not match, or they stay visible if they did match.
 
---> Must-have features
-Clicking cards turns them around (max 2 at a time!)
-Randomly position the cards in a grid
-Reset button
-
---> Nice-to-have features
-Make it playable by keyboard
-Let a user define custom image urls
-Make it pleasing to look at
-Multiplayer (local)
-*/
+// --> Must-have features
+// Clicking cards turns them around (max 2 at a time!)
+// Randomly position the cards in a grid
+// Reset button
 
 //cards array holds all cards
 let card = document.getElementsByClassName("card");
@@ -273,7 +269,7 @@ function checkPaid() {
 
 document.getElementById("refresh").onclick = () => {
   let answer = confirm(
-    "if you click OK then you start a new game.20 coins will be paid. If you click cancel, you will go back to your current game"
+    "if you click OK then you start a new game 20 coins will be paid. If you click cancel, you will go back to your current game"
   );
   if (answer) {
     localStorage.setItem("balance", localStorage.getItem("balance") - 20);
@@ -282,4 +278,24 @@ document.getElementById("refresh").onclick = () => {
     startGame();
   }
 };
-// display badges
+
+document.onkeydown = () => {
+  switch (event.key) {
+    case "ArrowLeft":
+      {
+      }
+      break;
+    case "ArrowUp":
+      {
+      }
+      break;
+    case "ArrowRight":
+      {
+      }
+      break;
+    case "ArrowDown":
+      {
+      }
+      break;
+  }
+};
