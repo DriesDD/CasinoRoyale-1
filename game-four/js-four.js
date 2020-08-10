@@ -286,7 +286,7 @@ see https://textik.com/#c88e7e73e6589fe6 */
                 randy = Math.floor(Math.random() * sh);
                 randspeed = 300 + Math.floor(Math.random() * 100);
                 randsize = Math.ceil(1 + Math.random() * 5)
-                eventlist.push(['enemy', 1000 / ((3 + difficulty * 3 + wave) / 5), sw + 5, randy, 'left', randspeed, 'none', "bg-green-600", "bg-space"])
+                eventlist.push(['enemy', 1000 / ((2 + difficulty + wave/2) / 5), sw + 5, randy, 'left', randspeed, 'none', "bg-green-600", "bg-space"])
                 for (j = 0; j < randsize * 2; j++) {
                     for (k = 0; k < randsize; k++) {
                         eventlist.push(['enemy', 0, sw + 5 - Math.round(randsize / 2) + j, randy + k, 'left', randspeed, 'none', "bg-green-600", "bg-space"]);
