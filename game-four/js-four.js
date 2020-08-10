@@ -11,7 +11,7 @@
 
     //define which tailwind color classes are in the game (could be used later to remove these classes when redrawing things)
     const colors = ["bg-space", "bg-yellow-300", "bg-yellow-100", "bg-red-800", "bg-orange-900", "bg-red-600", "bg-green-600", "bg-green-900", "bg-green-800", "bg-blue-500", "bg-blue-700", "bg-orange-600", "bg-green-500", "bg-indigo-700", "bg-yellow-400", "bg-gray-900"];
-    const hints = ["Hint: There's fitting music further down this page.", "Hint: Stay away from red dots in abandoned stations.", "Hint: Use your tail like a shield to defend against asteroids.", "Hint: Survive 100 seconds on super hard or extreme to earn a badge.", "Hint: With some enemies it's best to move to the front so you have space to run back to.", "Hint: Surround the blob before it surrounds you.", "Hint: Assassins with a trail are nasty and fast. Hide behind your tail.", "Hint: Greed is the prime cause of death in abandoned space stations.", "Hint: Don't let moving walls close in front of you.", "Hint: Double-tap to jump 4 blocks far.", "Hint: Fast blinking blocks are good. They are powerups.", "Hint: After you take damage, you have 1 second of invulnerability. Get out of the situation as fast as you can."]
+    const hints = ["Hint: There's fitting music further down this page.", "Hint: Stay away from red dots in abandoned stations.", "Hint: Use your tail like a shield to defend against asteroids.", "Hint: Survive 100 seconds on super hard or extreme to earn a badge.", "Hint: With some enemies it's best to move to the front so you have space to run back to.", "Hint: Surround the blob before it surrounds you.", "Hint: Assassins with a trail are nasty and fast. Hide behind your tail.", "Hint: Greed is the prime cause of death in abandoned space stations.", "Hint: Don't let moving walls close in front of you.", "Hint: Double-tap to jump 4 blocks far.", "Hint: Fast blinking blocks are good. They are powerups.", "Hint: After you take damage, you have 2 seconds of invulnerability. Get out of the situation as fast as you can."]
     //define which color classes are enemies (needed to lose a life when hitting them)
     const enemycolors = [];
     //variables
@@ -235,7 +235,7 @@
                 randy = Math.floor(Math.random() * sh);
                 randspeed = 100-difficulty*20 + Math.floor(Math.random() * 200);
                 randsize = Math.ceil(Math.random() * 3)
-                eventlist.push(['enemy', 400 / (2+difficulty + wave), sw + 5, randy, 'left', randspeed, 'none', "bg-orange-900", "bg-space"])
+                eventlist.push(['enemy', 400 / (2+difficulty*2 + wave), sw + 5, randy, 'left', randspeed, 'none', "bg-orange-900", "bg-space"])
                 for (j = 0; j < randsize; j++) {
                     for (k = 0; k < randsize; k++) {
                         eventlist.push(['enemy', 0, sw + 5 + Math.round(randsize + j * 2 + 2 * Math.random()), randy + k * 2 + 2 * Math.random(), 'left', randspeed, 'none', "bg-orange-900", "bg-space"]);
@@ -248,11 +248,11 @@
             //the glitch
             eventlist.push(['wave', 5000, "bg-space"]);
             eventlist.push(['message', 0, 'Something seems glitchy in the fabric of spacetime.']);
-            for (i = 0; i < (15 + difficulty + wave); i++) {
+            for (i = 0; i < (15 + (difficulty*2) + wave); i++) {
                 randy = Math.floor(Math.random() * sh);
                 randspeed = 300 + Math.floor(Math.random() * 100);
                 randsize = Math.ceil(1 + Math.random() * 5)
-                eventlist.push(['enemy', 1000 / ((3 + difficulty + wave) / 5), sw + 5, randy, 'left', randspeed, 'none', "bg-green-600", "bg-space"])
+                eventlist.push(['enemy', 1000 / ((3 + difficulty*3 + wave) / 5), sw + 5, randy, 'left', randspeed, 'none', "bg-green-600", "bg-space"])
                 for (j = 0; j < randsize * 2; j++) {
                     for (k = 0; k < randsize; k++) {
                         eventlist.push(['enemy', 0, sw + 5 - randsize / 2 + j, randy + k, 'left', randspeed, 'none', "bg-green-600", "bg-space"]);
@@ -341,7 +341,7 @@
                         eventlist.push(['powerup', 0, 'coin', sw + 2 + Math.round(Math.random() * 3), randy + 2 + Math.round(Math.random() * 3), "bg-yellow-400"]);
                         eventlist.push(['powerup', 0, 'coin', sw + 2 + Math.round(Math.random() * 3), randy + 2 + Math.round(Math.random() * 3), "bg-yellow-400"]);
                     }
-                } else if (Math.random() < (difficulty + wave) / 30) {
+                } else if (Math.random() < (difficulty + wave/2) / 30) {
                     eventlist.push(['enemy', 0, sw + 1 + Math.round(Math.random() * 2), randy + 1 + Math.round(Math.random() * 2), 'left', 5000 / (3 + difficulty + wave), 'proximity', "bg-red-600", "bg-space"])
                 }
             }
@@ -455,8 +455,9 @@
                             if ((Math.abs(playerx - x)) > Math.min((Math.abs(playery - y - sh), (Math.abs(playery - y))))) {
                                 if (x > playerx) {
                                     dir = 'left'
-                                } else(dir = 'right')
-                            } else {
+                                } else if (x < sw-5) {dir = 'right'} else {dir = 'still'; pattern = 'fade'} //last part is to prevent slow pursuits through the next wave
+                            } 
+                            else {
                                 if (((y > playery) && ((y - playery) < sh / 2)) || ((y < playery) && ((playery - y) > sh / 2))) {
                                     dir = 'up'
                                 } else(dir = 'down')
@@ -773,7 +774,7 @@
         //invincibility period
         if (loss > 0) {
             invincible = 1;
-            await (timeout)(1000);
+            await (timeout)(2000);
             invincible = 0
         }
     }
