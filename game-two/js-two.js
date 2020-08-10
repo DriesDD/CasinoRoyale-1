@@ -54,7 +54,7 @@ const playAgain = document.getElementById("play");
 const modal = document.getElementById("modal");
 const result = document.getElementById("result");
 const body = document.getElementById("body");
-const close = document.getElementById("close");
+const close = document.getElementById("closeOther");
 const coins = document.getElementById("coins");
 const bank = document.getElementById("bank");
 const chip1 = document.getElementById("chip1");
@@ -68,6 +68,7 @@ const badgeDisplay = document.getElementById("badgeDisplay");
 const gamerules = document.getElementById("gamerules");
 const modalWidth = document.getElementById("modalwidth");
 const rulesheader = document.getElementById("rulesheader");
+const info = document.getElementById("info");
 const closeInfo = document.getElementById("closeInfo");
 
 //Variables declaration
@@ -105,7 +106,7 @@ function betUpdate(coin, minCoin, coinSVG) {
     bank.innerText = Number(localStorage.getItem("balance"));
     balance.innerText =
       "Current balance: " + Number(localStorage.getItem("balance"));
-    coins.innerHTML += `<img class="w-10 mr-2" src="coins/${coinSVG}.svg"
+    coins.innerHTML += `<img class="w-8 sm:w-10 md:w-10 mr-2" src="coins/${coinSVG}.svg"
     />`;
   }
 }
@@ -131,27 +132,58 @@ chip25.addEventListener("click", () => {
 
 // Close button listener. Closes the popup modal box.
 close.addEventListener("click", () => {
+  modal.classList.add("hidden");
+  bet.classList.add("hidden");
+  playerScore.classList.add("hidden");
+  coinwon.classList.add("hidden");
+  computerScore.classList.add("hidden");
+  body.classList.remove("opacity-25");
+  close.classList.add("hidden");
+  playerScore.innerHTML = "";
+  computerScore.innerHTML = "";
+  playerCards.innerHTML = "";
+  computerCards.innerHTML = "";
+  coins.innerHTML = "";
+  bet.innerHTML = "";
+  deck = [];
+  betAmount = 0;
+  behaviourBtn(play, "on");
+  behaviourBtn(stand, "off");
+  behaviourBtn(hit, "off");
+  behaviourChip(chip1, "on");
+  behaviourChip(chip5, "on");
+  behaviourChip(chip10, "on");
+  behaviourChip(chip25, "on");
+});
+// Close info button listener, onclick closes the game rules popup
+closeInfo.addEventListener("click", () => {
   rulesheader.classList.add("hidden");
   modalWidth.classList.add("max-w-xs");
   gamerules.classList.add("hidden");
   modal.classList.add("hidden");
+  closeInfo.classList.add("hidden");
   body.classList.remove("opacity-25");
 });
-// Close info button listener, onclick displays the game rules
-closeInfo.addEventListener("click", () => {
+
+// Info button listener, onclick displays the game rules
+info.addEventListener("click", () => {
+  close.classList.add("hidden");
+  closeInfo.classList.remove("hidden");
   modalWidth.classList.remove("max-w-xs");
   body.classList.add("opacity-25");
   modal.classList.remove("hidden");
   rulesheader.classList.remove("hidden");
   gamerules.classList.remove("hidden");
   playAgain.classList.add("hidden");
+  result.classList.add("hidden");
+  coinwon.classList.add("hidden");
   gamerules.innerHTML = `<ul class="list-disc">
   <li>The goal of Twenty-One games is to beat the computer's hand without going over 21.</li>
   <li>Cards from 2 to 10 are worth their face value. Face cards are worth 10. Aces are worth 1 or 11, whichever makes a better hand.</li>
   <li>To 'Hit' is to ask for another card.</li>
   <li>To 'Stand' is to hold your total and end your turn.</li>
   <li>If you go over 21 you bust, and the computer wins regardless of the computer's hand.</li>
-  <li>Computer will hit until his/her cards total 17 or higher.</li>
+  <li>Computer will hit until its cards total 17 or higher.</li>
   <li>To earn a badge maintain 5 winning streak.</li>
 </ul>`;
 });
@@ -185,6 +217,10 @@ playAgain.addEventListener("click", () => {
   behaviourBtn(play, "on");
   behaviourBtn(stand, "off");
   behaviourBtn(hit, "off");
+  behaviourChip(chip1, "on");
+  behaviourChip(chip5, "on");
+  behaviourChip(chip10, "on");
+  behaviourChip(chip25, "on");
 });
 
 // Play button listener. Game starts by clicking this button.
@@ -198,12 +234,17 @@ play.addEventListener("click", () => {
     behaviourBtn(play, "off");
     behaviourBtn(hit, "on");
     behaviourBtn(stand, "on");
+    behaviourChip(chip1, "off");
+    behaviourChip(chip5, "off");
+    behaviourChip(chip10, "off");
+    behaviourChip(chip25, "off");
   } else {
     setTimeout(() => {
+      close.classList.remove("hidden");
       body.classList.add("opacity-25");
-      modal.classList.add("opacity-100");
       modal.classList.remove("hidden");
       playAgain.classList.add("hidden");
+      result.classList.remove("hidden");
       result.innerHTML = `First place a bet`;
     }, 500);
   }
@@ -213,6 +254,7 @@ play.addEventListener("click", () => {
 hit.addEventListener("click", () => {
   deal(playerCard, "playerHitCard");
   if (firstSum > 21) {
+    close.classList.remove("hidden");
     document
       .getElementById("hiddenCard")
       .setAttribute("src", `cards/${hiddenCard}.svg`);
@@ -223,15 +265,12 @@ hit.addEventListener("click", () => {
 
 // Stand button listener. If player wants to stand and computer play its turn he/she clicks this button.
 stand.addEventListener("click", () => {
+  close.classList.remove("hidden");
   behaviourBtn(hit, "off");
   document
     .getElementById("hiddenCard")
     .setAttribute("src", `cards/${hiddenCard}.svg`);
   computerScore.innerHTML = standSum;
-
-  console.log(`Inside Stand sumPlayer ${sumPlayer}`);
-  console.log(`Inside Stand standSum ${standSum}`);
-  console.log(`Inside Stand firstSum ${firstSum}`);
   while (standSum < 17) {
     deal(computerCard, "computerHitCard");
   }
@@ -254,9 +293,11 @@ function winner(message, decision) {
   switch (decision) {
     case "gain":
       setTimeout(() => {
+        closeInfo.classList.add("hidden");
         body.classList.add("opacity-25");
         modal.classList.add("opacity-100");
         modal.classList.remove("hidden");
+        result.classList.remove("hidden");
         localStorage.setItem(
           "balance",
           Number(localStorage.getItem("balance")) + betAmount * 2
@@ -269,29 +310,29 @@ function winner(message, decision) {
         coinwon.innerHTML = `Player gets +${betAmount * 2} coins`;
         playerWin++;
         if (playerWin == 5) {
-          numOfBadge++;
+          numOfBadge = 2;
           switch (numOfBadge) {
             case numOfBadge == 1:
-              badgeEarn("badge1", 1);
-              break;
-            case numOfBadge == 2:
               badgeEarn("badge2", 2);
               break;
+            case numOfBadge == 2:
+              badgeMore();
+              break;
             case numOfBadge == 3:
-              badgeEarn("badge3", 3);
+              badgeMore();
               break;
             case numOfBadge == 4:
-              badgeEarn("badge4", 4);
+              badgeMore();
               break;
           }
         }
       }, 1000);
-
       break;
     case "lose":
       setTimeout(() => {
         body.classList.add("opacity-25");
         modal.classList.remove("hidden");
+        result.classList.remove("hidden");
         result.innerHTML = `${message}`;
         coinwon.classList.remove("hidden");
         coinwon.innerHTML = `Player lose -${betAmount} coins`;
@@ -300,12 +341,25 @@ function winner(message, decision) {
       break;
     case "tie":
       setTimeout(() => {
+        localStorage.setItem(
+          "balance",
+          Number(localStorage.getItem("balance")) + betAmount
+        );
+        bank.innerText = Number(localStorage.getItem("balance"));
+        balance.innerText =
+          "Current balance: " + Number(localStorage.getItem("balance"));
         body.classList.add("opacity-25");
         modal.classList.remove("hidden");
         result.innerHTML = `${message}`;
       }, 1000);
       break;
   }
+}
+// More than one badge
+function badgeMore() {
+  badgeDisplay.classList.remove("hidden");
+  badgeDisplay.innerHTML = `<h2 class="font-semibold text-xl py-2 px-12 font-titlefont"
+>You did great but you already earned the badge</h2>`;
 }
 // Display badge
 function badgeEarn(badgeImg, badgeNum) {
@@ -322,6 +376,8 @@ function badgeEarn(badgeImg, badgeNum) {
 // Computer also call this funtion to draw its cards.
 function deal(cards, check) {
   let firstCard, firstChar, secondCard, secondChar;
+  // Switch statement that takes check as parameter and based on that decides which case to execute
+  // For player and computer first 2 cards it only execute when it has playerFirstCard and computerFirstCard string as argument
   switch (check) {
     case "playerFirstCard":
     case "computerFirstCard":
@@ -333,9 +389,7 @@ function deal(cards, check) {
       secondChar = secondCard.charAt(0);
       ifAce(secondChar);
       weight.forEach((item) => {
-        if (firstChar === "A" && secondChar === "A") {
-          sumPlayer = 12;
-        } else if (firstChar === secondChar && firstChar === item.type) {
+        if (firstChar === secondChar && firstChar === item.type) {
           sumPlayer = item.value * 2;
         } else if (firstChar === item.type || secondChar === item.type) {
           sumPlayer += item.value;
@@ -346,14 +400,11 @@ function deal(cards, check) {
           sum = item.value;
         }
       });
+      // Switch inside switch conditional statement to display player and computer first 2 cards
       switch (check) {
         case "playerFirstCard":
           aInPlayerCard = count;
           count = 0;
-          console.log(`Number of A's is ${aInPlayerCard}`);
-          if (aInPlayerCard == 1) aIsOne = true;
-          if (aInPlayerCard == 2) aAreTwo = true;
-
           firstSum = sumPlayer;
           playerCards.innerHTML += `<img class="mr-1 sm:h-40 h-20" src="cards/${firstCard}.svg" />`;
           playerCards.innerHTML += `<img class="mr-1 sm:h-40 h-20" src="cards/${secondCard}.svg" />`;
@@ -363,8 +414,6 @@ function deal(cards, check) {
         case "computerFirstCard":
           aInComputerCard = count;
           count = 0;
-          console.log(`Number of A's is ${aInComputerCard}`);
-          console.log(firstCard);
           standSum = sumPlayer;
           hiddenCard = firstCard;
           computerCards.innerHTML += `<img id="hiddenCard" class="mr-1 sm:h-40 h-20" src="cards/RED_BACK.svg"  />`;
@@ -373,11 +422,9 @@ function deal(cards, check) {
           computerScore.innerHTML = sumPlayer - sum;
           break;
       }
-      console.log(`${check} : ${sumPlayer}`);
-
       (sum = 0), (sumPlayer = 0);
-
       break;
+    // If player wishes to draw more cards then it goes through this case
     case "playerHitCard":
       cards = randNumber();
       firstCard = deck[cards[0]];
@@ -385,8 +432,6 @@ function deal(cards, check) {
       ifAce(firstChar);
       aInPlayerCard += count;
       count = 0;
-      if (aInPlayerCard == 3) aAreThree = true;
-      if (aInPlayerCard == 4) aAreFour = true;
       weight.forEach((item) => {
         if (firstChar === item.type) {
           hitPlayer = item.value;
@@ -400,38 +445,32 @@ function deal(cards, check) {
         }
       }
       hitSum = firstSum;
-      console.log(`playerHitCard-hit value ${hitPlayer}`);
-      console.log(`playerHitCard-previous sum ${firstSum}`);
       playerCards.innerHTML += `<img class="mr-1 sm:h-40 h-20" src="cards/${firstCard}.svg" />`;
       playerScore.innerHTML = hitSum;
       if (hitSum > 21) {
         behaviourBtn(hit, "off");
       }
       break;
+    // Computer auto card draw switch case, it will draw until its cards total 17 or higher.
     case "computerHitCard":
       cards = randNumber();
       firstCard = deck[cards[0]];
       firstChar = firstCard.charAt(0);
       ifAce(firstChar);
       aInComputerCard += count;
-      if (aInComputerCard > 0 && standSum <= 17) {
-        weight.forEach((item) => {
-          if (firstChar === item.type && firstChar === "A") {
-            hitPlayer = 1;
-          } else if (firstChar === item.type) {
-            hitPlayer = item.value;
-          }
-        });
-      } else {
-        weight.forEach((item) => {
-          if (firstChar === item.type) {
-            hitPlayer = item.value;
-          }
-        });
-      }
-      console.log(`computerHitCard-previous sum ${standSum}`);
-      console.log(`computerHitCard-hit value ${hitPlayer}`);
+      count = 0;
+      weight.forEach((item) => {
+        if (firstChar === item.type) {
+          hitPlayer = item.value;
+        }
+      });
       standSum += hitPlayer;
+      for (let i = 0; i < aInComputerCard; i++) {
+        if (aInComputerCard > 0 && firstSum > 21) {
+          standSum -= 10;
+          aInComputerCard -= 1;
+        }
+      }
       computerCards.innerHTML += `<img class="mr-1 sm:h-40 h-20" src="cards/${firstCard}.svg" />`;
       computerScore.innerHTML = standSum;
       if (standSum > 21) {
@@ -485,6 +524,19 @@ function behaviourBtn(button, check) {
     case "on":
       button.classList.add("bg-orange-500");
       button.classList.remove("bg-orange-300", "cursor-not-allowed");
+      button.disabled = false;
+      break;
+  }
+}
+// Makes button disabled true or false
+function behaviourChip(button, check) {
+  switch (check) {
+    case "off":
+      button.classList.add("cursor-not-allowed");
+      button.disabled = true;
+      break;
+    case "on":
+      button.classList.remove("cursor-not-allowed");
       button.disabled = false;
       break;
   }

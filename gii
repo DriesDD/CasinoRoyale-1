@@ -1,0 +1,386 @@
+[33mb695a70f[m[33m ([m[1;36mHEAD -> [m[1;32mfawad-development[m[33m)[m resolve conflict
+[33m22c8a943[m[33m ([m[1;31morigin/master[m[33m, [m[1;31morigin/HEAD[m[33m)[m made it harder to turn 180 degrees right into your own tail
+[33m30630a9f[m fix bugs
+[33meeb0faac[m added badge tooltips
+[33mcd5fcbec[m some name changes
+[33m753a8796[m fixed size of added cards
+[33m8bf34cb8[m made coins retain size on mobile because fingers are fat
+[33m521228a0[m resized card for mobile
+[33mccafc83d[m Merge branch 'master' of https://github.com/Sourcerors/CasinoRoyale
+[33m184f7f4b[m correct names in club cards, make cards equal sized
+[33m50c1c576[m[33m ([m[1;32mmaster[m[33m, [m[1;32mfawad[m[33m)[m Replace onwindows load game rules modal with info button
+[33m8ac6f1da[m Add game info icon
+[33m2c0acbc1[m fixed mobile menu display issue
+[33m42d7e85f[m Merge branch 'master' of https://github.com/Sourcerors/CasinoRoyale
+[33md08436ec[m make game 1 mobile friendlier
+[33m46cb03d9[m Make footer responsive
+[33mdd2970b1[m Make footer responsive
+[33m39587885[m Merge branch 'master' of github.com:Sourcerors/CasinoRoyale into fawad
+[33ma63e965a[m Make footer responsive
+[33m44c99bc2[m Merge branch 'master' of https://github.com/Sourcerors/CasinoRoyale
+[33m4fb463c6[m made game 4 inaccessible on mobile
+[33m24c96971[m Merge branch 'master' of github.com:Sourcerors/CasinoRoyale into fawad
+[33ma5d6b3a1[m Add vw to the popup
+[33m1b575435[m fixed bug caused by not always rounding enemy coordinates
+[33m9e396402[m Merge branch 'master' of github.com:Sourcerors/CasinoRoyale into fawad
+[33mfb5a4baa[m Make card size small for mobile screen
+[33m3ad747cd[m Update modal with basic games rules
+[33mc5d0263d[m Make Mobile friendly
+[33m1b754b59[m Merge branch 'master' of github.com:Sourcerors/CasinoRoyale into fawad
+[33m98bd7242[m Add modal with basic games rules
+[33m358917e0[m Add modal with basic games rules
+[33m0cae4af6[m more colorful badges and matching gray badges
+[33mcc7fa6eb[m Merge branch 'master' of github.com:Sourcerors/CasinoRoyale into fawad
+[33mf35066b5[m change difficulty names
+[33m3cfe4db0[m Merge branch 'master' of github.com:Sourcerors/CasinoRoyale into fawad
+[33m41eb2417[m Add new ace selection algorithm
+[33m655773ab[m made glitch easier
+[33m728c2478[m made little easier
+[33m91fdaaf6[m replace if elses with switch statements
+[33m550c4737[m performance improvements
+[33m59626cfc[m work on wave shuffle but performance issues
+[33m9bc1ec82[m add medium screen breakpoint for navbar
+[33m634090dc[m Merge branch 'master' of github.com:Sourcerors/CasinoRoyale into fawad
+[33m4de1f155[m wave tweaks
+[33m6100c797[m Merge branch 'master' of github.com:Sourcerors/CasinoRoyale into fawad
+[33maff10f2a[m added background
+[33mcd858344[m add doubletap to jump
+[33m78d29b98[m Merge branch 'master' of github.com:Sourcerors/CasinoRoyale into fawad
+[33m115aba62[m fix medium display alpha version
+[33mafccabeb[m add background and balance difficulties
+[33m9a0ea7b0[m more waves anc coins
+[33m87e6fc76[m Merge branch 'master' of github.com:Sourcerors/CasinoRoyale into fawad
+[33m8d895a16[m better collision detection and a powerup
+[33m2262ad84[m Merge branch 'master' of github.com:Sourcerors/CasinoRoyale into fawad
+[33m884e42bd[m Merge branch 'master' of https://github.com/Sourcerors/CasinoRoyale
+[33m0da1f29b[m update to mobile badge script
+[33m7b62be5d[m Merge branch 'master' of github.com:Sourcerors/CasinoRoyale into fawad
+[33me1973323[m fix mobile display width
+[33mcef92c56[m Added badges links
+[33ma6db5df8[m Added badges links
+[33mef52bb33[m Added badges links
+[33mbe9597e2[m Added badges links
+[33m3522ce8e[m Merge branch 'master' of https://github.com/Sourcerors/CasinoRoyale
+[33m150a34a9[m changes path for the new badges
+[33mb4b3fdcc[m Fixed header and profile button
+[33meff2413e[m Merge branch 'master' of https://github.com/Sourcerors/CasinoRoyale
+[33mf31c2189[m added blue wall enemies
+[33m5ec9b7ad[m Fixed font sizing
+[33mc9df4793[m Merge branch 'master' of github.com:Sourcerors/CasinoRoyale into fawad
+[33m547e55dd[m fix profile toggle username text alignment
+[33m6366c24f[m fix current balance display issue when player wins
+[33m00c03a2c[m Merge branch 'nicol-saha'
+[33m3ffcb7e7[m Added badges
+[33m9e8fd95c[m Make CSS responsive
+[33m949656c7[m[33m ([m[1;31morigin/fawad[m[33m)[m Merge branch 'master' of github.com:Sourcerors/CasinoRoyale into fawad
+[33m8ba031cb[m Add badge earning function
+[33m620b1497[m Added responsiveness to game 3
+[33m7e28e9d0[m Merge branch 'master' of github.com:Sourcerors/CasinoRoyale into fawad
+[33ma1143e55[m fix badge display error
+[33m028e8ca9[m dMerge branch 'nicol-saha'
+[33mcc31573d[m Added responsiveness to game 3
+[33m9fe68c59[m Merge branch 'master' of https://github.com/Sourcerors/CasinoRoyale
+[33mdfc5bdf6[m fix badge display issue on index page
+[33m5d93c9d3[m Mobile nav bar coin btns added margin
+[33m370a0df5[m Mobile nav bar minor changes left
+[33ma4a2f120[m Merge branch 'master' of https://github.com/Sourcerors/CasinoRoyale
+[33m7c340574[m bugfix in game 1 that caused locked buttons to be blue
+[33mc7cb80cf[m Mobile nav bar minor changes left
+[33mc2c56ec7[m Mobile nav bar minor changes left
+[33m109ed6ad[m Mobile nav bar minor changes left
+[33mb50fd11a[m Mobile nav bar minor changes left
+[33m999f7fac[m Merge branch 'master' of https://github.com/Sourcerors/CasinoRoyale
+[33m8d41196c[m nicer buttons in game 1
+[33mee728f1e[m Merge branch 'master' of github.com:Sourcerors/CasinoRoyale into fawad
+[33m87038437[m Fixed mobile nav bar username, balance, badges
+[33mba138ed0[m Merge branch 'master' of github.com:Sourcerors/CasinoRoyale into fawad
+[33m4ca0881c[m Fixed mobile nav bar username, balance, badges
+[33mfaf8839f[m Fixed mobile nav bar username, balance, badges
+[33m464b808c[m Merge branch 'master' of github.com:Sourcerors/CasinoRoyale into nicol-saha
+[33m47fe018f[m Fixed mobile nav bar username, balance, badges
+[33m3b12f512[m Fixed mobile nav bar username, balance, badges
+[33m5f7f1537[m Fixed mobile nav bar username, balance, badges
+[33m8a988289[m fix bug card and coins responsive
+[33m95d557dd[m Merge branch 'master' of github.com:Sourcerors/CasinoRoyale into fawad
+[33m9012958f[m make card and coins responsive
+[33m99579ae9[m Add Badge
+[33mca31a806[m badges unlocked for game 1 and game 4
+[33m378d7961[m Merge branch 'master' of https://github.com/Sourcerors/CasinoRoyale
+[33m911a3841[m fix issue where badges didn't work on main page
+[33m92810b0f[m Change 50 to 20coins
+[33medc502d2[m Change 50 to 20coins
+[33m9c18dd1f[m Merge branch 'nicol-saha'
+[33m172c698d[m Fixed mobile nav bar width
+[33md73e2b1d[m Change 50 to 20
+[33m617c15b8[m Merge branch 'master' of https://github.com/Sourcerors/CasinoRoyale
+[33me3d1af5d[m badges display correctly
+[33m25bd715b[m can't make an immediate 180° turn with one button now
+[33md0f29f7c[m Changes from yesterday
+[33mdf497584[m Changes from yesterday
+[33mae53b717[m Set mobile hamburger top margin
+[33mbc261098[m Merge branch 'master' of github.com:Sourcerors/CasinoRoyale into fawad
+[33m54891754[m fix player card bug
+[33me222deff[m added waves of enemies
+[33m1182948f[m fix footer padding
+[33maa118dcb[m fix navbar highlight color scheme
+[33m6ab85bfc[m fix button closing tag
+[33m9e9ae47a[m Merge branch 'master' of github.com:Sourcerors/CasinoRoyale into fawad
+[33m7e9ca635[m add mobile navbar
+[33m6f802321[m Merge branch 'master' of github.com:Sourcerors/CasinoRoyale
+[33m9cbac2b3[m Worked on username
+[33m9e129620[m Merge branch 'master' of https://github.com/Sourcerors/CasinoRoyale
+[33mf0dc4623[m optional music via soundcloud
+[33m5a501bba[m Fixed colours mobile nav bar
+[33m8bf0bf29[m Fixed Nav bar bug
+[33m85645138[m Fixed Nav bar bug
+[33mea69f202[m resolve conflict
+[33mf91d42e9[m add new balance dom
+[33m9b336ca1[m fix bug that block bet coins
+[33m7f2c455c[m Fixed links
+[33m34518050[m add game-two bank balance updater
+[33mc767cb2d[m Added NAV/HEADER on all pages
+[33m8e2406e4[m Merge branch 'master' of github.com:Sourcerors/CasinoRoyale into nicol-saha
+[33m8c1c09e4[m Merged files
+[33m17af5b0a[m Merge branch 'master' of https://github.com/Sourcerors/CasinoRoyale
+[33mab85a9e2[m now an asteroid game
+[33mae795702[m Merge branch 'master' of github.com:Sourcerors/CasinoRoyale into fawad
+[33m30a7d954[m Fixed toggle svg
+[33m8491618f[m Merge branch 'master' of github.com:Sourcerors/CasinoRoyale into fawad
+[33m786219f3[m Fixed toggle svg
+[33m51ad9043[m Merge branch 'master' of github.com:Sourcerors/CasinoRoyale into fawad
+[33m247ac499[m Merge branch 'nicol-saha'
+[33me61ace10[m Worked mobile nav bar
+[33m4b32e471[m displays badge
+[33m58a2acdf[m Resolve merge conflict
+[33m13412a99[m Merge branch 'master' of github.com:Sourcerors/CasinoRoyale into fawad
+[33m7d2bedb8[m fix merge conflict
+[33m9f453143[m fix merge conflict
+[33m5948212c[m Activate refresh button
+[33m011157ec[m fix merge conflict
+[33m20fe2f70[m Fixed div nav bug
+[33m1b790451[m Merge branch 'master' of github.com:Sourcerors/CasinoRoyale
+[33m1b3a1b4a[m Fixed div nav bug
+[33m3c57ad94[m JS now writes coins balance in 'balance' menu element
+[33mc0a274c4[m Merge branch 'master' of github.com:Sourcerors/CasinoRoyale into fawad
+[33m1f675de7[m Add badge win conditon
+[33m4ceab602[m Add span tag for badge display
+[33mafab7b1c[m Merge branch 'master' of github.com:Sourcerors/CasinoRoyale into nicol-saha
+[33m90b02062[m Working on mobile menu
+[33m8e1381b7[m added new profile flyout menu to all pages
+[33m698d889b[m add coins system to game 4, improve page profile menu
+[33mb7d89cdc[m Add heading tag in modal
+[33m1c2925bd[m Make winner function
+[33m45a86c4f[m Merge branch 'master' of https://github.com/Sourcerors/CasinoRoyale
+[33m63dd7e58[m Merge branch 'master' of https://github.com/Sourcerors/CasinoRoyale
+[33me2606e7e[m Merge branch 'nicol-saha'
+[33m7bf9ec6d[m Working on mobile menu
+[33m14b3488f[m complete minimum requirements for game 4 though enemies still suck
+[33m81a44dd4[m Merge branch 'master' of github.com:Sourcerors/CasinoRoyale
+[33mdaad2fef[m Added username localStorage
+[33m87117499[m Hide computer and player score
+[33mf391103e[m Add comments
+[33mab9c2494[m Merge branch 'master' of github.com:Sourcerors/CasinoRoyale into fawad
+[33mbac68558[m Fixed menu bug
+[33m2e540446[m Fixed menu bug
+[33mca87a72a[m fix bet display
+[33mc0d3d211[m Merge branch 'master' of github.com:Sourcerors/CasinoRoyale into fawad
+[33mc4de896c[m Update game-two bank balance
+[33mf30fd7c6[m Add gamble mechanic
+[33m0a691968[m Merge branch 'nicol-saha'
+[33m8f8c265c[m Added username to games
+[33m26d62a66[m Add coins to bet container
+[33mb1589258[m Remove border from bank and bet div tags
+[33ma98c8a24[m Merge branch 'nicol-saha'
+[33m77b8f8e4[m Added username btn
+[33me7f44ab3[m Add z-index
+[33m4e9cbbca[m Merge branch 'master' of https://github.com/Sourcerors/CasinoRoyale
+[33m37f4d573[m wipe screen when new game
+[33m538fcc85[m Merge branch 'nicol-saha'
+[33m9db2b593[m Made cards larger - Working on username input
+[33m1b9b811b[m Add links of coin icons
+[33m31a57d75[m Add coin icons
+[33m6cbb6957[m Added coins svg
+[33m481790df[m Merge branch 'master' of https://github.com/Sourcerors/CasinoRoyale
+[33me1092026[m rearrange code to make game restart and difficulty levels possible
+[33md0eb54d1[m Merge branch 'master' of github.com:Sourcerors/CasinoRoyale
+[33m57844629[m Deleted unnecesarry text in flyout
+[33m2949904b[m Display bet score
+[33m2a465df3[m Added flyout menu
+[33mb0ae0a56[m Merge branch 'master' of github.com:Sourcerors/CasinoRoyale
+[33mb6a4376f[m Merge branch 'nicol-saha'
+[33m8002717c[m Added flyout menu
+[33m0f151c85[m Add gamble mechanic function
+[33m5e5936f0[m Add cursorPointer
+[33m37f06b68[m Added flyout menu
+[33ma5bd0332[m Fix shrinking
+[33m49626a25[m Add coins tag, dom, image
+[33mc64324f7[m Merge branch 'master' of https://github.com/Sourcerors/CasinoRoyale
+[33m74551590[m enemy spawning, movement and collision detection
+[33mf4c9b829[m Worked on flyout menu
+[33m214e0e70[m Worked on flyout menu
+[33m27def890[m Style pay button and modal
+[33m85ecc376[m Fix nav bar highlight button
+[33m32c151df[m Fix conflict
+[33mb6e1578c[m Remove conflict
+[33m4b29b83f[m Remove merge conflict
+[33mf14c5e0a[m Remove merge conflict
+[33ma0b2f32e[m Merge branch 'master' of https://github.com/Sourcerors/CasinoRoyale
+[33m009e0197[m Remove custom styles
+[33mfd046575[m add HTML for game four
+[33mbb6d8e92[m Merge branch 'master' of github.com:Sourcerors/CasinoRoyale
+[33me9746841[m Added tailwind styling
+[33m52b2fb5b[m Icrease card conatiner height
+[33mc25883fe[m Add responsiveness for small screens
+[33m53f4c5c2[m Add coin button function
+[33mdef5b777[m Add coins when you win
+[33m8303f8dc[m Add Balance to Game III
+[33m683ae43a[m Merge branch 'fawad'
+[33m4fb19f6b[m Increase deck height
+[33mfcc6b7a9[m Fix play again button bug
+[33mbb878280[m Merge branch 'master' of https://github.com/Sourcerors/CasinoRoyale
+[33mbe924791[m game 4 table creation, player movement, screen pan
+[33m926d9cf8[m Cleaning html
+[33m3e30dfd5[m Cleaning html
+[33m2562d77d[m Merge branch 'fawad'
+[33m60a8652d[m Score bug fix
+[33med66247a[m Popup modal position bug fixed
+[33m8ed575fc[m Merge branch 'fawad'
+[33m8b80fede[m Add link of other games
+[33md63f6823[m Merge branch 'fawad'
+[33mebe6f7f4[m Remove unwanted comments
+[33m58f0f407[m Remove unwanted message div
+[33m43ce7a4b[m Add modal div
+[33mbdb86580[m Add modal dom
+[33m6001e3e1[m Add Balance
+[33mb95bb0a4[m Add balance
+[33m8bd446fa[m Show hidden card
+[33mf24b4c1a[m Merge branch 'fawad'
+[33m0cda3679[m Remove extra css style files
+[33m42ae4578[m Change score badge color
+[33m7dcbc036[m Add deck cards images
+[33mb3d87a57[m Display card algorithm
+[33m86b4666b[m Add image container for card display
+[33mef96ff25[m Added links to games
+[33m70230497[m Deleted unnecesarry files
+[33mcf3df4f4[m Deleted unnecesarry files
+[33mb16c72a0[m Add ace card algorithm
+[33m85b1dfb6[m Change button names
+[33m87294224[m Delete game 3 version 1
+[33mda066a36[m Updating branch
+[33m123e4774[m Updating branch
+[33m6f019109[m create empty profile page
+[33maf0b6efc[m fix bug with unlock
+[33ma2ed0f70[m remove some filler comments
+[33mdf6e88cc[m made the red color for unmatched cards less harsh
+[33m3f3adea7[m Fix a bug in the restart button
+[33m0fb588ec[m Fix a bug in the repeat button
+[33m38f946f0[m improve responsiveness
+[33meb70a0f8[m completed graphics in game 1
+[33meff2b5d2[m Merge branch 'master' of https://github.com/Sourcerors/CasinoRoyale
+[33me78efd43[m improve graphics of game 1
+[33m97105d55[m Merge branch 'master' of github.com:Sourcerors/CasinoRoyale
+[33m5db32ce5[m Added go back link
+[33m09ac65f9[m Merge branch 'master' of github.com:Sourcerors/CasinoRoyale
+[33m53b1f0db[m Display the results
+[33m76604e68[m Cleaned up html
+[33m1f726091[m Cleaned up html
+[33m5bcb0015[m Cleaned up html
+[33m9ed34a02[m Disable hit button when user presses the stand button
+[33m85dc04e2[m Stick footer to the bottom
+[33md4520ad6[m Merge branch 'master' of github.com:Sourcerors/CasinoRoyale into fawad
+[33mb9550e0f[m Update Coin system documentation.md
+[33m202e80ea[m Update Coin system documentation.md
+[33m7befccbc[m Create Coin system documentation.md
+[33m4ca16d49[m Add congrats
+[33m856c0e49[m Add congrats
+[33m41045bf7[m Add congrats
+[33m4fe4f99b[m Moved file
+[33m1b9d4af4[m Add congrats
+[33mb55814f9[m Add Congrats
+[33m7f4027c0[m Last Update
+[33mb9a58a3a[m Last Update
+[33m11c881a7[m Increase logo height
+[33m7e9db05a[m Merge branch 'master' of github.com:Sourcerors/CasinoRoyale into fawad
+[33mbac5a1ae[m Add stand button dom for computer turn
+[33me18a5c60[m Add SecondMemoryGame
+[33m0213b60e[m Add player draw button i.e. called  Hit
+[33m520a3c5a[m Set footer height
+[33m32778843[m Ezgi memory game try-out
+[33m8d2bafaf[m edit nav in game 1 html
+[33me59198ab[m Deleted try.html
+[33mdd2bf3bc[m work on style and bugs for game 1
+[33m0ce84c4d[m Merge branch 'master' of https://github.com/Sourcerors/CasinoRoyale
+[33mf1bf0c4f[m Merge branch 'master' of https://github.com/Sourcerors/CasinoRoyale
+[33mc411cc78[m Merge branch 'nicol-saha'
+[33m46888f3b[m work on style for game 1
+[33mab845669[m Nav links in game 3 fixed
+[33m061ac78c[m add game three link
+[33mda2b402f[m Merge branch 'fawad'
+[33m30ed0ffc[m Nav bar button highlight
+[33m3e4aa011[m Add game two link
+[33m2a88e87d[m Worked on Game 3 Tailwind Added
+[33m54e77f8b[m Merge pull request #1 from Sourcerors/fawad
+[33m18c189e5[m Hit button adds card to existing board of player
+[33mc9e26173[m Add message box for the results
+[33m99f17927[m Worked on Game 3 Fix
+[33mf91e21cf[m Merge branch 'nicol-saha'
+[33mdb7e1add[m Worked on Game 3 Bug = cards not staying put
+[33me857e074[m Merge branch 'master' of github.com:Sourcerors/CasinoRoyale into fawad
+[33ma4812b67[m Merge branch 'nicol-saha'
+[33m289b02fe[m Worked on Game 3
+[33mee50a85e[m Hides one computer card and only shows the score for displayed card
+[33m00b68fe8[m Merge branch 'master' of https://github.com/Sourcerors/CasinoRoyale
+[33m8fce8ba0[m add game 1 JS tailwind button highlighting
+[33mc95e0206[m Merge branch 'nicol-saha'
+[33m08f5ba9e[m Worked on Game 3
+[33m1427c79b[m Merge branch 'fawad'
+[33mfcdd11ae[m Remove unused css stylesheet
+[33mf200e1e6[m Add simple js script that displays random cards
+[33mbb0a058e[m include tailwind in input css
+[33m907f297f[m Add twenty-one game html
+[33m6947169b[m Merge branch 'master' of https://github.com/Sourcerors/CasinoRoyale
+[33maf701d7d[m removed custom colors again
+[33m099215fe[m Added try 1 game 3
+[33mf8918a5c[m Added try 1 game 3
+[33m63258526[m add theme colors to config file
+[33m5849a904[m fix broken links on homepage
+[33m1e252fa0[m link filenames for eventual purge and remove some scss
+[33m76ccbfba[m Add Wireframes&Logos
+[33m125efabd[m Merge branch 'master' of github.com:Sourcerors/CasinoRoyale
+[33m5dd1d4f2[m Added yesterdays last tweaks that were not pushed
+[33md69f0a7a[m linked all html files to right stylesheet
+[33ma87359ee[m fixed bug that caused secret characters to be hidden if unlocked in previous session
+[33m42b4cb28[m corrected spelling
+[33m8a737482[m two new creatures for game 1
+[33m068f3421[m added a comma
+[33m7fefbc11[m rig game 1 and correct paper array
+[33m3a746781[m fix issue where you could play without selecting first
+[33meb636c0b[m Added timer to rock, paper, scissors
+[33mcc074ffa[m add coin buyer on homepage
+[33m6000775d[m add balance system to game 1
+[33m668e2b98[m Added Margin Main
+[33ma27e88dc[m Added footer
+[33mb68b7494[m Merge branch 'nicol-saha'
+[33mc27342f1[m Added cards
+[33m8a844a05[m added score in game 1
+[33mf9d46eeb[m Merge branch 'master' of github.com:Sourcerors/CasinoRoyale
+[33md82a1870[m replace one rock by spock
+[33m10a8aeb2[m Merge branch 'master' of github.com:Sourcerors/CasinoRoyale
+[33m257cf347[m Fixed tailwind bug
+[33md9feb75e[m add a bracket
+[33md3c53740[m Merge two seemingly identical versions
+[33m0d8a95c7[m Merge branch 'master' of https://github.com/Sourcerors/CasinoRoyale
+[33m6a003f7f[m improved game one to meet minium requirements
+[33m7643bb3f[m Saved js 1 previously created
+[33m8c450152[m Added tailwind
+[33mfa562f63[m Added tailwind
+[33m9c96dc4a[m correct links on main page
+[33m1df6b65b[m add link to each game on home page
+[33m49f51784[m first working version of game 1
+[33m84d18a9b[m Added basic  html structure
+[33m4fd75373[m Added basic  html structure
+[33m979facb1[m Added basic  html structure
+[33m027e0223[m Added css files
+[33m28918872[m Added HTML & SCSS files game 1 and 2
+[33m39b5ce6f[m move everything from personal repo to group repo
+[33m69d42a75[m Initial commit
