@@ -315,7 +315,7 @@
                   id="hitBtn"
                   class="relative inline-flex items-center px-4 py-2 border border-transparent text-sm leading-5 font-medium rounded-md text-grey-900 bg-orange-500 hover:bg-orange-300 focus:outline-none focus:shadow-outline-indigo focus:border-indigo-600 active:bg-indigo-600 transition duration-150 ease-in-out"
                 >
-                  Draw a card
+                  Hit
                 </button>
                 <button
                   id="standBtn"
@@ -373,7 +373,7 @@
       id="modal"
       class="h-screen w-full absolute flex items-center justify-center hidden absolute"
     >
-      <div
+      <div id="modalwidth"
         class="bg-white rounded shadow p-2 m-4 max-w-xs max-h-full text-center"
       >
         <div class="flex justify-end">
@@ -392,6 +392,10 @@
             id="coinwon"
             class="font-semibold text-xl py-2 px-12 font-titlefont hidden"
           ></h2>
+          <h3 id="rulesheader"
+          class="font-semibold text-lg px-6 hidden text-left">Twenty-One Game Rules:</h3>
+          <div id="gamerules"
+          class="font-semibold text-base py-2 px-12 hidden text-left"></div>
           <span id="badgeDisplay" class="hidden flex justify-center"></span>
         </div>
         <div class="flex justify-center">
