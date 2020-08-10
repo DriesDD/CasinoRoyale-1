@@ -402,7 +402,7 @@ function deal(cards, check) {
       hitSum = firstSum;
       console.log(`playerHitCard-hit value ${hitPlayer}`);
       console.log(`playerHitCard-previous sum ${firstSum}`);
-      playerCards.innerHTML += `<img class="mr-1" src="cards/${firstCard}.svg" />`;
+      playerCards.innerHTML += `<img class="mr-1 sm:h-40 h-20" src="cards/${firstCard}.svg" />`;
       playerScore.innerHTML = hitSum;
       if (hitSum > 21) {
         behaviourBtn(hit, "off");
@@ -432,7 +432,7 @@ function deal(cards, check) {
       console.log(`computerHitCard-previous sum ${standSum}`);
       console.log(`computerHitCard-hit value ${hitPlayer}`);
       standSum += hitPlayer;
-      computerCards.innerHTML += `<img class="mr-1" src="cards/${firstCard}.svg" />`;
+      computerCards.innerHTML += `<img class="mr-1 sm:h-40 h-20" src="cards/${firstCard}.svg" />`;
       computerScore.innerHTML = standSum;
       if (standSum > 21) {
         behaviourBtn(stand, "off");
