@@ -351,8 +351,8 @@ function deal(cards, check) {
           if (aInPlayerCard == 2) aAreTwo = true;
 
           firstSum = sumPlayer;
-          playerCards.innerHTML += `<img class="mr-1" src="cards/${firstCard}.svg" />`;
-          playerCards.innerHTML += `<img class="mr-1" src="cards/${secondCard}.svg" />`;
+          playerCards.innerHTML += `<img class="mr-1 sm:h-40 h-20" src="cards/${firstCard}.svg" />`;
+          playerCards.innerHTML += `<img class="mr-1 sm:h-40 h-20" src="cards/${secondCard}.svg" />`;
           playerScore.classList.remove("hidden");
           playerScore.innerHTML = sumPlayer;
           break;
@@ -363,8 +363,8 @@ function deal(cards, check) {
           console.log(firstCard);
           standSum = sumPlayer;
           hiddenCard = firstCard;
-          computerCards.innerHTML += `<img id="hiddenCard" class="mr-1" src="cards/RED_BACK.svg" />`;
-          computerCards.innerHTML += `<img class="mr-1" src="cards/${secondCard}.svg" />`;
+          computerCards.innerHTML += `<img id="hiddenCard" class="mr-1 sm:h-40 h-20" src="cards/RED_BACK.svg"  />`;
+          computerCards.innerHTML += `<img class=                "mr-1 sm:h-40 h-20" src="cards/${secondCard}.svg" />`;
           computerScore.classList.remove("hidden");
           computerScore.innerHTML = sumPlayer - sum;
           break;
