@@ -636,22 +636,22 @@ see https://textik.com/#c88e7e73e6589fe6 */
     document.onkeydown = () => {
         switch (event.key) {
             case 'ArrowLeft':
-                if ((playerdir != 'right') && (document.getElementsByClassName('cell')[playery * sw + playerx - 1].classList.contains("bg-yellow-300") == 0)) {
+                if ((playerdir != 'right')) {
                     playerdir = 'left'
                 }
                 break;
             case 'ArrowUp':
-                if ((playerdir != 'down') && (document.getElementsByClassName('cell')[(playery - 1) * sw + playerx].classList.contains("bg-yellow-300") == 0)) {
+                if ((playerdir != 'down')) {
                     playerdir = 'up'
                 }
                 break;
             case 'ArrowRight':
-                if ((playerdir != 'left') && (document.getElementsByClassName('cell')[playery * sw + playerx + 1].classList.contains("bg-yellow-300") == 0)) {
+                if ((playerdir != 'left')) {
                     playerdir = 'right'
                 }
                 break;
             case 'ArrowDown':
-                if ((playerdir != 'up') && (document.getElementsByClassName('cell')[(playery + 1) * sw + playerx].classList.contains("bg-yellow-300") == 0)) {
+                if ((playerdir != 'up')) {
                     playerdir = 'down'
                 }
                 break;
