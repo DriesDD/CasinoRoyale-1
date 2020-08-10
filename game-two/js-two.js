@@ -252,6 +252,7 @@ play.addEventListener("click", () => {
 hit.addEventListener("click", () => {
   deal(playerCard, "playerHitCard");
   if (firstSum > 21) {
+    close.classList.remove("hidden");
     document
       .getElementById("hiddenCard")
       .setAttribute("src", `cards/${hiddenCard}.svg`);
@@ -294,9 +295,11 @@ function winner(message, decision) {
   switch (decision) {
     case "gain":
       setTimeout(() => {
+        closeInfo.classList.add("hidden");
         body.classList.add("opacity-25");
         modal.classList.add("opacity-100");
         modal.classList.remove("hidden");
+        result.classList.remove("hidden");
         localStorage.setItem(
           "balance",
           Number(localStorage.getItem("balance")) + betAmount * 2
@@ -348,6 +351,7 @@ function winner(message, decision) {
       break;
     case "tie":
       setTimeout(() => {
+        coinwon.classList.remove("hidden");
         body.classList.add("opacity-25");
         modal.classList.remove("hidden");
         result.innerHTML = `${message}`;
