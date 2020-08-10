@@ -249,12 +249,12 @@ see https://textik.com/#c88e7e73e6589fe6 */
                 eventlist.push(['message', 0, 'They sent assassins to kill you, captain snake.']);
                 for (i = 0; i < 0.5 * (6 + wave + difficulty); i++) {
                     if (Math.random() > (1 / (difficulty / 2 + wave / 5))) {
-                        eventlist.push(['enemy', 15000 / (3 + wave + difficulty), sw + 10, Math.round(Math.random() * sh), 'left', 1200 / (2 + 2 * difficulty + wave / 2), 'snake', "bg-red-600", "bg-space"])
+                        eventlist.push(['enemy', 15000 / (3 + wave/2 + difficulty/2), sw + 10, Math.round(Math.random() * sh), 'left', 1200 / (2 + 2 * difficulty + wave / 2), 'snake', "bg-red-600", "bg-space"])
                     } else {
                         if (Math.random() > 0.7) {
-                            eventlist.push(['enemy', 7000 / (3 + wave + difficulty), sw + 10, Math.round(Math.random() * sh), 'up', 900 / (2 + 2 * difficulty + wave / 2), 'pursue', "bg-red-600", "bg-space"])
+                            eventlist.push(['enemy', 7000 / (3 + wave/2 + difficulty/2), sw + 10, Math.round(Math.random() * sh), 'up', 900 / (2 + 2 * difficulty + wave / 2), 'pursue', "bg-red-600", "bg-space"])
                         } else {
-                            eventlist.push(['enemy', 10000 / (3 + wave + difficulty), sw + 10, Math.round(Math.random() * sh), 'left', 1000 / (2 + 2 * difficulty + wave / 2), 'block', "bg-red-600", "bg-space"])
+                            eventlist.push(['enemy', 10000 / (3 + wave/2 + difficulty/2), sw + 10, Math.round(Math.random() * sh), 'left', 1000 / (2 + 2 * difficulty + wave / 2), 'block', "bg-red-600", "bg-space"])
                         }
                     }
                 }
