@@ -152,6 +152,7 @@ window.onload = () => {
   <li>To 'Stand' is to hold your total and end your turn.</li>
   <li>If you go over 21 you bust, and the computer wins regardless of the computer's hand.</li>
   <li>Computer will hit until his/her cards total 17 or higher.</li>
+  <li>To earn a badge maintain 5 winning streak.</li>
 </ul>`;
   balance.innerText =
     "Current balance: " + Number(localStorage.getItem("balance"));
