@@ -25,16 +25,16 @@ Virtual Casino with:
 | | Jul 30 | Jul 31 | Aug 3 | Aug 4 | Aug 5 | Aug 6 | Aug 7 | Aug 10 
 |----------- | ------------- | ------------- | -------------| -------------| -------------| -------------| -------------|-------------|
 **Project leader**| Ezgi | Ezgi | Dries | Dries | Nicol | Nicol | Fawad | Fawad
-**Morning** | Sprint planning
-**Afternoon**| Summary of the day
+**Morning** | Sprint planning | X | X | X | X | X | X | X | X
+**Afternoon**| Summary of the day| X | X | X | X | X | X | X | X
 
 ## Built With :computer:
 - [VSC](https://code.visualstudio.com/)
 - [Tailwind CSS](https://tailwindcss.com/)
 
 ## Hosted on :octocat:
-- [Github Pages](https://driesdd.github.io/CasinoRoyale/)
-- [Netlify](#)
+- [Github Pages](#)
+- [Netlify](https://sourcerors-casino-royale.netlify.app/)
 
 ## License
 - **GNU General Public License v3.0**
