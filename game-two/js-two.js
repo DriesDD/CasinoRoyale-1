@@ -68,6 +68,7 @@ const badgeDisplay = document.getElementById("badgeDisplay");
 const gamerules = document.getElementById("gamerules");
 const modalWidth = document.getElementById("modalwidth");
 const rulesheader = document.getElementById("rulesheader");
+const closeInfo = document.getElementById("closeInfo");
 
 //Variables declaration
 let deck = [],
@@ -136,9 +137,8 @@ close.addEventListener("click", () => {
   modal.classList.add("hidden");
   body.classList.remove("opacity-25");
 });
-
-//On windows load, update bank balance. Disable draw and stand button
-window.onload = () => {
+// Close info button listener, onclick displays the game rules
+closeInfo.addEventListener("click", () => {
   modalWidth.classList.remove("max-w-xs");
   body.classList.add("opacity-25");
   modal.classList.remove("hidden");
@@ -154,6 +154,10 @@ window.onload = () => {
   <li>Computer will hit until his/her cards total 17 or higher.</li>
   <li>To earn a badge maintain 5 winning streak.</li>
 </ul>`;
+});
+
+//On windows load, update bank balance. Disable draw and stand button
+window.onload = () => {
   balance.innerText =
     "Current balance: " + Number(localStorage.getItem("balance"));
   bank.innerText = Number(localStorage.getItem("balance"));

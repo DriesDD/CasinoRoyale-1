@@ -229,8 +229,16 @@
             <div
               class="w-full sm:w-full md:w-1/2 lg:w-1/2 rounded-lg shadow-lg bg-green-800 my-3"
             >
-              <div class="grid grid-rows-2 sm:w-full h-auto">
-                <div class="container  mx-2 bg-green-800 sm:w-full sm:h-48 w-full h-24">
+            <div class="flex justify-end">
+            <span class="absolute">
+              <button id="closeInfo">
+                <i
+                  class="fas fa-info-circle pr-1 text-red-500 hover:text-red-600 transition duration-150"
+                ></i>
+              </button>
+            </span></div>
+              <div class="grid grid-rows-2 sm:w-auto h-auto">
+                <div class="container mx-2 bg-green-800 sm:h-48 w-full h-24">
                   <span class="font-semibold">Computer</span
                   ><span
                     id="computerScore"
@@ -238,7 +246,7 @@
                   ></span>
                   <div id="computerCards" class="flex"></div>
                 </div>
-                <div class="container  mx-2 bg-green-800 sm:w-full sm:h-48 w-full h-24">
+                <div class="container  mx-2 bg-green-800 sm:h-48 w-full h-24">
                   <span class="font-semibold">Player</span
                   ><span
                     id="playerScore"
@@ -246,7 +254,7 @@
                   ></span>
                   <div id="playerCards" class="flex"></div>
                 </div>
-                <!-- car END -->
+                <!-- card END -->
 
                 <!-- Bank and Player coin -->
                 <div
