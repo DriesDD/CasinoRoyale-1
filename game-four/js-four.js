@@ -44,6 +44,10 @@
         return document.getElementById(x);
     }
 
+    //auxiliary function to restyle a cell
+    function restyle(x,y,newstyle) {document.getElementsByClassName('cell')[y * sw + x].classList.remove("bg-space", "bg-yellow-300", "bg-yellow-100", "bg-green-600", "bg-green-900", "bg-green-800", "bg-orange-900", "bg-red-800", "bg-red-600", "bg-blue-500", "bg-blue-700", "bg-orange-600", "bg-green-500", "bg-indigo-700", "bg-yellow-400", "bg-gray-900");
+    document.getElementsByClassName('cell')[y * sw + x].classList.add(newstyle)}
+
     //auxiliary Fisher-Yates shuffle function. Only bit of code here that I copied from the internet, as it's the proven best shuffle algorithm.
     function shuffle(array) {
         var m = array.length,
@@ -206,7 +210,6 @@
             waveseries = waveseries.concat(shuffle(["blob", "walls", "station"]));
             waveseries = waveseries.concat(["health"]);
             }
-            console.log(waveseries);
         }
         switch (waveseries[waveindex]) {
             case 'assassins': {
@@ -231,14 +234,14 @@
             //Asteroid swarm
             eventlist.push(['wave', 5000, 'bg-space']);
             eventlist.push(['message', 0, 'Captain, we are caught in an asteroid storm.']);
-            for (i = 0; i < 10 * (3+difficulty + wave); i++) {
+            for (i = 0; i < 3 * (2+difficulty + wave); i++) {
                 randy = Math.floor(Math.random() * sh);
                 randspeed = 100-difficulty*20 + Math.floor(Math.random() * 200);
                 randsize = Math.ceil(Math.random() * 3)
-                eventlist.push(['enemy', 400 / (2+difficulty*2 + wave), sw + 5, randy, 'left', randspeed, 'none', "bg-orange-900", "bg-space"])
+                eventlist.push(['enemy', 3000 / (2+difficulty*2 + wave), sw + 5, randy, 'left', randspeed, 'none', "bg-orange-900", "bg-space"])
                 for (j = 0; j < randsize; j++) {
                     for (k = 0; k < randsize; k++) {
-                        eventlist.push(['enemy', 0, sw + 5 + Math.round(randsize + j * 2 + 2 * Math.random()), randy + k * 2 + 2 * Math.random(), 'left', randspeed, 'none', "bg-orange-900", "bg-space"]);
+                        eventlist.push(['enemy', 0, sw + 5 + Math.round(randsize + j * 2 + 2 * Math.random()), Math.round(randy + k * 2 + 2 * Math.random()), 'left', randspeed, 'none', "bg-orange-900", "bg-space"]);
                     }
                 }
             }
@@ -255,7 +258,7 @@
                 eventlist.push(['enemy', 1000 / ((3 + difficulty*3 + wave) / 5), sw + 5, randy, 'left', randspeed, 'none', "bg-green-600", "bg-space"])
                 for (j = 0; j < randsize * 2; j++) {
                     for (k = 0; k < randsize; k++) {
-                        eventlist.push(['enemy', 0, sw + 5 - randsize / 2 + j, randy + k, 'left', randspeed, 'none', "bg-green-600", "bg-space"]);
+                        eventlist.push(['enemy', 0, sw + 5 - Math.round(randsize / 2) + j, randy + k, 'left', randspeed, 'none', "bg-green-600", "bg-space"]);
                     }
                 }
                 if (Math.random() > 0.96) {
@@ -272,17 +275,17 @@
         case 'walls': {
             //Blue walls
             eventlist.push(['wave', 3000, 'bg-space']);
-            eventlist.push(['message', 0, 'Those walls... They\'re closing!']);
+            eventlist.push(['message', 0, 'Those walls... They\'re closing! We may need our double-tap ability.']);
             for (i = 0; i < (1+ wave/3 + difficulty); i++) {
 
-                for (j = 0; j < (Math.ceil(Math.sqrt(2 + wave + difficulty))); j++) {
+                randy = Math.floor(Math.random() * sh);
+
+                for (j = 0; j < (Math.ceil(Math.sqrt(1 + wave/3 + difficulty))); j++) {
                     eventlist.push(['enemy', 10, sw + 10, (randy + j), 'up', 3000, 'none', "bg-blue-700", "bg-blue-700"])
                     eventlist.push(['enemy', 10, sw + 10, (randy - j), 'down', 3000, 'none', "bg-blue-700", "bg-blue-700"])
                     eventlist.push(['enemy', 10, sw +9, (randy + j), 'up', 3000, 'none', "bg-blue-700", "bg-blue-700"])
                     eventlist.push(['enemy', 10, sw +9, (randy - j), 'down', 3000, 'none', "bg-blue-700", "bg-blue-700"])
                 }
-
-                randy = Math.floor(Math.random() * sh);
                 if (Math.random() * 20 < 4 + (difficulty + wave)) {
                     eventlist.push(['enemy', 20000 / (1 + wave + difficulty), sw + 5, randy + 1, 'up', 10000 / (10 + difficulty + wave), 'snake', "bg-blue-500", "bg-blue-700"])
                     eventlist.push(['enemy', 0, sw + 4, randy, 'up', 6000 / (10 + difficulty + wave), 'snake', "bg-blue-500", "bg-blue-700"])
@@ -290,17 +293,17 @@
                     eventlist.push(['enemy', 20000 / (1 + wave + difficulty), sw + 5, randy - 1, 'down', 6000 / (10 + difficulty + wave), 'none', "bg-blue-700", "bg-blue-700"])
                     eventlist.push(['enemy', 0, sw + 4, randy, 'down', 6000 / (10 + difficulty + wave), 'none', "bg-blue-500", "bg-blue-700"])
                 }
+                eventlist.push(['enemy', 1500, sw + 5, (randy - j), 'still', 200, 'fade', "bg-blue-700", "bg-blue-700"])
 
-                for (j = 0; j < (Math.ceil(Math.sqrt(2 + wave + difficulty))); j++) {
+                for (j = 0; j < (Math.ceil(Math.sqrt(1 + wave/3 + difficulty))); j++) {
                     eventlist.push(['enemy', 5, sw + 15, (randy + j), 'up', 2400, 'none', "bg-blue-700", "bg-blue-700"])
                     eventlist.push(['enemy', 5, sw + 15, (randy - j), 'down', 2400, 'none', "bg-blue-700", "bg-blue-700"])
                     eventlist.push(['enemy', 5, sw + 14, (randy + j), 'up', 2400, 'none', "bg-blue-700", "bg-blue-700"])
                     eventlist.push(['enemy', 5, sw + 14, (randy - j), 'down', 2400, 'none', "bg-blue-700", "bg-blue-700"])
                 }
                 eventlist.push(['enemy', 3000, sw + 5, (randy - j), 'still', 200, 'fade', "bg-blue-700", "bg-blue-700"])
-
-
             }
+            eventlist.push(['enemy', 5000, sw, (randy - j), 'up', 500, 'none', "bg-blue-700", "bg-blue-700"])
         };
         break;
 
@@ -362,21 +365,13 @@
     //   PART 3: enemy and event behavior           //
     //______________________________________________//
 
-    let enemies = 0
-
     //enemy spawning / event triggering
     async function enemyspawning(currentgame) {
         if (currentgame == restarts) {
 
-            //performance checking
-            console.log("Eventlist: " + eventlist.length)
-            console.log("Enemy cycles per second: " + enemies * 10)
-            enemies = 0;
-
             //if the evenlist ran out, generate new wave
             if (eventlist.length < 10) {
                 wavegenerator()
-                console.log('wavegenerator should be triggered now')
             }
 
             switch (eventlist[spawncycle][0]) {
@@ -416,14 +411,13 @@
     //individual enemy movement. Every cycle, the x,y position of the enemy is cleared and the new position is determined based on direction, then the enemy is redrawn
     async function enemycycle(pattern, speed, style, trace, x, y, dir, currentgame, prevxshift) {
         if (currentgame == restarts) {
-            enemies += 1
             //check if in the field
             //calculate how much the entire game screen shifted since the previous enemycycle
             const relshift = (xshift - prevxshift)
             let dead = 0;
             //wrap around y edges
             if (y > (sh - 1)) {
-                y -= (sh - 1)
+                y -= (sh)
             }
             if (y < 0) {
                 y += sh
@@ -585,7 +579,7 @@
 
                 //draw enemy if they are in view, redo cycle if their x is higher than 0
                 if ((x >= 0) && (dead == 0)) {
-                    if (x < sw) {
+                    if ((x < sw) && (y>=0) && (y<sh)) {
                         if (((pattern == 'health') || (pattern == 'coin')) && ((cycle % 2) < 1)) {
                             document.getElementsByClassName('cell')[(y * sw) + x].classList.add("bg-space")
                         } else {
