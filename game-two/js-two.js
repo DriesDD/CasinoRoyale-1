@@ -65,6 +65,9 @@ const bet = document.getElementById("bet");
 const balance = document.getElementById("balance");
 const coinwon = document.getElementById("coinwon");
 const badgeDisplay = document.getElementById("badgeDisplay");
+const gamerules = document.getElementById("gamerules");
+const modalWidth = document.getElementById("modalwidth");
+const rulesheader = document.getElementById("rulesheader");
 
 //Variables declaration
 let deck = [],
@@ -127,12 +130,29 @@ chip25.addEventListener("click", () => {
 
 // Close button listener. Closes the popup modal box.
 close.addEventListener("click", () => {
+  rulesheader.classList.add("hidden");
+  modalWidth.classList.add("max-w-xs");
+  gamerules.classList.add("hidden");
   modal.classList.add("hidden");
   body.classList.remove("opacity-25");
 });
 
 //On windows load, update bank balance. Disable draw and stand button
 window.onload = () => {
+  modalWidth.classList.remove("max-w-xs");
+  body.classList.add("opacity-25");
+  modal.classList.remove("hidden");
+  rulesheader.classList.remove("hidden");
+  gamerules.classList.remove("hidden");
+  playAgain.classList.add("hidden");
+  gamerules.innerHTML = `<ul class="list-disc">
+  <li>The goal of Twenty-One games is to beat the computer's hand without going over 21.</li>
+  <li>Cards from 2 to 10 are worth their face value. Face cards are worth 10. Aces are worth 1 or 11, whichever makes a better hand.</li>
+  <li>To 'Hit' is to ask for another card.</li>
+  <li>To 'Stand' is to hold your total and end your turn.</li>
+  <li>If you go over 21 you bust, and the computer wins regardless of the computer's hand.</li>
+  <li>Computer will hit until his/her cards total 17 or higher.</li>
+</ul>`;
   balance.innerText =
     "Current balance: " + Number(localStorage.getItem("balance"));
   bank.innerText = Number(localStorage.getItem("balance"));
@@ -362,13 +382,11 @@ function deal(cards, check) {
       count = 0;
       if (aInPlayerCard == 3) aAreThree = true;
       if (aInPlayerCard == 4) aAreFour = true;
-
       weight.forEach((item) => {
         if (firstChar === item.type) {
           hitPlayer = item.value;
         }
       });
-
       firstSum += hitPlayer;
       for (let i = 0; i < aInPlayerCard; i++) {
         if (aInPlayerCard > 0 && firstSum > 21) {
