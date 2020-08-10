@@ -1,4 +1,37 @@
 //----------------------------------------------//
+//          SCHEMATIC OVERVIEW                  //
+//______________________________________________//
+
+/*                                                                                  
+       player                                                                   
+         |  gamereset() <------------------------------------------------------+  PART 1
+         v  v                                                                  |
+         menu button                                                           |
+            v                                                                  |
+           gamestart()                                                         |
+             |                                                                 |
+             +>wavegenerator() <---------------------------------------------+ |  PART 2
+             | 	  |                                                    ^     | |
+             |    |----array waveseries['asteroids','assassins',...] --+     | |
+             |    |    v                                                     | |
+             |    +--->array  eventlist [['message',...],['enemy',...],...]  ^ |
+             |         v                                                     / |
+             +>eventspawning() repeats -----------------------------------> -  |  PART 3
+             |         v                                                       |
+             |        enemycycle( , enemycycle()...repeats                     |
+             |                        +                                        |
+             +>moveplayer() repeats   |                                        |  PART 4
+             |    |                   |                                        |
+             |    +-> updatepos()     |                                        ^
+             |               |        v                                       / 
+             |               +-> loselife()--------------------------------> -  
+             |                                                                  
+             +>timecycle() repeats                                                PART 5
+                                                                                
+see https://textik.com/#c88e7e73e6589fe6 */
+
+
+//----------------------------------------------//
 //          PART 1: setting the scene           //
 //______________________________________________//
 
@@ -62,19 +95,21 @@
         return array;
     }
 
-    //create a sh*sw table with id and style to have full width
-    let html = "<div class=\"relative\">"
-    html += "<table id=\"grid\" class= \"z-40 table-fixed\">"
-    for (i = 0; i < sh; i++) {
-        html += "<tr class= \"\">"
-        for (j = 0; j < sw; j++) {
-            html += " <td class= \"cell px-4 py-4 overflow-hidden bg-space\" ></td>"
+    //start by creating a sh*sw table with id and style to have full width
+    (function createtable() {
+        let html = "<div class=\"relative\">"
+        html += "<table id=\"grid\" class= \"z-40 table-fixed\">"
+        for (i = 0; i < sh; i++) {
+            html += "<tr class= \"\">"
+            for (j = 0; j < sw; j++) {
+                html += " <td class= \"cell px-4 py-4 overflow-hidden bg-space\" ></td>"
+            }
+            html += "</tr>"
         }
-        html += "</tr>"
-    }
-    html += "</table>"
-    html += "</div>"
-    $(targetid).innerHTML = html;
+        html += "</table>"
+        html += "</div>"
+        $(targetid).innerHTML = html;
+    })()
 
     //restarts goes up every new game restart. Some functions use it to check if the game restarted since their last cycle.
     let restarts = 0
@@ -176,8 +211,8 @@
         displaybalance();
         localStorage.setItem("spent", localStorage.getItem("spent") + 25);
         //these are repeating functions that carry on the number of game restarts with them. They don't do anything if the game is on a different number than them. This is how the function is killed when a new game has started 
-        enemyspawning(restarts);
-        cyclestep(restarts);
+        eventspawning(restarts);
+        timecycle(restarts);
         $('menu').classList.add("invisible")
         //player entrance effect
         for (i = 0; i < playerx; i++) {
@@ -190,7 +225,7 @@
     //   PART 2: the wave generator                 //
     //______________________________________________//
 
-    //this is the function where the waves are generated using an array of arrays (eventlist). First the order of the wave is randomly shuffled.
+     //this is the function where the waves are generated using an array of arrays (eventlist). First the order of the wave is randomly shuffled.
     //for enemy: eventtype, delay after previous,x,y,direction,speed, movement pattern, style, trail
     //for wave start: eventtype, delay after previous, background color
     //for message: eventtype, delay after previous, announcement
@@ -270,9 +305,9 @@
         break;
         case 'walls': {
             //Blue walls
-            eventlist.push(['wave', 3000, 'bg-space']);
+            eventlist.push(['wave', 4000, 'bg-space']);
             eventlist.push(['message', 0, 'Those walls... They\'re closing! We may need our double-tap ability.']);
-            for (i = 0; i < (1 + wave / 3 + difficulty); i++) {
+            for (i = 0; i < (wave / 5 + difficulty); i++) {
 
                 randy = Math.floor(Math.random() * sh);
 
@@ -283,10 +318,10 @@
                     eventlist.push(['enemy', 10, sw + 9, (randy - j), 'down', 3000, 'none', "bg-blue-700", "bg-blue-700"])
                 }
                 if (Math.random() * 20 < 4 + (difficulty + wave)) {
-                    eventlist.push(['enemy', 20000 / (1 + wave + difficulty), sw + 5, randy + 1, 'up', 10000 / (10 + difficulty + wave), 'snake', "bg-blue-500", "bg-blue-700"])
+                    eventlist.push(['enemy', 50000 / (1 + wave + difficulty), sw + 5, randy + 1, 'up', 10000 / (10 + difficulty + wave), 'snake', "bg-blue-500", "bg-blue-700"])
                     eventlist.push(['enemy', 0, sw + 4, randy, 'up', 6000 / (10 + difficulty + wave), 'snake', "bg-blue-500", "bg-blue-700"])
                 } else {
-                    eventlist.push(['enemy', 20000 / (1 + wave + difficulty), sw + 5, randy - 1, 'down', 6000 / (10 + difficulty + wave), 'none', "bg-blue-700", "bg-blue-700"])
+                    eventlist.push(['enemy', 50000 / (1 + wave + difficulty), sw + 5, randy - 1, 'down', 6000 / (10 + difficulty + wave), 'none', "bg-blue-700", "bg-blue-700"])
                     eventlist.push(['enemy', 0, sw + 4, randy, 'down', 6000 / (10 + difficulty + wave), 'none', "bg-blue-500", "bg-blue-700"])
                 }
                 eventlist.push(['enemy', 1500, sw + 5, (randy - j), 'still', 200, 'fade', "bg-blue-700", "bg-blue-700"])
@@ -297,7 +332,7 @@
                     eventlist.push(['enemy', 5, sw + 14, (randy + j), 'up', 2400, 'none', "bg-blue-700", "bg-blue-700"])
                     eventlist.push(['enemy', 5, sw + 14, (randy - j), 'down', 2400, 'none', "bg-blue-700", "bg-blue-700"])
                 }
-                eventlist.push(['enemy', 3000, sw + 5, (randy - j), 'still', 200, 'fade', "bg-blue-700", "bg-blue-700"])
+                eventlist.push(['enemy', 4000, sw + 5, (randy - j), 'still', 200, 'fade', "bg-blue-700", "bg-blue-700"])
             }
             eventlist.push(['enemy', 5000, sw, (randy - j), 'up', 500, 'none', "bg-blue-700", "bg-blue-700"])
         };
@@ -363,7 +398,7 @@
     //______________________________________________//
 
     //enemy spawning / event triggering
-    async function enemyspawning(currentgame) {
+    async function eventspawning(currentgame) {
         if (currentgame == restarts) {
 
             //if the evenlist ran out, generate new wave
@@ -400,7 +435,7 @@
             eventlist.shift()
 
             await timeout(eventlist[spawncycle + 1][1]);
-            enemyspawning(currentgame)
+            eventspawning(currentgame)
 
         }
     }
@@ -774,7 +809,7 @@
     //PART 5: panning screen and recording gametime //
     //______________________________________________//
 
-    async function cyclestep(currentgame) {
+    async function timecycle(currentgame) {
         if (currentgame == restarts) {
             cycle += 1;
             gametime += interval
@@ -809,7 +844,7 @@
             }
             //repeat the function
             await timeout(interval);
-            cyclestep(currentgame)
+            timecycle(currentgame)
         }
     };
 
