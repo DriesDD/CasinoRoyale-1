@@ -229,12 +229,14 @@
   <!--MEMORY GAME-->
   
   <section class="memory-game"> 
-    <div class="card" data-image="hat">
+  
+    <div class="card" data-image="hat" tabindex="0">
       <img src="../images/hat.svg" class="img-front" alt="image of hat" />
       <img src="../images/logo.png" class="img-back" alt="image of logo" />
     </div>
+   
 
-    <div class="card" data-image="magicBall">
+    <div class="card" data-image="magicBall" tabindex="1">
       <img src="../images/magic-ball.svg" class="img-front" alt="image of magic ball" />
       <img src="../images/logo.png" class="img-back" alt="image of logo" />
     </div>
@@ -310,7 +312,49 @@
       </button>
     </div>
   </div>
-
+<!--below is the alertmodal You haven't paid yet pop-up!-->
+<div id="popup2" class="overlay2">
+  <div class="popup2">
+   
+    <div class="content-4 font-titlefont text-6x ltracking-wider">
+      You haven't paid yet!
+    </div>
+    
+    
+    <button class="play font-titlefont text-6x ltracking-wider" id="OK" onclick="playAgain()" >
+      <a> <strong>OK</strong> </a>
+    </button>
+  </div>
+</div>
+<!--below is the alertmodal2 You have paid already pop-up!-->
+<div id="popup3" class="overlay3">
+  <div class="popup3">
+    
+    <div class="content-5 font-titlefont text-6x ltracking-wider">
+      You have paid already, let the game begin!
+    </div>
+    
+    <button class="play font-titlefont text-6x ltracking-wider" id="Paid" onclick="playAgain()" >
+      <a> <strong>OK</strong> </a>
+    </button>
+  </div>
+</div>
+<!--below is the confirmodal if you click OK then you start a new game 20 coins will be paid. If you click cancel, you will go back to your current game pop-up!-->
+<div id="popup4" class="overlay4">
+  <div class="popup4">
+    <a class="close2" id="closeconfirm" href="#">×</a>
+    <div class="content-6 font-titlefont text-6x ltracking-wider">
+      if you click OK then you start a new game 20 coins will be paid. If you click close, you will go back to your current game
+    </div>
+    
+    
+    <button class="play font-titlefont text-6x ltracking-wider" id="confirm" onclick="refresh()">
+      <a> <strong>OK</strong> </a>
+    </button>
+    
+  </div>
+</div>
+<!--This is footer-->
   <footer>
     <div class="bg-white mt-4 shadow-inner z-30">
       <div class="max-w-screen-xl mx-auto py-5 px-4 sm:px-6 md:flex md:items-center md:justify-between lg:px-8">

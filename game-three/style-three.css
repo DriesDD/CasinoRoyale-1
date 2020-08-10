@@ -145,7 +145,7 @@
   }
 }
 /*
- * Styles for congratulations modal, I copied these I will change the design later
+ * Styles for congratulations modal
  */
 
 .overlay {
@@ -159,8 +159,43 @@
   visibility: hidden;
   opacity: 0;
 }
-
-.overlay:target {
+.overlay2 {
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  /*background: rgba(0, 0, 0, 0.7);*/
+  transition: opacity 500ms;
+  visibility: hidden;
+  opacity: 0;
+}
+.overlay3 {
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  /*background: rgba(0, 0, 0, 0.7);*/
+  transition: opacity 500ms;
+  visibility: hidden;
+  opacity: 0;
+}
+.overlay4 {
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  /*background: rgba(0, 0, 0, 0.7);*/
+  transition: opacity 500ms;
+  visibility: hidden;
+  opacity: 0;
+}
+.overlay:target,
+.overlay2:target,
+.overlay3:target,
+.overlay4:target {
   visibility: visible;
   opacity: 1;
 }
@@ -174,13 +209,25 @@
   position: relative;
   transition: all 5s ease-in-out;
 }
+.popup2,
+.popup3,
+.popup4 {
+  margin: 70px auto;
+  padding: 20px;
+  background: #ffffff;
+  border-radius: 5px;
+  width: 20%;
+  position: relative;
+  transition: all 5s ease-in-out;
+}
 
 .popup h2 {
   margin-top: 0;
   color: #1a202c;
 }
 
-.popup .close {
+.popup .close,
+.popup4 .close2 {
   position: absolute;
   top: 20px;
   right: 30px;
@@ -190,8 +237,18 @@
   text-decoration: none;
   color: #1a202c;
 }
-
-.popup .close :hover {
+.popup4 .close2 {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  transition: all 200ms;
+  font-size: 30px;
+  font-weight: bold;
+  text-decoration: none;
+  color: #1a202c;
+}
+.popup .close,
+.popup4 .close2:hover {
   color: #a3bffa;
 }
 @media only screen and (max-width: 640px) {
@@ -199,10 +256,17 @@
     top: 0px;
     right: 5px;
   }
+  .popup4 .close2 {
+    left: 5px;
+    top: 0px;
+  }
 }
-.popup .content-1,
+.popup .popup2 .popup3 .popup4 .content-1,
 .content-2,
-.content-3 {
+.content-3,
+.content-4,
+.content-5,
+.content-6 {
   max-height: 30%;
   overflow: auto;
   text-align: center;
@@ -214,7 +278,10 @@
   opacity: 100 !important;
 }
 
-#play-again {
+#play-again,
+#OK,
+#Paid,
+#confirm {
   padding: 0.7rem 1rem;
   font-size: 1.1rem;
   display: block;
@@ -226,12 +293,28 @@
   margin-top: 15px;
   border-color: #1a202c;
 }
+#OK,
+#Paid {
+  width: 55%;
+}
+
 @media only screen and (max-width: 640px) {
   #play-again {
     width: 40vw;
   }
-  .popup {
+
+  .popup,
+  .popup4 {
     width: 75%;
+  }
+  .popup2,
+  .popup3 . {
+    width: 50%;
+  }
+
+  .popup4 .close2 {
+    width: 1px;
+    top: 0px;
   }
 }
 .restart {

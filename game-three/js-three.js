@@ -107,7 +107,8 @@ document.getElementById("pay").onclick = () => {
     showBalance();
   } else if (paid != 0) {
     //if you have paid already
-    alert("You have paid already, let the game begin!");
+    alert2.classList.add("show");
+    // alert("You have paid already, let the game begin!");
   } else if (balance < 20) {
     alert("You need more balance to join the party!");
   }
@@ -210,6 +211,10 @@ function startTimer() {
 //create a modal
 
 let modal = document.getElementById("popup1");
+let alert1 = document.getElementById("popup2");
+let alert2 = document.getElementById("popup3");
+let alert3 = document.getElementById("popup4");
+
 //close icon in modal
 let closeicon = document.querySelector(".close");
 
@@ -221,6 +226,7 @@ function congrats() {
     finalTime = counterTime.innerHTML;
     //show congrats modal
     modal.classList.add("show");
+
     document.getElementById("finalMove").innerHTML = moves;
     document.getElementById("totalTime").innerHTML = finalTime;
     //closeicon on modal
@@ -245,10 +251,15 @@ function closeModal() {
     modal.classList.remove("show");
   });
 }
+
 //for player to play Again
 
 function playAgain() {
   modal.classList.remove("show");
+  alert1.classList.remove("show");
+  alert2.classList.remove("show");
+  alert3.classList.remove("show");
+
   startGame();
 }
 
@@ -261,41 +272,29 @@ window.onload = showBalance();
 
 function checkPaid() {
   if (paid == 0) {
-    alert("You haven't paid yet!");
+    // alert("You haven't paid yet!"); I replaced with the nice modal
+    //show alert1 modal
+    alert1.classList.add("show");
     openedCards = [];
     startGame();
   }
 }
 
 document.getElementById("refresh").onclick = () => {
-  let answer = confirm(
-    "if you click OK then you start a new game 20 coins will be paid. If you click cancel, you will go back to your current game"
-  );
-  if (answer) {
+  // let answer;
+  alert3.classList.add("show");
+  // confirm(
+  //   "if you click OK then you start a new game 20 coins will be paid. If you click cancel, you will go back to your current game"
+  // );
+
+  document.getElementById("confirm").addEventListener("click", () => {
     localStorage.setItem("balance", localStorage.getItem("balance") - 20);
     showBalance();
     openedCards = []; //empty array of opened cards; when refreshed after clicking a card, otherwise still 1 card is open.
     startGame();
-  }
-};
-
-document.onkeydown = () => {
-  switch (event.key) {
-    case "ArrowLeft":
-      {
-      }
-      break;
-    case "ArrowUp":
-      {
-      }
-      break;
-    case "ArrowRight":
-      {
-      }
-      break;
-    case "ArrowDown":
-      {
-      }
-      break;
-  }
+    alert3.classList.remove("show");
+  });
+  document.getElementById("closeconfirm").addEventListener("click", () => {
+    alert3.classList.remove("show");
+  });
 };
