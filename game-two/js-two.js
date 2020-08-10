@@ -183,7 +183,7 @@ info.addEventListener("click", () => {
   <li>To 'Hit' is to ask for another card.</li>
   <li>To 'Stand' is to hold your total and end your turn.</li>
   <li>If you go over 21 you bust, and the computer wins regardless of the computer's hand.</li>
-  <li>Computer will hit until his/her cards total 17 or higher.</li>
+  <li>Computer will hit until its cards total 17 or higher.</li>
   <li>To earn a badge maintain 5 winning streak.</li>
 </ul>`;
 });
@@ -271,10 +271,6 @@ stand.addEventListener("click", () => {
     .getElementById("hiddenCard")
     .setAttribute("src", `cards/${hiddenCard}.svg`);
   computerScore.innerHTML = standSum;
-
-  console.log(`Inside Stand sumPlayer ${sumPlayer}`);
-  console.log(`Inside Stand standSum ${standSum}`);
-  console.log(`Inside Stand firstSum ${firstSum}`);
   while (standSum < 17) {
     deal(computerCard, "computerHitCard");
   }
@@ -331,7 +327,6 @@ function winner(message, decision) {
           }
         }
       }, 1000);
-
       break;
     case "lose":
       setTimeout(() => {
@@ -346,7 +341,13 @@ function winner(message, decision) {
       break;
     case "tie":
       setTimeout(() => {
-        coinwon.classList.remove("hidden");
+        localStorage.setItem(
+          "balance",
+          Number(localStorage.getItem("balance")) + betAmount
+        );
+        bank.innerText = Number(localStorage.getItem("balance"));
+        balance.innerText =
+          "Current balance: " + Number(localStorage.getItem("balance"));
         body.classList.add("opacity-25");
         modal.classList.remove("hidden");
         result.innerHTML = `${message}`;
@@ -375,6 +376,8 @@ function badgeEarn(badgeImg, badgeNum) {
 // Computer also call this funtion to draw its cards.
 function deal(cards, check) {
   let firstCard, firstChar, secondCard, secondChar;
+  // Switch statement that takes check as parameter and based on that decides which case to execute
+  // For player and computer first 2 cards it only execute when it has playerFirstCard and computerFirstCard string as argument
   switch (check) {
     case "playerFirstCard":
     case "computerFirstCard":
@@ -386,9 +389,7 @@ function deal(cards, check) {
       secondChar = secondCard.charAt(0);
       ifAce(secondChar);
       weight.forEach((item) => {
-        if (firstChar === "A" && secondChar === "A") {
-          sumPlayer = 12;
-        } else if (firstChar === secondChar && firstChar === item.type) {
+        if (firstChar === secondChar && firstChar === item.type) {
           sumPlayer = item.value * 2;
         } else if (firstChar === item.type || secondChar === item.type) {
           sumPlayer += item.value;
@@ -399,14 +400,11 @@ function deal(cards, check) {
           sum = item.value;
         }
       });
+      // Switch inside switch conditional statement to display player and computer first 2 cards
       switch (check) {
         case "playerFirstCard":
           aInPlayerCard = count;
           count = 0;
-          console.log(`Number of A's is ${aInPlayerCard}`);
-          if (aInPlayerCard == 1) aIsOne = true;
-          if (aInPlayerCard == 2) aAreTwo = true;
-
           firstSum = sumPlayer;
           playerCards.innerHTML += `<img class="mr-1 sm:h-40 h-20" src="cards/${firstCard}.svg" />`;
           playerCards.innerHTML += `<img class="mr-1 sm:h-40 h-20" src="cards/${secondCard}.svg" />`;
@@ -416,8 +414,6 @@ function deal(cards, check) {
         case "computerFirstCard":
           aInComputerCard = count;
           count = 0;
-          console.log(`Number of A's is ${aInComputerCard}`);
-          console.log(firstCard);
           standSum = sumPlayer;
           hiddenCard = firstCard;
           computerCards.innerHTML += `<img id="hiddenCard" class="mr-1 sm:h-40 h-20" src="cards/RED_BACK.svg"  />`;
@@ -426,11 +422,9 @@ function deal(cards, check) {
           computerScore.innerHTML = sumPlayer - sum;
           break;
       }
-      console.log(`${check} : ${sumPlayer}`);
-
       (sum = 0), (sumPlayer = 0);
-
       break;
+    // If player wishes to draw more cards then it goes through this case
     case "playerHitCard":
       cards = randNumber();
       firstCard = deck[cards[0]];
@@ -438,8 +432,6 @@ function deal(cards, check) {
       ifAce(firstChar);
       aInPlayerCard += count;
       count = 0;
-      if (aInPlayerCard == 3) aAreThree = true;
-      if (aInPlayerCard == 4) aAreFour = true;
       weight.forEach((item) => {
         if (firstChar === item.type) {
           hitPlayer = item.value;
@@ -453,38 +445,32 @@ function deal(cards, check) {
         }
       }
       hitSum = firstSum;
-      console.log(`playerHitCard-hit value ${hitPlayer}`);
-      console.log(`playerHitCard-previous sum ${firstSum}`);
       playerCards.innerHTML += `<img class="mr-1 sm:h-40 h-20" src="cards/${firstCard}.svg" />`;
       playerScore.innerHTML = hitSum;
       if (hitSum > 21) {
         behaviourBtn(hit, "off");
       }
       break;
+    // Computer auto card draw switch case, it will draw until its cards total 17 or higher.
     case "computerHitCard":
       cards = randNumber();
       firstCard = deck[cards[0]];
       firstChar = firstCard.charAt(0);
       ifAce(firstChar);
       aInComputerCard += count;
-      if (aInComputerCard > 0 && standSum <= 17) {
-        weight.forEach((item) => {
-          if (firstChar === item.type && firstChar === "A") {
-            hitPlayer = 1;
-          } else if (firstChar === item.type) {
-            hitPlayer = item.value;
-          }
-        });
-      } else {
-        weight.forEach((item) => {
-          if (firstChar === item.type) {
-            hitPlayer = item.value;
-          }
-        });
-      }
-      console.log(`computerHitCard-previous sum ${standSum}`);
-      console.log(`computerHitCard-hit value ${hitPlayer}`);
+      count = 0;
+      weight.forEach((item) => {
+        if (firstChar === item.type) {
+          hitPlayer = item.value;
+        }
+      });
       standSum += hitPlayer;
+      for (let i = 0; i < aInComputerCard; i++) {
+        if (aInComputerCard > 0 && firstSum > 21) {
+          standSum -= 10;
+          aInComputerCard -= 1;
+        }
+      }
       computerCards.innerHTML += `<img class="mr-1 sm:h-40 h-20" src="cards/${firstCard}.svg" />`;
       computerScore.innerHTML = standSum;
       if (standSum > 21) {
