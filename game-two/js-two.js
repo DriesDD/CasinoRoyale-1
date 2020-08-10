@@ -63,10 +63,11 @@ const chip10 = document.getElementById("chip10");
 const chip25 = document.getElementById("chip25");
 const bet = document.getElementById("bet");
 const balance = document.getElementById("balance");
-//const pay10 = document.getElementById("pay10");
 const coinwon = document.getElementById("coinwon");
 const badgeDisplay = document.getElementById("badgeDisplay");
-//const badge1 = document.getElementById("badge1");
+const gamerules = document.getElementById("gamerules");
+const modalWidth = document.getElementById("modalwidth");
+const rulesheader = document.getElementById("rulesheader");
 
 //Variables declaration
 let deck = [],
@@ -84,6 +85,8 @@ let deck = [],
   count = 0,
   numOfBadge = 0,
   playerWin = 0,
+  aIsOne = false,
+  aAreTwo = false,
   sum;
 // Coin bank and bet updater function
 function betUpdate(coin, minCoin, coinSVG) {
@@ -99,6 +102,8 @@ function betUpdate(coin, minCoin, coinSVG) {
       Number(localStorage.getItem("balance")) - minCoin
     );
     bank.innerText = Number(localStorage.getItem("balance"));
+    balance.innerText =
+      "Current balance: " + Number(localStorage.getItem("balance"));
     coins.innerHTML += `<img class="w-5 sm:w-10 md:w-10 lg:w-10 xl:w-10 mr-2" src="coins/${coinSVG}.svg"
     />`;
   }
@@ -125,12 +130,30 @@ chip25.addEventListener("click", () => {
 
 // Close button listener. Closes the popup modal box.
 close.addEventListener("click", () => {
+  rulesheader.classList.add("hidden");
+  modalWidth.classList.add("max-w-xs");
+  gamerules.classList.add("hidden");
   modal.classList.add("hidden");
   body.classList.remove("opacity-25");
 });
 
 //On windows load, update bank balance. Disable draw and stand button
 window.onload = () => {
+  modalWidth.classList.remove("max-w-xs");
+  body.classList.add("opacity-25");
+  modal.classList.remove("hidden");
+  rulesheader.classList.remove("hidden");
+  gamerules.classList.remove("hidden");
+  playAgain.classList.add("hidden");
+  gamerules.innerHTML = `<ul class="list-disc">
+  <li>The goal of Twenty-One games is to beat the computer's hand without going over 21.</li>
+  <li>Cards from 2 to 10 are worth their face value. Face cards are worth 10. Aces are worth 1 or 11, whichever makes a better hand.</li>
+  <li>To 'Hit' is to ask for another card.</li>
+  <li>To 'Stand' is to hold your total and end your turn.</li>
+  <li>If you go over 21 you bust, and the computer wins regardless of the computer's hand.</li>
+  <li>Computer will hit until his/her cards total 17 or higher.</li>
+  <li>To earn a badge maintain 5 winning streak.</li>
+</ul>`;
   balance.innerText =
     "Current balance: " + Number(localStorage.getItem("balance"));
   bank.innerText = Number(localStorage.getItem("balance"));
@@ -235,11 +258,12 @@ function winner(message, decision) {
           Number(localStorage.getItem("balance")) + betAmount * 2
         );
         bank.innerText = Number(localStorage.getItem("balance"));
-        balance.innerText = Number(localStorage.getItem("balance"));
+        balance.innerText =
+          "Current balance: " + Number(localStorage.getItem("balance"));
         result.innerHTML = `${message}`;
         coinwon.classList.remove("hidden");
         coinwon.innerHTML = `Player gets +${betAmount * 2} coins`;
-        playerWin = 5;
+        playerWin++;
         if (playerWin == 5) {
           numOfBadge++;
           switch (numOfBadge) {
@@ -323,6 +347,9 @@ function deal(cards, check) {
           aInPlayerCard = count;
           count = 0;
           console.log(`Number of A's is ${aInPlayerCard}`);
+          if (aInPlayerCard == 1) aIsOne = true;
+          if (aInPlayerCard == 2) aAreTwo = true;
+
           firstSum = sumPlayer;
           playerCards.innerHTML += `<img class="mr-1" src="cards/${firstCard}.svg" />`;
           playerCards.innerHTML += `<img class="mr-1" src="cards/${secondCard}.svg" />`;
@@ -353,24 +380,24 @@ function deal(cards, check) {
       firstChar = firstCard.charAt(0);
       ifAce(firstChar);
       aInPlayerCard += count;
-      if (aInPlayerCard > 0 && sumPlayer > 12) {
-        weight.forEach((item) => {
-          if (firstChar === item.type && firstChar === "A") {
-            hitPlayer = 1;
-          } else if (firstChar === item.type) {
-            hitPlayer = item.value;
-          }
-        });
-      } else {
-        weight.forEach((item) => {
-          if (firstChar === item.type) {
-            hitPlayer = item.value;
-          }
-        });
+      count = 0;
+      if (aInPlayerCard == 3) aAreThree = true;
+      if (aInPlayerCard == 4) aAreFour = true;
+      weight.forEach((item) => {
+        if (firstChar === item.type) {
+          hitPlayer = item.value;
+        }
+      });
+      firstSum += hitPlayer;
+      for (let i = 0; i < aInPlayerCard; i++) {
+        if (aInPlayerCard > 0 && firstSum > 21) {
+          firstSum -= 10;
+          aInPlayerCard -= 1;
+        }
       }
-      hitSum = firstSum += hitPlayer;
-      console.log(`playerHitCard-previous sum ${firstSum}`);
+      hitSum = firstSum;
       console.log(`playerHitCard-hit value ${hitPlayer}`);
+      console.log(`playerHitCard-previous sum ${firstSum}`);
       playerCards.innerHTML += `<img class="mr-1" src="cards/${firstCard}.svg" />`;
       playerScore.innerHTML = hitSum;
       if (hitSum > 21) {
@@ -432,7 +459,6 @@ function deckShuffle() {
     deck[i] = deck[j];
     deck[j] = temp;
   }
-  console.log(deck);
 }
 
 // Random array generator with 2 values

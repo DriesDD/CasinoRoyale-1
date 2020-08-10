@@ -6,12 +6,12 @@
   margin: auto;
   /* z-index: -10; */
 }
-@media only screen and (max-width: 700px) {
+
+@media only screen and (max-width: 640px) {
   .memory-game {
-    width: 550px;
+    width: 95vw;
   }
 }
-
 .card {
   width: calc(25% - 5px - 5px); /* 1/4 of the screen - the margin */
   height: calc(33.333% - 5px -5px);
@@ -194,7 +194,12 @@
 .popup .close :hover {
   color: #a3bffa;
 }
-
+@media only screen and (max-width: 640px) {
+  .popup .close {
+    top: 0px;
+    right: 5px;
+  }
+}
 .popup .content-1,
 .content-2,
 .content-3 {
@@ -220,6 +225,14 @@
   border-radius: 5px;
   margin-top: 15px;
   border-color: #1a202c;
+}
+@media only screen and (max-width: 640px) {
+  #play-again {
+    width: 40vw;
+  }
+  .popup {
+    width: 75%;
+  }
 }
 .restart {
   cursor: pointer;
