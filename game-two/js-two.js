@@ -135,7 +135,26 @@ close.addEventListener("click", () => {
   modalWidth.classList.add("max-w-xs");
   gamerules.classList.add("hidden");
   modal.classList.add("hidden");
+  bet.classList.add("hidden");
+  playerScore.classList.add("hidden");
+  coinwon.classList.add("hidden");
+  computerScore.classList.add("hidden");
   body.classList.remove("opacity-25");
+  playerScore.innerHTML = "";
+  computerScore.innerHTML = "";
+  playerCards.innerHTML = "";
+  computerCards.innerHTML = "";
+  coins.innerHTML = "";
+  bet.innerHTML = "";
+  deck = [];
+  betAmount = 0;
+  behaviourBtn(play, "on");
+  behaviourBtn(stand, "off");
+  behaviourBtn(hit, "off");
+  behaviourChip(chip1, "on");
+  behaviourChip(chip5, "on");
+  behaviourChip(chip10, "on");
+  behaviourChip(chip25, "on");
 });
 // Close info button listener, onclick displays the game rules
 closeInfo.addEventListener("click", () => {
@@ -145,6 +164,8 @@ closeInfo.addEventListener("click", () => {
   rulesheader.classList.remove("hidden");
   gamerules.classList.remove("hidden");
   playAgain.classList.add("hidden");
+  result.classList.add("hidden");
+  coinwon.classList.add("hidden");
   gamerules.innerHTML = `<ul class="list-disc">
   <li>The goal of Twenty-One games is to beat the computer's hand without going over 21.</li>
   <li>Cards from 2 to 10 are worth their face value. Face cards are worth 10. Aces are worth 1 or 11, whichever makes a better hand.</li>
@@ -185,6 +206,10 @@ playAgain.addEventListener("click", () => {
   behaviourBtn(play, "on");
   behaviourBtn(stand, "off");
   behaviourBtn(hit, "off");
+  behaviourChip(chip1, "on");
+  behaviourChip(chip5, "on");
+  behaviourChip(chip10, "on");
+  behaviourChip(chip25, "on");
 });
 
 // Play button listener. Game starts by clicking this button.
@@ -198,10 +223,13 @@ play.addEventListener("click", () => {
     behaviourBtn(play, "off");
     behaviourBtn(hit, "on");
     behaviourBtn(stand, "on");
+    behaviourChip(chip1, "off");
+    behaviourChip(chip5, "off");
+    behaviourChip(chip10, "off");
+    behaviourChip(chip25, "off");
   } else {
     setTimeout(() => {
       body.classList.add("opacity-25");
-      modal.classList.add("opacity-100");
       modal.classList.remove("hidden");
       playAgain.classList.add("hidden");
       result.innerHTML = `First place a bet`;
@@ -269,19 +297,27 @@ function winner(message, decision) {
         coinwon.innerHTML = `Player gets +${betAmount * 2} coins`;
         playerWin++;
         if (playerWin == 5) {
-          numOfBadge++;
+          numOfBadge = 2;
           switch (numOfBadge) {
             case numOfBadge == 1:
-              badgeEarn("badge1", 1);
-              break;
-            case numOfBadge == 2:
               badgeEarn("badge2", 2);
               break;
+            case numOfBadge == 2:
+              badgeDisplay.classList.remove("hidden");
+              badgeDisplay.innerHTML = `<h2 class="font-semibold text-xl py-2 px-12 font-titlefont"
+            >You did great but you already earned the badge</h2>`;
+              break;
             case numOfBadge == 3:
-              badgeEarn("badge3", 3);
+              badgeDisplay.classList.remove("hidden");
+              badgeDisplay.innerHTML = `<h2 class="font-semibold text-xl py-2 px-12 font-titlefont"
+            >You did great but you already earned the badge</h2>`;
+              break;
               break;
             case numOfBadge == 4:
-              badgeEarn("badge4", 4);
+              badgeDisplay.classList.remove("hidden");
+              badgeDisplay.innerHTML = `<h2 class="font-semibold text-xl py-2 px-12 font-titlefont"
+            >You did great but you already earned the badge</h2>`;
+              break;
               break;
           }
         }
@@ -485,6 +521,19 @@ function behaviourBtn(button, check) {
     case "on":
       button.classList.add("bg-orange-500");
       button.classList.remove("bg-orange-300", "cursor-not-allowed");
+      button.disabled = false;
+      break;
+  }
+}
+// Makes button disabled true or false
+function behaviourChip(button, check) {
+  switch (check) {
+    case "off":
+      button.classList.add("cursor-not-allowed");
+      button.disabled = true;
+      break;
+    case "on":
+      button.classList.remove("cursor-not-allowed");
       button.disabled = false;
       break;
   }
