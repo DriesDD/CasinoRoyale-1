@@ -312,9 +312,9 @@
 
             eventlist.push(['wave', 4000, 'bg-space']);
             eventlist.push(['message', 0, 'It\'s a blob... That eats snakes!']);
-            for (i = 0; i < 50 + (difficulty + wave) * 10; i++) {
-                eventlist.push(['enemy', 150 / (5 + difficulty + wave), sw + 5, Math.round(Math.random() * 3), 'down', (2 + Math.random()) * 2000 / (5 + difficulty + wave), 'pursue', "bg-indigo-700", "bg-indigo-700"])
-                eventlist.push(['enemy', 150 / (5 + difficulty + wave), sw + 5, sh + 1 - Math.round(Math.random() * 3), 'up', (2 + Math.random()) * 2000 / (5 + difficulty + wave), 'pursue', "bg-indigo-700", "bg-indigo-700"])
+            for (i = 0; i < 30 + (difficulty + wave) * 10; i++) {
+                eventlist.push(['enemy', 150 / (5 + difficulty + wave), sw + 5, Math.round(Math.random() * 3), 'down', (2 + Math.random()) * 3000 / (5 + difficulty + wave), 'pursue', "bg-indigo-700", "bg-indigo-700"])
+                eventlist.push(['enemy', 150 / (5 + difficulty + wave), sw + 5, sh + 1 - Math.round(Math.random() * 3), 'up', (2 + Math.random()) * 3000 / (5 + difficulty + wave), 'pursue', "bg-indigo-700", "bg-indigo-700"])
             }
             eventlist.push(['enemy', 5000, sw + 10, sh + 1 - Math.round(Math.random() * 3), 'left', (2 + Math.random()) * 2000 / (5 + difficulty + wave), 'none', "bg-indigo-700", "bg-space"])
         };
@@ -603,22 +603,22 @@
     document.onkeydown = () => {
         switch (event.key) {
             case 'ArrowLeft':
-                if (playerdir != 'right') {
+                if ((playerdir != 'right') && (document.getElementsByClassName('cell')[playery * sw + playerx-1].classList.contains("bg-yellow-300") == 0)){
                     playerdir = 'left'
                 }
                 break;
             case 'ArrowUp':
-                if (playerdir != 'down') {
+                if ((playerdir != 'down') && (document.getElementsByClassName('cell')[(playery-1) * sw + playerx].classList.contains("bg-yellow-300") == 0)){
                     playerdir = 'up'
                 }
                 break;
             case 'ArrowRight':
-                if (playerdir != 'left') {
+                if ((playerdir != 'left') && (document.getElementsByClassName('cell')[playery * sw + playerx+1].classList.contains("bg-yellow-300") == 0)){
                     playerdir = 'right'
                 }
                 break;
             case 'ArrowDown':
-                if (playerdir != 'up') {
+                if ((playerdir != 'up') && (document.getElementsByClassName('cell')[(playery+1) * sw + playerx].classList.contains("bg-yellow-300") == 0)){
                     playerdir = 'down'
                 }
                 break;
