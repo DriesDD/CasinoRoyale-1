@@ -318,21 +318,13 @@ function winner(message, decision) {
               badgeEarn("badge2", 2);
               break;
             case numOfBadge == 2:
-              badgeDisplay.classList.remove("hidden");
-              badgeDisplay.innerHTML = `<h2 class="font-semibold text-xl py-2 px-12 font-titlefont"
-            >You did great but you already earned the badge</h2>`;
+              badgeMore();
               break;
             case numOfBadge == 3:
-              badgeDisplay.classList.remove("hidden");
-              badgeDisplay.innerHTML = `<h2 class="font-semibold text-xl py-2 px-12 font-titlefont"
-            >You did great but you already earned the badge</h2>`;
-              break;
+              badgeMore();
               break;
             case numOfBadge == 4:
-              badgeDisplay.classList.remove("hidden");
-              badgeDisplay.innerHTML = `<h2 class="font-semibold text-xl py-2 px-12 font-titlefont"
-            >You did great but you already earned the badge</h2>`;
-              break;
+              badgeMore();
               break;
           }
         }
@@ -343,6 +335,7 @@ function winner(message, decision) {
       setTimeout(() => {
         body.classList.add("opacity-25");
         modal.classList.remove("hidden");
+        result.classList.remove("hidden");
         result.innerHTML = `${message}`;
         coinwon.classList.remove("hidden");
         coinwon.innerHTML = `Player lose -${betAmount} coins`;
@@ -358,6 +351,12 @@ function winner(message, decision) {
       }, 1000);
       break;
   }
+}
+// More than one badge
+function badgeMore() {
+  badgeDisplay.classList.remove("hidden");
+  badgeDisplay.innerHTML = `<h2 class="font-semibold text-xl py-2 px-12 font-titlefont"
+>You did great but you already earned the badge</h2>`;
 }
 // Display badge
 function badgeEarn(badgeImg, badgeNum) {
