@@ -9,6 +9,8 @@ Virtual Casino with:
 - 2-4 games
   1. Rock, Paper, Scissors, Lizard, Spock
   2. Twenty-One
+  3. Memory
+  4. Block Game
 - Homepage with cards for each game
 - Games link to the home page, and/or directly to one of the other games
 
@@ -24,14 +26,15 @@ Virtual Casino with:
 |----------- | ------------- | ------------- | -------------| -------------| -------------| -------------| -------------|-------------|
 **Project leader**| Ezgi | Ezgi | Dries | Dries | Nicol | Nicol | Fawad | Fawad
 **Morning** | Sprint planning
-**Afternoon**|
-**Sprint Goals**|
+**Afternoon**| Summary of the day
 
 ## Built With :computer:
 - [VSC](https://code.visualstudio.com/)
+- [Tailwind CSS](https://tailwindcss.com/)
 
 ## Hosted on :octocat:
 - [Github Pages](https://driesdd.github.io/CasinoRoyale/)
+- [Netlify](#)
 
 ## License
 - **GNU General Public License v3.0**
