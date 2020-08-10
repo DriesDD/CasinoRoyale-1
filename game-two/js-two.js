@@ -54,7 +54,7 @@ const playAgain = document.getElementById("play");
 const modal = document.getElementById("modal");
 const result = document.getElementById("result");
 const body = document.getElementById("body");
-const close = document.getElementById("close");
+const close = document.getElementById("closeOther");
 const coins = document.getElementById("coins");
 const bank = document.getElementById("bank");
 const chip1 = document.getElementById("chip1");
@@ -68,6 +68,7 @@ const badgeDisplay = document.getElementById("badgeDisplay");
 const gamerules = document.getElementById("gamerules");
 const modalWidth = document.getElementById("modalwidth");
 const rulesheader = document.getElementById("rulesheader");
+const info = document.getElementById("info");
 const closeInfo = document.getElementById("closeInfo");
 
 //Variables declaration
@@ -105,7 +106,7 @@ function betUpdate(coin, minCoin, coinSVG) {
     bank.innerText = Number(localStorage.getItem("balance"));
     balance.innerText =
       "Current balance: " + Number(localStorage.getItem("balance"));
-    coins.innerHTML += `<img class="w-10 mr-2" src="coins/${coinSVG}.svg"
+    coins.innerHTML += `<img class="w-8 sm:w-10 md:w-10 mr-2" src="coins/${coinSVG}.svg"
     />`;
   }
 }
@@ -131,15 +132,13 @@ chip25.addEventListener("click", () => {
 
 // Close button listener. Closes the popup modal box.
 close.addEventListener("click", () => {
-  rulesheader.classList.add("hidden");
-  modalWidth.classList.add("max-w-xs");
-  gamerules.classList.add("hidden");
   modal.classList.add("hidden");
   bet.classList.add("hidden");
   playerScore.classList.add("hidden");
   coinwon.classList.add("hidden");
   computerScore.classList.add("hidden");
   body.classList.remove("opacity-25");
+  close.classList.add("hidden");
   playerScore.innerHTML = "";
   computerScore.innerHTML = "";
   playerCards.innerHTML = "";
@@ -156,8 +155,19 @@ close.addEventListener("click", () => {
   behaviourChip(chip10, "on");
   behaviourChip(chip25, "on");
 });
-// Close info button listener, onclick displays the game rules
+// Close info button listener, onclick closes the game rules popup
 closeInfo.addEventListener("click", () => {
+  rulesheader.classList.add("hidden");
+  modalWidth.classList.add("max-w-xs");
+  gamerules.classList.add("hidden");
+  modal.classList.add("hidden");
+  closeInfo.classList.add("hidden");
+  body.classList.remove("opacity-25");
+});
+
+// Info button listener, onclick displays the game rules
+info.addEventListener("click", () => {
+  closeInfo.classList.remove("hidden");
   modalWidth.classList.remove("max-w-xs");
   body.classList.add("opacity-25");
   modal.classList.remove("hidden");
@@ -229,6 +239,7 @@ play.addEventListener("click", () => {
     behaviourChip(chip25, "off");
   } else {
     setTimeout(() => {
+      close.classList.remove("hidden");
       body.classList.add("opacity-25");
       modal.classList.remove("hidden");
       playAgain.classList.add("hidden");
@@ -251,6 +262,7 @@ hit.addEventListener("click", () => {
 
 // Stand button listener. If player wants to stand and computer play its turn he/she clicks this button.
 stand.addEventListener("click", () => {
+  close.classList.remove("hidden");
   behaviourBtn(hit, "off");
   document
     .getElementById("hiddenCard")
