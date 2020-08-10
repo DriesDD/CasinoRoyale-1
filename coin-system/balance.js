@@ -199,8 +199,6 @@ function badgeupdateMob() {
 }
 badgeupdateMob();
 
-badge1;
-
 // Badges
 function badgeupdate() {
   if (localStorage.getItem("game1unlock") == null) {
