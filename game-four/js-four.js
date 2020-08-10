@@ -44,6 +44,10 @@
         return document.getElementById(x);
     }
 
+    //auxiliary function to restyle a cell
+    function restyle(x,y,newstyle) {document.getElementsByClassName('cell')[y * sw + x].classList.remove("bg-space", "bg-yellow-300", "bg-yellow-100", "bg-green-600", "bg-green-900", "bg-green-800", "bg-orange-900", "bg-red-800", "bg-red-600", "bg-blue-500", "bg-blue-700", "bg-orange-600", "bg-green-500", "bg-indigo-700", "bg-yellow-400", "bg-gray-900");
+    document.getElementsByClassName('cell')[y * sw + x].classList.add(newstyle)}
+
     //auxiliary Fisher-Yates shuffle function. Only bit of code here that I copied from the internet, as it's the proven best shuffle algorithm.
     function shuffle(array) {
         var m = array.length,
@@ -276,13 +280,12 @@
 
                 randy = Math.floor(Math.random() * sh);
 
-                for (j = 0; j < (Math.ceil(Math.sqrt(2 + wave/3 + difficulty))); j++) {
+                for (j = 0; j < (Math.ceil(Math.sqrt(1 + wave/3 + difficulty))); j++) {
                     eventlist.push(['enemy', 10, sw + 10, (randy + j), 'up', 3000, 'none', "bg-blue-700", "bg-blue-700"])
                     eventlist.push(['enemy', 10, sw + 10, (randy - j), 'down', 3000, 'none', "bg-blue-700", "bg-blue-700"])
                     eventlist.push(['enemy', 10, sw +9, (randy + j), 'up', 3000, 'none', "bg-blue-700", "bg-blue-700"])
                     eventlist.push(['enemy', 10, sw +9, (randy - j), 'down', 3000, 'none', "bg-blue-700", "bg-blue-700"])
                 }
-
                 if (Math.random() * 20 < 4 + (difficulty + wave)) {
                     eventlist.push(['enemy', 20000 / (1 + wave + difficulty), sw + 5, randy + 1, 'up', 10000 / (10 + difficulty + wave), 'snake', "bg-blue-500", "bg-blue-700"])
                     eventlist.push(['enemy', 0, sw + 4, randy, 'up', 6000 / (10 + difficulty + wave), 'snake', "bg-blue-500", "bg-blue-700"])
@@ -292,19 +295,15 @@
                 }
                 eventlist.push(['enemy', 1500, sw + 5, (randy - j), 'still', 200, 'fade', "bg-blue-700", "bg-blue-700"])
 
-
-                for (j = 0; j < (Math.ceil(Math.sqrt(2 + wave/3 + difficulty))); j++) {
+                for (j = 0; j < (Math.ceil(Math.sqrt(1 + wave/3 + difficulty))); j++) {
                     eventlist.push(['enemy', 5, sw + 15, (randy + j), 'up', 2400, 'none', "bg-blue-700", "bg-blue-700"])
                     eventlist.push(['enemy', 5, sw + 15, (randy - j), 'down', 2400, 'none', "bg-blue-700", "bg-blue-700"])
                     eventlist.push(['enemy', 5, sw + 14, (randy + j), 'up', 2400, 'none', "bg-blue-700", "bg-blue-700"])
                     eventlist.push(['enemy', 5, sw + 14, (randy - j), 'down', 2400, 'none', "bg-blue-700", "bg-blue-700"])
                 }
                 eventlist.push(['enemy', 3000, sw + 5, (randy - j), 'still', 200, 'fade', "bg-blue-700", "bg-blue-700"])
-
-
             }
             eventlist.push(['enemy', 5000, sw, (randy - j), 'up', 500, 'none', "bg-blue-700", "bg-blue-700"])
-
         };
         break;
 
