@@ -310,7 +310,7 @@ function winner(message, decision) {
         coinwon.innerHTML = `Player gets +${betAmount * 2} coins`;
         playerWin++;
         if (playerWin == 5) {
-          numOfBadge = 2;
+          numOfBadge++;
           switch (numOfBadge) {
             case numOfBadge == 1:
               badgeEarn("badge2", 2);
